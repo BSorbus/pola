@@ -1,6 +1,6 @@
 # README
 
-Project PROCA (Projekt Operacyjny pOlska CyfrowA.
+Project PROCA (PRojekt Operacyjny polska CyfrowA).
 
 Things you may want to cover:
 
