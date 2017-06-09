@@ -8,4 +8,7 @@ class User < ApplicationRecord
          :trackable, 
          :validatable,
          :lockable
+
+  has_and_belongs_to_many :roles
+
 end
