@@ -31,3 +31,12 @@
 
 en:
   hello: "Hello world"
+  pages:
+    role:
+      index:
+        title: 'Role'
+  helpers:
+    links:
+      index: ' Lista'
+      show: ' Pokaż'
+      new:  ' Nowy'
