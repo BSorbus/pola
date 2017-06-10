@@ -9,6 +9,7 @@ class User < ApplicationRecord
          :validatable,
          :lockable
 
+  # relations
   has_and_belongs_to_many :roles
 
 end
