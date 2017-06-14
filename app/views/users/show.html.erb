@@ -1,0 +1,21 @@
+
+<h1>Users#show</h1>
+<p>Find me in app/views/users/show.html.erb</p>
+
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Projects:</strong> <br>
+    <% @user.accessorizations.each do |a| %>
+      <%= a.project.number %>    as <%= a.role.name %>
+      <br>
+    <% end %>
+</p>
