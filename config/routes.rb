@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  resources :roles
-
   devise_for :users
+
+  resources :users
+  resources :projects
+  resources :roles
 
   root 'static_pages#home'
   get 'static_pages/home'

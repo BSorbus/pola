@@ -17,8 +17,13 @@
   </div>
 
   <div class="field">
+    <%= form.label :special %>
+    <%= form.check_box :special, id: :role_special %>
+  </div>
+
+  <div class="field">
     <%= form.label :activities %>
-    <%= form.text_field :activities, id: :role_activities %>
+    <%= form.text_field :activities, id: :role_activities, :size=>"100" %>
   </div>
 
   <div class="actions">
