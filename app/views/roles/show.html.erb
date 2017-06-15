@@ -1,19 +1,54 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @role.name %>
-</p>
 
-<p>
-  <strong>Special?:</strong>
-  <%= @role.special %>
-</p>
+<div class="container">
+  <div class="col-sm-12">
+    <div class="row">
+      <h3><span class="glyphicon glyphicon-sunglasses" aria-hidden="true"> 
+        <%= t "pages.role.show.title" %>  
+        </span>
+      </h3>
+    </div> <!--/row -->
+    <div class="row">
+      <p>
+        <strong>Name:</strong>
+        <%= @role.name %>
+      </p>
 
-<p>
-  <strong>Activities:</strong>
-  <%= @role.activities %>
-</p>
+      <p>
+        <strong>Special?:</strong>
+        <%= @role.special %>
+      </p>
 
-<%= link_to 'Edit', edit_role_path(@role) %> |
-<%= link_to 'Back', roles_path %>
+      <p>
+        <strong>Activities:</strong>
+        <%= @role.activities %>
+      </p>
+
+      <br>
+      <p>
+        <strong>Used in:</strong> 
+      </p>
+
+      <div class="column">
+        <table class="table table-hover">
+          <tbody>
+            <% @role.accessorizations.each do |accessorization| %>
+              <tr>
+                <%= render accessorization %>
+                <%#= render partial: 'accessorization', locals: {accessorization: accessorization} %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+    </div> <!--/row -->
+    <br>
+    <div class="row">
+      <%= link_to 'Edit', edit_role_path(@role) %> |
+      <%= link_to 'Back', roles_path %>
+    </div> <!--/row -->
+  </div> <!--/col-sm-12 -->
+</div> <!--/coontainer -->
+

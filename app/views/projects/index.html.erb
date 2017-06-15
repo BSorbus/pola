@@ -5,41 +5,28 @@
   <div class="col-sm-12">
     <div class="row">
       <h3><span class="glyphicon glyphicon-book" aria-hidden="true"> 
-        <%= t "pages.project.show.title" %>  
+        <%= t "pages.project.index.title" %>  
         </span>
       </h3>
-    </div> <!--/row -->
-    <div class="row">
-      <p>
-        <strong>Number:</strong>
-        <%= @project.number %>
-      </p>
-
-
-      <br>
-      <p>
-        <strong>Access:</strong> 
-      </p>
-
       <div class="column">
         <table class="table table-hover">
           <tbody>
-            <% @project.accessorizations.each do |accessorization| %>
+            <% @projects.each do |project| %>
               <tr>
-                <%= render accessorization %>
+                <%= render project %>
               </tr>
             <% end %>
           </tbody>
         </table>
       </div>
-
     </div> <!--/row -->
-    <br>
-
+  </div> <!--/col-sm-12 -->
+  <div class="col-sm-12">
     <div class="row">
-      <%= link_to 'Edit', edit_project_path(@project) %> |
-      <%= link_to 'Back', projects_path %>
+      <% if true %> <!--policy(:project).new? %> -->
+        <%= link_to t('New', default: t("helpers.links.new")), new_project_path, 
+                            :class => 'btn btn-primary glyphicon glyphicon-plus pull-right' %> 
+      <% end %>
     </div> <!--/row -->
   </div> <!--/col-sm-12 -->
 </div> <!--/coontainer -->
-

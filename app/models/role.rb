@@ -2,7 +2,8 @@ class Role < ApplicationRecord
 
   # relations
   has_and_belongs_to_many :users
-  has_many :accessorizations
+  has_many :accessorizations, dependent: :nullify
+  has_many :accesses_projects, :through => :accessorizations, source: :project
 
   # validates
   validates :name, presence: true,

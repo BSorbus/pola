@@ -34,9 +34,22 @@ en:
   pages:
     role:
       index:
+        title: 'Roles'
+      show:
         title: 'Role'
+    project:
+      index:
+        title: 'Projects'
+      show:
+        title: 'Project'
+    user:
+      index:
+        title: 'Users'
+      show:
+        title: 'User'
   helpers:
     links:
       index: ' Lista'
       show: ' Pokaż'
       new:  ' Nowy'
+      edit: ' Edycja'

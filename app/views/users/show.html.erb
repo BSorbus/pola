@@ -1,21 +1,48 @@
-
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<p id="notice"><%= notice %></p>
 
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+<div class="container">
+  <div class="col-sm-12">
+    <div class="row">
+      <h3><span class="glyphicon glyphicon-user" aria-hidden="true"> 
+        <%= t "pages.user.show.title" %>  
+        </span>
+      </h3>
+    </div> <!--/row -->
+    <div class="row">
+      <p>
+        <strong>Name:</strong>
+        <%= @user.name %>
+      </p>
 
-<p>
-  <strong>Projects:</strong> <br>
-    <% @user.accessorizations.each do |a| %>
-      <%= a.project.number %>    as <%= a.role.name %>
+      <p>
+        <strong>Email:</strong>
+        <%= @user.email %>
+      </p>
+
       <br>
-    <% end %>
-</p>
+      <p>
+        <strong>Access:</strong> 
+      </p>
+
+      <div class="column">
+        <table class="table table-hover">
+          <tbody>
+            <% @user.accessorizations.each do |accessorization| %>
+              <tr>
+                <%= render accessorization %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+    </div> <!--/row -->
+    <br>
+    <div class="row">
+      <%= link_to 'Edit', edit_user_path(@user) %> |
+      <%= link_to 'Back', users_path %>
+    </div> <!--/row -->
+  </div> <!--/col-sm-12 -->
+</div> <!--/coontainer -->
+

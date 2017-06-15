@@ -1,0 +1,9 @@
+<td>
+  <%= accessorization.project.present? ? link_to(accessorization.project.number, project_path(accessorization.project)) : '' %>
+</td>
+<td>
+  <%= accessorization.user.present? ? link_to(accessorization.user.name, user_path(accessorization.user)) : '' %>
+</td>
+<td>
+  <%= accessorization.role.present? ? link_to(accessorization.role.name, role_path(accessorization.role)) : '' %>
+</td>

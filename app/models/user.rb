@@ -12,7 +12,8 @@ class User < ApplicationRecord
   # relations
   has_and_belongs_to_many :roles
 
-  has_many :accessorizations
-  has_many :projects, :through => :accessorizations
+
+  has_many :accessorizations, dependent: :nullify
+  has_many :accesses_projects, :through => :accessorizations, source: :project
 
 end
