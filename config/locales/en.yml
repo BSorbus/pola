@@ -37,19 +37,22 @@ en:
         title: 'Roles'
       show:
         title: 'Role'
+        table_caption: 'Users using this role in individual projects'
     project:
       index:
         title: 'Projects'
       show:
         title: 'Project'
+        table_caption: 'Users and roles in this project'
     user:
       index:
         title: 'Users'
       show:
         title: 'User'
+        table_caption: 'List of projects and roles in which this user occurs'
   helpers:
     links:
-      index: ' Lista'
-      show: ' Pokaż'
-      new:  ' Nowy'
-      edit: ' Edycja'
+      index: ' Index'
+      show: ' Show'
+      new:  ' New'
+      edit: ' Edit'
