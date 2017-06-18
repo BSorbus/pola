@@ -1,0 +1,2 @@
+module Projects::AccessorizationsHelper
+end

@@ -1,0 +1,49 @@
+<%= form_for [@project, @accessorization], :html => { :class => "form-horizontal accessorization" } do |f| %>
+
+  <% if @accessorization.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@accessorization.errors.count, "error") %> prohibited this accessorization from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @accessorization.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="well" >
+
+    <div class="row control-group">
+      <%= f.label :project_id, :class => "control-label col-sm-3" %>
+      <div class="controls col-sm-7">
+        <%= f.text_field :project_id, autofocus: true, :class => "form-control" %>
+      </div>
+    </div><br>
+    <div class="row control-group">
+      <%= f.label :user_id, :class => "control-label col-sm-3" %>
+      <div class="controls col-sm-7">
+        <%= f.text_field :user_id, autofocus: true, :class => "form-control" %>
+      </div>
+    </div><br>
+    <div class="row control-group">
+      <%= f.label :role_id, :class => "control-label col-sm-3" %>
+      <div class="controls col-sm-7">
+        <%= f.text_field :role_id, autofocus: true, :class => "form-control" %>
+      </div>
+    </div><br>
+
+    
+    <div class="row">
+      <div class="col-sm-7 col-sm-offset-3">
+        <%= f.submit :class => "btn btn-primary" %>
+        <%= link_to 'Back', :back, :class => "btn btn-default" %>
+      </div>
+    </div>
+
+  </div> <!-- /well --> 
+
+<% end %>
