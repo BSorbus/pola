@@ -1,5 +1,5 @@
 class Projects::AccessorizationsController < ApplicationController
-  before_action :set_project, only: [:new, :create, :edit, :destroy]
+  before_action :set_project, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_accessorization, only: [:edit, :update, :destroy]
 
 
@@ -15,7 +15,8 @@ class Projects::AccessorizationsController < ApplicationController
 
     respond_to do |format|
       if @accessorization.save
-        format.html { redirect_to @project, notice: 'Accessorization was successfully created.' }
+        flash[:success] = "Accessorization created!"
+        format.html { redirect_to @project }
         format.json { render :show, status: :created, location: @project }
       else
         format.html { render :new }
@@ -27,7 +28,8 @@ class Projects::AccessorizationsController < ApplicationController
   def update
     respond_to do |format|
       if @accessorization.update(accessorization_params)
-        format.html { redirect_to @project, notice: 'Accessorization was successfully updated.' }
+        flash[:success] = "Accessorization updated!"
+        format.html { redirect_to @project }
         format.json { render :show, status: :ok, location: @project }
       else
         format.html { render :edit }
@@ -39,7 +41,8 @@ class Projects::AccessorizationsController < ApplicationController
   def destroy
     @accessorization.destroy
     respond_to do |format|
-      format.html { redirect_to @project, notice: 'Project was successfully destroyed.' }
+      flash[:success] = "Accessorization destroyed!"
+      format.html { redirect_to @project }
       format.json { head :no_content }
     end
   end
