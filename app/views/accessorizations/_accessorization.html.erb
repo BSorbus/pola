@@ -8,8 +8,12 @@
   <%= accessorization.role.present? ? link_to(accessorization.role.name, role_path(accessorization.role)) : '' %>
 </td>
 <td>
-  <%#= link_to image_tag( element.img_index ), region_element_path(@region, element) %>
-  <%= link_to t('Edit', default: t("helpers.links.edit")), 
+  <%= link_to ' ', 
       edit_project_accessorization_path(id: accessorization.id, project_id: accessorization.project_id), 
-      :class => 'btn btn-primary glyphicon glyphicon-edit' %> 
-</td> 
+      :class => "glyphicon glyphicon-edit", title: 'Edit', rel: 'tooltip' %>
+  <%= link_to ' ', 
+      project_accessorization_path(id: accessorization.id, project_id: accessorization.project_id),
+      method: :delete,
+      data: { confirm: "Are you sure?" }, 
+      :class => "glyphicon glyphicon-trash", title: 'Destroy', rel: 'tooltip' %>
+</td>

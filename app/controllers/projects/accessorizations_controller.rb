@@ -1,6 +1,7 @@
 class Projects::AccessorizationsController < ApplicationController
-  before_action :set_project
-  before_action :set_accessorization, except: [:new, :create]
+  before_action :set_project, only: [:new, :create, :edit, :destroy]
+  before_action :set_accessorization, only: [:edit, :update, :destroy]
+
 
   def new
     @accessorization = Accessorization.new(project: @project)
@@ -32,6 +33,14 @@ class Projects::AccessorizationsController < ApplicationController
         format.html { render :edit }
         format.json { render json: @paccessorization.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def destroy
+    @accessorization.destroy
+    respond_to do |format|
+      format.html { redirect_to @project, notice: 'Project was successfully destroyed.' }
+      format.json { head :no_content }
     end
   end
 

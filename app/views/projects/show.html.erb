@@ -38,16 +38,29 @@
               <%= render accessorization %>
             </tr>
           <% end %>
+          <tr>  <!-- add new row in footer table with link_to -->
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+              <%= link_to ' ', 
+                  new_project_accessorization_path(@project), 
+                  :class => "glyphicon glyphicon-plus", title: 'New', rel: 'tooltip' %>
+            </td>
+          </tr>
         </tbody>
       </table>
 
     </div> <!--/row -->
+
+
     <br>
 
     <div class="row">
       <%= link_to 'Edit', edit_project_path(@project) %> |
       <%= link_to 'Back', projects_path %>
     </div> <!--/row -->
+
   </div> <!--/col-sm-12 -->
 </div> <!--/coontainer -->
 
