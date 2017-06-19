@@ -8,10 +8,10 @@
   <%= accessorization.role.present? ? link_to(accessorization.role.name, role_path(accessorization.role)) : '' %>
 </td>
 <td>
-  <%= link_to ' ', 
+  <%#= link_to ' ', 
       edit_project_accessorization_path(id: accessorization.id, project_id: accessorization.project_id), 
       :class => "glyphicon glyphicon-edit", title: 'Edit', rel: 'tooltip' %>
-  <%= link_to ' ', 
+  <%#= link_to ' ', 
       project_accessorization_path(id: accessorization.id, project_id: accessorization.project_id),
       method: :delete,
       data: { confirm: "Are you sure?" }, 

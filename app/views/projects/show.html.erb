@@ -1,6 +1,3 @@
-<p id="notice"><%= notice %></p>
-
-
 <div class="container">
   <div class="col-sm-12">
     <div class="row">
@@ -9,56 +6,47 @@
         </span>
       </h3>
     </div> <!--/row -->
+
     <div class="row">
-      <p>
+      <div class="col-sm-6">
         <strong>Number:</strong>
         <%= @project.number %>
-      </p>
+      </div>
+      <div class="col-sm-6">
+        <strong>Note:</strong>
+        <%= @project.note %>
+      </div>
+    </div>
 
-
-      <br>
-
-      <table class="table table-hover">
-        <caption>
-          <%= t('pages.project.show.table_caption') %>
-        </caption>      
-        <thead>
-          <tr>
-            <th>Project</th>
-            <th>User</th>
-            <th>As</th>
-            <th>Actions</th>
-          </tr>
-        <thead>
-        <tbody>
-          <% @project.accessorizations.each do |accessorization| %>
-          <%# Accessorization.includes(:user, :project).
-            where(project: @project).order('users.name').each do |accessorization| %>
-            <tr>
-              <%= render accessorization %>
-            </tr>
-          <% end %>
-          <tr>  <!-- add new row in footer table with link_to -->
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>
-              <%= link_to ' ', 
-                  new_project_accessorization_path(@project), 
-                  :class => "glyphicon glyphicon-plus", title: 'New', rel: 'tooltip' %>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-    </div> <!--/row -->
-
-
-    <br>
+    <hr>
 
     <div class="row">
-      <%= link_to 'Edit', edit_project_path(@project) %> |
-      <%= link_to 'Back', projects_path %>
+      <div class="col-sm-12">
+        <table class="table table-hover">
+          <caption>
+            <%= t('pages.project.show.table_caption') %>
+          </caption>      
+          <thead>
+            <tr>
+              <th>User</th>
+              <th>Role</th>
+            </tr>
+          <thead>
+          <tbody>
+            <% @project.accessorizations.each do |accessorization| %>
+            <%# Accessorization.includes(:user, :project).
+              where(project: @project).order('users.name').each do |accessorization| %>
+              <tr>
+                <%= render 'accessorization', accessorization: accessorization %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div> <!--/col-sm-12 -->
+    </div> <!--/row -->
+    <div class="row">
+      <%= link_to 'Edit', edit_project_path(@project), class: 'btn btn-default' %>
+      <%= link_to 'Index', projects_path, class: 'btn btn-default' %>
     </div> <!--/row -->
 
   </div> <!--/col-sm-12 -->

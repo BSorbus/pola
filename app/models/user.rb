@@ -12,8 +12,9 @@ class User < ApplicationRecord
   # relations
   has_and_belongs_to_many :roles
 
-
-  has_many :accessorizations, dependent: :nullify
+  has_many :accessorizations, dependent: :nullify, index_errors: true
   has_many :accesses_projects, :through => :accessorizations, source: :project
+
+  accepts_nested_attributes_for :accessorizations, reject_if: :all_blank, allow_destroy: true
 
 end

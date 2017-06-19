@@ -2,9 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :users
-  resources :projects do
-    resources :accessorizations, controller: 'projects/accessorizations'
-  end
+  resources :projects
   resources :roles
 
   root 'static_pages#home'

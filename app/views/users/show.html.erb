@@ -1,6 +1,3 @@
-<p id="notice"><%= notice %></p>
-
-
 <div class="container">
   <div class="col-sm-12">
     <div class="row">
@@ -9,48 +6,49 @@
         </span>
       </h3>
     </div> <!--/row -->
+
     <div class="row">
-      <p>
+      <div class="col-sm-6">
         <strong>Name:</strong>
         <%= @user.name %>
-      </p>
-
-      <p>
+      </div>
+      <div class="col-sm-6">
         <strong>Email:</strong>
         <%= @user.email %>
-      </p>
+      </div>
+    </div>
 
-      <br>
+    <hr>
 
-      <table class="table table-hover">
-        <caption>
-          <%= t('pages.user.show.table_caption') %>
-        </caption>      
-        <thead>
-          <tr>
-            <th>Project</th>
-            <th>User</th>
-            <th>As</th>
-            <th>Actions</th>
-          </tr>
-        <thead>
-        <tbody>
-          <%# @user.accessorizations.each do |accessorization| %>
-          <!--Accessorization.joins(:user).includes(:user).where(user: [u1, u2]).order('users.name') -->
-          <% Accessorization.includes(:user, :project).
-            where(user: @user).order('projects.number').each do |accessorization| %>
+    <div class="row">
+      <div class="col-sm-12">
+        <table class="table table-hover">
+          <caption>
+            <%= t('pages.user.show.table_caption') %>
+          </caption>      
+          <thead>
             <tr>
-              <%= render accessorization %>
+              <th>Project</th>
+              <th>Role</th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
-
+          <thead>
+          <tbody>
+            <%# @user.accessorizations.each do |accessorization| %>
+            <!--Accessorization.joins(:user).includes(:user).where(user: [u1, u2]).order('users.name') -->
+            <% Accessorization.includes(:user, :project).
+              where(user: @user).order('projects.number').each do |accessorization| %>
+              <tr>
+                <%= render 'accessorization', accessorization: accessorization %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div> <!--/col-sm-12 -->
     </div> <!--/row -->
     <br>
     <div class="row">
-      <%= link_to 'Edit', edit_user_path(@user) %> |
-      <%= link_to 'Back', users_path %>
+      <%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-default' %>
+      <%= link_to 'Index', users_path, class: 'btn btn-default' %>
     </div> <!--/row -->
   </div> <!--/col-sm-12 -->
 </div> <!--/coontainer -->

@@ -1,0 +1,59 @@
+<%#= form_with(model: project, local: true) do |f| %>
+<%= form_for project do |f| %>
+  <% if project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
+      <ul>
+      <% project.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="container">
+  <div class="col-sm-12">
+    <div class="row">
+      <h3><span class="glyphicon glyphicon-book" aria-hidden="true"> 
+        <%= t('pages.project.show.title') %>  
+        </span>
+      </h3>
+    </div> <!--/row -->
+  </div>
+
+  <div class="col-sm-12">
+    <div class="row">
+      <div class="form-group col-sm-6">
+        <%= f.label :number, class: 'control-label' %>
+        <%= f.text_field :number, autofocus: true, class: 'form-control input-sm', disabled: false %>
+      </div>
+      <div class="form-group col-sm-6">
+        <%= f.label :note, class: 'control-label' %>
+        <%= f.text_area :note, :rows => 4, class: 'form-control input-sm', disabled: false %>
+      </div>
+    </div>
+
+    <hr>
+    <h5><%= t('pages.project.show.table_caption') %></h5>
+
+    <div class='accessorizations clearfix'>
+      <div class='accessorizations-sub-form'>
+        <%= f.fields_for :accessorizations do |accessorization_form|  %>
+          <%= render 'accessorization_fields', f: accessorization_form %> 
+        <% end %>
+      </div>
+      <%= link_to_add_fields("[Add Accessorization]", f, :accessorizations) %>
+    </div>
+
+  </div>
+
+  <div class="col-sm-12">
+    <div class="row">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%#= link_to 'Show', project_path(project), :class => "btn btn-default" %>
+      <%= link_to 'Index', projects_path, :class => "btn btn-default" %>
+    </div>
+  </div>
+</div>
+
+<% end %>

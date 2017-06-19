@@ -1,6 +1,8 @@
 class Project < ApplicationRecord
-  has_many :accessorizations, dependent: :destroy
+  has_many :accessorizations, dependent: :destroy, index_errors: true
   has_many :accesses_users, :through => :accessorizations, source: :user
+
+  accepts_nested_attributes_for :accessorizations, reject_if: :all_blank, allow_destroy: true
 
   def flat_assigned_users
     #self.accessorizations.order(:id).flat_map {|row| row.assigned_user_as }.join('<br>').html_safe

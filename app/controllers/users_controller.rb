@@ -28,7 +28,8 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        flash[:success] = "User created!"
+        format.html { redirect_to @user }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -42,7 +43,8 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        flash[:success] = "User updated!"
+        format.html { redirect_to @user }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -56,6 +58,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
+      flash[:success] = "User destroyed!"
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
@@ -69,6 +72,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:email, :name)
+      params.require(:user).permit(:email, :name, accessorizations_attributes: [:id, :project_id, :user_id, :role_id, :_destroy])
     end
 end
