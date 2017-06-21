@@ -1,0 +1,142 @@
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://slownikESOD.uslugi.epl.uke.gov.pl/">
+   <SOAP-ENV:Header>
+      <wsse:Security SOAP-ENV:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+         <wsu:Timestamp wsu:Id="Timestamp-53" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+            <wsu:Created>2016-06-11T08:32:18.924Z</wsu:Created>
+            <wsu:Expires>2016-06-11T08:37:18.924Z</wsu:Expires>
+         </wsu:Timestamp>
+      </wsse:Security>
+   </SOAP-ENV:Header>
+   <SOAP-ENV:Body>
+      <ns1:wyszukajRodzajeWysylekResponse>
+         <return>
+            <rodzajWysylki>
+               <nazwa>ePUAP</nazwa>
+               <nrid>2</nrid>
+               <profil>ePUAP</profil>
+               <rodzaj>brak</rodzaj>
+            </rodzajWysylki>
+            <rodzajWysylki>
+               <nazwa>List ZPO</nazwa>
+               <nrid>13</nrid>
+               <profil>Osobno</profil>
+               <rodzaj>ZPO</rodzaj>
+            </rodzajWysylki>
+            <rodzajWysylki>
+               <nazwa>List ZPO priorytet</nazwa>
+               <nrid>14</nrid>
+               <profil>Osobno</profil>
+               <rodzaj>ZPO</rodzaj>
+            </rodzajWysylki>
+            <rodzajWysylki>
+               <nazwa>List ZPO - KPA</nazwa>
+               <nrid>15</nrid>
+               <profil>Osobno</profil>
+               <rodzaj>ZPO_KPA</rodzaj>
+            </rodzajWysylki>
+            <rodzajWysylki>
+               <nazwa>List ZPO - KPA priorytet</nazwa>
+               <nrid>16</nrid>
+               <profil>Osobno</profil>
+               <rodzaj>ZPO_KPA</rodzaj>
+            </rodzajWysylki>
+            <rodzajWysylki>
+               <nazwa>List ZPO - Sąd</nazwa>
+               <nrid>17</nrid>
+               <profil>Osobno</profil>
+               <rodzaj>ZPO</rodzaj>
+            </rodzajWysylki>
+            <rodzajWysylki>
+               <nazwa>e-mail</nazwa>
+               <nrid>4</nrid>
+               <profil>email</profil>
+               <rodzaj>brak</rodzaj>
+            </rodzajWysylki>
+            <rodzajWysylki>
+               <nazwa>Odbiór osobisty</nazwa>
+               <nrid>6</nrid>
+               <profil>Osobno</profil>
+               <rodzaj>brak</rodzaj>
+            </rodzajWysylki>
+            <rodzajWysylki>
+               <nazwa>Fax</nazwa>
+               <nrid>22</nrid>
+               <profil>Osobno</profil>
+               <rodzaj>brak</rodzaj>
+            </rodzajWysylki>
+            <rodzajWysylki>
+               <nazwa>Posłaniec</nazwa>
+               <nrid>21</nrid>
+               <profil>Osobno</profil>
+               <rodzaj>brak</rodzaj>
+            </rodzajWysylki>
+            <rodzajWysylki>
+               <nazwa>Przesyłka dworcowa</nazwa>
+               <nrid>20</nrid>
+               <profil>Osobno</profil>
+               <rodzaj>brak</rodzaj>
+            </rodzajWysylki>
+            <rodzajWysylki>
+               <nazwa>Przesyłka kurierska</nazwa>
+               <nrid>19</nrid>
+               <profil>Osobno</profil>
+               <rodzaj>brak</rodzaj>
+            </rodzajWysylki>
+            <rodzajWysylki>
+               <nazwa>List polecony priorytet</nazwa>
+               <nrid>12</nrid>
+               <profil>Osobno</profil>
+               <rodzaj>brak</rodzaj>
+            </rodzajWysylki>
+            <rodzajWysylki>
+               <nazwa>List polecony</nazwa>
+               <nrid>11</nrid>
+               <profil>Osobno</profil>
+               <rodzaj>brak</rodzaj>
+            </rodzajWysylki>
+            <rodzajWysylki>
+               <nazwa>List priorytet</nazwa>
+               <nrid>10</nrid>
+               <profil>Osobno</profil>
+               <rodzaj>brak</rodzaj>
+            </rodzajWysylki>
+            <rodzajWysylki>
+               <nazwa>List zwykły</nazwa>
+               <nrid>9</nrid>
+               <profil>Osobno</profil>
+               <rodzaj>brak</rodzaj>
+            </rodzajWysylki>
+            <rodzajWysylki>
+               <nazwa>Poczta-ZPO</nazwa>
+               <nrid>5</nrid>
+               <profil>Osobno</profil>
+               <rodzaj>ZPO</rodzaj>
+            </rodzajWysylki>
+            <rodzajWysylki>
+               <nazwa>Priorytet ZPO - zagranica</nazwa>
+               <nrid>18</nrid>
+               <profil>Osobno</profil>
+               <rodzaj>ZZPO</rodzaj>
+            </rodzajWysylki>
+            <rodzajWysylki>
+               <nazwa>Tablica ogłoszeń UKE</nazwa>
+               <nrid>24</nrid>
+               <profil>Standardowy</profil>
+               <rodzaj>brak</rodzaj>
+            </rodzajWysylki>
+            <rodzajWysylki>
+               <nazwa>Strona internetowa UKE</nazwa>
+               <nrid>25</nrid>
+               <profil>Standardowy</profil>
+               <rodzaj>brak</rodzaj>
+            </rodzajWysylki>
+            <rodzajWysylki>
+               <nazwa>Priorytet polecony - zagranica</nazwa>
+               <nrid>23</nrid>
+               <profil>Osobno</profil>
+               <rodzaj>brak</rodzaj>
+            </rodzajWysylki>
+         </return>
+      </ns1:wyszukajRodzajeWysylekResponse>
+   </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

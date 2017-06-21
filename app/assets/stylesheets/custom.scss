@@ -1,3 +1,8 @@
+$font-family-base: Arial, "Helvetica", sans-serif;
+//$font-size-base: 14px;
+$font-size-base: 12px;
+
+// import the CSS framework
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
@@ -106,4 +111,9 @@ footer {
   @extend .has-error;
   display: inherit;
   background-color: inherit;
+}
+
+.well-accessorization {
+  @extend .well;
+  padding-bottom: 1px;
 }

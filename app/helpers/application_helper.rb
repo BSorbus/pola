@@ -1,5 +1,14 @@
 
 module ApplicationHelper
+
+  # display error layout
+  def form_errors_for(object=nil)
+    if object.present? && object.errors.any?
+      render('layouts/errors', object: object)
+    end
+  end
+
+  # for nested_attribute
   def link_to_add_fields(name, f, association, opts={})
     # creaate a new object given the form object, and the association name
     new_object = f.object.class.reflect_on_association(association).klass.new

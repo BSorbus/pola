@@ -1,59 +1,51 @@
 <%= form_with(model: user, local: true) do |f| %>
 <%#= form_for user do |f| %>
-  <% if user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
-      <ul>
-      <% user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-<div class="container">
-  <div class="col-sm-12">
-    <div class="row">
-      <h3><span class="glyphicon glyphicon-book" aria-hidden="true"> 
-        <%= t('pages.user.show.title') %>  
-        </span>
-      </h3>
-    </div> <!--/row -->
-  </div>
+  <%= form_errors_for user %>
 
-  <div class="col-sm-12">
-    <div class="row">
-      <div class="form-group col-sm-6">
-        <%= f.label :name, class: 'control-label' %>
-        <%= f.text_field :name, autofocus: true, class: 'form-control input-sm', disabled: false %>
-      </div>
-      <div class="form-group col-sm-6">
-        <%= f.label :email, class: 'control-label' %>
-        <%= f.text_field :email, class: 'form-control input-sm', disabled: false %>
-      </div>
+  <div class="container">
+    <div class="col-sm-12">
+      <div class="row">
+        <h3><span class="glyphicon glyphicon-user" aria-hidden="true"> 
+          <%= t('pages.user.show.title') %>  
+          </span>
+        </h3>
+      </div> <!--/row -->
     </div>
 
-    <hr>
-    <h5><%= t('pages.user.show.table_caption') %></h5>
-
-    <div class='accessorizations clearfix'>
-      <div class='accessorizations-sub-form'>
-        <%= f.fields_for :accessorizations do |accessorization_form|  %>
-          <%= render 'accessorization_fields', f: accessorization_form %> 
-        <% end %>
+    <div class="col-sm-12">
+      <div class="row">
+        <div class="form-group col-sm-6">
+          <%= f.label :name, class: 'control-label' %>
+          <%= f.text_field :name, autofocus: true, class: 'form-control input-sm', disabled: false %>
+        </div>
+        <div class="form-group col-sm-6">
+          <%= f.label :email, class: 'control-label' %>
+          <%= f.text_field :email, class: 'form-control input-sm', disabled: false %>
+        </div>
       </div>
-      <%= link_to_add_fields("[Add Accessorization]", f, :accessorizations) %>
+
+      <hr>
+      <h5><%= t('pages.user.show.table_caption') %></h5>
+
+      <div class='accessorizations clearfix'>
+        <div class='accessorizations-sub-form'>
+          <%= f.fields_for :accessorizations do |accessorization_form|  %>
+            <%= render 'accessorization_fields', f: accessorization_form %> 
+          <% end %>
+        </div>
+        <%= link_to_add_fields("[Add Accessorization]", f, :accessorizations) %>
+      </div>
+
     </div>
 
-  </div>
-
-  <div class="col-sm-12">
-    <div class="row">
-      <%= f.submit nil, :class => 'btn btn-primary' %>
-      <%#= link_to 'Show', user_path(user), :class => "btn btn-default" %>
-      <%= link_to 'Index', users_path, :class => "btn btn-default" %>
+    <div class="col-sm-12">
+      <div class="row">
+        <%= f.submit nil, :class => 'btn btn-primary' %>
+        <%#= link_to 'Show', user_path(user), :class => "btn btn-default" %>
+        <%= link_to 'Index', users_path, :class => "btn btn-default" %>
+      </div>
     </div>
   </div>
-</div>
 
 <% end %>
