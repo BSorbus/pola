@@ -1,6 +1,20 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
+
+  def select2_index
+    #params[:q] = (params[:q]).upcase
+    params[:q] = params[:q]
+    @projects = Project.order(:number).finder_project(params[:q])
+    @projects_on_page = @projects.page(params[:page]).per(params[:page_limit])
+    
+#    render json: @projects_on_page, each_serializer: CustomerSerializer, meta: {total_count: @projects.count}
+    render json: { 
+      projects: @projects_on_page.as_json(methods: :fullname, only: [:id, :fullname]),
+      meta: { total_count: @projects.count }  
+    } 
+  end
+
   # GET /projects
   # GET /projects.json
   def index

@@ -21,6 +21,8 @@ gem 'uglifier', '>= 1.3.0'
 
 # Use jquery as the JavaScript library 2017.06.19
 gem 'jquery-rails'
+gem 'select2-rails', '3.5.9.3'
+gem 'kaminari'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

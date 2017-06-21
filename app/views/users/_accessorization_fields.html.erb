@@ -1,12 +1,14 @@
 <div class="fields well">
   <div class='row'>
     <div class="form-group col-sm-6">
-      <%= f.label :project_id, class: 'control-label' %>
-      <%= f.select :project_id, 
-            Project.all.order(:number).collect {|v| [ "#{v[:number]}", v[:id] ] },
-            { include_blank: true }, 
-            { autofocus: false, class: 'form-control input-sm', disabled: false } %>
+      <%= f.label :project_id, class: "control-label" %>
+      <%= f.hidden_field :project_id,
+                        class: "form-control input-sm select2_project", 
+                        placeholder: "Wybierz Project",
+                        style: "width:100%" %>
+      <small class="help-block"><%=t 'help_block_text.select2_project' %></small>
     </div>
+
 
     <div class="form-group col-sm-6">
       <%= f.label :role_id, class: 'control-label' %>

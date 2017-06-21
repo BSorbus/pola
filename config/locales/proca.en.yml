@@ -56,3 +56,5 @@ en:
       show: ' Show'
       new:  ' New'
       edit: ' Edit'
+  help_block_text:
+    select2_project: 'Search by: Number, Note. Order any. Terms are separated by a space, eg.: /2017 uwaga'

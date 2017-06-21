@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :users
-  resources :projects
+  resources :projects do
+    get 'select2_index', on: :collection
+  end
   resources :roles
 
   root 'static_pages#home'
