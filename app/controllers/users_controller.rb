@@ -1,6 +1,19 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
+
+  def select2_index
+    #params[:q] = (params[:q]).upcase
+    params[:q] = params[:q]
+    @users = User.order(:name).finder_user(params[:q])
+    @users_on_page = @users.page(params[:page]).per(params[:page_limit])
+    
+    render json: { 
+      users: @users_on_page.as_json(methods: :fullname, only: [:id, :fullname]),
+      meta: { total_count: @users.count }  
+    } 
+  end
+
   # GET /users
   # GET /users.json
   def index

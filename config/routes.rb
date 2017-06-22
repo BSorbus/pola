@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :users
+  resources :users do
+    get 'select2_index', on: :collection
+  end
+  
   resources :projects do
     get 'select2_index', on: :collection
   end

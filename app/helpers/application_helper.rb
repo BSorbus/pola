@@ -1,4 +1,3 @@
-
 module ApplicationHelper
 
   # display error layout
