@@ -2,7 +2,7 @@
   <%= link_to project.number, project %>
 </td>
 <td>
-  <%= project.note %>
+  <%= truncate(project.note, length: 50) %>
 </td>
 <td>
   <%= project.flat_assigned_users %>

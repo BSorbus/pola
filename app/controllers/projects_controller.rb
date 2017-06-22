@@ -18,7 +18,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    @projects = Project.order(:number).all
   end
 
   # GET /projects/1

@@ -1,4 +1,6 @@
 class Accessorization < ApplicationRecord
+  delegate :url_helpers, to: 'Rails.application.routes'
+
   belongs_to :project
   belongs_to :user
   
@@ -10,8 +12,16 @@ class Accessorization < ApplicationRecord
   #validates_presence_of :role
 
   def assigned_user_as
-    "#{self.user.present? ? self.user.name : ''} - #{self.role.present? ? self.role.name : ''}"
+    # "<a href=#{url_helpers.user_path(self.user)}>#{self.user.name}</a>"
+    # "<a href=#{url_helpers.role_path(self.role)}>#{self.role.name}</a>"
+    "#{self.user.present? ? "<a href=#{url_helpers.user_path(self.user)}>#{self.user.name}</a>" : ''}" +
+    " - #{self.role.present? ? "<a href=#{url_helpers.role_path(self.role)}>#{self.role.name}</a>" : ''}"
   end
 
+  def assigned_project_as
+    "#{self.project.present? ? "<a href=#{url_helpers.project_path(self.project)}>#{self.project.number}</a>" : ''}" +
+    " - #{self.role.present? ? "<a href=#{url_helpers.role_path(self.role)}>#{self.role.name}</a>" : ''}"
+ 
+  end
 
 end
