@@ -3,12 +3,10 @@ class ProjectsController < ApplicationController
 
 
   def select2_index
-    #params[:q] = (params[:q]).upcase
     params[:q] = params[:q]
     @projects = Project.order(:number).finder_project(params[:q])
     @projects_on_page = @projects.page(params[:page]).per(params[:page_limit])
     
-#    render json: @projects_on_page, each_serializer: CustomerSerializer, meta: {total_count: @projects.count}
     render json: { 
       projects: @projects_on_page.as_json(methods: :fullname, only: [:id, :fullname]),
       meta: { total_count: @projects.count }  

@@ -11,14 +11,14 @@ class Accessorization < ApplicationRecord
   #validates_presence_of :user
   #validates_presence_of :role
 
-  def assigned_user_as
+  def link_assigned_user_as
     # "<a href=#{url_helpers.user_path(self.user)}>#{self.user.name}</a>"
     # "<a href=#{url_helpers.role_path(self.role)}>#{self.role.name}</a>"
     "#{self.user.present? ? "<a href=#{url_helpers.user_path(self.user)}>#{self.user.name}</a>" : ''}" +
     " - #{self.role.present? ? "<a href=#{url_helpers.role_path(self.role)}>#{self.role.name}</a>" : ''}"
   end
 
-  def assigned_project_as
+  def link_assigned_project_as
     "#{self.project.present? ? "<a href=#{url_helpers.project_path(self.project)}>#{self.project.number}</a>" : ''}" +
     " - #{self.role.present? ? "<a href=#{url_helpers.role_path(self.role)}>#{self.role.name}</a>" : ''}"
  

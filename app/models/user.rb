@@ -20,7 +20,7 @@ class User < ApplicationRecord
 
   def flat_assigned_projects
     #self.accessorizations.order(:id).flat_map {|row| row.assigned_user_as }.join('<br>').html_safe
-    Accessorization.includes(:project).where(user_id: self.id).order("projects.number").flat_map {|row| row.assigned_project_as }.join('<br>').html_safe
+    Accessorization.includes(:project).where(user_id: self.id).order("projects.number").flat_map {|row| row.link_assigned_project_as }.join('<br>').html_safe
   end
 
   def fullname

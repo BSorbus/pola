@@ -12,11 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.turbolinks
-//= require turbolinks
-//= require turbolinks-compatibility
 //= require select2
 //= require select2_locale_pl
 //= require bootstrap-sprockets
 //= require_tree .
-

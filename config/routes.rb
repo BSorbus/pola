@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   end
   
   resources :projects do
+    post 'datatables_index', on: :collection
     get 'select2_index', on: :collection
   end
   resources :roles
