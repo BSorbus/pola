@@ -2,6 +2,12 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
 
+  def datatables_index
+    respond_to do |format|
+      format.json{ render json: ProjectDatatable.new(view_context) }
+    end
+  end
+
   def select2_index
     params[:q] = params[:q]
     @projects = Project.order(:number).finder_project(params[:q])
