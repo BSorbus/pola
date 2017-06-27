@@ -133,3 +133,19 @@ footer {
   margin-left: -64px;  
 }
 
+//blokuje wyswietlanie icon "drzewko"
+//.DataTable > thead > tr > th[class*="sort"]:after{
+//    color: "red" !important;
+//}
+
+table.dataTable thead .sorting:after {
+    content: "";
+}
+
+table.dataTable thead .sorting_desc:after {
+    content: "";
+}
+
+table.dataTable thead .sorting_asc:after {
+    content: "";
+}

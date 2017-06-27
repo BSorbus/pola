@@ -1,11 +1,11 @@
 class ProjectDatatable < AjaxDatatablesRails::Base
 
-  def_delegators :@view, :link_to, :project_path
-  
+  def_delegators :@view, :link_to, :project_path, :truncate
+
   def view_columns
     @view_columns ||= {
       id:     { source: "Project.id", cond: :eq, searchable: false, orderable: false },
-      number: { source: "Project.number", cond: :like, searchable: true, orderable: false },
+      number: { source: "Project.number" },
       note:   { source: "Project.note",  cond: :like, searchable: true, orderable: true },
       flat_assigned_users: { source: "Project.flat_assigned_users", searchable: false, orderable: false }
     }
@@ -16,7 +16,7 @@ class ProjectDatatable < AjaxDatatablesRails::Base
       {
         id: record.id,
         number: link_to(record.number, project_path(record.id)),
-        note: record.note,
+        note: truncate(record.note, length: 50),
         flat_assigned_users: record.flat_assigned_users
       }
     end

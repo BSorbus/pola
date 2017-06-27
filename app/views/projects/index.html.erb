@@ -5,30 +5,12 @@
         <%= t "pages.project.index.title" %>  
         </span>
       </h3>
-      <div class="column">
-        <table class="table table-hover">
-          <tbody>
-            <% @projects.each do |project| %>
-              <tr>
-                <%= render project %>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
     </div> <!--/row -->
   </div> <!--/col-sm-12 -->
 
-  <div class="col-sm-12">
-    <br>
-    <br>
-    <hr>
-    <p>Inna wizualizacja</p>
-    <br>
-  </div> <!--/col-sm-12 -->
 
   <div class="col-sm-12">
-    <table id="projects-table" class="table hover cell-border" width="100%", data-source="<%= datatables_index_projects_path(format: :json) %>">
+    <table id="projects-table" class="hover cell-border" cellspacing="0" width="100%", data-source="<%= datatables_index_projects_path(format: :json) %>">
       <thead>
         <tr>
           <th><%= Project.human_attribute_name('id') %></th>
@@ -41,7 +23,6 @@
       </tbody>
     </table>
   </div> <!--/col-sm-12 -->
-
 
 
   <div class="col-sm-12">
