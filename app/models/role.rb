@@ -1,4 +1,5 @@
 class Role < ApplicationRecord
+  delegate :url_helpers, to: 'Rails.application.routes'
 
   # relations
   has_and_belongs_to_many :users
@@ -11,4 +12,9 @@ class Role < ApplicationRecord
                     :uniqueness => { :case_sensitive => false }
 
   scope :only_not_special, -> { where(special: false) }  
+
+  def name_as_link
+    "<a href=#{url_helpers.role_path(self)}>#{self.name}</a>"
+  end
+
 end

@@ -33,9 +33,8 @@
             </tr>
           <thead>
           <tbody>
-            <% @project.accessorizations.each do |accessorization| %>
-            <%# Accessorization.includes(:user, :project).
-              where(project: @project).order('users.name').each do |accessorization| %>
+            <%# @project.accessorizations.each do |accessorization| %>
+            <% Accessorization.includes(:user, :project).where(project: @project).order('users.name').each do |accessorization| %>
               <tr>
                 <%= render 'accessorization', accessorization: accessorization %>
               </tr>

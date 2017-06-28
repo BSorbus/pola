@@ -41,8 +41,7 @@
         <thead>
         <tbody>
           <%# @role.accessorizations.each do |accessorization| %>
-          <% Accessorization.includes(:user, :project).
-            where(role: @role).order('projects.number, users.name').each do |accessorization| %>
+          <% Accessorization.includes(:user, :project).where(role: @role).order('projects.number, users.name').each do |accessorization| %>
             <tr>
               <%= render accessorization %>
               <%#= render partial: 'accessorization', locals: {accessorization: accessorization} %>

@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  delegate :url_helpers, to: 'Rails.application.routes'
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, 
@@ -19,18 +21,21 @@ class User < ApplicationRecord
 
 
   def flat_assigned_projects
-    #self.accessorizations.order(:id).flat_map {|row| row.assigned_user_as }.join('<br>').html_safe
-    Accessorization.includes(:project).where(user_id: self.id).order("projects.number").flat_map {|row| row.link_assigned_project_as }.join('<br>').html_safe
+    Accessorization.includes(:project, :role).where(user_id: self.id).order("projects.number").map {|row| "#{row.project.present? ? row.project.number_as_link : ''} - #{row.role.present? ? row.role.name_as_link : ''}" }.join('<br>').html_safe
   end
 
   def fullname
     "#{name} (#{email})"
   end
 
+  def name_as_link
+    "<a href=#{url_helpers.user_path(self)}>#{self.name}</a>"
+  end
+
   # Scope for select2: "user_select"
   # * parameters   :
   #   * +query_str+ -> string for search. 
-  #   Eg.: "Kow ski@"
+  #   Eg.: "Jan ski@"
   # * result   :
   #   * +scope+ -> collection 
   #
@@ -39,10 +44,10 @@ class User < ApplicationRecord
   # Method create SQL query string for finder select2: "user_select"
   # * parameters   :
   #   * +query_str+ -> string for search. 
-  #   Eg.: "Kow ski@"
+  #   Eg.: "Jan ski@"
   # * result   :
   #   * +sql_string+ -> string for SQL WHERE... 
-  #   Eg.: "((users.name ilike '%Kow%' OR users.email ilike '%Kow%' ilike '%Kow%') AND (users.name ilike '%ski@%' OR users.email ilike '%ski@%')"
+  #   Eg.: "((users.name ilike '%Jan%' OR users.email ilike '%Jan%') AND (users.name ilike '%ski@%' OR users.email ilike '%ski@%'))"
   #
   def self.create_sql_string(query_str)
     query_str.split.map { |par| one_param_sql(par) }.join(" AND ")
@@ -51,10 +56,10 @@ class User < ApplicationRecord
   # Method for glue parameters in create_sql_string
   # * parameters   :
   #   * +one_query_word+ -> word for search. 
-  #   Eg.: "Kow"
+  #   Eg.: "Jan"
   # * result   :
   #   * +sql_string+ -> SQL string query for one word 
-  #   Eg.: "(users.name ilike '%Kow%' OR users.email ilike '%Kow%')"
+  #   Eg.: "(users.name ilike '%Jan%' OR users.email ilike '%Jan%')"
   #
   def self.one_param_sql(one_query_word)
     #escaped_query_str = sanitize("%#{query_str}%")

@@ -1,4 +1,5 @@
 class Project < ApplicationRecord
+  delegate :url_helpers, to: 'Rails.application.routes'
 
   include  ActionView::Helpers::SanitizeHelper
 
@@ -14,12 +15,19 @@ class Project < ApplicationRecord
   accepts_nested_attributes_for :accessorizations, reject_if: :all_blank, allow_destroy: true
 
   def flat_assigned_users
-    #self.accessorizations.order(:id).flat_map {|row| row.assigned_user_as }.join('<br>').html_safe
-    Accessorization.includes(:user).where(project_id: self.id).order("users.name").flat_map {|row| row.link_assigned_user_as }.join('<br>').html_safe
-  end
+    # 1. Without sort by user.name
+    # self.accessorizations.order(:id).flat_map {|row| row.link_assigned_user_as }.join('<br>').html_safe
+ 
+    # 2. With sort by user.name, but OUTER LEFT join.
+    Accessorization.includes(:user, :role).where(project_id: self.id).order("users.name").map {|row| "#{row.user.present? ? row.user.name_as_link : ''} - #{row.role.present? ? row.role.name_as_link : ''}" }.join('<br>').html_safe
+   end
 
   def fullname
     "#{number}"
+  end
+
+  def number_as_link
+    "<a href=#{url_helpers.project_path(self)}>#{self.number}</a>"
   end
 
   # Scope for select2: "project_select"
@@ -37,7 +45,7 @@ class Project < ApplicationRecord
   #   Eg.: "2017 wymaga"
   # * result   :
   #   * +sql_string+ -> string for SQL WHERE... 
-  #   Eg.: "((projects.number ilike '%2017%' OR projects.note ilike '%2017%' ilike '%2017%') AND (projects.number ilike '%wymaga%' OR projects.note ilike '%wymaga%')"
+  #   Eg.: "((projects.number ilike '%2017%' OR projects.note ilike '%2017%') AND (projects.number ilike '%wymaga%' OR projects.note ilike '%wymaga%'))"
   #
   def self.create_sql_string(query_str)
     query_str.split.map { |par| one_param_sql(par) }.join(" AND ")

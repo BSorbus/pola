@@ -9,12 +9,13 @@ puts " "
 
 
 def display_xml(filename)
-  doc = Nokogiri::XML(File.open("db/seeds/"+filename)) do |config|
+  xsd_doc = Nokogiri::XML::Schema(File.open("db/seeds/"+filename)) do |config|
   #doc = Nokogiri::XML::Schema(File.open("db/seeds/"+filename)) do |config|
     config.strict.nonet
   end
-  print doc
+  print xsd_doc
 end
+
 
 
 
