@@ -6,6 +6,7 @@ class Project < ApplicationRecord
   # relations
   has_many :accessorizations, dependent: :destroy, index_errors: true
   has_many :accesses_users, :through => :accessorizations, source: :user
+  belongs_to :project_status
 
   # validates
   validates :number, presence: true,
@@ -19,7 +20,10 @@ class Project < ApplicationRecord
     # self.accessorizations.order(:id).flat_map {|row| row.link_assigned_user_as }.join('<br>').html_safe
  
     # 2. With sort by user.name, but OUTER LEFT join.
-    Accessorization.includes(:user, :role).where(project_id: self.id).order("users.name").map {|row| "#{row.user.present? ? row.user.name_as_link : ''} - #{row.role.present? ? row.role.name_as_link : ''}" }.join('<br>').html_safe
+    #Accessorization.includes(:user, :role).where(project_id: self.id).order("users.name").map {|row| "#{row.user.present? ? row.user.name_as_link : ''} - #{row.role.present? ? row.role.name_as_link : ''}" }.join('<br>').html_safe
+
+    # 3. change {row.user.present? ? row.user.name_as_link : ''}  -> {row.user.try(:name_as_link)}
+    Accessorization.includes(:user, :role).where(project_id: self.id).order("users.name").map {|row| "#{row.user.try(:name_as_link)} - #{row.role.try(:name_as_link)}" }.join('<br>').html_safe
    end
 
   def fullname
@@ -27,7 +31,7 @@ class Project < ApplicationRecord
   end
 
   def number_as_link
-    "<a href=#{url_helpers.project_path(self)}>#{self.number}</a>"
+    "<a href=#{url_helpers.project_path(self)}>#{self.number}</a>".html_safe
   end
 
   # Scope for select2: "project_select"

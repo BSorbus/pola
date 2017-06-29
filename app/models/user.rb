@@ -21,7 +21,7 @@ class User < ApplicationRecord
 
 
   def flat_assigned_projects
-    Accessorization.includes(:project, :role).where(user_id: self.id).order("projects.number").map {|row| "#{row.project.present? ? row.project.number_as_link : ''} - #{row.role.present? ? row.role.name_as_link : ''}" }.join('<br>').html_safe
+    Accessorization.includes(:project, :role).where(user_id: self.id).order("projects.number").map {|row| "#{row.project.try(:number_as_link)} - #{row.role.try(:name_as_link)}" }.join('<br>').html_safe
   end
 
   def fullname
@@ -29,7 +29,7 @@ class User < ApplicationRecord
   end
 
   def name_as_link
-    "<a href=#{url_helpers.user_path(self)}>#{self.name}</a>"
+    "<a href=#{url_helpers.user_path(self)}>#{self.name}</a>".html_safe
   end
 
   # Scope for select2: "user_select"

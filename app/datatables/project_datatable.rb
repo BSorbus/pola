@@ -5,7 +5,8 @@ class ProjectDatatable < AjaxDatatablesRails::Base
   def view_columns
     @view_columns ||= {
       id:        { source: "Project.id", cond: :eq, searchable: false, orderable: false },
-      number:    { source: "Project.number",  cond: :like, searchable: true, orderable: true },
+      number:    { source: "Project.number", cond: :like, searchable: true, orderable: true },
+      status:    { source: "ProjectStatus.name", cond: :like, searchable: true, orderable: true },
       note:      { source: "Project.note",  cond: :like, searchable: true, orderable: true },
       flat:      { source: "Project.flat_assigned_users", searchable: false, orderable: false }
     }
@@ -16,6 +17,7 @@ class ProjectDatatable < AjaxDatatablesRails::Base
       {
         id: record.id,
         number: link_to(record.number, project_path(record.id)),
+        status: record.project_status.try(:name),
         note: truncate(record.note, length: 50),
         flat: record.flat_assigned_users
       }
@@ -25,9 +27,9 @@ class ProjectDatatable < AjaxDatatablesRails::Base
   private
 
   def get_raw_records
-    Project.all
+    Project.joins(:project_status).all
+    #Project.includes(:project_status).references(:project_status).all
   end
-
 
   # ==== These methods represent the basic operations to perform on records
   # and feel free to override them

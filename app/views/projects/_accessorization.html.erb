@@ -1,6 +1,6 @@
 <td>
-  <%= accessorization.user.present? ? link_to(accessorization.user.name, user_path(accessorization.user)) : '' %>
+  <%= accessorization.user.try(:name_as_link) %>
 </td>
 <td>
-  <%= accessorization.role.present? ? link_to(accessorization.role.name, role_path(accessorization.role)) : '' %>
+  <%= accessorization.role.try(:name_as_link) %>
 </td>

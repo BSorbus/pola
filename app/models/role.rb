@@ -14,7 +14,7 @@ class Role < ApplicationRecord
   scope :only_not_special, -> { where(special: false) }  
 
   def name_as_link
-    "<a href=#{url_helpers.role_path(self)}>#{self.name}</a>"
+    "<a href=#{url_helpers.role_path(self)}>#{self.name}</a>".html_safe
   end
 
 end
