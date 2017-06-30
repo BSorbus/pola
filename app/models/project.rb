@@ -7,6 +7,7 @@ class Project < ApplicationRecord
   has_many :accessorizations, dependent: :destroy, index_errors: true
   has_many :accesses_users, :through => :accessorizations, source: :user
   belongs_to :project_status
+  belongs_to :customer
 
   # validates
   validates :number, presence: true,
@@ -24,7 +25,7 @@ class Project < ApplicationRecord
 
     # 3. change {row.user.present? ? row.user.name_as_link : ''}  -> {row.user.try(:name_as_link)}
     Accessorization.includes(:user, :role).where(project_id: self.id).order("users.name").map {|row| "#{row.user.try(:name_as_link)} - #{row.role.try(:name_as_link)}" }.join('<br>').html_safe
-   end
+  end
 
   def fullname
     "#{number}"

@@ -59,6 +59,8 @@ en:
   help_block_text:
     select2project: 'Search by: Number, Note. Order any. Terms are separated by a space, eg.: /2017 uwaga'
     select2user: 'Search by: Name, Email. Order any. Terms are separated by a space, eg.: Kow ski@'
+    select2customer: 'Search by: Name. Order any. Terms are separated by a space, eg.: Kow ski@'
   placeholder:
     select2project: 'Choose your Project'
     select2user: 'Choose your User'
+    select2customer: 'Choose your Customer'

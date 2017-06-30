@@ -27,6 +27,17 @@
                 { include_blank: false }, 
                 { autofocus: false, class: 'form-control input-sm', disabled: false } %>
         </div>
+
+        <div class="form-group col-sm-12">
+          <%= f.label :customer_id, class: "control-label" %>
+          <%= f.hidden_field :customer_id,
+                            class: "form-control input-sm select2customer", 
+                            placeholder: t('placeholder.select2customer'),
+                            style: "width:100%" %>
+          <small class="help-block"><%= t('help_block_text.select2customer') %></small>
+        </div>
+
+
       </div> <!--/row -->
     </div> <!--/col-sm-6 -->
 
