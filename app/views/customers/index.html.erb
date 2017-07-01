@@ -1,7 +1,7 @@
 <div class="container">
   <div class="col-sm-12">
     <div class="row">
-      <h3><span class="glyphicon glyphicon-book" aria-hidden="true"> 
+      <h3><span class="glyphicon glyphicon-flag" aria-hidden="true"> 
         <%= t "pages.customer.index.title" %>  
         </span>
       </h3>
@@ -15,6 +15,7 @@
         <tr>
           <th>id</th>
           <th><%= Customer.human_attribute_name('name') %></th>
+          <th><%= Customer.human_attribute_name('note') %></th>
           <th><%= Customer.human_attribute_name('flat_assigned_projects') %></th>
         </tr>
       </thead>

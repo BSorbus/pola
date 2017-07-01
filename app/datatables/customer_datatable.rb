@@ -6,6 +6,7 @@ class CustomerDatatable < AjaxDatatablesRails::Base
     @view_columns ||= {
       id:        { source: "Customer.id", cond: :eq, searchable: false, orderable: false },
       name:      { source: "Customer.name", cond: :like, searchable: true, orderable: true },
+      note:      { source: "Customer.note",  cond: :like, searchable: true, orderable: true },
       flat:      { source: "Customer.id", cond: filter_custom_column_condition }
     }
   end
@@ -15,6 +16,7 @@ class CustomerDatatable < AjaxDatatablesRails::Base
       {
         id:       record.id,
         name:     record.try(:name_as_link),
+        note:     truncate(record.note, length: 50),
         flat:     record.try(:flat_assigned_projects)
       }
     end

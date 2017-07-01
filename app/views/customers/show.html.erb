@@ -1,9 +1,66 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="col-sm-12">
+    <div class="row">
+      <h3><span class="glyphicon glyphicon-flag" aria-hidden="true"> 
+        <%= t('pages.customer.show.title') %>  
+        </span>
+      </h3>
+    </div> <!--/row -->
+  </div> <!--/col-sm-12 -->
 
-<p>
-  <strong>Name:</strong>
-  <%= @customer.name %>
-</p>
+  <div class="col-sm-6">
+    <div class="row">
+      <div class="form-group col-sm-12">
+        <strong>Name:</strong><br>
+        <%= @customer.name %>
+      </div>
+    </div>
+  </div> <!--/col-sm-6 -->
 
-<%= link_to 'Edit', edit_customer_path(@customer) %> |
-<%= link_to 'Back', customers_path %>
+
+  <div class="col-sm-6">
+    <div class="row">
+      <div class="form-group col-sm-12">
+        <strong>Note:</strong><br>
+        <%= @customer.note %>
+      </div>
+    </div>
+  </div> <!--/col-sm-6 -->
+
+  <div class="col-sm-12">
+    <hr>
+  </div>
+
+  <div class="col-sm-12">
+    <div class="row">
+      <div class="col-sm-12">
+        <table class="table table-hover">
+          <caption>
+            <%= t('pages.customer.show.table_caption') %>
+          </caption>      
+          <thead>
+            <tr>
+              <th>Projects</th>
+            </tr>
+          <thead>
+          <tbody>
+            <% @customer.projects.order(:number).each do |project| %>
+              <tr>
+                <%= render 'project', project: project %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div> <!--/col-sm-12 -->
+    </div> <!--/row -->
+  </div>
+
+  <div class="col-sm-12">
+    <div class="row">
+      <%= link_to 'Edit', edit_customer_path(@customer), class: 'btn btn-default' %>
+      <%= link_to 'Index', customers_path, class: 'btn btn-default' %>
+    </div> <!--/row -->
+  </div> <!--/col-sm-12 -->
+
+</div> <!--/coontainer -->
+

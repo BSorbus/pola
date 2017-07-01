@@ -28,11 +28,11 @@ class Project < ApplicationRecord
   end
 
   def fullname
-    "#{number}"
+    "#{self.number} (#{self.project_status.name})"
   end
 
   def number_as_link
-    "<a href=#{url_helpers.project_path(self)}>#{self.number}</a>".html_safe
+    "<a href=#{url_helpers.project_path(self)}>#{self.fullname}</a>".html_safe
   end
 
   # Scope for select2: "project_select"

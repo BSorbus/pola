@@ -26,20 +26,29 @@ puts 'CREATED ROLE: ' << role.name
 
 
 # Simple User 1
-user = CreateAdminService.new.call_simple('simple1.proca@uke.gov.pl', 'Simple User 1', '1qazXSW@')
+user = CreateAdminService.new.call_simple('user1.proca@uke.gov.pl', 'User1', '1qazXSW@')
 puts 'CREATED SIMPLE USER: ' << user.email
 
 # Simple User 2
-user = CreateAdminService.new.call_simple('simple2.proca@uke.gov.pl', 'Simple User 2', '1qazXSW@')
+user = CreateAdminService.new.call_simple('user2.proca@uke.gov.pl', 'User2', '1qazXSW@')
 puts 'CREATED SIMPLE USER: ' << user.email
 
 # Simple User 3
-user = CreateAdminService.new.call_simple('simple3.proca@uke.gov.pl', 'Simple User 3', '1qazXSW@')
+user = CreateAdminService.new.call_simple('user3.proca@uke.gov.pl', 'User3', '1qazXSW@')
 puts 'CREATED SIMPLE USER: ' << user.email
 
 # Simple User 4
-user = CreateAdminService.new.call_simple('simple4.proca@uke.gov.pl', 'Simple User 4', '1qazXSW@')
+user = CreateAdminService.new.call_simple('user4.proca@uke.gov.pl', 'User4', '1qazXSW@')
 puts 'CREATED SIMPLE USER: ' << user.email
+
+# Simple User 5
+user = CreateAdminService.new.call_simple('user5.proca@uke.gov.pl', 'User5', '1qazXSW@')
+puts 'CREATED SIMPLE USER: ' << user.email
+
+# Simple User 6
+user = CreateAdminService.new.call_simple('user6.proca@uke.gov.pl', 'User6', '1qazXSW@')
+puts 'CREATED SIMPLE USER: ' << user.email
+
 
 
 # project_statuses
@@ -66,6 +75,18 @@ puts 'CREATED CUSTOMER: ' << customer3.name
 customer4 = Customer.create(name: 'Customer4')
 puts 'CREATED CUSTOMER: ' << customer4.name
 
+customer5 = Customer.create(name: 'Customer5')
+puts 'CREATED CUSTOMER: ' << customer4.name
+
+customer6 = Customer.create(name: 'Customer6')
+puts 'CREATED CUSTOMER: ' << customer4.name
+
+customer7 = Customer.create(name: 'Customer7')
+puts 'CREATED CUSTOMER: ' << customer4.name
+
+customer8 = Customer.create(name: 'Customer8')
+puts 'CREATED CUSTOMER: ' << customer4.name
+
 
 # example projects
 project = Project.create(number: '1/2017', project_status: project_status, customer: customer1)
@@ -80,12 +101,16 @@ puts 'CREATED SIMPLE PROJECT: ' << project.number
 project = Project.create(number: '4/2017', project_status: project_status, customer: customer3)
 puts 'CREATED SIMPLE PROJECT: ' << project.number
 
+project = Project.create(number: '5/2017', project_status: project_status, customer: customer4)
+puts 'CREATED SIMPLE PROJECT: ' << project.number
+
 
 # accessorizations
-simple1 = User.find_by(email: 'simple1.proca@uke.gov.pl')
-simple2 = User.find_by(email: 'simple2.proca@uke.gov.pl')
-simple3 = User.find_by(email: 'simple3.proca@uke.gov.pl')
-simple4 = User.find_by(email: 'simple4.proca@uke.gov.pl')
+simple1 = User.find_by(email: 'user1.proca@uke.gov.pl')
+simple2 = User.find_by(email: 'user2.proca@uke.gov.pl')
+simple3 = User.find_by(email: 'user3.proca@uke.gov.pl')
+simple4 = User.find_by(email: 'user4.proca@uke.gov.pl')
+simple5 = User.find_by(email: 'user5.proca@uke.gov.pl')
 
 writer = Role.find_by(name: 'Użytkownik Opiniujący')
 publisher = Role.find_by(name: 'Użytkownik Opiniujący i Publikujący')
@@ -115,5 +140,9 @@ a = project.accessorizations.create(user: simple2, role: writer)
 puts "ADD #{a.user.email} TO #{a.project.number} AS #{a.role.name}"
 
 project = Project.find_by(number: '4/2017')
-a = project.accessorizations.create(user: simple1, role: writer)
+a = project.accessorizations.create(user: simple3, role: publisher)
+puts "ADD #{a.user.email} TO #{a.project.number} AS #{a.role.name}"
+a = project.accessorizations.create(user: simple4, role: writer)
+puts "ADD #{a.user.email} TO #{a.project.number} AS #{a.role.name}"
+a = project.accessorizations.create(user: simple5, role: writer)
 puts "ADD #{a.user.email} TO #{a.project.number} AS #{a.role.name}"
