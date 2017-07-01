@@ -4,6 +4,10 @@ class Customer < ApplicationRecord
   # relations
   has_many :projects, dependent: :nullify
 
+  def flat_assigned_projects
+    self.projects.order("projects.number").flat_map {|row| "#{row.try(:number_as_link)}" }.join('<br>').html_safe
+  end
+
   def fullname
     "#{name}"
   end

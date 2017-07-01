@@ -1,6 +1,12 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
 
+  def datatables_index
+    respond_to do |format|
+      format.json{ render json: CustomerDatatable.new(view_context) }
+    end
+  end
+
   def select2_index
     params[:q] = params[:q]
     @customers = Customer.order(:name).finder_customer(params[:q])

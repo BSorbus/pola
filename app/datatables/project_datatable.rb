@@ -1,6 +1,6 @@
 class ProjectDatatable < AjaxDatatablesRails::Base
 
-  def_delegators :@view, :link_to, :project_path, :truncate
+  def_delegators :@view, :link_to, :truncate
 
   def view_columns
     @view_columns ||= {
@@ -17,9 +17,8 @@ class ProjectDatatable < AjaxDatatablesRails::Base
     records.map do |record|
       {
         id:       record.id,
-        number:   link_to(record.number, project_path(record.id)),
+        number:   record.try(:number_as_link),
         status:   record.project_status.try(:name),
-      #  customer: record.customer.try(:name),
         customer: record.customer.try(:name_as_link),
         note:     truncate(record.note, length: 50),
         flat:     record.flat_assigned_users

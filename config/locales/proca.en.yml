@@ -50,6 +50,12 @@ en:
       show:
         title: 'User'
         table_caption: 'List of projects and roles in which this user occurs'
+    customer:
+      index:
+        title: 'Customers'
+      show:
+        title: 'Customer'
+        table_caption: 'List of customer projects'
   helpers:
     links:
       index: ' Index'
