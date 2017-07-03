@@ -3,12 +3,12 @@
     <%= link_to "proca", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Projects",   projects_path %></li>
-        <li><%= link_to "Customers",  customers_path %></li>
-        <li><%= link_to "Roles",      roles_path %></li>
-        <li><%= link_to "Users",      users_path %></li>
-        <li><%= link_to "Home",       static_pages_home_path %></li>
-        <li><%= link_to "Help",       static_pages_help_path %></li>
+        <li><%= link_to t("pages.project.index.title"),   projects_path %></li>
+        <li><%= link_to t("pages.customer.index.title"),  customers_path %></li>
+        <li><%= link_to t("pages.role.index.title"),      roles_path %></li>
+        <li><%= link_to t("pages.user.index.title"),      users_path %></li>
+        <li><%= link_to t("pages.home"),                  static_pages_home_path %></li>
+        <li><%= link_to t("pages.help"),                  static_pages_help_path %></li>
         <li><%= link_to "Log in",   ' #' %></li>
       </ul>
     </nav>

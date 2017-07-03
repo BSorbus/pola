@@ -8,18 +8,22 @@
     </div> <!--/row -->
   </div> <!--/col-sm-12 -->
 
+  <div class="col-sm-12">
+    <hr>
+  </div>
+
   <div class="col-sm-6">
     <div class="row">
       <div class="form-group col-sm-12">
-        <strong>Number:</strong><br>
+        <strong><%= Project.human_attribute_name('number') %></strong><br>
         <%= @project.number %>
       </div>
       <div class="form-group col-sm-12">
-        <strong>Status:</strong><br>
+        <strong><%= Project.human_attribute_name('project_status_id') %></strong><br>
         <%= @project.project_status.try(:name) %>
       </div>
       <div class="form-group col-sm-12">
-        <strong>Customer:</strong><br>
+        <strong><%= Project.human_attribute_name('customer_id') %></strong><br>
         <%= @project.customer.try(:name) %>
       </div>
     </div>
@@ -29,7 +33,7 @@
   <div class="col-sm-6">
     <div class="row">
       <div class="form-group col-sm-12">
-        <strong>Note:</strong><br>
+        <strong><%= Project.human_attribute_name('note') %></strong><br>
         <%= @project.note %>
       </div>
     </div>
@@ -63,6 +67,10 @@
         </table>
       </div> <!--/col-sm-12 -->
     </div> <!--/row -->
+  </div>
+
+  <div class="col-sm-12">
+    <hr>
   </div>
 
   <div class="col-sm-12">

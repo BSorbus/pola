@@ -4,16 +4,3 @@
 <td>
   <%= accessorization.user.try(:name_as_link) %>
 </td>
-<td>
-  <%= accessorization.role.try(:name_as_link) %>
-</td>
-<td>
-  <%#= link_to ' ', 
-      edit_project_accessorization_path(id: accessorization.id, project_id: accessorization.project_id), 
-      :class => "glyphicon glyphicon-edit", title: 'Edit', rel: 'tooltip' %>
-  <%#= link_to ' ', 
-      project_accessorization_path(id: accessorization.id, project_id: accessorization.project_id),
-      method: :delete,
-      data: { confirm: "Are you sure?" }, 
-      :class => "glyphicon glyphicon-trash", title: 'Destroy', rel: 'tooltip' %>
-</td>

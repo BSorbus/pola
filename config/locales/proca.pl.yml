@@ -29,19 +29,19 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-en:
+pl:
   hello: "Hello world"
   activerecord:
     models:
-      user: 'User'
-      role: 'Role'
+      user: 'Użytkownik'
+      role: 'Rola'
       accessorization: 'Accessorization'
-      project: 'Project'
-      project_status: 'Project Status'
-      customer: 'Customer'
+      project: 'Projekt'
+      project_status: 'Status Projektu'
+      customer: 'Wnioskodawca'
     attributes:
       user:
-        name: 'Name'
+        name: 'Nazwisko i Imię'
         email: 'Email'
         password: 'Password'
         password_confirmation: 'Password confirmation'
@@ -53,63 +53,64 @@ en:
         deleted_at: 'Deleted at'
         last_activity_at: 'Last activity at'
         password_changed_at: 'Password changed at'
-        flat_assigned_projects: 'Related projects'
+        flat_assigned_projects: 'Powiązane projekty'
       role:
-        name: 'Name'
-        activities: 'Activities'
+        name: 'Nazwa'
+        activities: 'Uprawnienia'
       accessorization:
-        project_id: 'Project'
-        user_id: 'User'
-        role_id: 'Role'
+        project_id: 'Projekt'
+        user_id: 'Użytkownik'
+        role_id: 'Rola'
       project:
-        number: 'Number'
-        note: 'Note'
+        number: 'Numer'
+        note: 'Uwagi'
         project_status_id: 'Status'
-        customer_id: 'Customer'
-        flat_assigned_users: 'Assigned users'
+        customer_id: 'Wnioskodawca'
+        flat_assigned_users: 'Procedujący użytkownicy'
       project_status:
-        name: 'Name'
+        name: 'Nazwa'
       customer:
-        name: 'Name'
-        note: 'Note'
+        name: 'Nazwa'
+        note: 'Uwagi'
+        flat_assigned_projects: 'Powiązane projekty'
   pages:
-    home: 'Home'
-    help: 'Help'
+    home: 'Główna'
+    help: 'Pomoc'
     role:
       index:
-        title: 'Roles'
-      show:
         title: 'Role'
-        table_caption: 'Users using this role in individual projects'
+      show:
+        title: 'Rola'
+        table_caption: 'Użytkownicy występujący w tej roli w poszczególnych projektach'
     project:
       index:
-        title: 'Projects'
+        title: 'Projekty'
       show:
-        title: 'Project'
-        table_caption: 'Users and roles in this project'
+        title: 'Projekt'
+        table_caption: 'Użytkownicy i role w tym projekcie'
     user:
       index:
-        title: 'Users'
+        title: 'Użytkownicy'
       show:
-        title: 'User'
-        table_caption: 'List of projects and roles in which this user occurs'
+        title: 'Użytkownik'
+        table_caption: 'Projekty i role przypisane temu użytkownikowi'
     customer:
       index:
-        title: 'Customers'
+        title: 'Wnioskodawcy'
       show:
-        title: 'Customer'
-        table_caption: 'List of customer projects'
+        title: 'Wnioskodawca'
+        table_caption: 'Lista projektów tego wnioskodawcy'
   helpers:
     links:
-      index: ' Index'
-      show: ' Show'
-      new:  ' New'
-      edit: ' Edit'
+      index: ' Lista'
+      show: ' Podgląd'
+      new:  ' Dodaj'
+      edit: ' Edycja'
   help_block_text:
-    select2project: 'Search by: Number, Note. Order any. Terms are separated by a space, eg.: /2017 uwaga'
-    select2user: 'Search by: Name, Email. Order any. Terms are separated by a space, eg.: Kow ski@'
-    select2customer: 'Search by: Name. Order any. Terms are separated by a space, eg.: Kow ski@'
+    select2project: 'Wyszukiwanie po: Numer, Uwagi. Kolejność dowolna. Warunki oddzielaj spacją, np.: /2017 uwaga'
+    select2user: 'Wyszukiwanie po: Nazwa, Email. Kolejność dowolna. Warunki oddzielaj spacją, np.: Kow ski@'
+    select2customer: 'Wyszukiwanie po: Nazwa, Uwagi. Kolejność dowolna. Warunki oddzielaj spacją, np.: Kow ski@'
   placeholder:
-    select2project: 'Choose your Project'
-    select2user: 'Choose your User'
-    select2customer: 'Choose your Customer'
+    select2project: 'Wybierz Projekt'
+    select2user: 'Wybierz Użytkownika'
+    select2customer: 'Wybierz Wnioskodawcę'
