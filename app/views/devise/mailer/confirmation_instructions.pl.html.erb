@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <%= image_tag attachments['logo.jpg'].url, size: "256x146" %>
+    <br>
+    <h3>Witaj!</h3>
+    <p>Twoje konto <%= @user.name %> (<%= @user.email %>) zostało zarejestrowane w programie <strong>PROCA</strong>.</p> 
+    <p>Aby zakończyć proces rejestracji musisz je aktywować. Można to zrobić wybierając link: <%= link_to 'Aktywuj konto', confirmation_url(@resource, confirmation_token: @token) %></p>
+    <br>
+    <hr>
+    <p><small>
+      Ta wiadomość została wysłana automatycznie. Proszę nie odpisywać.
+    </small></p>
+    <hr>
+  </body>
+</html>

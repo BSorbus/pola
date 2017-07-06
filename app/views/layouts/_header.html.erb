@@ -9,8 +9,26 @@
         <li><%= link_to t("pages.user.index.title"),      users_path %></li>
         <li><%= link_to t("pages.home"),                  static_pages_home_path %></li>
         <li><%= link_to t("pages.help"),                  static_pages_help_path %></li>
-        <li><%= link_to "Log in",   ' #' %></li>
+
+        <% if user_signed_in? %>
+          <li><%= link_to edit_user_registration_path do %>
+            <span class="glyphicon glyphicon-edit"></span>&nbsp;<%= current_user.name %>
+            <% end %>
+          </li>
+          <li><%= link_to destroy_user_session_path, :method=>'delete' do %>
+            <span class="glyphicon glyphicon-log-out"></span>&nbsp;<%=t "devise.link_to.sign_out" %>
+            <% end %>
+          </li>
+        <% else %>
+          <li><%= link_to new_user_session_path do %>
+            <span class="glyphicon glyphicon-log-in"></span>&nbsp;<%=t "devise.link_to.sign_in" %>
+            <% end %>
+          </li>
+        <% end %>
+
       </ul>
     </nav>
   </div>
 </header>
+
+
