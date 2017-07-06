@@ -26,27 +26,27 @@ puts 'CREATED ROLE: ' << role.name
 
 
 # Simple User 1
-user = CreateAdminService.new.call_simple('user1.proca@uke.gov.pl', 'User1', '1qazXSW@')
+user = CreateAdminService.new.call_simple('mateusz.falenta@uke.gov.pl', 'Mateusz Falenta', '1qazXSW@')
 puts 'CREATED SIMPLE USER: ' << user.email
 
 # Simple User 2
-user = CreateAdminService.new.call_simple('user2.proca@uke.gov.pl', 'User2', '1qazXSW@')
+user = CreateAdminService.new.call_simple('pawel.mielczarek@uke.gov.pl', 'Paweł Mielczarek', '1qazXSW@')
 puts 'CREATED SIMPLE USER: ' << user.email
 
 # Simple User 3
-user = CreateAdminService.new.call_simple('user3.proca@uke.gov.pl', 'User3', '1qazXSW@')
+user = CreateAdminService.new.call_simple('mariusz.krupa@uke.gov.pl', 'Mariusz Krupa', '1qazXSW@')
 puts 'CREATED SIMPLE USER: ' << user.email
 
 # Simple User 4
-user = CreateAdminService.new.call_simple('user4.proca@uke.gov.pl', 'User4', '1qazXSW@')
+user = CreateAdminService.new.call_simple('marcin.dudek@uke.gov.pl', 'Marcin Dudek', '1qazXSW@')
 puts 'CREATED SIMPLE USER: ' << user.email
 
 # Simple User 5
-user = CreateAdminService.new.call_simple('user5.proca@uke.gov.pl', 'User5', '1qazXSW@')
+user = CreateAdminService.new.call_simple('piotr.majewski@uke.gov.pl', 'Piotr Majewski', '1qazXSW@')
 puts 'CREATED SIMPLE USER: ' << user.email
 
 # Simple User 6
-user = CreateAdminService.new.call_simple('user6.proca@uke.gov.pl', 'User6', '1qazXSW@')
+user = CreateAdminService.new.call_simple('bogdan.jarzab@uke.gov.pl', 'Bogdan Jarząb', '1qazXSW@')
 puts 'CREATED SIMPLE USER: ' << user.email
 
 
@@ -106,11 +106,11 @@ puts 'CREATED SIMPLE PROJECT: ' << project.number
 
 
 # accessorizations
-simple1 = User.find_by(email: 'user1.proca@uke.gov.pl')
-simple2 = User.find_by(email: 'user2.proca@uke.gov.pl')
-simple3 = User.find_by(email: 'user3.proca@uke.gov.pl')
-simple4 = User.find_by(email: 'user4.proca@uke.gov.pl')
-simple5 = User.find_by(email: 'user5.proca@uke.gov.pl')
+simple1 = User.find_by(email: 'mateusz.falenta@uke.gov.pl')
+simple2 = User.find_by(email: 'pawel.mielczarek@uke.gov.pl')
+simple3 = User.find_by(email: 'mariusz.krupa@uke.gov.pl')
+simple4 = User.find_by(email: 'marcin.dudek@uke.gov.pl')
+simple5 = User.find_by(email: 'piotr.majewski@uke.gov.pl')
 
 writer = Role.find_by(name: 'Użytkownik Opiniujący')
 publisher = Role.find_by(name: 'Użytkownik Opiniujący i Publikujący')
