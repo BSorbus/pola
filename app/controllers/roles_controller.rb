@@ -6,31 +6,35 @@ class RolesController < ApplicationController
   # GET /roles
   # GET /roles.json
   def index
+    authorize :role, :index_any?
     @roles = Role.all
   end
 
   # GET /roles/1
   # GET /roles/1.json
   def show
+    authorize @role, :show_any?
   end
 
   # GET /roles/new
   def new
     @role = Role.new
+    authorize @role, :new?
   end
 
   # GET /roles/1/edit
   def edit
+    authorize @role, :edit?
   end
 
   # POST /roles
   # POST /roles.json
   def create
     @role = Role.new(role_params)
-
+    authorize @role, :create?
     respond_to do |format|
       if @role.save
-        flash[:success] = "Role created!"
+        flash[:success] = t('activerecord.successfull.messages.created', data: @role.fullname)
         format.html { redirect_to @role }
         format.json { render :show, status: :created, location: @role }
       else
@@ -43,9 +47,10 @@ class RolesController < ApplicationController
   # PATCH/PUT /roles/1
   # PATCH/PUT /roles/1.json
   def update
+    authorize @role, :update?
     respond_to do |format|
       if @role.update(role_params)
-        flash[:success] = "Role updated!"
+        flash[:success] = t('activerecord.successfull.messages.updated', data: @role.fullname)
         format.html { redirect_to @role }
         format.json { render :show, status: :ok, location: @role }
       else
@@ -58,12 +63,20 @@ class RolesController < ApplicationController
   # DELETE /roles/1
   # DELETE /roles/1.json
   def destroy
-    @role.destroy
-    respond_to do |format|
-      flash[:success] = "Role destroyed!"
-      format.html { redirect_to roles_url }
-      format.json { head :no_content }
-    end
+    # @role.destroy
+    # respond_to do |format|
+    #   flash[:success] = "Role destroyed!"
+    #   format.html { redirect_to roles_url }
+    #   format.json { head :no_content }
+    # end
+    authorize @role, :destroy?
+    if @role.destroy
+      flash[:success] = t('activerecord.successfull.messages.destroyed', data: @role.fullname)
+      redirect_to roles_url
+    else 
+      flash[:error] = t('activerecord.errors.messages.destroyed', data: @role.fullname)
+      redirect_to :back
+    end      
   end
 
   private

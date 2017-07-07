@@ -3,14 +3,35 @@
     <%= link_to "proca", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to t("pages.project.index.title"),   projects_path %></li>
-        <li><%= link_to t("pages.customer.index.title"),  customers_path %></li>
-        <li><%= link_to t("pages.user.index.title"),      users_path %></li>
-        <li><%= link_to t("pages.role.index.title"),      roles_path %></li>
-<!--        <li><%#= link_to t("pages.home"),                  static_pages_home_path %></li> -->
-        <li><%= link_to t("pages.help"),                  static_pages_help_path %></li>
-
         <% if user_signed_in? %>
+          <% if policy(:project).index? %>
+            <li><%= link_to projects_path do %>
+              <span class="glyphicon glyphicon-book"></span>&nbsp;<%=t "pages.project.index.title" %>
+              <% end %>
+            </li>
+          <% end %>
+
+          <% if policy(:customer).index? %>
+            <li><%= link_to customers_path do %>
+              <span class="glyphicon glyphicon-flag"></span>&nbsp;<%=t "pages.customer.index.title" %>
+              <% end %>
+            </li>
+          <% end %>
+
+          <% if policy(:user).index? %>
+            <li><%= link_to users_path do %>
+              <span class="glyphicon glyphicon-user"></span>&nbsp;<%=t "pages.user.index.title" %>
+              <% end %>
+            </li>
+          <% end %>
+
+          <% if policy(:role).index_any? %>
+            <li><%= link_to roles_path do %>
+              <span class="glyphicon glyphicon-sunglasses"></span>&nbsp;<%=t "pages.role.index.title" %>
+              <% end %>
+            </li>
+          <% end %>
+
           <li><%= link_to edit_user_registration_path do %>
             <span class="glyphicon glyphicon-edit"></span>&nbsp;<%= current_user.name %>
             <% end %>

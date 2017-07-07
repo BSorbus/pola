@@ -37,6 +37,21 @@ en:
         restrict_dependent_destroy:
           has_one: "Cannot delete record because a dependent %{record} exists"
           has_many: "Cannot delete record because dependent %{record} exist"
+        created: 'Wystąpił błąd w czasie dodawania nowego wpisu.'
+        updated: 'Wystąpił błąd w czasie aktualizowania wpisu "%{data}".'
+        destroyed: 'Wystąpił błąd w czasie usuwania wpisu "%{data}".'
+        attach_file: 'Wystąpił błąd w czasie dodawania załącznika "%{child}" do "%{parent}". Pamiętaj, że rozmiar pliku nie może być większy niż 10 MB'
+        account_off: 'Wystąpił błąd w czasie wyłączania konta "%{data}".'
+        account_on: 'Wystąpił błąd w czasie włączania konta "%{data}".'
+    successfull:
+      messages:
+        created: 'Wpis: "%{data}" został pomyślnie utworzony.'
+        updated: 'Wpis: "%{data}" został pomyślnie zaktualizowany.'
+        destroyed: 'Wpis: "%{data}" został pomyślnie usunięty.'
+        add_role: 'Użytkownikowi "%{parent}" pomyślnie dodano rolę "%{child}".'
+        remove_role: 'Użytkownikowi "%{parent}" została pomyślnie usunięta rola "%{child}".'
+        account_off: 'Pomyślnie wyłączono konto "%{data}".'
+        account_on: 'Pomyślnie włączono konto "%{data}".'
   date:
     abbr_day_names:
     - Sun

@@ -23,31 +23,36 @@ class CustomersController < ApplicationController
   # GET /customers
   # GET /customers.json
   def index
+    authorize :customer, :index?
     @customers = Customer.all
   end
 
   # GET /customers/1
   # GET /customers/1.json
   def show
+    authorize @customer, :index?
   end
 
   # GET /customers/new
   def new
     @customer = Customer.new
+    authorize :customer, :new?
   end
 
   # GET /customers/1/edit
   def edit
+    authorize @customer, :edit?
   end
 
   # POST /customers
   # POST /customers.json
   def create
     @customer = Customer.new(customer_params)
-
+    authorize @customer, :create?
     respond_to do |format|
       if @customer.save
-        format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
+        flash[:success] = t('activerecord.successfull.messages.created', data: @customer.fullname)
+        format.html { redirect_to @customer }
         format.json { render :show, status: :created, location: @customer }
       else
         format.html { render :new }
@@ -56,12 +61,15 @@ class CustomersController < ApplicationController
     end
   end
 
+
   # PATCH/PUT /customers/1
   # PATCH/PUT /customers/1.json
   def update
+    authorize @customer, :update?
     respond_to do |format|
       if @customer.update(customer_params)
-        format.html { redirect_to @customer, notice: 'Customer was successfully updated.' }
+        flash[:success] = t('activerecord.successfull.messages.updated', data: @customer.fullname)
+        format.html { redirect_to @customer }
         format.json { render :show, status: :ok, location: @customer }
       else
         format.html { render :edit }
@@ -73,11 +81,20 @@ class CustomersController < ApplicationController
   # DELETE /customers/1
   # DELETE /customers/1.json
   def destroy
-    @customer.destroy
-    respond_to do |format|
-      format.html { redirect_to customers_url, notice: 'Customer was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    # authorize @customer, :destroy?
+    # @customer.destroy
+    # respond_to do |format|
+    #   format.html { redirect_to customers_url, notice: 'Customer was successfully destroyed.' }
+    #   format.json { head :no_content }
+    # end
+    authorize @customer, :destroy?
+    if @customer.destroy
+      flash[:success] = t('activerecord.successfull.messages.destroyed', data: @customer.fullname)
+      redirect_to customers_url
+    else 
+      flash[:error] = t('activerecord.errors.messages.destroyed', data: @customer.fullname)
+      redirect_to :back
+    end      
   end
 
   private

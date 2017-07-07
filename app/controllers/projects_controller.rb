@@ -23,31 +23,35 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
+    authorize :project, :index?
     @projects = Project.order(:number).all
   end
 
   # GET /projects/1
   # GET /projects/1.json
   def show
+    authorize @project, :index?
   end
 
   # GET /projects/new
   def new
     @project = Project.new
+    authorize @project, :new?
   end
 
   # GET /projects/1/edit
   def edit
+    authorize @project, :edit?
   end
 
   # POST /projects
   # POST /projects.json
   def create
-    @project = Project.new(project_params)
-
+    @project = Role.new(project_params)
+    authorize @project, :create?
     respond_to do |format|
       if @project.save
-        flash[:success] = "Project created!"
+        flash[:success] = t('activerecord.successfull.messages.created', data: @project.fullname)
         format.html { redirect_to @project }
         format.json { render :show, status: :created, location: @project }
       else
@@ -60,9 +64,10 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1
   # PATCH/PUT /projects/1.json
   def update
+    authorize @project, :update?
     respond_to do |format|
       if @project.update(project_params)
-        flash[:success] = "Project updated!"
+        flash[:success] = t('activerecord.successfull.messages.updated', data: @project.fullname)
         format.html { redirect_to @project }
         format.json { render :show, status: :ok, location: @project }
       else
@@ -75,12 +80,21 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy
-    @project.destroy
-    respond_to do |format|
-      flash[:success] = "Project destroyed!"
-      format.html { redirect_to projects_url }
-      format.json { head :no_content }
-    end
+    # authorize @project, :destroy?
+    # @project.destroy
+    # respond_to do |format|
+    #   flash[:success] = "Project destroyed!"
+    #   format.html { redirect_to projects_url }
+    #   format.json { head :no_content }
+    # end
+    authorize @project, :destroy?
+    if @project.destroy
+      flash[:success] = t('activerecord.successfull.messages.destroyed', data: @project.fullname)
+      redirect_to projects_url
+    else 
+      flash[:error] = t('activerecord.errors.messages.destroyed', data: @project.fullname)
+      redirect_to :back
+    end      
   end
 
   private

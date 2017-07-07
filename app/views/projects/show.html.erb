@@ -49,11 +49,11 @@
         <table class="table table-hover">
           <caption>
             <%= t('pages.project.show.table_caption') %>
-          </caption>      
+          </caption>
           <thead>
             <tr>
-              <th>User</th>
-              <th>Role</th>
+              <th><%= Accessorization.human_attribute_name('user_id') %></th>
+              <th><%= Accessorization.human_attribute_name('role_id') %></th>
             </tr>
           <thead>
           <tbody>

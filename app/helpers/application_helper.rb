@@ -5,6 +5,7 @@ module ApplicationHelper
     case name
     when 'notice' then 'success'
     when 'alert'  then 'danger'
+    when 'error'  then 'danger'
     else name
     end
   end

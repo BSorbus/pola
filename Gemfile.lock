@@ -47,6 +47,9 @@ GEM
     autoprefixer-rails (7.1.1.2)
       execjs
     bcrypt (3.1.11)
+    bcrypt (3.1.11-java)
+    bcrypt (3.1.11-x64-mingw32)
+    bcrypt (3.1.11-x86-mingw32)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -156,6 +159,8 @@ GEM
     public_suffix (2.0.5)
     puma (3.9.1)
     puma (3.9.1-java)
+    pundit (1.1.0)
+      activesupport (>= 3.0.0)
     rack (2.0.3)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -266,6 +271,7 @@ DEPENDENCIES
   minitest-reporters
   pg (~> 0.18)
   puma (~> 3.7)
+  pundit
   rails (~> 5.1.2)
   sass-rails (~> 5.0)
   select2-rails (= 3.5.9.3)

@@ -3,24 +3,58 @@
 
 <div class="container">
   <div class="col-sm-12">
-    <div class="row">
-      <h3><span class="glyphicon glyphicon-sunglasses" aria-hidden="true"> 
-        <%= t "pages.role.index.title" %>  
-        </span>
-      </h3>
-      <div class="column">
-        <table class="table table-hover">
-          <tbody>
-            <% @roles.each do |role| %>
-              <tr>
-                <%= render role %>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-    </div> <!--/row -->
-  </div> <!--/col-sm-12 -->
+    <div class="row well">
+      <%= current_user.roles.select(:activities).distinct.map(&:activities).flatten %>
+    </div>
+  </div>
+
+  <% if policy(:role).index? %>
+    <div class="col-sm-12">
+      <div class="row">
+        <h3><span class="glyphicon glyphicon-sunglasses" aria-hidden="true"> 
+          <%= t "pages.role.index.title_special" %>  
+          </span>
+        </h3>
+        <div class="column">
+          <table class="table table-hover">
+            <tbody>
+              <% @roles.where(special: true).each do |role| %>
+                <tr>
+                  <%= render role %>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div> <!--/row -->
+    </div> <!--/col-sm-12 -->
+  <% end %>
+
+
+  <% if policy(:role).index? || policy(:role).index_only_not_special? %>
+    <div class="col-sm-12">
+      <div class="row">
+        <h3><span class="glyphicon glyphicon-sunglasses" aria-hidden="true"> 
+          <%= t "pages.role.index.title_not_special" %>  
+          </span>
+        </h3>
+        <div class="column">
+          <table class="table table-hover">
+            <tbody>
+              <% @roles.where(special: false).each do |role| %>
+                <tr>
+                  <%= render role %>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div> <!--/row -->
+    </div> <!--/col-sm-12 -->
+  <% end %>
+
+
+
   <div class="col-sm-12">
     <div class="row">
       <% if true %> <!--policy(:role).new? %> -->

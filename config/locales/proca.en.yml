@@ -72,12 +72,15 @@ en:
       customer:
         name: 'Name'
         note: 'Note'
+        flat_assigned_projects: 'Related projects'
   pages:
     home: 'Home'
     help: 'Help'
     role:
       index:
         title: 'Roles'
+        title_special: 'System roles'
+        title_not_special: 'Project roles'
       show:
         title: 'Role'
         table_caption: 'Users using this role in individual projects'
@@ -99,6 +102,36 @@ en:
       show:
         title: 'Customer'
         table_caption: 'List of customer projects'
+  pundit:
+    default: ' SECURITY: Access denied!'
+    work_policy:
+      index?: ' SECURITY: You cannot watch list of works!'
+    role_policy:
+      index?: ' SECURITY: You cannot watch list of roles!'
+      show?: ' SECURITY: You cannot watch this role!'
+      update?: ' SECURITY: You cannot edit this role!'
+      create?: ' SECURITY: You cannot create roles!'
+      destroy?: ' SECURITY: You cannot destroy roles!'
+      add_remove_role_user?: ' SECURITY: You cannot add/remove roles for users!'
+    user_policy:
+      index?: ' SECURITY: You cannot watch list of users!'
+      show?: ' SECURITY: You cannot watch this user!'
+      update?: ' SECURITY: You cannot edit this user!'
+      create?: ' SECURITY: You cannot create users!'
+      destroy?: ' SECURITY: You cannot destroy users!'
+      add_remove_role_user?: ' SECURITY: You cannot add/remove roles for users!'
+    project_policy:
+      index?: ' SECURITY: You cannot watch list of projects!'
+      show?: ' SECURITY: You cannot watch this project!'
+      update?: ' SECURITY: You cannot edit this project!'
+      create?: ' SECURITY: You cannot create projects!'
+      destroy?: ' SECURITY: You cannot destroy projects!'
+    customer_policy:
+      index?: ' SECURITY: You cannot watch list of customers!'
+      show?: ' SECURITY: You cannot watch this customer!'
+      update?: ' SECURITY: You cannot edit this customer!'
+      create?: ' SECURITY: You cannot create customers!'
+      destroy?: ' SECURITY: You cannot destroy customers!'
   helpers:
     links:
       index: ' Index'

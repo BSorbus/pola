@@ -7,20 +7,53 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 user = CreateAdminService.new.call
-puts 'CREATED ADMIN USER: ' << user.email
+puts 'CREATED ADMIN USER: ' << user.email 
 
 role = CreateRoleService.new.role_admin
 puts 'CREATED ROLE: ' << role.name
 user.roles << role
 puts "ADD ROLE: #{role.name}   TO USER: #{user.email}"
 
-role = CreateRoleService.new.role_manager
+role = CreateRoleService.new.role_observer
 puts 'CREATED ROLE: ' << role.name
 
-role = CreateRoleService.new.role_publisher
+
+role = CreateRoleService.new.user_admin
+puts 'CREATED ROLE: ' << role.name
+user.roles << role
+puts "ADD ROLE: #{role.name}   TO USER: #{user.email}"
+
+role = CreateRoleService.new.user_observer
 puts 'CREATED ROLE: ' << role.name
 
-role = CreateRoleService.new.role_writer
+
+role = CreateRoleService.new.customer_admin
+puts 'CREATED ROLE: ' << role.name
+user.roles << role
+puts "ADD ROLE: #{role.name}   TO USER: #{user.email}"
+
+role = CreateRoleService.new.customer_observer
+puts 'CREATED ROLE: ' << role.name
+
+role = CreateRoleService.new.project_admin
+puts 'CREATED ROLE: ' << role.name
+user.roles << role
+puts "ADD ROLE: #{role.name}   TO USER: #{user.email}"
+
+role = CreateRoleService.new.project_observer
+puts 'CREATED ROLE: ' << role.name
+
+
+role = CreateRoleService.new.role_for_projects_manager
+puts 'CREATED ROLE: ' << role.name
+
+role = CreateRoleService.new.role_for_projects_observer
+puts 'CREATED ROLE: ' << role.name
+
+role = CreateRoleService.new.role_for_projects_publisher
+puts 'CREATED ROLE: ' << role.name
+
+role = CreateRoleService.new.role_for_projects_writer
 puts 'CREATED ROLE: ' << role.name
 
 

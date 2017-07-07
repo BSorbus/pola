@@ -1,5 +1,11 @@
 <div class="container">
   <div class="col-sm-12">
+    <div class="row well">
+      <%= current_user.roles.select(:activities).distinct.map(&:activities).flatten %>
+    </div>
+  </div>
+
+  <div class="col-sm-12">
     <div class="row">
       <h3><span class="glyphicon glyphicon-user" aria-hidden="true"> 
         <%= t "pages.user.index.title" %>  

@@ -66,7 +66,7 @@ pl:
         note: 'Uwagi'
         project_status_id: 'Status'
         customer_id: 'Wnioskodawca'
-        flat_assigned_users: 'Procedujący użytkownicy'
+        flat_assigned_users: 'Użytkownicy procedujący'
       project_status:
         name: 'Nazwa'
       customer:
@@ -79,6 +79,8 @@ pl:
     role:
       index:
         title: 'Role'
+        title_special: 'Role systemowe'
+        title_not_special: 'Role projektowe'
       show:
         title: 'Rola'
         table_caption: 'Użytkownicy występujący w tej roli w poszczególnych projektach'
@@ -87,7 +89,7 @@ pl:
         title: 'Projekty'
       show:
         title: 'Projekt'
-        table_caption: 'Użytkownicy i role w tym projekcie'
+        table_caption: 'Użytkownicy i ich role w tym projekcie'
     user:
       index:
         title: 'Użytkownicy'
@@ -100,6 +102,36 @@ pl:
       show:
         title: 'Wnioskodawca'
         table_caption: 'Lista projektów tego wnioskodawcy'
+  pundit:
+    default: ' BRAK UPRAWNIEŃ: Nie można wykonać tej czynności!'
+    work_policy:
+      index?: ' BRAK UPRAWNIEŃ: Nie możesz wyświetlać listy działań!'
+    role_policy:
+      index?: ' BRAK UPRAWNIEŃ: Nie możesz wyświetlać listy ról!'
+      show?: ' BRAK UPRAWNIEŃ: Nie możesz oglądać szczegółów roli!'
+      update?: ' BRAK UPRAWNIEŃ: Nie możesz edytować danych ról!'
+      create?: ' BRAK UPRAWNIEŃ: Nie możesz tworzyć ról!'
+      destroy?: ' BRAK UPRAWNIEŃ: Nie możesz usuwać ról!'
+      add_remove_role_user?: ' BRAK UPRAWNIEŃ: Nie możesz do ról dowawać ani usuwać użytkowników!'
+    user_policy:
+      index?: ' BRAK UPRAWNIEŃ: Nie możesz wyświetlać listy użytkowników!'
+      show?: ' BRAK UPRAWNIEŃ: Nie możesz oglądać szczegółów użytkownika!'
+      update?: ' BRAK UPRAWNIEŃ: Nie możesz edytować danych użytkownika!'
+      create?: ' BRAK UPRAWNIEŃ: Nie możesz tworzyć użytkowników!'
+      destroy?: ' BRAK UPRAWNIEŃ: Nie możesz usuwać użytkowników!'
+      add_remove_role_user?: ' BRAK UPRAWNIEŃ: Nie możesz użytkownikom dodawać ani usuwać ról!'
+    project_policy:
+      index?: ' BRAK UPRAWNIEŃ: Nie możesz wyświetlać listy projektów!'
+      show?: ' BRAK UPRAWNIEŃ: Nie możesz oglądać szczegółów projektu!'
+      update?: ' BRAK UPRAWNIEŃ: Nie możesz edytować danych projektu!'
+      create?: ' BRAK UPRAWNIEŃ: Nie możesz tworzyć projektów!'
+      destroy?: ' BRAK UPRAWNIEŃ: Nie możesz usuwać projektów!'
+    customer_policy:
+      index?: ' BRAK UPRAWNIEŃ: Nie możesz wyświetlać listy wnioskodawców!'
+      show?: ' BRAK UPRAWNIEŃ: Nie możesz oglądać szczegółów wnioskodawcy!'
+      update?: ' BRAK UPRAWNIEŃ: Nie możesz edytować danych wnioskodawcy!'
+      create?: ' BRAK UPRAWNIEŃ: Nie możesz tworzyć wnioskodawców!'
+      destroy?: ' BRAK UPRAWNIEŃ: Nie możesz usuwać wnioskodawców!'
   helpers:
     links:
       index: ' Lista'
