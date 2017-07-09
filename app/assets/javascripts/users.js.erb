@@ -63,13 +63,13 @@ $(document).ready(function() {
 
 
 
-  var oUserRolesNotSpecialtable = $('#user-roles-notspecial-table').DataTable({
+  var oUserAccessorizationstable = $('#user-accessorizations-table').DataTable({
     responsive: true,
     processing: true,
     serverSide: true,
     deferRender: true,
     ajax: { 
-      url: $('#user-roles-notspecial-table').data('source'),
+      url: $('#user-accessorizations-table').data('source'),
       type: "GET",
       error: function (jqXHR, exception) {
         console.log(jqXHR);
@@ -96,7 +96,7 @@ $(document).ready(function() {
     ],
    preDrawCallback: function( settings ) {
      // jezeli panel nie jest widoczny, to przerwij ładowanie danych
-     if ( $( "#collapse_user_roles_notspecial" ).is( ":hidden" ) ) {
+     if ( $( "#collapse_user_accessorizations" ).is( ":hidden" ) ) {
        return false;
      }
    },
@@ -107,21 +107,21 @@ $(document).ready(function() {
   });
 
 
-  $('#user-roles-notspecial-table tbody').on( 'click', 'button', function () {
+  $('#user-accessorizations-table tbody').on( 'click', 'button', function () {
       $.ajax({
         url: $(this).attr('ajax-path'),
         type: $(this).attr('ajax-method'),
         async: false
       });
-      oUserRolesNotSpecialtable.draw();
+      oUserAccessorizationstable.draw();
     });
 
 
   // jezeli nastepuje wyswietlenie panelu, to zaladuj dane
-  $('#collapse_user_roles_notspecial').on('shown.bs.collapse', function (){
+  $('#collapse_user_accessorizations').on('shown.bs.collapse', function (){
   //  Wykomentowalem wiersz ponizej poniewaz powoduje podwojne pobieranie danych    
-  //  oUserRolesNotSpecialtable.ajax.reload();
-    oUserRolesNotSpecialtable.draw();
+  //  oUserAccessorizationstable.ajax.reload();
+    oUserAccessorizationstable.draw();
   });
 
 

@@ -76,6 +76,8 @@ en:
   pages:
     home: 'Home'
     help: 'Help'
+    accessorization:
+      for_user: 'Projects'
     role:
       index:
         title: 'Roles'
@@ -95,7 +97,6 @@ en:
         title: 'Users'
       show:
         title: 'User'
-        table_caption: 'List of projects and roles in which this user occurs'
     customer:
       index:
         title: 'Customers'

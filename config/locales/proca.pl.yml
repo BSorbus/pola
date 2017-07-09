@@ -76,6 +76,8 @@ pl:
   pages:
     home: 'Główna'
     help: 'Pomoc'
+    accessorization:
+      for_user: 'Projekty'
     role:
       index:
         title: 'Role'
@@ -95,7 +97,6 @@ pl:
         title: 'Użytkownicy'
       show:
         title: 'Użytkownik'
-        table_caption: 'Projekty i role przypisane temu użytkownikowi'
     customer:
       index:
         title: 'Wnioskodawcy'
