@@ -1,0 +1,130 @@
+$(document).ready(function() {
+  var oUserRolestable = $('#user-roles-table').DataTable({
+    responsive: true,
+    processing: true,
+    serverSide: true,
+    deferRender: true,
+    ajax: { 
+      url: $('#user-roles-table').data('source'),
+      type: "GET",
+      error: function (jqXHR, exception) {
+        console.log(jqXHR);
+        if (jqXHR.status == 401) {
+          window.location.reload();
+        } else {
+          getErrorMessage(jqXHR, exception);
+        }
+      }
+    },
+    pagingType: "full_numbers",
+    lengthMenu: [[10, 15, 25, 50, 100, -1], [10, 15, 25, 50, 100, "Wszystkie"]],
+    iDisplayLength: -1,
+    columns: [
+      { "data": "id",
+        "visible": false }, 
+      { "data": "name" }, 
+      { "data": "status",
+        "searchable": false,
+        "sortable": false },
+      { "data": "action",
+        "searchable": false,
+        "sortable": false }
+    ],
+   preDrawCallback: function( settings ) {
+     // jezeli panel nie jest widoczny, to przerwij ładowanie danych
+     if ( $( "#collapse_user_roles" ).is( ":hidden" ) ) {
+       return false;
+     }
+   },
+    order: [[ 1, "asc" ]],
+    language: {
+      url: '<%= asset_path("pl.json.erb") %>'
+    }
+  });
+
+
+  $('#user-roles-table tbody').on( 'click', 'button', function () {
+      $.ajax({
+        url: $(this).attr('ajax-path'),
+        type: $(this).attr('ajax-method'),
+        async: false
+      });
+      oUserRolestable.draw();
+    });
+
+
+  // jezeli nastepuje wyswietlenie panelu, to zaladuj dane
+  $('#collapse_user_roles').on('shown.bs.collapse', function (){
+  //  Wykomentowalem wiersz ponizej poniewaz powoduje podwojne pobieranie danych    
+  //  oUserRolestable.ajax.reload();
+    oUserRolestable.draw();
+  });
+
+
+
+
+  var oUserRolesNotSpecialtable = $('#user-roles-notspecial-table').DataTable({
+    responsive: true,
+    processing: true,
+    serverSide: true,
+    deferRender: true,
+    ajax: { 
+      url: $('#user-roles-notspecial-table').data('source'),
+      type: "GET",
+      error: function (jqXHR, exception) {
+        console.log(jqXHR);
+        if (jqXHR.status == 401) {
+          window.location.reload();
+        } else {
+          getErrorMessage(jqXHR, exception);
+        }
+      }
+    },
+    pagingType: "full_numbers",
+    lengthMenu: [[10, 15, 25, 50, 100, -1], [10, 15, 25, 50, 100, "Wszystkie"]],
+    iDisplayLength: -1,
+    columns: [
+      { "data": "id",
+        "visible": false }, 
+      { "data": "name" }, 
+      { "data": "status",
+        "searchable": false,
+        "sortable": false },
+      { "data": "action",
+        "searchable": false,
+        "sortable": false }
+    ],
+   preDrawCallback: function( settings ) {
+     // jezeli panel nie jest widoczny, to przerwij ładowanie danych
+     if ( $( "#collapse_user_roles_notspecial" ).is( ":hidden" ) ) {
+       return false;
+     }
+   },
+    order: [[ 1, "asc" ]],
+    language: {
+      url: '<%= asset_path("pl.json.erb") %>'
+    }
+  });
+
+
+  $('#user-roles-notspecial-table tbody').on( 'click', 'button', function () {
+      $.ajax({
+        url: $(this).attr('ajax-path'),
+        type: $(this).attr('ajax-method'),
+        async: false
+      });
+      oUserRolesNotSpecialtable.draw();
+    });
+
+
+  // jezeli nastepuje wyswietlenie panelu, to zaladuj dane
+  $('#collapse_user_roles_notspecial').on('shown.bs.collapse', function (){
+  //  Wykomentowalem wiersz ponizej poniewaz powoduje podwojne pobieranie danych    
+  //  oUserRolesNotSpecialtable.ajax.reload();
+    oUserRolesNotSpecialtable.draw();
+  });
+
+
+  
+});
+

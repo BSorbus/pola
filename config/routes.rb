@@ -22,7 +22,10 @@ Rails.application.routes.draw do
     get 'datatables_index', on: :collection
   end
 
-  resources :roles
+  resources :roles do
+    get 'datatables_index_user', on: :collection # Displays roles for showed user
+    resources :users, only: [:create, :destroy], controller: 'roles/users'
+  end    
 
   root 'static_pages#home'
   get 'static_pages/home'

@@ -21,6 +21,12 @@ $gray-medium-light: #eaeaea;
 
 body {
   padding-top: 60px;
+  background-color: #eee;
+}
+
+.jumbotron {
+  color: #000080;
+  background-color: #b3b300;
 }
 
 section {
@@ -160,3 +166,27 @@ table.dataTable thead .sorting_asc:after {
 //  background-color: #ddd
 //}
 
+
+.panel-user {
+  border-color: #ddd  
+}
+.panel-user > .panel-heading {
+  background: #a4bacc;
+  color: white; 
+}
+
+.panel-role {
+  border-color: #ddd  
+}
+.panel-role > .panel-heading {
+  background: #616aa2; //#5E703F; 
+  color: white; 
+}
+
+.panel-role-notspecial {
+  border-color: #ddd  
+}
+.panel-role-notspecial > .panel-heading {
+  background: #5E703F; 
+  color: white; 
+}

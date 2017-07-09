@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="col-sm-12">
+    <div class="row">
+      <h3><span class="glyphicon glyphicon-user" aria-hidden="true"> 
+        <%= t('pages.user.show.title') %>  
+        </span>
+      </h3>
+    </div> <!--/row -->
+  </div> <!--/col-sm-12 -->
+
+  <div class="col-sm-12">
+    <hr>
+  </div>
+
+  <div class="col-sm-12">
+    <div class="row">
+      <div class="col-sm-6">
+        <strong><%= User.human_attribute_name('name') %></strong><br>
+        <%= @user.name %>
+      </div>
+      <div class="col-sm-6">
+        <strong><%= User.human_attribute_name('email') %></strong><br>
+        <%= @user.email %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-12">
+    <hr>
+  </div>
+
+  <div class="col-sm-12">
+    <div class="row">
+      <div class="col-sm-12">
+        <table class="table table-hover">
+          <caption>
+            <%= t('pages.user.show.table_caption') %>
+          </caption>      
+          <thead>
+            <tr>
+              <th><%= Accessorization.human_attribute_name('project_id') %></th>
+              <th><%= Accessorization.human_attribute_name('role_id') %></th>
+            </tr>
+          <thead>
+          <tbody>
+            <%# @user.accessorizations.each do |accessorization| %>
+            <% Accessorization.includes(:user, :project).where(user: @user).order('projects.number').each do |accessorization| %>
+              <tr>
+                <%= render 'accessorization', accessorization: accessorization %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div> <!--/col-sm-12 -->
+    </div> <!--/row -->
+  </div> <!--/col-sm-12 -->
+
+  <div class="col-sm-12">
+    <hr>
+  </div>
+
+  <div class="col-sm-12">
+    <div class="row">
+      <%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-default' %>
+      <%= link_to 'Index', users_path, class: 'btn btn-default' %>
+    </div> <!--/row -->
+  </div> <!--/col-sm-12 -->
+
+</div> <!--/coontainer -->
