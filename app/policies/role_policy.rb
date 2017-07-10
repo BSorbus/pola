@@ -52,17 +52,13 @@ class RolePolicy < ApplicationPolicy
   end
  
   def add_remove_role_user?
-    user_activities.include? 'role:add_remove_user'
+    user_activities.include? 'role:add_remove_role_user'
   end
  
   def only_not_special_add_remove_role_user?
-    user_activities.include? 'role:add_remove_user_only_not_special'
+    user_activities.include? 'role:add_remove_role_user_only_not_special'
   end
  
-  def work?
-    user_activities.include? 'role:work'
-  end
-
  
   class Scope < Struct.new(:user, :scope)
     def resolve

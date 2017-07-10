@@ -1,4 +1,4 @@
-class UserPolicy < ApplicationPolicy
+class AccessorizationPolicy < ApplicationPolicy
   attr_reader :user, :model
 
   def initialize(user, model)
@@ -7,11 +7,11 @@ class UserPolicy < ApplicationPolicy
   end
 
   def index?
-    user_activities.include? 'user:index'
+    user_activities.include? 'accessorization:index'
   end
 
   def show?
-    user_activities.include? 'user:show'
+    user_activities.include? 'accessorization:show'
   end
 
   def new?
@@ -19,7 +19,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def create?
-    user_activities.include? 'user:create'
+    user_activities.include? 'accessorization:create'
   end
 
   def edit?
@@ -27,14 +27,14 @@ class UserPolicy < ApplicationPolicy
   end
 
   def update?
-    user_activities.include? 'user:update'
+    user_activities.include? 'accessorization:update'
   end
 
   def destroy?
-    user_activities.include? 'user:delete'
+    user_activities.include? 'accessorization:delete'
   end
  
- 
+
   class Scope < Struct.new(:user, :scope)
     def resolve
       scope

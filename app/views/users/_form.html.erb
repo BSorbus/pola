@@ -1,59 +1,91 @@
 <%= form_with(model: user, local: true) do |f| %>
-<%#= form_for user do |f| %>
+
+  <% input_disabled ||= false  
+     #if input_disabled is not passed to the partial it doesn't crash. 
+     # We default it to false 
+  %>
 
   <%= form_errors_for user %>
 
-  <div class="container">
-    <div class="col-sm-12">
+  <% if policy(:user).create? %>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="row">
+
+          <div class="form-group col-sm-6">
+            <%= f.label :name, class: 'control-label' %>
+            <%= f.text_field :name, autofocus: true, class: 'form-control input-sm', placeholder: t('placeholder_text.user.form.name'), disabled: input_disabled %>
+          </div>
+
+          <div class="form-group col-sm-6">
+            <%= f.label :email, class: 'control-label' %>
+            <%= f.text_field :email, class: 'form-control input-sm', placeholder: t('placeholder_text.user.form.email'), disabled: input_disabled %>
+          </div>
+
+
+        </div>  <!-- /row -->
+      </div>  <!-- /col-sm-12 -->
+    </div>  <!-- /row -->
+  <% end %>
+
+  <hr>
+
+  <div class="panel-group" id="myaccordion">
+
+    <% if policy(:accessorization).update? %>
+      <!-- Roles.whers(special: false)-->
       <div class="row">
-        <h3><span class="glyphicon glyphicon-user" aria-hidden="true"> 
-          <%= t('pages.user.show.title') %>  
-          </span>
-        </h3>
-      </div> <!--/row -->
-    </div>
+        <div class="col-sm-12">
+          <div class="panel panel-accessorization">
+            <div class="panel-heading">
+              <div class="panel-title">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#myaccordion" href="#collapse_user_accessorizations" >
+                  <span class="glyphicon glyphicon-book">&nbsp;<%= t "pages.accessorization.user_show" %></span>
+                  <i class="indicator glyphicon glyphicon-chevron-right pull-right"></i>
+                </a>
+              </div>
+            </div>
+            <div id="collapse_user_accessorizations" class="panel-collapse collapse">
+              <div class="panel-body">
+                <div class="col-sm-12">
 
-    <div class="col-sm-12">
-      <hr>
-    </div>
+                  <div class='accessorizations clearfix'>
+                    <div class='accessorizations-sub-form'>
+                      <%= f.fields_for :accessorizations do |accessorization_form|  %>
+                        <%= render 'accessorization_fields', f: accessorization_form %> 
+                      <% end %>
+                    </div>
+                    <%= link_to_add_fields( t("helpers.links.link_to_add_fields_accessorization"), f, :accessorizations) %>
+                  </div>
 
-    <div class="col-sm-12">
-      <div class="row">
-        <div class="form-group col-sm-6">
-          <%= f.label :name, class: 'control-label' %>
-          <%= f.text_field :name, autofocus: true, class: 'form-control input-sm', disabled: false %>
-        </div>
-        <div class="form-group col-sm-6">
-          <%= f.label :email, class: 'control-label' %>
-          <%= f.text_field :email, class: 'form-control input-sm', disabled: false %>
-        </div>
-      </div>
+                </div> <!--/class="col-sm-12" -->
+              </div> <!-- /panel-body -->
+            </div> <!-- /id="collapse_roles_notspecial" -->
+          </div> <!-- /panel -->
+        </div> <!-- /col-sm-11 col-sm-offset-1 -->
+      </div> <!-- /row -->
+    <% end %>
 
-      <hr>
-      <h5><%= t('pages.user.show.table_caption') %></h5>
+  </div> <!-- /class="panel-group" id="myaccordion" -->
 
-      <div class='accessorizations clearfix'>
-        <div class='accessorizations-sub-form'>
-          <%= f.fields_for :accessorizations do |accessorization_form|  %>
-            <%= render 'accessorization_fields', f: accessorization_form %> 
-          <% end %>
-        </div>
-        <%= link_to_add_fields("[Add Accessorization]", f, :accessorizations) %>
-      </div>
 
-    </div>
 
-    <div class="col-sm-12">
-      <hr>
-    </div>
 
-    <div class="col-sm-12">
-      <div class="row">
-        <%= f.submit nil, :class => 'btn btn-primary' %>
-        <%#= link_to 'Show', user_path(user), :class => "btn btn-default" %>
-        <%= link_to 'Index', users_path, :class => "btn btn-default" %>
-      </div>
-    </div>
-  </div>
 
+
+  <hr class="hr-without-top-margin">
+
+  <% if input_disabled %>
+    <!-- for "Show" -->
+  <% else %>
+    <!-- form "New"/"Edit" -->
+    <div class="row">
+      <%= link_to t('Index', default: t("helpers.links.index")), users_path, :class => 'btn btn-default glyphicon glyphicon-th-list' %>
+
+      <%= link_to t('Back', default: t("helpers.links.back")), :back, :class => 'btn btn-default glyphicon glyphicon-arrow-left' %>
+
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+    </div> <!-- /row -->
+  <% end %>
+  
 <% end %>

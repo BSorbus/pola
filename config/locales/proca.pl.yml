@@ -77,7 +77,8 @@ pl:
     home: 'Główna'
     help: 'Pomoc'
     accessorization:
-      for_user: 'Projekty'
+      user_show: 'Uczestniczy w projektach'
+      project_show: 'Użytkownicy procedujący'
     role:
       index:
         title: 'Role'
@@ -97,6 +98,8 @@ pl:
         title: 'Użytkownicy'
       show:
         title: 'Użytkownik'
+      edit:
+        title: 'Edycja -> Użytkownik'
     customer:
       index:
         title: 'Wnioskodawcy'
@@ -134,15 +137,31 @@ pl:
       create?: ' BRAK UPRAWNIEŃ: Nie możesz tworzyć wnioskodawców!'
       destroy?: ' BRAK UPRAWNIEŃ: Nie możesz usuwać wnioskodawców!'
   helpers:
+    actions: "Akcje"
     links:
       index: ' Lista'
       show: ' Podgląd'
       new:  ' Dodaj'
       edit: ' Edycja'
+      back: " Powrót"
+      cancel: "Wróć"
+      confirm: "Czy na pewno?"
+      confirm_destroy: 'Na pewno chcesz usunąć wpis: "%{data}"?'
+      confirm_account_off: 'Na pewno chcesz wyłączyć konto: "%{data}"?'
+      confirm_account_on: 'Na pewno chcesz włączyć konto: "%{data}"?'
+      destroy: " Usuń"
+      destroy_account: "Usuń moje konto"
+      send_email: " Wyślij email"
+      download: " Pobierz"
+      print: " Wydruk"
+      account_off: " Wyłącz konto"
+      account_on: " Włącz konto"
+      link_to_add_fields_accessorization: '[ + Dodaj Uprawnienie]'
+      link_to_remove_fields_accessorization: '[ - Usuń Uprawnienie]'
   help_block_text:
-    select2project: 'Wyszukiwanie po: Numer, Uwagi. Kolejność dowolna. Warunki oddzielaj spacją, np.: /2017 uwaga'
-    select2user: 'Wyszukiwanie po: Nazwa, Email. Kolejność dowolna. Warunki oddzielaj spacją, np.: Kow ski@'
-    select2customer: 'Wyszukiwanie po: Nazwa, Uwagi. Kolejność dowolna. Warunki oddzielaj spacją, np.: Kow ski@'
+    select2project: 'Wyszukiwanie po: Numer, Uwagi. Warunki oddzielaj spacją'
+    select2user: 'Wyszukiwanie po: Nazwa, Email. Warunki oddzielaj spacją'
+    select2customer: 'Wyszukiwanie po: Nazwa, Uwagi. Warunki oddzielaj spacją'
   placeholder:
     select2project: 'Wybierz Projekt'
     select2user: 'Wybierz Użytkownika'

@@ -129,7 +129,14 @@ footer {
 .well-accessorization {
   @extend .well;
   padding-bottom: 1px;
+  margin-bottom: 10px;
 }
+
+.top-bottom-buffer { 
+  margin-top: -10px; 
+  margin-bottom: -18px; 
+}
+
 
 .spinner {
   position: fixed;
@@ -167,11 +174,19 @@ table.dataTable thead .sorting_asc:after {
 //}
 
 
+.panel-project {
+  border-color: #ddd  
+}
+.panel-project > .panel-heading {
+  background: #091a2a;
+  color: white; 
+}
+
 .panel-user {
   border-color: #ddd  
 }
 .panel-user > .panel-heading {
-  background: #a4bacc;
+  background: #091a2a;
   color: white; 
 }
 
@@ -179,7 +194,7 @@ table.dataTable thead .sorting_asc:after {
   border-color: #ddd  
 }
 .panel-role > .panel-heading {
-  background: #616aa2; //#5E703F; 
+  background: #1b4d7e; 
   color: white; 
 }
 
@@ -187,6 +202,6 @@ table.dataTable thead .sorting_asc:after {
   border-color: #ddd  
 }
 .panel-accessorization > .panel-heading {
-  background: #5E703F; 
+  background: #2d80d2; 
   color: white; 
 }

@@ -1,84 +1,57 @@
-<div class="container">
-  <div class="col-sm-12">
+<div class="panel-group" id="myaccordion">
+
+  <!-- Dane -->
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel panel-project">
+        <div class="panel-heading">
+          <div class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#myaccordion" href="#collapse_data" >
+              <span class="glyphicon glyphicon-book">&nbsp;<%=t "pages.project.show.title"%>:&nbsp;<%= @project.fullname %></span>
+              <i class="indicator glyphicon glyphicon-chevron-down  pull-right"></i>
+            </a>
+          </div> 
+        </div>
+        <div id="collapse_data" class="panel-collapse collapse in">
+          <div class="panel-body">         
+            <div class="col-sm-11 col-sm-offset-1">
+
+              <%= render 'data', input_disabled: true %>
+
+            </div> <!--/col-sm-11 col-sm-offset-1-->    
+          </div> <!-- /panel-body -->
+        </div> <!-- /id="collapse_data" -->
+      </div> <!-- /panel -->
+    </div> <!-- /col-sm-12-->
+  </div> <!-- /row -->
+
+
+  <!-- Accessorizations-->
+  <% if policy(:accessorization).index? %>
+    <!-- Roles.whers(special: false)-->
     <div class="row">
-      <h3><span class="glyphicon glyphicon-book" aria-hidden="true"> 
-        <%= t('pages.project.show.title') %>  
-        </span>
-      </h3>
-    </div> <!--/row -->
-  </div> <!--/col-sm-12 -->
+      <div class="col-sm-11 col-sm-offset-1">
+        <div class="panel panel-accessorization">
+          <div class="panel-heading">
+            <div class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#myaccordion" href="#collapse_user_accessorizations" >
+                <span class="glyphicon glyphicon-user">&nbsp;<%= t "pages.accessorization.project_show" %></span>
+                <i class="indicator glyphicon glyphicon-chevron-right pull-right"></i>
+              </a>
+            </div>
+          </div>
+          <div id="collapse_user_accessorizations" class="panel-collapse collapse">
+            <div class="panel-body">
+              <div class="col-sm-12">
 
-  <div class="col-sm-12">
-    <hr>
-  </div>
+                <%= render 'accessorizations' %>
 
-  <div class="col-sm-6">
-    <div class="row">
-      <div class="form-group col-sm-12">
-        <strong><%= Project.human_attribute_name('number') %></strong><br>
-        <%= @project.number %>
-      </div>
-      <div class="form-group col-sm-12">
-        <strong><%= Project.human_attribute_name('project_status_id') %></strong><br>
-        <%= @project.project_status.try(:name) %>
-      </div>
-      <div class="form-group col-sm-12">
-        <strong><%= Project.human_attribute_name('customer_id') %></strong><br>
-        <%= @project.customer.try(:name) %>
-      </div>
-    </div>
-  </div> <!--/col-sm-6 -->
+              </div> <!--/class="col-sm-12" -->
+            </div> <!-- /panel-body -->
+          </div> <!-- /id="collapse_roles_notspecial" -->
+        </div> <!-- /panel -->
+      </div> <!-- /col-sm-11 col-sm-offset-1 -->
+    </div> <!-- /row -->
+  <% end %>
 
-
-  <div class="col-sm-6">
-    <div class="row">
-      <div class="form-group col-sm-12">
-        <strong><%= Project.human_attribute_name('note') %></strong><br>
-        <%= @project.note %>
-      </div>
-    </div>
-  </div> <!--/col-sm-6 -->
-
-  <div class="col-sm-12">
-    <hr>
-  </div>
-
-  <div class="col-sm-12">
-    <div class="row">
-      <div class="col-sm-12">
-        <table class="table table-hover">
-          <caption>
-            <%= t('pages.project.show.table_caption') %>
-          </caption>
-          <thead>
-            <tr>
-              <th><%= Accessorization.human_attribute_name('user_id') %></th>
-              <th><%= Accessorization.human_attribute_name('role_id') %></th>
-            </tr>
-          <thead>
-          <tbody>
-            <%# @project.accessorizations.each do |accessorization| %>
-            <% Accessorization.includes(:user, :project).where(project: @project).order('users.name').each do |accessorization| %>
-              <tr>
-                <%= render 'accessorization', accessorization: accessorization %>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div> <!--/col-sm-12 -->
-    </div> <!--/row -->
-  </div>
-
-  <div class="col-sm-12">
-    <hr>
-  </div>
-
-  <div class="col-sm-12">
-    <div class="row">
-      <%= link_to 'Edit', edit_project_path(@project), class: 'btn btn-default' %>
-      <%= link_to 'Index', projects_path, class: 'btn btn-default' %>
-    </div> <!--/row -->
-  </div> <!--/col-sm-12 -->
-
-</div> <!--/coontainer -->
-
+</div> <!-- /class="panel-group" id="myaccordion" -->

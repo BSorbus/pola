@@ -44,10 +44,10 @@ role = CreateRoleService.new.project_observer
 puts 'CREATED ROLE: ' << role.name
 
 
-role = CreateRoleService.new.role_for_projects_manager
+role = CreateRoleService.new.accessorization_manager
 puts 'CREATED ROLE: ' << role.name
 
-role = CreateRoleService.new.role_for_projects_observer
+role = CreateRoleService.new.accessorization_observer
 puts 'CREATED ROLE: ' << role.name
 
 role = CreateRoleService.new.role_for_projects_publisher

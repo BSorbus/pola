@@ -3,7 +3,7 @@ class CreateRoleService
   def role_admin
     role = Role.find_or_create_by!(name: "Administrator Ról Systemowych") do |role|
       role.special = true
-      role.activities += %w(role:index role:show role:create role:update role:delete role:add_remove_user role:work)
+      role.activities += %w(role:index role:show role:create role:update role:delete)
       role.save!
     end
   end 
@@ -19,7 +19,7 @@ class CreateRoleService
   def user_admin
     role = Role.find_or_create_by!(name: "Administrator Użytkowników") do |role|
       role.special = true
-      role.activities += %w(user:index user:show user:create user:update user:delete role:add_remove_user user:work)
+      role.activities += %w(user:index user:show user:create user:update user:delete role:add_remove_role_user)
       role.save!
     end
   end
@@ -66,20 +66,21 @@ class CreateRoleService
 
 
 
-  def role_for_projects_manager
+  def accessorization_manager
     role = Role.find_or_create_by!(name: "Menadżer Ról Projektowych") do |role|
       role.special = true
-      role.activities += %w(role:index_only_not_special role:show_only_not_special role:add_remove_user_only_not_special)
+      role.activities += %w(accessorization:index accessorization:show accessorization:create accessorization:update accessorization:delete role:index_only_not_special role:show_only_not_special role:add_remove_role_user_only_not_special)
       role.save!
     end
   end 
-  def role_for_projects_observer
+  def accessorization_observer
     role = Role.find_or_create_by!(name: "Obserwator Ról Projektowych") do |role|
       role.special = true
-      role.activities += %w(role:index_only_not_special role:show_only_not_special)
+      role.activities += %w(accessorization:index accessorization:show role:index_only_not_special role:show_only_not_special)
       role.save!
     end
   end 
+
 
 
   def role_for_projects_publisher

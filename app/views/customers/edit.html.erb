@@ -1,5 +1,22 @@
-<h1><span class="glyphicon glyphicon-edit" aria-hidden="true"> 
-  Editing Customer  
-  </span>
-</h1>
-<%= render 'form', customer: @customer %>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="panel panel-flag">
+      <div class="panel-heading">
+        <div class="panel-title">
+          <span class="glyphicon glyphicon-customer">&nbsp;<%=t "pages.customer.edit.title"%>:&nbsp;<%= @customer.fullname %></span>    
+        </div>
+      </div>
+        <div class="panel-body">
+          <div class="col-sm-1">
+            <h1><span class="glyphicon glyphicon-edit"></span></h1> 
+          </div> <!--/col-sm-1-->
+
+          <div class="col-sm-11">
+            <%= render 'form', customer: @customer %>
+          </div> <!--/col-sm-11 col-sm-offset-1-->
+    
+        </div>
+    </div> <!-- /panel -->
+  </div> <!-- /col-sm-12-->
+</div> <!-- /row -->
+

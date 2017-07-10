@@ -1,0 +1,23 @@
+<div class="col-sm-12">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th><%= Accessorization.human_attribute_name('user_id') %></th>
+        <th><%= Accessorization.human_attribute_name('role_id') %></th>
+      </tr>
+    <thead>
+    <tbody>
+      <% Accessorization.includes(:user, :project).where(project: @project).order('users.name').each do |accessorization| %>
+        <tr>
+          <td class="col-md-5">
+            <%= accessorization.user.try(:name_as_link) %>
+          </td>
+          <td class="col-md-7">
+            <%= accessorization.role.try(:name_as_link) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>

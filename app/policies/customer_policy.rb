@@ -34,6 +34,7 @@ class CustomerPolicy < ApplicationPolicy
     user_activities.include? 'customer:delete'
   end
  
+
   class Scope < Struct.new(:user, :scope)
     def resolve
       scope
