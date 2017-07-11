@@ -35,7 +35,7 @@ pl:
     models:
       user: 'Użytkownik'
       role: 'Rola'
-      accessorization: 'Accessorization'
+      accessorization: 'Uprawnienia'
       project: 'Projekt'
       project_status: 'Status Projektu'
       customer: 'Wnioskodawca'

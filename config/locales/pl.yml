@@ -13,6 +13,7 @@ pl:
         attach_file: 'Wystąpił błąd w czasie dodawania załącznika "%{child}" do "%{parent}". Pamiętaj, że rozmiar pliku nie może być większy niż 10 MB'
         account_off: 'Wystąpił błąd w czasie wyłączania konta "%{data}".'
         account_on: 'Wystąpił błąd w czasie włączania konta "%{data}".'
+        required: 'nie może być puste'
     successfull:
       messages:
         created: 'Wpis: "%{data}" został pomyślnie utworzony.'
