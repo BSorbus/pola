@@ -92,8 +92,9 @@ class ProjectsController < ApplicationController
       flash[:success] = t('activerecord.successfull.messages.destroyed', data: @project.fullname)
       redirect_to projects_url
     else 
-      flash[:error] = t('activerecord.errors.messages.destroyed', data: @project.fullname)
-      redirect_to :back
+      flash.now[:error] = t('activerecord.errors.messages.destroyed', data: @project.fullname)
+      #redirect_to :back
+      render :show
     end      
   end
 

@@ -79,6 +79,7 @@ pl:
     accessorization:
       user_show: 'Uczestniczy w projektach'
       project_show: 'Użytkownicy procedujący'
+      customer_show: 'Projekty'
     role:
       index:
         title: 'Role'
@@ -93,6 +94,10 @@ pl:
       show:
         title: 'Projekt'
         table_caption: 'Użytkownicy i ich role w tym projekcie'
+      new:
+        title: 'Nowy Projekt'
+      edit:
+        title: 'Edycja -> Projekt'
     user:
       index:
         title: 'Użytkownicy'
@@ -106,6 +111,10 @@ pl:
       show:
         title: 'Wnioskodawca'
         table_caption: 'Lista projektów tego wnioskodawcy'
+      new:
+        title: 'Nowy Wnioskodawca'
+      edit:
+        title: 'Edycja -> Wnioskodawca'
   pundit:
     default: ' BRAK UPRAWNIEŃ: Nie można wykonać tej czynności!'
     work_policy:

@@ -8,11 +8,6 @@ $font-size-base: 12px;
 
 
 
-.turbolinks-progress-bar {
-  height: 5px;
-  background-color: green;
-}
-
 /* mixins, variables, etc. */
 
 $gray-medium-light: #eaeaea;
@@ -25,8 +20,8 @@ body {
 }
 
 .jumbotron {
-  color: #000080;
-  background-color: #b3b300;
+  color: #31418D;
+  background-color: #C7D540;
 }
 
 section {
@@ -58,7 +53,7 @@ h1 {
 }
 
 h2 {
-  font-size: 1.2em;
+  font-size: 1.8em;
   letter-spacing: -1px;
   margin-bottom: 30px;
   text-align: center;
@@ -173,6 +168,13 @@ table.dataTable thead .sorting_asc:after {
 //  background-color: #ddd
 //}
 
+.panel-customer {
+  border-color: #ddd  
+}
+.panel-customer > .panel-heading {
+  background: #091a2a;
+  color: white; 
+}
 
 .panel-project {
   border-color: #ddd  

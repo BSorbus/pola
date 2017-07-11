@@ -80,8 +80,9 @@ class RolesController < ApplicationController
       flash[:success] = t('activerecord.successfull.messages.destroyed', data: @role.fullname)
       redirect_to roles_url
     else 
-      flash[:error] = t('activerecord.errors.messages.destroyed', data: @role.fullname)
-      redirect_to :back
+      flash.now[:error] = t('activerecord.errors.messages.destroyed', data: @role.fullname)
+      #redirect_to :back
+      render :show
     end      
   end
 

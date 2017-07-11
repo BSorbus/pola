@@ -2,7 +2,25 @@ class Customer < ApplicationRecord
   delegate :url_helpers, to: 'Rails.application.routes'
 
   # relations
-  has_many :projects, dependent: :nullify
+  has_many :projects, dependent: :destroy
+
+  # validates
+  validates :name, presence: true,
+                    length: { in: 1..160 }
+
+  # callbacks
+  before_destroy :customer_has_links, prepend: true
+
+
+
+  def customer_has_links
+    analize_value = true
+    if self.projects.any? 
+     errors.add(:base, 'Nie można usunąć konta "' + self.try(:fullname) + '" do którego są przypisane Projekty.')
+     analize_value = false
+    end
+    throw :abort unless analize_value 
+  end
 
   def flat_assigned_projects
     self.projects.order("projects.number").flat_map {|row| "#{row.try(:number_as_link)}" }.join('<br>').html_safe

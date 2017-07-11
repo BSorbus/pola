@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20170630072923) do
 
   create_table "customers", force: :cascade do |t|
     t.string "name"
-    t.text "note"
+    t.text "note", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_customers_on_name"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20170630072923) do
 
   create_table "projects", force: :cascade do |t|
     t.string "number"
-    t.text "note"
+    t.text "note", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "project_status_id"

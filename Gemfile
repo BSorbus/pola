@@ -59,6 +59,10 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'bootstrap-sass', '3.3.7'
 gem 'devise'
+
+#gem 'devise_security_extension'
+#gem 'rails_email_validator'
+
 # Use jquery as the JavaScript library 2017.06.19
 gem 'jquery-rails'
 gem 'select2-rails', '3.5.9.3'

@@ -1,74 +1,57 @@
-<div class="container">
-  <div class="col-sm-12">
+<div class="panel-group" id="myaccordion">
+
+  <!-- Dane -->
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel panel-customer">
+        <div class="panel-heading">
+          <div class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#myaccordion" href="#collapse_data" >
+              <span class="glyphicon glyphicon-flag">&nbsp;<%=t "pages.customer.show.title"%>:&nbsp;<%= @customer.fullname %></span>
+              <i class="indicator glyphicon glyphicon-chevron-down  pull-right"></i>
+            </a>
+          </div> 
+        </div>
+        <div id="collapse_data" class="panel-collapse collapse in">
+          <div class="panel-body">         
+            <div class="col-sm-11 col-sm-offset-1">
+
+              <%= render 'data', input_disabled: true %>
+
+            </div> <!--/col-sm-11 col-sm-offset-1-->    
+          </div> <!-- /panel-body -->
+        </div> <!-- /id="collapse_data" -->
+      </div> <!-- /panel -->
+    </div> <!-- /col-sm-12-->
+  </div> <!-- /row -->
+
+
+  <!-- Projects-->
+  <% if policy(:project).index? %>
+    <!-- Roles.whers(special: false)-->
     <div class="row">
-      <h3><span class="glyphicon glyphicon-flag" aria-hidden="true"> 
-        <%= t('pages.customer.show.title') %>  
-        </span>
-      </h3>
-    </div> <!--/row -->
-  </div> <!--/col-sm-12 -->
+      <div class="col-sm-11 col-sm-offset-1">
+        <div class="panel panel-project">
+          <div class="panel-heading">
+            <div class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#myaccordion" href="#collapse_customer_projects" >
+                <span class="glyphicon glyphicon-book">&nbsp;<%= t "pages.accessorization.customer_show" %></span>
+                <i class="indicator glyphicon glyphicon-chevron-right pull-right"></i>
+              </a>
+            </div>
+          </div>
+          <div id="collapse_customer_projects" class="panel-collapse collapse">
+            <div class="panel-body">
+              <div class="col-sm-12">
 
-  <div class="col-sm-12">
-    <hr>
-  </div>
+                <%= render 'projects' %>
 
-  <div class="col-sm-6">
-    <div class="row">
-      <div class="form-group col-sm-12">
-        <strong><%= Customer.human_attribute_name('name') %></strong><br>
-        <%= @customer.name %>
-      </div>
-    </div>
-  </div> <!--/col-sm-6 -->
+              </div> <!--/class="col-sm-12" -->
+            </div> <!-- /panel-body -->
+          </div> <!-- /id="collapse_roles_notspecial" -->
+        </div> <!-- /panel -->
+      </div> <!-- /col-sm-11 col-sm-offset-1 -->
+    </div> <!-- /row -->
+  <% end %>
 
-
-  <div class="col-sm-6">
-    <div class="row">
-      <div class="form-group col-sm-12">
-        <strong><%= Customer.human_attribute_name('note') %></strong><br>
-        <%= @customer.note %>
-      </div>
-    </div>
-  </div> <!--/col-sm-6 -->
-
-  <div class="col-sm-12">
-    <hr>
-  </div>
-
-  <div class="col-sm-12">
-    <div class="row">
-      <div class="col-sm-12">
-        <table class="table table-hover">
-          <caption>
-            <%= t('pages.customer.show.table_caption') %>
-          </caption>      
-          <thead>
-            <tr>
-              <th><%= Customer.human_attribute_name('flat_assigned_projects') %></th>
-            </tr>
-          <thead>
-          <tbody>
-            <% @customer.projects.order(:number).each do |project| %>
-              <tr>
-                <%= render 'project', project: project %>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div> <!--/col-sm-12 -->
-    </div> <!--/row -->
-  </div>
-
-  <div class="col-sm-12">
-    <hr>
-  </div>
-
-  <div class="col-sm-12">
-    <div class="row">
-      <%= link_to 'Edit', edit_customer_path(@customer), class: 'btn btn-default' %>
-      <%= link_to 'Index', customers_path, class: 'btn btn-default' %>
-    </div> <!--/row -->
-  </div> <!--/col-sm-12 -->
-
-</div> <!--/coontainer -->
-
+</div> <!-- /class="panel-group" id="myaccordion" -->

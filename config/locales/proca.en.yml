@@ -79,6 +79,7 @@ en:
     accessorization:
       user_show: 'Participates in projects'
       project_show: 'Users'
+      customer_show: 'Projects'
     role:
       index:
         title: 'Roles'
@@ -93,6 +94,10 @@ en:
       show:
         title: 'Project'
         table_caption: 'Users and roles in this project'
+      new:
+        title: 'New Project'
+      edit:
+        title: 'Edit -> Project'
     user:
       index:
         title: 'Users'
@@ -106,6 +111,10 @@ en:
       show:
         title: 'Customer'
         table_caption: 'List of customer projects'
+      new:
+        title: 'New Customer'
+      edit:
+        title: 'Edit -> Customer'
   pundit:
     default: ' SECURITY: Access denied!'
     work_policy:

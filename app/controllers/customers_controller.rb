@@ -92,8 +92,9 @@ class CustomersController < ApplicationController
       flash[:success] = t('activerecord.successfull.messages.destroyed', data: @customer.fullname)
       redirect_to customers_url
     else 
-      flash[:error] = t('activerecord.errors.messages.destroyed', data: @customer.fullname)
-      redirect_to :back
+      flash.now[:error] = t('activerecord.errors.messages.destroyed', data: @customer.fullname)
+      #redirect_to :back
+      render :show
     end      
   end
 

@@ -86,8 +86,9 @@ class UsersController < ApplicationController
       flash[:success] = t('activerecord.successfull.messages.destroyed', data: @user.fullname)
       redirect_to users_url
     else 
-      flash[:error] = t('activerecord.errors.messages.destroyed', data: @user.fullname)
-      redirect_to :back
+      flash.now[:error] = t('activerecord.errors.messages.destroyed', data: @user.fullname)
+      #redirect_to :back
+      render :show
     end      
   end
 
