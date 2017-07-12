@@ -53,6 +53,7 @@ en:
         deleted_at: 'Deleted at'
         last_activity_at: 'Last activity at'
         password_changed_at: 'Password changed at'
+        note: 'Note'
         flat_assigned_projects: 'Related projects'
       role:
         name: 'Name'

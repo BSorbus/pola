@@ -13,9 +13,9 @@
       <thead>
         <tr>
           <th>id</th>
-          <th><%= Customer.human_attribute_name('name') %></th>
-          <th><%= Customer.human_attribute_name('note') %></th>
-          <th><%= Customer.human_attribute_name('flat_assigned_projects') %></th>
+          <th class='col-sm-4'><%= Customer.human_attribute_name(:name) %></th>
+          <th class='col-sm-4'><%= Customer.human_attribute_name(:note) %></th>
+          <th class='col-sm-4'><%= Customer.human_attribute_name(:flat_assigned_projects) %></th>
         </tr>
       </thead>
       <tbody>

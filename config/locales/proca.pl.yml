@@ -53,6 +53,7 @@ pl:
         deleted_at: 'Wyłączenie konta'
         last_activity_at: 'Ostatnia aktywność'
         password_changed_at: 'Ostatnia zmiana hasła'
+        note: 'Uwagi'
         flat_assigned_projects: 'Powiązane projekty'
       role:
         name: 'Nazwa'
