@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :users do
     get 'select2_index', on: :collection
+    get 'datatables_index', on: :collection
   end
   
   resources :customers do

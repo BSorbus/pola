@@ -1,4 +1,42 @@
 $(document).ready(function() {
+  var oUsertable = $('#users-table').DataTable({
+    responsive: true,
+    processing: true,
+    serverSide: true,
+    deferRender: true,
+    ajax: { 
+      url: $('#users-table').data('source'),
+      type: "GET",
+      error: function (jqXHR, exception) {
+        console.log(jqXHR);
+        if (jqXHR.status == 401) {
+          window.location.reload();
+        } else {
+          getErrorMessage(jqXHR, exception);
+        }
+      }
+    },
+    pagingType: "full_numbers",
+    lengthMenu: [[10, 15, 25, 50, 100, -1], [10, 15, 25, 50, 100, "Wszystkie"]],
+    columns: [
+      { "data": "id",
+        "visible": false }, 
+      { "data": "name" }, 
+      { "data": "email" },
+      { "data": "last_sign_in_ip" },
+      { "data": "last_sign_in_at" },
+      { "data": "current_sign_in_ip" },
+      { "data": "current_sign_in_at" },
+      { "data": "flat", 
+        "sortable": false }
+    ],
+    order: [[ 1, "asc" ]],
+    language: {
+      url: '<%= asset_path("pl.json.erb") %>'
+    }
+  });
+
+
   var oUserRolestable = $('#user-roles-table').DataTable({
     responsive: true,
     processing: true,

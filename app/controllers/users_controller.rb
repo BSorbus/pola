@@ -3,6 +3,12 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
 
+  def datatables_index
+    respond_to do |format|
+      format.json{ render json: UserDatatable.new(view_context) }
+    end
+  end
+
   def select2_index
     #params[:q] = (params[:q]).upcase
     params[:q] = params[:q]

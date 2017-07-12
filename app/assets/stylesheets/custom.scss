@@ -2,9 +2,37 @@ $font-family-base: Arial, "Helvetica", sans-serif;
 //$font-size-base: 14px;
 $font-size-base: 12px;
 
+
+
+//$brand-primary:     #428bca;
+//$brand-success:     #5cb85c;
+//$brand-info:        #5bc0de;
+//$brand-warning:     #f0ad4e;
+//$brand-danger:      #d9534f;
+
+//$brand-primary:                  darken(#428bca, 6.5%) !default; // #337ab7
+//$btn-default-color:              #333 !default;
+//$btn-default-bg:                 #fff !default;
+//$btn-default-border:             #ccc !default;
+
+
+$brand-primary:     #1B3C8F;
+$brand-success:     #5cb85c;
+$brand-info:        #5bc0de;
+$brand-warning:     #f0ad4e;
+$brand-danger:      #d9534f;
+
+
+//$brand-primary:          darken(#428bca, 6.5%) !default; // #337ab7
+//$btn-default-color:                #333 !default; 
+$btn-default-bg:         lighten(#BECC25, 45.5%) !default;
+//$btn-default-border:             #ccc !default;
+
+
 // import the CSS framework
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
 
 
 
@@ -88,20 +116,20 @@ p {
 
 footer {
   padding-bottom: 200px;
-  background-color: #31418D; //#C7D540;
+  background-color: white;
   padding-left: 45px;
   padding-right: 45px;
   font-size: 1.3em;
 
-  margin-top: 45px;
-  padding-top: 15px;
+  margin-top: 80px;
+  padding-top: 25px;
   border-top: 1px solid $gray-medium-light;
-//  color: $gray-light;
-  color: #C7D540;
+
+  color: $gray-light;
   a {
-    color: #C7D540;
+    color: $gray;
     &:hover {
-      color: white;
+      color: $gray-darker;
     }
   }
   small {
@@ -166,20 +194,20 @@ table.dataTable thead .sorting_asc:after {
 }
 
 //tr {
-//  background-color: #ccc
+//  background-color: lighten(#BECC25, 5%)
 //}
 //tr:hover{
-//  background-color: #eee
+//  background-color: #779BE5
 //}
-//td:hover {
-//  background-color: #ddd
-//}
+td:hover {
+  background-color: lighten(#BECC25, 33.5%)
+}
 
 .panel-customer {
   border-color: #ddd  
 }
 .panel-customer > .panel-heading {
-  background: #091a2a;
+  background: $brand-primary; //#1A3069;
   color: white; 
 }
 
@@ -187,23 +215,7 @@ table.dataTable thead .sorting_asc:after {
   border-color: #ddd  
 }
 .panel-project > .panel-heading {
-  background: #091a2a;
-  color: white; 
-}
-
-.panel-user {
-  border-color: #ddd  
-}
-.panel-user > .panel-heading {
-  background: #091a2a;
-  color: white; 
-}
-
-.panel-role {
-  border-color: #ddd  
-}
-.panel-role > .panel-heading {
-  background: #1b4d7e; 
+  background: $brand-primary; //#2F4471;
   color: white; 
 }
 
@@ -211,6 +223,23 @@ table.dataTable thead .sorting_asc:after {
   border-color: #ddd  
 }
 .panel-accessorization > .panel-heading {
-  background: #2d80d2; 
+  background: $brand-primary; //#2C52B4; 
   color: white; 
 }
+
+.panel-user {
+  border-color: #ddd  
+}
+.panel-user > .panel-heading {
+  background: $brand-primary; //#476AB1;
+  color: white; 
+}
+
+.panel-role {
+  border-color: #ddd  
+}
+.panel-role > .panel-heading {
+  background: $brand-primary; //#576A95; 
+  color: white; 
+}
+

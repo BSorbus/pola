@@ -24,6 +24,16 @@
     </div> <!--/col-sm-12 -->
   <% end %>
 
+  <div class="col-sm-12">
+    <div class="row">
+      <% if policy(:role).new? %>
+        <%= link_to t('New', default: t("helpers.links.new")), new_role_path, 
+                            :class => 'btn btn-primary glyphicon glyphicon-plus pull-right' %> 
+      <% end %>
+    </div> <!--/row -->
+  </div> <!--/col-sm-12 -->
+
+  <br>
 
   <% if policy(:role).index? || policy(:role).index_only_not_special? %>
     <div class="col-sm-12">
