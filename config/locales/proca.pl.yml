@@ -92,6 +92,10 @@ pl:
       show:
         title: 'Rola'
         table_caption: 'Użytkownicy występujący w tej roli w poszczególnych projektach'
+      new:
+        title: 'Nowa Rola'
+      edit:
+        title: 'Edycja -> Rola'
     project:
       index:
         title: 'Projekty'

@@ -92,6 +92,10 @@ en:
       show:
         title: 'Role'
         table_caption: 'Users using this role in individual projects'
+      new:
+        title: 'New Role'
+      edit:
+        title: 'Edit -> Role'
     project:
       index:
         title: 'Projects'

@@ -6,7 +6,8 @@ class Customer < ApplicationRecord
 
   # validates
   validates :name, presence: true,
-                    length: { in: 1..160 }
+                    length: { in: 1..100 },
+                    :uniqueness => { :case_sensitive => false }
 
   # callbacks
   before_destroy :customer_has_links, prepend: true

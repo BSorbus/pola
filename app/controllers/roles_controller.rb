@@ -53,6 +53,7 @@ class RolesController < ApplicationController
   # PATCH/PUT /roles/1
   # PATCH/PUT /roles/1.json
   def update
+    aa
     authorize @role, :update?
     respond_to do |format|
       if @role.update(role_params)

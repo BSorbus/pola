@@ -59,27 +59,27 @@ puts 'CREATED ROLE: ' << role.name
 
 
 # Simple User 1
-user = CreateAdminService.new.call_simple('mateusz.falenta@uke.gov.pl', 'Mateusz Falenta', '1qazXSW@')
+user = CreateAdminService.new.call_simple('mateusz.falenta@uke.gov.pl', 'Mateusz Falenta', '1qazXSW@', '')
 puts 'CREATED SIMPLE USER: ' << user.email
 
 # Simple User 2
-user = CreateAdminService.new.call_simple('pawel.mielczarek@uke.gov.pl', 'Paweł Mielczarek', '1qazXSW@')
+user = CreateAdminService.new.call_simple('pawel.mielczarek@uke.gov.pl', 'Paweł Mielczarek', '1qazXSW@', '')
 puts 'CREATED SIMPLE USER: ' << user.email
 
 # Simple User 3
-user = CreateAdminService.new.call_simple('mariusz.krupa@uke.gov.pl', 'Mariusz Krupa', '1qazXSW@')
+user = CreateAdminService.new.call_simple('mariusz.krupa@uke.gov.pl', 'Mariusz Krupa', '1qazXSW@', '')
 puts 'CREATED SIMPLE USER: ' << user.email
 
 # Simple User 4
-user = CreateAdminService.new.call_simple('marcin.dudek@uke.gov.pl', 'Marcin Dudek', '1qazXSW@')
+user = CreateAdminService.new.call_simple('marcin.dudek@uke.gov.pl', 'Marcin Dudek', '1qazXSW@', '')
 puts 'CREATED SIMPLE USER: ' << user.email
 
 # Simple User 5
-user = CreateAdminService.new.call_simple('piotr.majewski@uke.gov.pl', 'Piotr Majewski', '1qazXSW@')
+user = CreateAdminService.new.call_simple('piotr.majewski@uke.gov.pl', 'Piotr Majewski', '1qazXSW@', '')
 puts 'CREATED SIMPLE USER: ' << user.email
 
 # Simple User 6
-user = CreateAdminService.new.call_simple('bogdan.jarzab@uke.gov.pl', 'Bogdan Jarząb', '1qazXSW@')
+user = CreateAdminService.new.call_simple('bogdan.jarzab@uke.gov.pl', 'Bogdan Jarząb', '1qazXSW@', 'Tel. 601-333-456')
 puts 'CREATED SIMPLE USER: ' << user.email
 
 
