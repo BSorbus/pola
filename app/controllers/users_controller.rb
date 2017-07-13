@@ -3,6 +3,12 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
 
+  def datatables_index_role
+    respond_to do |format|
+      format.json{ render json: RoleUsersDatatable.new(view_context, { only_for_current_role_id: params[:role_id] }) }
+    end
+  end
+
   def datatables_index
     respond_to do |format|
       format.json{ render json: UserDatatable.new(view_context) }

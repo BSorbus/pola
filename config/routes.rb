@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :users do
     get 'select2_index', on: :collection
     get 'datatables_index', on: :collection
+    get 'datatables_index_role', on: :collection # Displays users for showed role
   end
   
   resources :customers do
@@ -30,7 +31,7 @@ Rails.application.routes.draw do
 
   resources :accessorizations do
     get 'datatables_index_user', on: :collection # Displays accessorizations for showed user
-#    resources :users, only: [:create, :destroy], controller: 'roles/users'
+    get 'datatables_index_role', on: :collection # Displays accessorizations for showed role
   end    
   root 'static_pages#home'
   get 'static_pages/home'

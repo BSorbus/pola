@@ -58,6 +58,8 @@ pl:
       role:
         name: 'Nazwa'
         activities: 'Uprawnienia'
+        special: 'Systemowa?'
+        note: 'Uwagi'
       accessorization:
         project_id: 'Projekt'
         user_id: 'Użytkownik'
@@ -81,6 +83,7 @@ pl:
       user_show: 'Uczestniczy w projektach'
       project_show: 'Użytkownicy procedujący'
       customer_show: 'Projekty'
+      role_show: 'Wykorzystana w projektach'
     role:
       index:
         title: 'Role'

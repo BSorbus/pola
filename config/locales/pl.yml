@@ -1,5 +1,7 @@
 
 pl:
+  'true': 'Tak'
+  'false': 'Nie'
   activerecord:
     errors:
       messages:

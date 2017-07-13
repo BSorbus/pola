@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+
+<div class="container">
+  <div class="col-sm-12">
+    <div class="row">
+      <h3><span class="glyphicon glyphicon-sunglasses" aria-hidden="true"> 
+        <%= t('pages.role.show.title') %>  
+        </span>
+      </h3>
+    </div> <!--/row -->
+    <div class="row">
+      <p>
+        <strong>Name:</strong><br>
+        <%= @role.name %>
+      </p>
+
+      <p>
+        <strong>Special?:</strong><br>
+        <%= @role.special %>
+      </p>
+
+      <p>
+        <strong>Activities:</strong><br>
+        <%= @role.activities %>
+      </p>
+
+      <br>
+
+      <table class="table table-hover">
+        <caption>
+          <%= t('pages.role.show.table_caption') %>
+        </caption>      
+        <thead>
+          <tr>
+            <th><%= Accessorization.human_attribute_name('project_id') %></th>
+            <th><%= Accessorization.human_attribute_name('user_id') %></th>
+          </tr>
+        <thead>
+        <tbody>
+          <%# @role.accessorizations.each do |accessorization| %>
+          <% Accessorization.includes(:user, :project).where(role: @role).order('projects.number, users.name').each do |accessorization| %>
+            <tr>
+              <%= render accessorization %>
+              <%#= render partial: 'accessorization', locals: {accessorization: accessorization} %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    </div> <!--/row -->
+    <br>
+    <div class="row">
+      <%= link_to 'Edit', edit_role_path(@role), class: 'btn btn-default' %>
+      <%= link_to 'Index', roles_path, class: 'btn btn-default' %>
+    </div> <!--/row -->
+  </div> <!--/col-sm-12 -->
+</div> <!--/coontainer -->
+

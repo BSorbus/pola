@@ -58,6 +58,8 @@ en:
       role:
         name: 'Name'
         activities: 'Activities'
+        special: 'System?'
+        note: 'Note'
       accessorization:
         project_id: 'Project'
         user_id: 'User'
@@ -81,6 +83,7 @@ en:
       user_show: 'Participates in projects'
       project_show: 'Users'
       customer_show: 'Projects'
+      role_show: 'Projects'
     role:
       index:
         title: 'Roles'

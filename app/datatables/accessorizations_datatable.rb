@@ -1,6 +1,6 @@
-class UserAccessorizationsDatatable < AjaxDatatablesRails::Base
+class AccessorizationsDatatable < AjaxDatatablesRails::Base
 
-  def_delegators :@view, :link_to, :truncate, :project_path, :role_user_path, :role_users_path, :policy
+  def_delegators :@view, :link_to, :project_path
 
   def view_columns
     @view_columns ||= {
@@ -14,9 +14,6 @@ class UserAccessorizationsDatatable < AjaxDatatablesRails::Base
 
   def data
     records.map do |record|
-      # OK
-      # user_has_role = Accessorization.joins(:user, :project).where(users: {id: options[:only_for_current_user_id]}, projects: {id: record.id}).any?
-      #user_has_role = Accessorization.joins(:user, :project).where(user_id: options[:only_for_current_user_id], project_id: record.id).any?
       {
         id:         record.id,
         name:       link_to(record.number, project_path(record.id)),
@@ -30,24 +27,13 @@ class UserAccessorizationsDatatable < AjaxDatatablesRails::Base
   private
 
   def get_raw_records
-    Project.joins(:accessorizations, :customer).includes(:project_status).references(:project_status, :customer, :accessorizations).where(accessorizations: {user_id: options[:only_for_current_user_id]}).all
-  end
-
-
-  def link_add_remove(rec, has_role)
-    if policy(rec).add_remove_role_user?
-      if has_role
-        "<div style='text-align: center'><button ajax-path='" + role_user_path(role_id: rec.id, id: options[:only_for_current_user_id]) + "' ajax-method='DELETE' class='btn btn-xs btn-danger glyphicon glyphicon-minus'></button></div>"
-      else
-        "<div style='text-align: center'><button ajax-path='" + role_users_path(role_id: rec.id, id: options[:only_for_current_user_id]) + "' ajax-method='POST' class='btn btn-xs btn-success glyphicon glyphicon-plus'></button></div>"
-      end
+    if options[:only_for_current_user_id].present? 
+      Project.joins(:accessorizations, :customer).includes(:project_status).references(:project_status, :customer, :accessorizations).where(accessorizations: {user_id: options[:only_for_current_user_id]}).all
+    elsif options[:only_for_current_role_id].present?
+      Project.joins(:accessorizations, :customer).includes(:project_status).references(:project_status, :customer, :accessorizations).where(accessorizations: {role_id: options[:only_for_current_role_id]}).all
     else
-      ""
+      Project.joins(:accessorizations, :customer).includes(:project_status).references(:project_status, :customer, :accessorizations).all
     end
-  end
-
-  def link_form_for(rec, has_role)
-    '<div></div>'
   end
 
   def filter_custom_column_condition
@@ -66,18 +52,6 @@ class UserAccessorizationsDatatable < AjaxDatatablesRails::Base
         ::Arel::Nodes::SqlLiteral.new("#{sql_str}") 
         }
   end
-
-
-
-# <td><%= link_to user.email, user %></td>
-# <td>
-#   <%= form_for(user) do |f| %>
-#     <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]}) %>
-#     <%= f.submit 'Change Role', :class => 'btn btn-primary btn-xs' %>
-#   <% end %>
-# </td>
-# <td><%= user.last_sign_in_at.present? ? user.last_sign_in_at.strftime("%Y-%m-%d %H:%M") : '' %></td>
-
 
 
   # ==== These methods represent the basic operations to perform on records

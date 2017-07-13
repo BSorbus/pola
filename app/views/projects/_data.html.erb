@@ -10,17 +10,17 @@
     <div class="row">
 
       <div class="form-group col-sm-12">
-        <strong><%= Project.human_attribute_name(:number) %></strong><br>
+        <p><strong><%= Project.human_attribute_name(:number) %></strong></p>
         <%= @project.number %>
       </div>
 
       <div class="form-group col-sm-12">
-        <strong><%= Project.human_attribute_name(:project_status_id) %></strong><br>
+        <p><strong><%= Project.human_attribute_name(:project_status_id) %></strong></p>
         <%= @project.project_status.try(:name) %>
       </div>
 
       <div class="form-group col-sm-12">
-        <strong><%= Project.human_attribute_name(:customer_id) %></strong><br>
+        <p><strong><%= Project.human_attribute_name(:customer_id) %></strong></p>
         <%= @project.customer.try(:name) %>
       </div>
 
@@ -30,8 +30,8 @@
   <div class="col-sm-6">
     <div class="row">
       <div class="form-group col-sm-12">
-        <strong><%= Project.human_attribute_name(:note) %></strong><br>
-        <%= @project.note %>
+        <p><strong><%= Project.human_attribute_name(:note) %></strong></p>
+        <%= @project.note.gsub("\r\n", "<br>").html_safe %>
       </div>
     </div>
   </div> <!--/col-sm-6 -->

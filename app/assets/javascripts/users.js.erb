@@ -37,6 +37,7 @@ $(document).ready(function() {
   });
 
 
+
   var oUserRolestable = $('#user-roles-table').DataTable({
     responsive: true,
     processing: true,
@@ -97,68 +98,6 @@ $(document).ready(function() {
   //  Wykomentowalem wiersz ponizej poniewaz powoduje podwojne pobieranie danych    
   //  oUserRolestable.ajax.reload();
     oUserRolestable.draw();
-  });
-
-
-
-
-  var oUserAccessorizationstable = $('#user-accessorizations-table').DataTable({
-    responsive: true,
-    processing: true,
-    serverSide: true,
-    deferRender: true,
-    ajax: { 
-      url: $('#user-accessorizations-table').data('source'),
-      type: "GET",
-      error: function (jqXHR, exception) {
-        console.log(jqXHR);
-        if (jqXHR.status == 401) {
-          window.location.reload();
-        } else {
-          getErrorMessage(jqXHR, exception);
-        }
-      }
-    },
-    pagingType: "full_numbers",
-    lengthMenu: [[10, 15, 25, 50, 100, -1], [10, 15, 25, 50, 100, "Wszystkie"]],
-    iDisplayLength: -1,
-    columns: [
-      { "data": "id",
-        "visible": false }, 
-      { "data": "name" }, 
-      { "data": "status" }, 
-      { "data": "customer" }, 
-      { "data": "flat", 
-        "sortable": false }
-    ],
-   preDrawCallback: function( settings ) {
-     // jezeli panel nie jest widoczny, to przerwij ładowanie danych
-     if ( $( "#collapse_user_accessorizations" ).is( ":hidden" ) ) {
-       return false;
-     }
-   },
-    order: [[ 1, "asc" ]],
-    language: {
-      url: '<%= asset_path("pl.json.erb") %>'
-    }
-  });
-
-
-  $('#user-accessorizations-table tbody').on( 'click', 'button', function () {
-      $.ajax({
-        url: $(this).attr('ajax-path'),
-        type: $(this).attr('ajax-method'),
-        async: false
-      });
-      oUserAccessorizationstable.draw();
-    });
-
-
-  // jezeli nastepuje wyswietlenie panelu, to zaladuj dane
-  $('#collapse_user_accessorizations').on('shown.bs.collapse', function (){
-  //  Wykomentowalem wiersz ponizej poniewaz powoduje podwojne pobieranie danych    
-  //  oUserAccessorizationstable.ajax.reload();
-    oUserAccessorizationstable.draw();
   });
 
 
