@@ -12,7 +12,7 @@ class CreateRoleService
     role = Role.find_or_create_by!(name: "Obserwator Ról Systemowych") do |role|
       role.special = true
       role.activities += %w(role:index role:show)
-      role.note = "Rola służy do wyświetlania informacji o Rólach."
+      role.note = "Rola służy do wyświetlania informacji o Rolach."
       role.save!
     end
   end

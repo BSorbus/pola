@@ -25,6 +25,7 @@
     </div> <!-- /col-sm-12-->
   </div> <!-- /row -->
 
+  <%= render 'attachments/attachments_in_panel', attachmenable: @project %>
 
   <!-- Accessorizations-->
   <% if policy(:accessorization).index? %>

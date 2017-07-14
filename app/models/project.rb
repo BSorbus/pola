@@ -9,6 +9,8 @@ class Project < ApplicationRecord
   belongs_to :project_status
   belongs_to :customer
 
+  has_many :attachments, as: :attachmenable
+
   # validates
   validates :number, presence: true,
                     length: { in: 1..100 },

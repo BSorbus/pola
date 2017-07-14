@@ -186,6 +186,15 @@ td:hover {
   background-color: lighten(#BECC25, 48.5%)
 }
 
+
+.panel-attach {
+  border-color: #ddd  
+}
+.panel-attach > .panel-heading {
+  background: #89877a; //#5E5E5E;
+  color: white; 
+}
+
 .panel-customer {
   border-color: #ddd  
 }

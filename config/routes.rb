@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   resources :projects do
     get 'select2_index', on: :collection
     get 'datatables_index', on: :collection
+    resources :attachments, module: :projects, only: [:create]
   end
 
   resources :roles do
@@ -37,5 +38,5 @@ Rails.application.routes.draw do
   get 'static_pages/home'
   get 'static_pages/help'
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :attachments, only: [:show, :destroy]
 end
