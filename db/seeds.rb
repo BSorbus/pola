@@ -85,9 +85,9 @@ puts 'CREATED SIMPLE USER: ' << user.email
 
 
 # project_statuses
-project_status = ProjectStatus.find_or_create_by!(name: "zarejestrowany")
-ProjectStatus.find_or_create_by!(name: "opiniowany")
-ProjectStatus.find_or_create_by!(name: "zaopiniowany i podpisany")
+project_status1 = ProjectStatus.find_or_create_by!(name: "zarejestrowany")
+project_status2 = ProjectStatus.find_or_create_by!(name: "opiniowany")
+project_status3 = ProjectStatus.find_or_create_by!(name: "zaopiniowany i podpisany")
 ProjectStatus.find_or_create_by!(name: "opublikowany")
 ProjectStatus.find_or_create_by!(name: "odwołanie - zarejestrowany")
 ProjectStatus.find_or_create_by!(name: "odwołanie - opiniowany")
@@ -122,19 +122,19 @@ puts 'CREATED CUSTOMER: ' << customer4.name
 
 
 # example projects
-project = Project.create(number: '1/2017', project_status: project_status, customer: customer1)
+project = Project.create(number: '1/2017', project_status: project_status1, customer: customer1)
 puts 'CREATED SIMPLE PROJECT: ' << project.number
 
-project = Project.create(number: '2/2017', project_status: project_status, customer: customer2)
+project = Project.create(number: '2/2017', project_status: project_status2, customer: customer2)
 puts 'CREATED SIMPLE PROJECT: ' << project.number
 
-project = Project.create(number: '3/2017', project_status: project_status, customer: customer2)
+project = Project.create(number: '3/2017', project_status: project_status2, customer: customer2)
 puts 'CREATED SIMPLE PROJECT: ' << project.number
 
-project = Project.create(number: '4/2017', project_status: project_status, customer: customer3)
+project = Project.create(number: '4/2017', project_status: project_status2, customer: customer3)
 puts 'CREATED SIMPLE PROJECT: ' << project.number
 
-project = Project.create(number: '5/2017', project_status: project_status, customer: customer4)
+project = Project.create(number: '5/2017', project_status: project_status3, customer: customer4)
 puts 'CREATED SIMPLE PROJECT: ' << project.number
 
 
@@ -145,8 +145,8 @@ simple3 = User.find_by(email: 'mariusz.krupa@uke.gov.pl')
 simple4 = User.find_by(email: 'marcin.dudek@uke.gov.pl')
 simple5 = User.find_by(email: 'piotr.majewski@uke.gov.pl')
 
-writer = Role.find_by(name: 'Użytkownik Opiniujący')
-publisher = Role.find_by(name: 'Użytkownik Opiniujący i Publikujący')
+writer = Role.find_by(name: 'Opiniujący')
+publisher = Role.find_by(name: 'Opiniujący i Publikujący')
 
 project = Project.find_by(number: '1/2017')
 a = project.accessorizations.create(user: simple1, role: publisher)

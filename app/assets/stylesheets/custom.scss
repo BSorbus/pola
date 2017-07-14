@@ -25,7 +25,7 @@ $brand-danger:      #d9534f;
 
 //$brand-primary:          darken(#428bca, 6.5%) !default; // #337ab7
 //$btn-default-color:                #333 !default; 
-$btn-default-bg:         lighten(#BECC25, 45.5%) !default;
+$btn-default-bg:         lighten(#BECC25, 48.5%) !default;
 //$btn-default-border:             #ccc !default;
 
 
@@ -38,7 +38,6 @@ $btn-default-bg:         lighten(#BECC25, 45.5%) !default;
 
 /* mixins, variables, etc. */
 
-$gray-medium-light: #eaeaea;
 
 /* universal */
 
@@ -123,26 +122,9 @@ footer {
 
   margin-top: 80px;
   padding-top: 25px;
-  border-top: 1px solid $gray-medium-light;
+  border-top: 1px solid #C7D540;
 
   color: $gray-light;
-  a {
-    color: $gray;
-    &:hover {
-      color: $gray-darker;
-    }
-  }
-  small {
-    float: left;
-  }
-  ul {
-    float: right;
-    list-style: none;
-    li {
-      float: left;
-      margin-left: 15px;
-    }
-  }
 }
 
 #error_explanation {
@@ -158,6 +140,7 @@ footer {
 
 .well-accessorization {
   @extend .well;
+  background-color: lighten(#BECC25, 48.5%);
   padding-bottom: 1px;
   margin-bottom: 10px;
 }
@@ -200,7 +183,7 @@ table.dataTable thead .sorting_asc:after {
 //  background-color: #779BE5
 //}
 td:hover {
-  background-color: lighten(#BECC25, 33.5%)
+  background-color: lighten(#BECC25, 48.5%)
 }
 
 .panel-customer {

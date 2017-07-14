@@ -79,6 +79,15 @@ pl:
   pages:
     home: 'Główna'
     help: 'Pomoc'
+    footer:
+      contact: 'Kontakt:'
+      links: 'Zobacz też:'
+      links_www1_title: 'UKE'
+      links_www1: 'http://uke.gov.pl'
+      links_www2_title: 'Polska Cyfrowa - PO PC'
+      links_www2: 'https://mc.gov.pl/polska-cyfrowa-po-pc'
+      links_www3_title: 'Opis projektu'
+      links_www3: 'https://mc.gov.pl/projekty/polska-cyfrowa-po-pc-2014-2020/opis-projektu'
     accessorization:
       user_show: 'Uczestniczy w projektach'
       project_show: 'Użytkownicy procedujący'

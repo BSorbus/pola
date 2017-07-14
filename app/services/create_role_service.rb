@@ -94,7 +94,7 @@ class CreateRoleService
 
 
   def role_for_projects_publisher
-    role = Role.find_or_create_by!(name: "Użytkownik Opiniujący i Publikujący") do |role|
+    role = Role.find_or_create_by!(name: "Opiniujący i Publikujący") do |role|
       role.special = false
       role.activities += %w(customer:index customer:show project:index project:show)
       role.note = "Rola Projektowa, która służy do publikowania treści opinii. \r\n (Przypisz tę rolę projektową tzw. 'Użytkownikowi podpisującemu' w konkretnym Projekcie)"
@@ -102,7 +102,7 @@ class CreateRoleService
     end
   end
   def role_for_projects_writer
-    role = Role.find_or_create_by!(name: "Użytkownik Opiniujący") do |role| 
+    role = Role.find_or_create_by!(name: "Opiniujący") do |role| 
       role.special = false
       role.activities += %w(customer:index customer:show project:index project:show)
       role.note = "Rola Projektowa, która służy do opiniowania Projektu. \r\n (Przypisz tę rolę projektową tzw. 'Użytkownikowi opiniującemu' w konkretnym Projekcie)"

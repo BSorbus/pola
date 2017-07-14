@@ -3,15 +3,23 @@
     <%= link_to image_tag("logo_uke_orzel.png", class: "img img-responsive", alt: "UKE" ), 'http://uke.gov.pl' %>
   </div>
 
-  <div class='col-sm-8'>
-    <small>
-      UKE-BI-WUR 2017
-    </small>
-    <nav>
-      <ul>
-        <li><%= link_to "Help", static_pages_help_path %></li>
-        <li><%= link_to "Contact", '#' %></li>
-      </ul>
-    </nav>
+  <div class="col-sm-3 col-sm-offset-1">
+    <h4><%= t('pages.footer.contact') %></h4>
+      <ul><h5><span class="glyphicon glyphicon-envelope"></span> <%= mail_to "andrzej.kaczor@uke.gov.pl" %></h5></ul>
+      <ul><h5><span class="glyphicon glyphicon-earphone"></span> +48 81 5288 488 </h5></ul>
+      <ul><h5><span class="glyphicon glyphicon-earphone"></span> +48 668 470 833 </h5></ul>
+      <ul><h5><span class="glyphicon glyphicon-envelope"></span> <%= mail_to "klaudia.markwat@uke.gov.pl" %></h5></ul>
+      <ul><h5><span class="glyphicon glyphicon-earphone"></span> +48 22 5349 387 </h5></ul>
+      <ul><h5><span class="glyphicon glyphicon-earphone"></span> +48 668 470 803 </h5></ul>
   </div>
+  <div class="col-sm-3">
+    <h4><%= t('pages.footer.links') %></h4>
+      <ul><h5><span class="glyphicon glyphicon-globe"></span> <%= link_to(t('pages.footer.links_www1_title'), t('pages.footer.links_www1'), target: "_blank") %></h5></ul>
+      <ul><h5><span class="glyphicon glyphicon-globe"></span> <%= link_to(t('pages.footer.links_www2_title'), t('pages.footer.links_www2'), target: "_blank") %></h5></ul>
+      <ul><h5><span class="glyphicon glyphicon-globe"></span> <%= link_to(t('pages.footer.links_www3_title'), t('pages.footer.links_www3'), target: "_blank") %></h5></ul>
+  </div>
+  <div class="col-sm-1">
+    <h4 class="pull-right"><small>&copy; UKE-BI-WUR 2017</small></h4>
+  </div>
+
 </footer>
