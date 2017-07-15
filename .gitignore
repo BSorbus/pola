@@ -20,3 +20,6 @@
 
 # Ignore secretfiles.
 /config/secrets.yml
+
+# Ignore uploaded files.
+/public/uploads/*

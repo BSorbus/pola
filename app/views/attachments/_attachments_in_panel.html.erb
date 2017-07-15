@@ -5,7 +5,7 @@
         <div class="panel-heading">
           <div class="panel-title">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#myaccordion" href="#collapse_attach" >
-              <span class="glyphicon glyphicon-paperclip">&nbsp;Załączniki</span>
+              <span class="glyphicon glyphicon-paperclip">&nbsp;<%=t"pages.attachment.index.title"%></span>
               <i class="indicator glyphicon glyphicon-chevron-right  pull-right"></i>
             </a>
           </div>
@@ -18,9 +18,9 @@
               <table class="table table-hover">
                 <thead>
                   <tr>
-                    <th><%= Attachment.human_attribute_name(:attached_file_identifier) %></th>
-                    <th><%= Attachment.human_attribute_name(:file_size) %></th>
-                    <th></th>
+                    <th class="col-sm-9"><%= Attachment.human_attribute_name(:attached_file_identifier) %></th>
+                    <th class="col-sm-2"><%= Attachment.human_attribute_name(:file_size) %></th>
+                    <th class="col-sm-1"></th>
                   </tr>
                 </thead>
 
@@ -38,8 +38,6 @@
                                         data: { confirm: t('helpers.links.confirm_destroy', data: attachment.attached_file_identifier) }, 
                                         :class => "glyphicon glyphicon-trash", title: t('tooltip.destroy'), rel: 'tooltip' %>
                       </td>
-
-
                     </tr>
                   <% end %>
                 </tbody>
@@ -50,46 +48,14 @@
 
             <div class="col-sm-5">
 
-              <%#= render partial: "attachments/form", locals: {attachmenable: attach_parent} %>
               <%= form_for [attachmenable, Attachment.new] do |f| %>
 
-
-
                 <div class="form-group col-sm-12">
-                  <% if attachmenable.errors.any? %>
-                    <div id="error_explanation" class="panel panel-danger">
-                      <div class="panel-body">
-                        <ul>
-                        <% attachmenable.errors.full_messages.each do |msg| %>
-                          <li><h5><%= msg %></h5></li>
-                        <% end %>
-                        </ul>
-                      </div>
-                    </div>
-                  <% end %>
-
-<!-- 
-                  <%#= f.label :fileattach, class: 'control-label' %><br>
-                  <%#= f.attachment_field :fileattach, direct: true, presigned: true, class: 'form-control input-sm' %>
-
-                  <br>
-                  <p><%#=t "pages.document.form.or_input_remote_url"%></p>
-               
-                  <%#= f.label :remote_fileattach_url, class: 'control-label' %><br>
-                  <%#= f.text_field :remote_fileattach_url, class: 'form-control input-sm' %>
- -->
 
                   <%= f.label :attached_file, class: 'control-label' %><br>
                   <%= f.file_field :attached_file, class: 'form-control input-sm' %>
 
                 </div>
-
-
-
-
-
-
-
 
                 <div class="col-sm-12">
                   <%= f.submit nil, class: 'btn btn-primary pull-right' %>

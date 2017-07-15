@@ -48,7 +48,13 @@ class AttachmentUploader < CarrierWave::Uploader::Base
   #   "something.jpg" if original_filename
   # end
 
+
   process :save_content_type_size_in_model
+
+
+  # def size_range
+  #   0..2.megabytes
+  # end
 
   def save_content_type_size_in_model
     model.file_content_type = file.content_type if file.content_type

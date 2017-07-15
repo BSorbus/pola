@@ -39,6 +39,7 @@ en:
       project: 'Project'
       project_status: 'Project Status'
       customer: 'Customer'
+      attachment: 'Attachment'
     attributes:
       user:
         name: 'Name'
@@ -76,6 +77,11 @@ en:
         name: 'Name'
         note: 'Note'
         flat_assigned_projects: 'Related projects'
+      attachment:
+        attached_file: 'File'
+        attached_file_identifier: 'File'
+        file_content_type: 'Type'
+        file_size: 'Size'
   pages:
     home: 'Home'
     help: 'Help'
@@ -132,6 +138,9 @@ en:
         title: 'New Customer'
       edit:
         title: 'Edit -> Customer'
+    attachment:
+      index:
+        title: 'Attachments'
   pundit:
     default: ' SECURITY: Access denied!'
     work_policy:
@@ -184,6 +193,11 @@ en:
       account_on: " Włącz konto"
       link_to_add_fields_accessorization: '[ + Add Accessorization]'
       link_to_remove_fields_accessorization: '[ - Remove Accessorization]'
+  tooltip:
+    show: 'Show'
+    edit: 'Edit'
+    destroy: 'Destroy'
+    download: 'Download'
   help_block_text:
     select2project: 'Search by: Number, Note. Terms are separated by a space'
     select2user: 'Search by: Name, Email. Terms are separated by a space'

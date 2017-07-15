@@ -39,6 +39,7 @@ pl:
       project: 'Projekt'
       project_status: 'Status Projektu'
       customer: 'Wnioskodawca'
+      attachment: 'Załącznik'
     attributes:
       user:
         name: 'Imię i Nazwisko'
@@ -76,6 +77,11 @@ pl:
         name: 'Nazwa'
         note: 'Uwagi'
         flat_assigned_projects: 'Powiązane projekty'
+      attachment:
+        attached_file: 'Plik'
+        attached_file_identifier: 'Plik'
+        file_content_type: 'Typ'
+        file_size: 'Rozmiar'
   pages:
     home: 'Główna'
     help: 'Pomoc'
@@ -132,6 +138,9 @@ pl:
         title: 'Nowy Wnioskodawca'
       edit:
         title: 'Edycja -> Wnioskodawca'
+    attachment:
+      index:
+        title: 'Załączniki'
   pundit:
     default: ' BRAK UPRAWNIEŃ: Nie można wykonać tej czynności!'
     work_policy:
@@ -184,6 +193,11 @@ pl:
       account_on: " Włącz konto"
       link_to_add_fields_accessorization: '[ + Dodaj Uprawnienie]'
       link_to_remove_fields_accessorization: '[ - Usuń Uprawnienie]'
+  tooltip:
+    show: 'Pokaż'
+    edit: 'Edycja'
+    destroy: 'Usuń'
+    download: 'Pobierz'
   help_block_text:
     select2project: 'Wyszukiwanie po: Numer, Uwagi. Warunki oddzielaj spacją'
     select2user: 'Wyszukiwanie po: Nazwa, Email. Warunki oddzielaj spacją'
