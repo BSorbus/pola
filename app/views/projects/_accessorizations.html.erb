@@ -2,18 +2,25 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <th><%= Accessorization.human_attribute_name(:user_id) %></th>
-        <th><%= Accessorization.human_attribute_name(:role_id) %></th>
+        <th class="col-sm-6"><%= Accessorization.human_attribute_name(:user_id) %></th>
+        <th class="col-sm-5"><%= Accessorization.human_attribute_name(:role_id) %></th>
+        <th class="col-sm-1"></th>
       </tr>
     <thead>
     <tbody>
       <% Accessorization.includes(:user, :project).where(project: @project).order('users.name').each do |accessorization| %>
         <tr>
-          <td class="col-md-5">
+          <td>
             <%= accessorization.user.try(:name_as_link) %>
           </td>
-          <td class="col-md-7">
+          <td>
             <%= accessorization.role.try(:name_as_link) %>
+          </td>
+          <td>
+            <%= link_to ' ',
+                send_status_project_path(id: @project.id, users_ids: [accessorization.user_id] ), 
+                data: { confirm: t('helpers.links.confirm_send_email', data: accessorization.user.fullname) }, 
+                class: "glyphicon glyphicon-envelope", title: t('tooltip.send_email'), rel: 'tooltip' %>
           </td>
         </tr>
       <% end %>

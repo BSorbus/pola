@@ -3,6 +3,16 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
 
+  def send_status
+    project = Project.find(params[:id])
+    params[:users_ids].each do |i|
+      user = User.find(i)
+      StatusMailer.project_status_email(user, project).deliver_now
+    end
+    #flash[:success] = t('activerecord.successfull.messages.created', data: @project.fullname)
+    redirect_to project, notice: "Email status about \"#{project.number}\" was successfully sent."
+  end
+
   def datatables_index
     respond_to do |format|
       format.json{ render json: ProjectDatatable.new(view_context) }
