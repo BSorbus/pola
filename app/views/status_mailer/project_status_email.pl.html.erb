@@ -18,6 +18,26 @@
     </p>
 
 
+    <p>Załączniki:</p>
+    <table width="100%" cellspacing="0" cellpadding="0" border="1" style="font-family:Arial,Calibri,Tahoma,Helvetica,sans-serif; width:100%;
+               border: solid 1px #c5c5c5; margin: 1em 0;">
+      <thead style="min-height: 1em; background-color: #F0F2F2; border-bottom: solid 1px #c5c5c5;">
+        <tr>
+          <th class='col-md-11'>Nazwa</th>
+          <th class='col-md-1' >Wielkość</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @project.attachments.each do |attachment| %>
+          <tr>
+            <td><%= attachment.try(:attached_file_identifier) %></td>
+            <td><%= attachment.try(:file_size) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <br>
 
     <p>Użytkownicy procedujący:</p>
     <table width="100%" cellspacing="0" cellpadding="0" border="1" style="font-family:Arial,Calibri,Tahoma,Helvetica,sans-serif; width:100%;
