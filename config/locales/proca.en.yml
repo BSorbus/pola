@@ -141,6 +141,15 @@ en:
     attachment:
       index:
         title: 'Attachments'
+    point:
+      index:
+        title: 'Points'
+      show:
+        title: 'Points'
+      new:
+        title: 'New Point'
+      edit:
+        title: 'Edit -> Point'
   pundit:
     default: ' SECURITY: Access denied!'
     work_policy:

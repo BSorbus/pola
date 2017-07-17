@@ -141,6 +141,15 @@ pl:
     attachment:
       index:
         title: 'Załączniki'
+    point:
+      index:
+        title: 'Punkty adresowe'
+      show:
+        title: 'Punkt adresowy'
+      new:
+        title: 'Nowy Punkt adresowy'
+      edit:
+        title: 'Edycja -> Punkt adresowy'
   pundit:
     default: ' BRAK UPRAWNIEŃ: Nie można wykonać tej czynności!'
     work_policy:

@@ -72,3 +72,5 @@ gem 'jquery-datatables-rails', '~> 3.4.0'
 gem 'ajax-datatables-rails', '~> 0.4.0'
 gem 'pundit'
 gem 'carrierwave', '~> 1.0'
+
+#gem 'premailer-rails'
