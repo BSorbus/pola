@@ -171,6 +171,15 @@ en:
       update?: ' SECURITY: You cannot edit this customer!'
       create?: ' SECURITY: You cannot create customers!'
       destroy?: ' SECURITY: You cannot destroy customers!'
+    attachment_policy:
+      project_index?: ' SECURITY: You cannot watch list of attachments for project!'
+      project_show?: ' SECURITY: You cannot watch this attachments for project!'
+      project_create?: ' SECURITY: You cannot create attachments for project!'
+      project_destroy?: ' SECURITY: You cannot destroy attachments for project!'
+      user_index?: ' SECURITY: You cannot watch list of attachments for user!'
+      user_show?: ' SECURITY: You cannot watch this attachments for user!'
+      user_create?: ' SECURITY: You cannot create attachments for user!'
+      user_destroy?: ' SECURITY: You cannot destroy attachments for user!'
   helpers:
     actions: "Action"
     links:

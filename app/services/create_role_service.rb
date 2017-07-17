@@ -21,7 +21,7 @@ class CreateRoleService
   def user_admin
     role = Role.find_or_create_by!(name: "Administrator Użytkowników") do |role|
       role.special = true
-      role.activities += %w(user:index user:show user:create user:update user:delete role:add_remove_role_user)
+      role.activities += %w(user:index user:show user:create user:update user:delete role:add_remove_role_user attachment:4user_index attachment:4user_show attachment:4user_create attachment:4user_delete)
       role.note = "Rola służy do zarządzania Użytkownikami i przypisywania im Ról Systemowych. \r\n (Przypisz tylko zaawansowanym Administratorom systemu)"
       role.save!
     end
@@ -29,7 +29,7 @@ class CreateRoleService
   def user_observer
     role = Role.find_or_create_by!(name: "Obserwator Użytkowników") do |role|
       role.special = true
-      role.activities += %w(user:index user:show)
+      role.activities += %w(user:index user:show attachment:4user_index attachment:4user_show)
       role.note = "Rola służy do wyświetlania informacji o Użytkownikach. \r\n (Przypisz Administratorom systemu oraz Koordynatorom POPC)"
       role.save!
     end
@@ -57,7 +57,7 @@ class CreateRoleService
   def project_admin
     role = Role.find_or_create_by!(name: "Administrator Projektów") do |role|
       role.special = true
-      role.activities += %w(project:index project:show project:create project:update project:delete)
+      role.activities += %w(project:index project:show project:create project:update project:delete attachment:4project_index attachment:4project_show attachment:4project_create attachment:4project_delete)
       role.note = "Rola służy do zarządzania Projektami. \r\n (Przypisz tylko Administratorom systemu oraz Koordynatorom POPC)"
       role.save!
     end
@@ -65,7 +65,7 @@ class CreateRoleService
   def project_observer
     role = Role.find_or_create_by!(name: "Obserwator Projektów") do |role|
       role.special = true
-      role.activities += %w(project:index project:show)
+      role.activities += %w(project:index project:show attachment:4project_index attachment:4project_show)
       role.note = "Rola służy do wyświetlania informacji o Projektach. (Przypisz wszystkim, którzy mogą przeglądać Projekty)"
       role.save!
     end

@@ -25,6 +25,13 @@
     </div> <!-- /col-sm-12-->
   </div> <!-- /row -->
 
+
+  <!-- Attachments for this @user-->
+  <% if policy(:attachment).user_index? || policy(:attachment).user_show? %>
+    <%= render 'attachments/attachments_in_panel', attachmenable: @user %>
+  <% end %>
+
+
   <!-- Roles-->
   <% if policy(:role).index? %>
     <div class="row">

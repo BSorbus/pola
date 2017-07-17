@@ -171,6 +171,15 @@ pl:
       update?: ' BRAK UPRAWNIEŃ: Nie możesz edytować danych wnioskodawcy!'
       create?: ' BRAK UPRAWNIEŃ: Nie możesz tworzyć wnioskodawców!'
       destroy?: ' BRAK UPRAWNIEŃ: Nie możesz usuwać wnioskodawców!'
+    attachment_policy:
+      project_index?: ' BRAK UPRAWNIEŃ: Nie możesz wyświetlać listy załączników do projektu!'
+      project_show?: ' BRAK UPRAWNIEŃ: Nie możesz pobierać załączników do projektu!'
+      project_create?: ' BRAK UPRAWNIEŃ: Nie możesz zapisywać załączników do projektu!'
+      project_destroy?: ' BRAK UPRAWNIEŃ: Nie możesz usuwać załączników do projektu!'
+      user_index?: ' BRAK UPRAWNIEŃ: Nie możesz wyświetlać listy załączników do użytkownika!'
+      user_show?: ' BRAK UPRAWNIEŃ: Nie możesz pobierać załączników do użytkownika!'
+      user_create?: ' BRAK UPRAWNIEŃ: Nie możesz zapisywać załączników do użytkownika!'
+      user_destroy?: ' BRAK UPRAWNIEŃ: Nie możesz usuwać załączników do użytkownika!'
   helpers:
     actions: "Akcje"
     links:

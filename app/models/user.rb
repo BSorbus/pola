@@ -31,6 +31,8 @@ class User < ApplicationRecord
   has_many :accessorizations, dependent: :nullify, index_errors: true
   has_many :accesses_projects, :through => :accessorizations, source: :project
 
+  has_many :attachments, as: :attachmenable
+
   accepts_nested_attributes_for :accessorizations, reject_if: :all_blank, allow_destroy: true
 
 

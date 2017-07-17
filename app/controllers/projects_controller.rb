@@ -57,7 +57,7 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
-    @project = Role.new(project_params)
+    @project = Project.new(project_params)
     authorize @project, :create?
     respond_to do |format|
       if @project.save

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     get 'select2_index', on: :collection
     get 'datatables_index', on: :collection
     get 'datatables_index_role', on: :collection # Displays users for showed role
+    resources :attachments, module: :users, only: [:create]
   end
   
   resources :customers do

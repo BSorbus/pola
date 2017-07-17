@@ -14,3 +14,5 @@ class StatusMailer < ActionMailer::Base
 
 end
 
+# preview
+# http://localhost:3000/rails/mailers/status_mailer/project_status_email.html
