@@ -1,6 +1,6 @@
-class CreatePoints < ActiveRecord::Migration[5.1]
+class CreatePointFiles < ActiveRecord::Migration[5.1]
   def change
-    create_table :points do |t|
+    create_table :point_files do |t|
       t.references :project, foreign_key: true
       t.date :load_date
       t.string :load_file

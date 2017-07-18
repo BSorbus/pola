@@ -40,6 +40,7 @@ en:
       project_status: 'Project Status'
       customer: 'Customer'
       attachment: 'Attachment'
+      point_file: 'Address Point File'
       point: 'Point'
     attributes:
       user:
@@ -83,7 +84,7 @@ en:
         attached_file_identifier: 'File'
         file_content_type: 'Type'
         file_size: 'Size'
-      point:
+      point_file:
         load_date: 'Load date'
         load_file: 'File'
         status: 'Status'
@@ -146,15 +147,15 @@ en:
     attachment:
       index:
         title: 'Attachments'
-    point:
+    point_file:
       index:
-        title: 'Points'
+        title: 'Point Files'
       show:
-        title: 'Points'
+        title: 'Point File'
       new:
-        title: 'New Point'
+        title: 'New Point File'
       edit:
-        title: 'Edit -> Point'
+        title: 'Edit -> Point File'
   pundit:
     default: ' SECURITY: Access denied!'
     work_policy:
@@ -217,6 +218,7 @@ en:
       account_on: " Włącz konto"
       link_to_add_fields_accessorization: '[ + Add Accessorization]'
       link_to_remove_fields_accessorization: '[ - Remove Accessorization]'
+      new_point_file:  ' Load new Points file'
   tooltip:
     show: 'Show'
     edit: 'Edit'

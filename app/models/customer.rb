@@ -10,11 +10,11 @@ class Customer < ApplicationRecord
                     :uniqueness => { :case_sensitive => false }
 
   # callbacks
-  before_destroy :customer_has_links, prepend: true
+  before_destroy :has_links, prepend: true
 
 
 
-  def customer_has_links
+  def has_links
     analize_value = true
     if self.projects.any? 
      errors.add(:base, 'Nie można usunąć konta "' + self.try(:fullname) + '" do którego są przypisane Projekty.')

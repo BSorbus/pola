@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :points
   devise_for :users, controllers: {
     confirmations: 'users/confirmations',
     passwords: 'users/passwords',
@@ -42,4 +41,7 @@ Rails.application.routes.draw do
   get 'static_pages/help'
 
   resources :attachments, only: [:show, :destroy]
+  resources :point_files
+
+
 end

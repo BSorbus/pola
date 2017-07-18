@@ -195,6 +195,13 @@ td:hover {
   color: white; 
 }
 
+.panel-point-files {
+  border-color: #ddd  
+}
+.panel-point-files > .panel-heading {
+  background: $brand-primary; //#1A3069;
+  color: white; 
+}
 
 .panel-attach {
   border-color: #ddd  

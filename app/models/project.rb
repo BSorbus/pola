@@ -8,7 +8,7 @@ class Project < ApplicationRecord
   has_many :accesses_users, :through => :accessorizations, source: :user
   belongs_to :project_status
   belongs_to :customer
-  has_many :points
+  has_many :point_files, dependent: :destroy
 
   has_many :attachments, as: :attachmenable
 

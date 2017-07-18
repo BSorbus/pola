@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170717235131) do
+ActiveRecord::Schema.define(version: 20170718092958) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20170717235131) do
     t.index ["name"], name: "index_customers_on_name"
   end
 
-  create_table "points", force: :cascade do |t|
+  create_table "point_files", force: :cascade do |t|
     t.bigint "project_id"
     t.date "load_date"
     t.string "load_file"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20170717235131) do
     t.text "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["project_id"], name: "index_points_on_project_id"
+    t.index ["project_id"], name: "index_point_files_on_project_id"
   end
 
   create_table "project_statuses", force: :cascade do |t|
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 20170717235131) do
     t.text "note", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "project_status_id"
+    t.bigint "project_status_id", default: 1
     t.bigint "customer_id"
     t.index ["customer_id"], name: "index_projects_on_customer_id"
     t.index ["number"], name: "index_projects_on_number"
@@ -81,9 +81,9 @@ ActiveRecord::Schema.define(version: 20170717235131) do
     t.string "name"
     t.boolean "special", default: false, null: false
     t.string "activities", default: [], array: true
+    t.text "note", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "note", default: ""
     t.index ["special"], name: "index_roles_on_special"
   end
 
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 20170717235131) do
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "name", default: "", null: false
+    t.text "note", default: ""
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -116,14 +117,13 @@ ActiveRecord::Schema.define(version: 20170717235131) do
     t.datetime "locked_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "note", default: ""
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
-  add_foreign_key "points", "projects"
+  add_foreign_key "point_files", "projects"
   add_foreign_key "projects", "customers"
   add_foreign_key "projects", "project_statuses"
 end

@@ -13,25 +13,30 @@ class AttachmentsController < ApplicationController
     #   type: @attachment.file_content_type, 
     #   disposition: "attachment"              
 
+    # to działa
     @attachment = Attachment.find(params[:id])
     attachment_authorize(:attachment, "show", @attachment.attachmenable_type.singularize.downcase)    
-    # is OK
+    # to działa
     # send_file "#{@attachment.attached_file.file.file}"
-    send_file "#{@attachment.attached_file.path}"
+
+    # to też działa
+    send_file "#{@attachment.attached_file.path}", 
+      type: "#{@attachment.file_content_type}",
+      x_sendfile: true
   end
 
   # POST /attachments
   # POST /attachments.json
   def create
     attachment_authorize(:attachment, "create", params[:controller].classify.deconstantize.singularize.downcase)    
-    @attachment = @attachmenable.attachments.new(attachment_params)
+    @attachment = params[:attachment].present? ? @attachmenable.attachments.new(attachment_params) : @attachmenable.attachments.new()
 
     respond_to do |format|
       if @attachment.save
         flash[:success] = t('activerecord.successfull.messages.created', data: @attachment.fullname)
         format.html { redirect_to @attachmenable }
       else
-        flash[:error] = t('activerecord.errors.messages.created', data: @attachment.fullname)
+        flash[:error] = t('activerecord.errors.messages.created', data: '')
         format.html { redirect_to @attachmenable }
       end
     end
@@ -56,9 +61,6 @@ class AttachmentsController < ApplicationController
       unless ['index', 'show', 'create', 'destroy'].include?(action)
          raise "Ruby injection"
       end
-      puts '================================================'
-      puts sub_controller
-      puts "================================================"
       authorize model_class,"#{sub_controller}_#{action}?"      
     end
 

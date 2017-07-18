@@ -59,11 +59,11 @@ puts 'CREATED ROLE: ' << role.name
 
 
 # Simple User 1
-user = CreateAdminService.new.call_simple('mateusz.falenta@uke.gov.pl', 'Mateusz Falenta', '1qazXSW@', '')
+user = CreateAdminService.new.call_simple('krzysztof.frydrych@uke.gov.pl', 'Krzysztof Frydrych', '1qazXSW@', '')
 puts 'CREATED SIMPLE USER: ' << user.email
 
 # Simple User 2
-user = CreateAdminService.new.call_simple('pawel.mielczarek@uke.gov.pl', 'Paweł Mielczarek', '1qazXSW@', '')
+user = CreateAdminService.new.call_simple('michal.lassa@uke.gov.pl', 'Michał Łassa', '1qazXSW@', '')
 puts 'CREATED SIMPLE USER: ' << user.email
 
 # Simple User 3
@@ -85,14 +85,16 @@ puts 'CREATED SIMPLE USER: ' << user.email
 
 
 # project_statuses
-project_status1 = ProjectStatus.find_or_create_by!(name: "zarejestrowany")
-project_status2 = ProjectStatus.find_or_create_by!(name: "opiniowany")
-project_status3 = ProjectStatus.find_or_create_by!(name: "zaopiniowany i podpisany")
-ProjectStatus.find_or_create_by!(name: "opublikowany")
-ProjectStatus.find_or_create_by!(name: "odwołanie - zarejestrowany")
-ProjectStatus.find_or_create_by!(name: "odwołanie - opiniowany")
-ProjectStatus.find_or_create_by!(name: "odwołanie - zaopiniowany i podpisany")
-ProjectStatus.find_or_create_by!(name: "odwołanie - opublikowany")
+project_status1 = ProjectStatus.find_or_create_by!(name: "I.1. Rejestrowany")
+project_status2 = ProjectStatus.find_or_create_by!(name: "I.2. Opiniowany")
+project_status3 = ProjectStatus.find_or_create_by!(name: "I.3. Opiniowany - weryfikacja")
+ProjectStatus.find_or_create_by!(name: "I.4. Opiniowanie - zatwierdzone")
+ProjectStatus.find_or_create_by!(name: "I.5. Opiniowanie - podpisane")
+ProjectStatus.find_or_create_by!(name: "II.1. [Odwołanie] Rejestrowany")
+ProjectStatus.find_or_create_by!(name: "II.2. [Odwołanie] Opiniowany")
+ProjectStatus.find_or_create_by!(name: "II.3. [Odwołanie] Opiniowany - weryfikacja")
+ProjectStatus.find_or_create_by!(name: "II.4. [Odwołanie] Opiniowanie - zatwierdzone")
+ProjectStatus.find_or_create_by!(name: "II.5. [Odwołanie] Opiniowanie - podpisane")
 
 
 # example customers
@@ -139,8 +141,8 @@ puts 'CREATED SIMPLE PROJECT: ' << project.number
 
 
 # accessorizations
-simple1 = User.find_by(email: 'mateusz.falenta@uke.gov.pl')
-simple2 = User.find_by(email: 'pawel.mielczarek@uke.gov.pl')
+simple1 = User.find_by(email: 'krzysztof.frydrych@uke.gov.pl')
+simple2 = User.find_by(email: 'michal.lassa@uke.gov.pl')
 simple3 = User.find_by(email: 'mariusz.krupa@uke.gov.pl')
 simple4 = User.find_by(email: 'marcin.dudek@uke.gov.pl')
 simple5 = User.find_by(email: 'piotr.majewski@uke.gov.pl')

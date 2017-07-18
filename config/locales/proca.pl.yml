@@ -40,6 +40,7 @@ pl:
       project_status: 'Status Projektu'
       customer: 'Wnioskodawca'
       attachment: 'Załącznik'
+      point_file: 'Plik Punktów Adresowych'
       point: 'Punkt Adresowy'
     attributes:
       user:
@@ -83,7 +84,7 @@ pl:
         attached_file_identifier: 'Plik'
         file_content_type: 'Typ'
         file_size: 'Rozmiar'
-      point:
+      point_file:
         load_date: 'Data pobrania'
         load_file: 'Plik'
         status: 'Status'
@@ -146,15 +147,15 @@ pl:
     attachment:
       index:
         title: 'Załączniki'
-    point:
+    point_file:
       index:
-        title: 'Punkty adresowe'
+        title: 'Pliki Punktów Adresowych'
       show:
-        title: 'Punkt adresowy'
+        title: 'Plik Punktów Adresowych'
       new:
-        title: 'Nowy Punkt adresowy'
+        title: 'Nowy Plik Punktów Adresowych'
       edit:
-        title: 'Edycja -> Punkt adresowy'
+        title: 'Edycja -> Plik Punktów Adresowych'
   pundit:
     default: ' BRAK UPRAWNIEŃ: Nie można wykonać tej czynności!'
     work_policy:
@@ -217,6 +218,7 @@ pl:
       account_on: " Włącz konto"
       link_to_add_fields_accessorization: '[ + Dodaj Uprawnienie]'
       link_to_remove_fields_accessorization: '[ - Usuń Uprawnienie]'
+      new_point_file:  ' Ładuj Plik Punktów Adresowych'
   tooltip:
     show: 'Pokaż'
     edit: 'Edycja'

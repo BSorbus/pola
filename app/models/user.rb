@@ -35,6 +35,19 @@ class User < ApplicationRecord
 
   accepts_nested_attributes_for :accessorizations, reject_if: :all_blank, allow_destroy: true
 
+  # callbacks
+  before_destroy :has_links, prepend: true
+
+
+
+  def has_links
+    analize_value = true
+    if self.accessorizations.any? 
+     errors.add(:base, 'Nie można usunąć konta "' + self.try(:fullname) + '" do którego są przypisane Projekty.')
+     analize_value = false
+    end
+    throw :abort unless analize_value 
+  end
 
   def flat_assigned_projects
     Accessorization.includes(:project, :role).where(user_id: self.id).order("projects.number").map {|row| "#{row.project.try(:number_as_link)} - #{row.role.try(:name_as_link)}" }.join('<br>').html_safe
