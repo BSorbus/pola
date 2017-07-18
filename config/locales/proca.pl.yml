@@ -40,6 +40,7 @@ pl:
       project_status: 'Status Projektu'
       customer: 'Wnioskodawca'
       attachment: 'Załącznik'
+      point: 'Punkt Adresowy'
     attributes:
       user:
         name: 'Imię i Nazwisko'
@@ -82,6 +83,10 @@ pl:
         attached_file_identifier: 'Plik'
         file_content_type: 'Typ'
         file_size: 'Rozmiar'
+      point:
+        load_date: 'Data pobrania'
+        load_file: 'Plik'
+        status: 'Status'
   pages:
     home: 'Główna'
     help: 'Pomoc'

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :points
   devise_for :users, controllers: {
     confirmations: 'users/confirmations',
     passwords: 'users/passwords',

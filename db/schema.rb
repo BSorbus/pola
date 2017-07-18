@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170714185813) do
+ActiveRecord::Schema.define(version: 20170717235131) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,17 @@ ActiveRecord::Schema.define(version: 20170714185813) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_customers_on_name"
+  end
+
+  create_table "points", force: :cascade do |t|
+    t.bigint "project_id"
+    t.date "load_date"
+    t.string "load_file"
+    t.integer "status"
+    t.text "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_points_on_project_id"
   end
 
   create_table "project_statuses", force: :cascade do |t|
@@ -112,6 +123,7 @@ ActiveRecord::Schema.define(version: 20170714185813) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "points", "projects"
   add_foreign_key "projects", "customers"
   add_foreign_key "projects", "project_statuses"
 end

@@ -40,6 +40,7 @@ en:
       project_status: 'Project Status'
       customer: 'Customer'
       attachment: 'Attachment'
+      point: 'Point'
     attributes:
       user:
         name: 'Name'
@@ -82,6 +83,10 @@ en:
         attached_file_identifier: 'File'
         file_content_type: 'Type'
         file_size: 'Size'
+      point:
+        load_date: 'Load date'
+        load_file: 'File'
+        status: 'Status'
   pages:
     home: 'Home'
     help: 'Help'

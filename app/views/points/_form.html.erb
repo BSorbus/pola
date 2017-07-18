@@ -1,0 +1,42 @@
+<%= form_with(model: point, local: true) do |form| %>
+  <% if point.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(point.errors.count, "error") %> prohibited this point from being saved:</h2>
+
+      <ul>
+      <% point.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :project_id %>
+    <%= form.text_field :project_id, id: :point_project_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :load_date %>
+    <%= form.date_select :load_date, id: :point_load_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :load_file %>
+    <%= form.text_field :load_file, id: :point_load_file %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.number_field :status, id: :point_status %>
+  </div>
+
+  <div class="field">
+    <%= form.label :note %>
+    <%= form.text_area :note, id: :point_note %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

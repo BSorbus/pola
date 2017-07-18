@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  project: one
+  load_date: 2017-07-18
+  load_file: MyString
+  status: 1
+  note: MyText
+
+two:
+  project: two
+  load_date: 2017-07-18
+  load_file: MyString
+  status: 1
+  note: MyText
