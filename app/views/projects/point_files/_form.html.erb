@@ -24,7 +24,16 @@
 
             <div class="form-group col-sm-6">
               <%= f.label :load_date, class: 'control-label' %>
-              <%= f.date_select :load_date, class: 'form-control input-sm', disabled: input_disabled %>
+              <%= f.text_field :load_date,
+                                data: { provide: "datepicker",
+                                        'date-language': 'pl', 
+                                        'date-format': 'yyyy-mm-dd',
+                                        'weekStart': '6', 
+                                        'date-autoclose': 'true', 
+                                        'date-today-btn': 'linked',
+                                        'date-today-highlight': 'true'}, 
+                                class: 'form-control input-sm', 
+                                disabled: input_disabled %>
             </div>
 
             <div class="form-group col-sm-12">
@@ -68,3 +77,4 @@
   <% end %>
 
 </div> <!--/col-sm-11-->
+

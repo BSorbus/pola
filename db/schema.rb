@@ -67,6 +67,8 @@ ActiveRecord::Schema.define(version: 20170718092958) do
 
   create_table "projects", force: :cascade do |t|
     t.string "number"
+    t.date "registration"
+    t.date "deadline"
     t.text "note", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

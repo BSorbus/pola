@@ -124,19 +124,39 @@ puts 'CREATED CUSTOMER: ' << customer4.name
 
 
 # example projects
-project = Project.create(number: '1/2017', project_status: project_status1, customer: customer1)
+project = Project.create( number: '1/2017', 
+                          registration: Time.zone.today - 5.days, 
+                          deadline: Time.zone.today + 11.weeks, 
+                          project_status: project_status1, 
+                          customer: customer1)
 puts 'CREATED SIMPLE PROJECT: ' << project.number
 
-project = Project.create(number: '2/2017', project_status: project_status2, customer: customer2)
+project = Project.create( number: '2/2017', 
+                          registration: Time.zone.today - 5.days, 
+                          deadline: Time.zone.today + 12.weeks, 
+                          project_status: project_status2, 
+                          customer: customer2)
 puts 'CREATED SIMPLE PROJECT: ' << project.number
 
-project = Project.create(number: '3/2017', project_status: project_status2, customer: customer2)
+project = Project.create( number: '3/2017', 
+                          registration: Time.zone.today - 3.days, 
+                          deadline: Time.zone.today + 13.weeks, 
+                          project_status: project_status2, 
+                          customer: customer2)
 puts 'CREATED SIMPLE PROJECT: ' << project.number
 
-project = Project.create(number: '4/2017', project_status: project_status2, customer: customer3)
+project = Project.create( number: '4/2017', 
+                          registration: Time.zone.today - 2.days, 
+                          deadline: Time.zone.today + 14.weeks, 
+                          project_status: project_status2, 
+                          customer: customer3)
 puts 'CREATED SIMPLE PROJECT: ' << project.number
 
-project = Project.create(number: '5/2017', project_status: project_status3, customer: customer4)
+project = Project.create( number: '5/2017', 
+                          registration: Time.zone.today, 
+                          deadline: Time.zone.today + 15.weeks, 
+                          project_status: project_status3, 
+                          customer: customer4)
 puts 'CREATED SIMPLE PROJECT: ' << project.number
 
 

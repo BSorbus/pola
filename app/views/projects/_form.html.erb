@@ -26,6 +26,34 @@
                     { autofocus: false, class: 'form-control input-sm', disabled: input_disabled } %>
             </div>
 
+            <div class="form-group col-sm-6">
+              <%= f.label :registration, class: 'control-label' %>
+              <%= f.text_field :registration,
+                                data: { provide: "datepicker",
+                                        'date-language': 'pl', 
+                                        'date-format': 'yyyy-mm-dd',
+                                        'weekStart': '6', 
+                                        'date-autoclose': 'true', 
+                                        'date-today-btn': 'linked',
+                                        'date-today-highlight': 'true'}, 
+                                class: 'form-control input-sm', 
+                                disabled: input_disabled %>
+            </div>
+
+            <div class="form-group col-sm-6">
+              <%= f.label :deadline, class: 'control-label' %>
+              <%= f.text_field :deadline,
+                                data: { provide: "datepicker",
+                                        'date-language': 'pl', 
+                                        'date-format': 'yyyy-mm-dd',
+                                        'weekStart': '6', 
+                                        'date-autoclose': 'true', 
+                                        'date-today-btn': 'linked',
+                                        'date-today-highlight': 'true'}, 
+                                class: 'form-control input-sm', 
+                                disabled: input_disabled %>
+            </div>
+
             <div class="form-group col-sm-12">
               <%= f.label :customer_id, class: "control-label" %>
               <%= f.hidden_field :customer_id,

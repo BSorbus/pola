@@ -4,8 +4,9 @@
       <tr>
         <th                  >ID</th>
         <th class="col-sm-2"><%= Project.human_attribute_name(:number) %></th>
-        <th class="col-sm-1"><%= Project.human_attribute_name(:project_status_id) %></th>
-        <th class="col-sm-3"><%= Project.human_attribute_name(:customer_id) %></th>
+        <th class="col-sm-2"><%= Project.human_attribute_name(:project_status_id) %></th>
+        <th class="col-sm-1"><%= Project.human_attribute_name(:deadline) %></th>
+        <th class="col-sm-2"><%= Project.human_attribute_name(:customer_id) %></th>
         <th class="col-sm-3"><%= Project.human_attribute_name(:flat_assigned_users) %></th>
       </tr>
     </thead>

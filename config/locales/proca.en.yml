@@ -69,6 +69,8 @@ en:
         role_id: 'Role'
       project:
         number: 'Number'
+        registration: 'Registration'
+        deadline: 'Deadline'
         note: 'Note'
         project_status_id: 'Status'
         customer_id: 'Customer'

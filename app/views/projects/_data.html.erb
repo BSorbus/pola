@@ -20,9 +20,19 @@
           <%= @project.project_status.try(:name) %>
         </div>
 
+        <div class="form-group col-sm-6">
+          <p><strong><%= Project.human_attribute_name(:registration) %></strong></p>
+          <%= @project.try(:registration) %>
+        </div>
+
+        <div class="form-group col-sm-6">
+          <p><strong><%= Project.human_attribute_name(:deadline) %></strong></p>
+          <%= @project.try(:deadline) %>
+        </div>
+
         <div class="form-group col-sm-12">
           <p><strong><%= Project.human_attribute_name(:customer_id) %></strong></p>
-          <%= @project.customer.try(:name) %>
+          <%= @project.customer.try(:name_as_link) %>
         </div>
 
       </div>  <!-- /row -->

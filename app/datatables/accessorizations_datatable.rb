@@ -7,6 +7,7 @@ class AccessorizationsDatatable < AjaxDatatablesRails::Base
       id:         { source: "Project.id", cond: :eq, searchable: false, orderable: false },
       name:       { source: "Project.number", cond: :like, searchable: true, orderable: true },
       status:     { source: "ProjectStatus.name", cond: :like, searchable: true, orderable: true },
+      deadline:   { source: "Project.deadline", cond: :like, searchable: true, orderable: true },
       customer:   { source: "Customer.name", cond: :like, searchable: true, orderable: true },
       flat:       { source: "Project.id", cond: filter_custom_column_condition }
     }
@@ -18,6 +19,7 @@ class AccessorizationsDatatable < AjaxDatatablesRails::Base
         id:         record.id,
         name:       link_to(record.number, project_path(record.id)),
         status:     record.project_status.try(:name),
+        deadline:   record.try(:deadline),
         customer:   record.customer.try(:name_as_link),
         flat:       record.flat_assigned_users
       }

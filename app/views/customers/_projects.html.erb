@@ -2,8 +2,10 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <th><%= Project.human_attribute_name(:number) %></th>
-        <th><%= Project.human_attribute_name(:project_status_id) %></th>
+        <th class="col-sm-2"><%= Project.human_attribute_name(:number) %></th>
+        <th class="col-sm-2"><%= Project.human_attribute_name(:project_status_id) %></th>
+        <th class="col-sm-2"><%= Project.human_attribute_name(:deadline) %></th>
+        <th class="col-sm-6"><%= Project.human_attribute_name(:flat_assigned_users) %></th>
       </tr>
     <thead>
     <tbody>
@@ -14,6 +16,12 @@
           </td>
           <td>
             <%= project.project_status.try(:name) %>
+          </td>
+          <td>
+            <%= project.try(:deadline) %>
+          </td>
+          <td>
+            <%= project.try(:flat_assigned_users) %>
           </td>
         </tr>
       <% end %>

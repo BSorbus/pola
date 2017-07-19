@@ -69,6 +69,8 @@ pl:
         role_id: 'Rola'
       project:
         number: 'Numer'
+        registration: 'Rejestracja'
+        deadline: 'Termin realizacji'
         note: 'Uwagi'
         project_status_id: 'Status'
         customer_id: 'Wnioskodawca'
