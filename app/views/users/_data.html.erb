@@ -1,125 +1,124 @@
-<% input_disabled ||= false  
-   #if input_disabled is not passed to the partial it doesn't crash. 
-   # We default it to false 
-%>
+<div class="col-sm-11 col-sm-offset-1">
+  <% input_disabled ||= false  
+     #if input_disabled is not passed to the partial it doesn't crash. 
+     # We default it to false 
+  %>
 
-<%= form_errors_for @user %>
+  <%= form_errors_for @user %>
 
-<div class="row">
-  <div class="col-sm-6">
-    <div class="row">
-
-      <div class="form-group col-sm-12">
-        <p><strong><%= User.human_attribute_name(:name) %></strong></p>
-        <%= @user.name %>
-      </div>
-
-      <div class="form-group col-sm-12">
-        <p><strong><%= User.human_attribute_name(:email) %></strong></p>
-        <%= @user.email %>
-      </div>
-
-    </div>  <!-- /row -->
-  </div>  <!-- /col-sm-6 -->
-
-  <div class="col-sm-6">
-    <div class="row">
-      <div class="form-group col-sm-12">
-        <p><strong><%= User.human_attribute_name(:note) %></strong></p>
-        <%= @user.note.gsub("\r\n", "<br>").html_safe %>
-      </div>
-    </div>
-  </div> <!--/col-sm-6 -->
-</div>  <!-- /row -->
-
-<div class="row">
-  <div class="col-sm-12">
-    <div class="row">
-
-      <div class="form-group col-sm-3">
-        <p><strong><%= User.human_attribute_name(:last_sign_in_at) %></strong></p>
-        <%= @user.last_sign_in_at.strftime("%Y-%m-%d %H:%M:%S") if @user.last_sign_in_at.present? %>
-      </div>
-      <div class="form-group col-sm-3">
-        <p><strong><%= User.human_attribute_name(:last_sign_in_ip) %></strong></p>
-        <%= @user.last_sign_in_ip if @user.last_sign_in_ip.present? %>
-      </div>
-
-      <div class="form-group col-sm-3">
-        <p><strong><%= User.human_attribute_name(:current_sign_in_at) %></strong></p>
-        <%= @user.current_sign_in_at.strftime("%Y-%m-%d %H:%M:%S") if @user.current_sign_in_at.present? %>
-      </div>
-      <div class="form-group col-sm-3">
-        <p><strong><%= User.human_attribute_name(:current_sign_in_ip) %></strong></p>
-        <%= @user.current_sign_in_ip if @user.current_sign_in_ip.present? %>
-      </div>
-
-    </div>
-
-  </div> <!-- /col-sm-12 -->
-</div> <!-- /row -->
-
-<div class="row">
-  <div class="col-sm-12">
-
-    <div class="row">
-      <div class="form-group col-sm-3">
-        <p><strong><%#= User.human_attribute_name(:last_activity_at) %></strong></p>
-        <h5><%#= @user.last_activity_at.strftime("%Y-%m-%d %H:%M:%S") if @user.last_activity_at.present? %></h5>
-      </div>
-
-      <div class="form-group col-sm-3">
-        <p><strong><%#= User.human_attribute_name(:password_changed_at) %></strong></p>
-        <h5><%#= @user.password_changed_at.strftime("%Y-%m-%d %H:%M:%S") if @user.password_changed_at.present? %></h5>
-      </div>
-
-      <div class="form-group col-sm-3">
-        <p><strong><%#= User.human_attribute_name(:deleted_at) %></strong></p>
-        <h5><%#= @user.deleted_at.strftime("%Y-%m-%d %H:%M:%S") if @user.deleted_at.present? %></h5>
-      </div>
-
-    </div>
-
-  </div> <!-- /col-sm-12 -->
-</div> <!-- /row -->
-
-<hr class="hr-without-top-margin">
-
-<% if input_disabled %>
-  <!-- for "Show" -->
   <div class="row">
-    <%= link_to t('Index', default: t("helpers.links.index")), users_path, :class => 'btn btn-default glyphicon glyphicon-th-list' %>
+    <div class="col-sm-6">
+      <div class="row">
 
-    <% if policy(@user).destroy? %>
-      <%= link_to t('Delete', default: t("helpers.links.destroy")), user_path(@user),
-                          method: :delete,
-                          data: { confirm: t('helpers.links.confirm_destroy', data: @user.name) }, 
-                          :class => "btn btn-danger glyphicon glyphicon-trash" %>
-    <% end %>
+        <div class="form-group col-sm-12">
+          <p><strong><%= User.human_attribute_name(:name) %></strong></p>
+          <%= @user.name %>
+        </div>
 
-    <% if policy(@user).edit? %>
-      <%= link_to t('Edit', default: t("helpers.links.edit")), edit_user_path(@user), 
-                      :class => "btn btn-primary glyphicon glyphicon-edit" %>  
+        <div class="form-group col-sm-12">
+          <p><strong><%= User.human_attribute_name(:email) %></strong></p>
+          <%= @user.email %>
+        </div>
 
-<!--       <%# if @user.deleted_at.present? %>
-        <%#= link_to t('Account user ON', default: t("helpers.links.account_on")), account_on_user_path(@user),
-                            method: :patch,
-                            data: { confirm: t('helpers.links.confirm_account_on', data: @user.fullname_and_id) }, 
-                            :class => "btn btn-warning glyphicon glyphicon-unlock" %>
-      <%# else %>
-        <%#= link_to t('Account user OFF', default: t("helpers.links.account_off")), account_off_user_path(@user),
-                            method: :patch,
-                            data: { confirm: t('helpers.links.confirm_account_off', data: @user.fullname_and_id) }, 
-                            :class => "btn btn-warning glyphicon glyphicon-lock" %>
-      <%# end %>
- -->
-    <% end %>
+      </div>  <!-- /row -->
+    </div>  <!-- /col-sm-6 -->
 
+    <div class="col-sm-6">
+      <div class="row">
+        <div class="form-group col-sm-12">
+          <p><strong><%= User.human_attribute_name(:note) %></strong></p>
+          <%= @user.note.gsub("\r\n", "<br>").html_safe %>
+        </div>
+      </div>
+    </div> <!--/col-sm-6 -->
+  </div>  <!-- /row -->
 
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="row">
 
+        <div class="form-group col-sm-3">
+          <p><strong><%= User.human_attribute_name(:last_sign_in_at) %></strong></p>
+          <%= @user.last_sign_in_at.strftime("%Y-%m-%d %H:%M:%S") if @user.last_sign_in_at.present? %>
+        </div>
+        <div class="form-group col-sm-3">
+          <p><strong><%= User.human_attribute_name(:last_sign_in_ip) %></strong></p>
+          <%= @user.last_sign_in_ip if @user.last_sign_in_ip.present? %>
+        </div>
 
+        <div class="form-group col-sm-3">
+          <p><strong><%= User.human_attribute_name(:current_sign_in_at) %></strong></p>
+          <%= @user.current_sign_in_at.strftime("%Y-%m-%d %H:%M:%S") if @user.current_sign_in_at.present? %>
+        </div>
+        <div class="form-group col-sm-3">
+          <p><strong><%= User.human_attribute_name(:current_sign_in_ip) %></strong></p>
+          <%= @user.current_sign_in_ip if @user.current_sign_in_ip.present? %>
+        </div>
+
+      </div>
+
+    </div> <!-- /col-sm-12 -->
   </div> <!-- /row -->
-<% else %>
-  <!-- form "New"/"Edit" -->
-<% end %>
 
+  <div class="row">
+    <div class="col-sm-12">
+
+      <div class="row">
+        <div class="form-group col-sm-3">
+          <p><strong><%#= User.human_attribute_name(:last_activity_at) %></strong></p>
+          <h5><%#= @user.last_activity_at.strftime("%Y-%m-%d %H:%M:%S") if @user.last_activity_at.present? %></h5>
+        </div>
+
+        <div class="form-group col-sm-3">
+          <p><strong><%#= User.human_attribute_name(:password_changed_at) %></strong></p>
+          <h5><%#= @user.password_changed_at.strftime("%Y-%m-%d %H:%M:%S") if @user.password_changed_at.present? %></h5>
+        </div>
+
+        <div class="form-group col-sm-3">
+          <p><strong><%#= User.human_attribute_name(:deleted_at) %></strong></p>
+          <h5><%#= @user.deleted_at.strftime("%Y-%m-%d %H:%M:%S") if @user.deleted_at.present? %></h5>
+        </div>
+
+      </div>
+
+    </div> <!-- /col-sm-12 -->
+  </div> <!-- /row -->
+
+  <hr class="hr-without-top-margin">
+
+  <% if input_disabled %>
+    <!-- for "Show" -->
+    <div class="row">
+      <%= link_to t('Index', default: t("helpers.links.index")), users_path, :class => 'btn btn-default glyphicon glyphicon-th-list' %>
+
+      <% if policy(@user).destroy? %>
+        <%= link_to t('Delete', default: t("helpers.links.destroy")), user_path(@user),
+                            method: :delete,
+                            data: { confirm: t('helpers.links.confirm_destroy', data: @user.name) }, 
+                            :class => "btn btn-danger glyphicon glyphicon-trash" %>
+      <% end %>
+
+      <% if policy(@user).edit? %>
+        <%= link_to t('Edit', default: t("helpers.links.edit")), edit_user_path(@user), 
+                        :class => "btn btn-primary glyphicon glyphicon-edit" %>  
+
+  <!--       <%# if @user.deleted_at.present? %>
+          <%#= link_to t('Account user ON', default: t("helpers.links.account_on")), account_on_user_path(@user),
+                              method: :patch,
+                              data: { confirm: t('helpers.links.confirm_account_on', data: @user.fullname_and_id) }, 
+                              :class => "btn btn-warning glyphicon glyphicon-unlock" %>
+        <%# else %>
+          <%#= link_to t('Account user OFF', default: t("helpers.links.account_off")), account_off_user_path(@user),
+                              method: :patch,
+                              data: { confirm: t('helpers.links.confirm_account_off', data: @user.fullname_and_id) }, 
+                              :class => "btn btn-warning glyphicon glyphicon-lock" %>
+        <%# end %>
+   -->
+      <% end %>
+
+    </div> <!-- /row -->
+  <% else %>
+    <!-- form "New"/"Edit" -->
+  <% end %>
+
+</div> <!--/col-sm-11 col-sm-offset-1-->    

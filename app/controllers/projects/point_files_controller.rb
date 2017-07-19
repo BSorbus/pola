@@ -1,34 +1,36 @@
-class PointFilesController < ApplicationController
+class Projects::PointFilesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_point_file, only: [:show, :edit, :update, :destroy]
-
-  # GET /point_files
-  # GET /point_files.json
-  def index
-    @point_files = PointFile.all
-  end
 
   # GET /point_files/1
   # GET /point_files/1.json
   def show
+    @project = load_project
   end
 
   # GET /point_files/new
   def new
+    @project = load_project
     @point_file = PointFile.new
+    @point_file.project = @project
   end
 
   # GET /point_files/1/edit
   def edit
+    @project = load_project
   end
 
   # POST /point_files
   # POST /point_files.json
   def create
+    @project = load_project
     @point_file = PointFile.new(point_file_params)
-
+    @point_file.project = @project
+#    authorize @point_file, :create?
     respond_to do |format|
       if @point_file.save
-        format.html { redirect_to @point_file, notice: 'Point file was successfully created.' }
+        flash[:success] = t('activerecord.successfull.messages.created', data: @point_file.fullname)
+        format.html { redirect_to project_point_file_path(@project, @point_file) }
         format.json { render :show, status: :created, location: @point_file }
       else
         format.html { render :new }
@@ -40,9 +42,12 @@ class PointFilesController < ApplicationController
   # PATCH/PUT /point_files/1
   # PATCH/PUT /point_files/1.json
   def update
+    @project = load_project
+#    authorize @point_file, :update?
     respond_to do |format|
       if @point_file.update(point_file_params)
-        format.html { redirect_to @point_file, notice: 'Point file was successfully updated.' }
+        flash[:success] = t('activerecord.successfull.messages.updated', data: @point_file.fullname)
+        format.html { redirect_to project_point_file_path(@project, @point_file) }
         format.json { render :show, status: :ok, location: @point_file }
       else
         format.html { render :edit }
@@ -54,17 +59,25 @@ class PointFilesController < ApplicationController
   # DELETE /point_files/1
   # DELETE /point_files/1.json
   def destroy
-    @point_file.destroy
-    respond_to do |format|
-      format.html { redirect_to point_files_url, notice: 'Point file was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    @project = load_project
+#    authorize @point_file, :destroy?
+    if @point_file.destroy
+      flash[:success] = t('activerecord.successfull.messages.destroyed', data: @point_file.fullname)
+      redirect_to project_path(@project)
+    else 
+      flash.now[:error] = t('activerecord.errors.messages.destroyed', data: @point_file.fullname)
+      render :show
+    end      
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_point_file
       @point_file = PointFile.find(params[:id])
+    end
+
+    def load_project
+      @project = Project.find(params[:project_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

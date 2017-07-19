@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     get 'select2_index', on: :collection
     get 'datatables_index', on: :collection
     resources :attachments, module: :projects, only: [:create]
+    resources :point_files, module: :projects, except: [:index]
   end
 
   resources :roles do
@@ -41,7 +42,6 @@ Rails.application.routes.draw do
   get 'static_pages/help'
 
   resources :attachments, only: [:show, :destroy]
-  resources :point_files
 
 
 end

@@ -1,0 +1,53 @@
+<div class="col-sm-7">
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th class="col-sm-9"><%= Attachment.human_attribute_name(:attached_file_identifier) %></th>
+        <th class="col-sm-2"><%= Attachment.human_attribute_name(:file_size) %></th>
+        <th class="col-sm-1"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% attachmenable.attachments.each do |attachment| %>
+        <tr>
+          <td>
+            <!--"Show" as download-->
+            <%= link_to attachment.attached_file_identifier, attachment_path(attachment), title: t('tooltip.download'), rel: 'tooltip' %>
+          </td>
+          <td><%= attachment.file_size %></td>
+          <td>
+            <%= link_to ' ', attachment_path(attachment),
+                            method: :delete,
+                            data: { confirm: t('helpers.links.confirm_destroy', data: attachment.attached_file_identifier) }, 
+                            :class => "glyphicon glyphicon-trash", title: t('tooltip.destroy'), rel: 'tooltip' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+
+  </table>
+
+</div> <!-- /col-sm-7 -->
+
+<div class="col-sm-5">
+
+  <%= form_for [attachmenable, Attachment.new] do |f| %>
+
+    <%= form_errors_for attachmenable %>
+
+    <div class="form-group col-sm-12">
+
+      <%= f.label :attached_file, class: 'control-label' %><br>
+      <%= f.file_field :attached_file, class: 'form-control input-sm' %>
+
+    </div>
+
+    <div class="col-sm-12">
+      <%= f.submit nil, class: 'btn btn-primary pull-right' %>
+    </div> <!-- /row -->
+
+  <% end %>
+
+</div> <!-- /col-sm-5 -->
