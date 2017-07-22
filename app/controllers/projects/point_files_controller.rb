@@ -2,6 +2,15 @@ class Projects::PointFilesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_point_file, only: [:show, :edit, :update, :destroy]
 
+
+  def download
+    @point_file = PointFile.find(params[:id])
+#    attachment_authorize(:attachment, "show", @attachment.attachmenable_type.singularize.downcase)    
+    send_file "#{@point_file.load_file.file.file}", 
+      type: "#{@point_file.load_file.file.content_type}",
+      x_sendfile: true
+  end
+
   # GET /point_files/1
   # GET /point_files/1.json
   def show
@@ -13,6 +22,7 @@ class Projects::PointFilesController < ApplicationController
     @project = load_project
     @point_file = PointFile.new
     @point_file.project = @project
+    @point_file.load_date = Time.zone.today
   end
 
   # GET /point_files/1/edit
@@ -82,6 +92,6 @@ class Projects::PointFilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def point_file_params
-      params.require(:point_file).permit(:project_id, :load_date, :load_file, :status, :note)
+      params.require(:point_file).permit(:project_id, :load_date, :load_file, :load_file_cache, :status, :note)
     end
 end

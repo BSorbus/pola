@@ -9,16 +9,16 @@
       </tr>
     <thead>
     <tbody>
-      <% @project.point_files.order(id: :desc).each do |point_file| %>
+      <% @project.point_files.order(load_date: :desc).each do |point_file| %>
         <tr>
           <td class="<%='success' if point_file.status == 'active' %>" >
             <%= point_file.try(:status) %>
           </td>
           <td class="<%='success' if point_file.status == 'active' %>">
-            <%= point_file.try(:load_date).strftime("%Y-%m-%d %H:%M:%S") %>
+            <%= point_file.load_date.present? ? point_file.load_date.strftime("%Y-%m-%d %H:%M:%S") : ''%>
           </td>
           <td class="<%='success' if point_file.status == 'active' %>">
-            <%= link_to point_file.load_file, project_point_file_path(@project, point_file)  %>
+            <%= link_to point_file.fullname, project_point_file_path(@project, point_file)  %>
           </td>
         </tr>
       <% end %>

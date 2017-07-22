@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Zs Points</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Point file</th>
+      <th>Zs 2</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @zs_points.each do |zs_point| %>
+      <tr>
+        <td><%= zs_point.point_file %></td>
+        <td><%= zs_point.zs_2 %></td>
+        <td><%= link_to 'Show', zs_point %></td>
+        <td><%= link_to 'Edit', edit_zs_point_path(zs_point) %></td>
+        <td><%= link_to 'Destroy', zs_point, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Zs Point', new_zs_point_path %>

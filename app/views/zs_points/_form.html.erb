@@ -1,0 +1,27 @@
+<%= form_with(model: zs_point, local: true) do |form| %>
+  <% if zs_point.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(zs_point.errors.count, "error") %> prohibited this zs_point from being saved:</h2>
+
+      <ul>
+      <% zs_point.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :point_file_id %>
+    <%= form.text_field :point_file_id, id: :zs_point_point_file_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :zs_2 %>
+    <%= form.text_field :zs_2, id: :zs_point_zs_2 %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

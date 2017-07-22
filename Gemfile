@@ -74,6 +74,6 @@ gem 'pundit'
 gem 'carrierwave', '~> 1.0'
 gem 'file_validators'
 #gem 'premailer-rails'
-
 gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',
                               :git => 'https://github.com/Nerian/bootstrap-datepicker-rails.git'
+gem 'activerecord-import'

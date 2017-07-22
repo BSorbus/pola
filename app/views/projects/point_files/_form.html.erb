@@ -33,13 +33,15 @@
                                         'date-today-btn': 'linked',
                                         'date-today-highlight': 'true'}, 
                                 class: 'form-control input-sm', 
-                                disabled: input_disabled %>
+                                disabled: !point_file.new_record? %>
             </div>
 
             <div class="form-group col-sm-12">
               <%= f.label :load_file, class: 'control-label' %>
-              <%= f.file_field :load_file, class: 'form-control input-sm', disabled: input_disabled %>
+              <%= f.file_field :load_file, class: 'form-control input-sm', disabled: !point_file.new_record? %>
+              <%= point_file.try(:load_file_identifier) %><br>
             </div>
+            <%= f.hidden_field :load_file_cache %>
 
           </div>  <!-- /row -->
         </div>  <!-- /col-sm-6 -->
@@ -66,7 +68,7 @@
     <% else %>
       <!-- form "New"/"Edit" -->
       <div class="row">
-        <%= link_to t('Index', default: t("helpers.links.index")), project_point_files_path, :class => 'btn btn-default glyphicon glyphicon-th-list' %>
+        <%= link_to @project.try(:number), project_path(@project), :class => 'btn btn-default' %>
 
         <%= link_to t('Back', default: t("helpers.links.back")), :back, :class => 'btn btn-default glyphicon glyphicon-arrow-left' %>
 

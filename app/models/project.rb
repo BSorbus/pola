@@ -9,6 +9,10 @@ class Project < ApplicationRecord
   belongs_to :project_status
   belongs_to :customer
   has_many :point_files, dependent: :destroy
+  has_one :last_active_point_file, -> { where(status: :active).order(load_date: :desc) },
+    class_name: 'PointFile', foreign_key: :project_id
+
+
 
   has_many :attachments, as: :attachmenable
 

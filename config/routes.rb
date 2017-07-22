@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :zs_points
+  resources :ww_points
   devise_for :users, controllers: {
     confirmations: 'users/confirmations',
     passwords: 'users/passwords',
@@ -25,7 +27,9 @@ Rails.application.routes.draw do
     get 'select2_index', on: :collection
     get 'datatables_index', on: :collection
     resources :attachments, module: :projects, only: [:create]
-    resources :point_files, module: :projects, except: [:index]
+    resources :point_files, module: :projects, except: [:index] do
+      get 'download', on: :member
+    end
   end
 
   resources :roles do

@@ -17,12 +17,12 @@
 
         <div class="form-group col-sm-6">
           <p><strong><%= PointFile.human_attribute_name(:load_date) %></strong></p>
-          <%= @point_file.load_date.strftime("%Y-%m-%d %H:%M:%S") %>
+          <%= @point_file.load_date.present? ? @point_file.load_date.strftime("%Y-%m-%d %H:%M:%S") : ''%>
         </div>
 
         <div class="form-group col-sm-12">
           <p><strong><%= PointFile.human_attribute_name(:load_file) %></strong></p>
-          <%= @point_file.try(:load_file) %>
+          <%= @point_file.try(:load_file).present? ? link_to(@point_file.try(:fullname), download_project_point_file_path(@project, @point_file)) : ''%>
         </div>
 
       </div>  <!-- /row -->

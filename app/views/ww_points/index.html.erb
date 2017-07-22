@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Ww Points</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Point file</th>
+      <th>Ww 2</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ww_points.each do |ww_point| %>
+      <tr>
+        <td><%= ww_point.point_file %></td>
+        <td><%= ww_point.ww_2 %></td>
+        <td><%= link_to 'Show', ww_point %></td>
+        <td><%= link_to 'Edit', edit_ww_point_path(ww_point) %></td>
+        <td><%= link_to 'Destroy', ww_point, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ww Point', new_ww_point_path %>

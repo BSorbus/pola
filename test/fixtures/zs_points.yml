@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  point_file: one
+  zs_2: MyString
+
+two:
+  point_file: two
+  zs_2: MyString
