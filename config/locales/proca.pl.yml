@@ -90,6 +90,10 @@ pl:
         load_date: 'Data pobrania'
         load_file: 'Plik'
         status: 'Status'
+        statuses:
+          inactive: 'Archiwalny'
+          active: 'Aktualny'
+        project_id: 'Projekt'
   pages:
     home: 'Główna'
     help: 'Pomoc'
@@ -158,6 +162,24 @@ pl:
         title: 'Nowy Plik Punktów Adresowych'
       edit:
         title: 'Edycja -> Plik Punktów Adresowych'
+    zs_point:
+      index:
+        title: 'Punkty ZS - Budynki w Zasięgu Sieci'
+      show:
+        title: 'Punkt ZS - Budynek w Zasięgu Sieci'
+      new:
+        title: 'Nowy Punkt ZS - Budynek w Zasięgu Sieci'
+      edit:
+        title: 'Edycja -> Punktu ZS - Budynek w Zasięgu Sieci'
+    ww_point:
+      index:
+        title: 'Punkty WW - Własne i Współdzielone węzły telekomunikacyjne'
+      show:
+        title: 'Punkt WW - Własny/Współdzielony węzeł telekomunikacyjny'
+      new:
+        title: 'Nowy Punkt WW - Własny/Współdzielony węzeł telekomunikacyjny'
+      edit:
+        title: 'Edycja -> Punktu WW - Własny/Współdzielony węzeł telekomunikacyjny'
   pundit:
     default: ' BRAK UPRAWNIEŃ: Nie można wykonać tej czynności!'
     work_policy:

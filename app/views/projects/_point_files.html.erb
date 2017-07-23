@@ -11,8 +11,8 @@
     <tbody>
       <% @project.point_files.order(load_date: :desc).each do |point_file| %>
         <tr>
-          <td class="<%='success' if point_file.status == 'active' %>" >
-            <%= point_file.try(:status) %>
+          <td class="<%='success' if point_file.active? %>" >
+            <%= enum_l(point_file, :status) %>
           </td>
           <td class="<%='success' if point_file.status == 'active' %>">
             <%= point_file.load_date.present? ? point_file.load_date.strftime("%Y-%m-%d %H:%M:%S") : ''%>

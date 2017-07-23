@@ -3,6 +3,14 @@ class Projects::PointFilesController < ApplicationController
   before_action :set_point_file, only: [:show, :edit, :update, :destroy]
 
 
+  # ZsPoints for showed PointFile
+  def datatables_index_zs_point
+    respond_to do |format|
+      format.json{ render json: PointFileZsPointsDatatable.new(view_context, { only_for_current_point_file_id: params[:point_file_id] }) }
+    end
+  end
+
+
   def download
     @point_file = PointFile.find(params[:id])
 #    attachment_authorize(:attachment, "show", @attachment.attachmenable_type.singularize.downcase)    
@@ -22,7 +30,8 @@ class Projects::PointFilesController < ApplicationController
     @project = load_project
     @point_file = PointFile.new
     @point_file.project = @project
-    @point_file.load_date = Time.zone.today
+    @point_file.load_date = Time.zone.today 
+#    authorize :point_file, :new?
   end
 
   # GET /point_files/1/edit
@@ -40,6 +49,8 @@ class Projects::PointFilesController < ApplicationController
     respond_to do |format|
       if @point_file.save
         flash[:success] = t('activerecord.successfull.messages.created', data: @point_file.fullname)
+        @point_file.load_data_from_csv_file
+        flash[:notice] = "Pomyślnie załadowano #{@point_file.zs_points.size} punktów ZS"
         format.html { redirect_to project_point_file_path(@project, @point_file) }
         format.json { render :show, status: :created, location: @point_file }
       else

@@ -187,6 +187,22 @@ td:hover {
 }
 
 
+.panel-ww-point {
+  border-color: #ddd  
+}
+.panel-ww-point > .panel-heading {
+  background: $brand-primary; //#1A3069;
+  color: white; 
+}
+
+.panel-zs-point {
+  border-color: #ddd  
+}
+.panel-zs-point > .panel-heading {
+  background: $brand-primary; //#1A3069;
+  color: white; 
+}
+
 .panel-point {
   border-color: #ddd  
 }

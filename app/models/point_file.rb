@@ -7,8 +7,8 @@ class PointFile < ApplicationRecord
 
   # relations
   belongs_to :project
-  has_many :ww_points, dependent: :destroy
-  has_many :zs_points, dependent: :destroy
+  has_many :ww_points, dependent: :delete_all
+  has_many :zs_points, dependent: :delete_all
 
   # validates
   validates :load_file, presence: true,
@@ -17,27 +17,41 @@ class PointFile < ApplicationRecord
   validates :status, presence: true,
                     :uniqueness => { scope: [:project_id] }, if: :status_active?
 
+  validate :loading_file_is_valid?, on: :create
+
+
+  def loading_file_is_valid?
+    unless check_csv_file
+     errors.add(:base, 'Plik "' + load_file.file.original_filename + '" nie jest prawidłowym plikiem wygenerowanym przy użyciu "Formularz planowania zasięgów i sieci NGA ver. 1.2.0".')
+     throw :abort 
+    end
+  end
 
   def status_active?
-    status == 'active'
+    self.active?
   end
 
   def fullname
     "#{self.load_file_identifier}"
   end
 
+  def check_csv_file
+    # Wygenerowano przy użyciu "Formularz planowania zasięgów i sieci NGA"
+    # Data wygenerowania: 2017-06-06 12:10:22
+    # Wersja aplikacji: 1.2.0
 
-  def from_csv
-  #   lists_hash = List.pluck(:name, :id).to_h
-  #   # => {'todo list' => 213, 'another list' => 319}
+    required_line_1 = '# Wygenerowano przy użyciu "Formularz planowania zasięgów i sieci NGA"'
+    line_1 = File.open("#{self.load_file.file.path}", "r").each_line.take(1).last
+    line_1 = line_1.gsub(/[\n]/, '') if line_1.present?
 
-  #   items = []
-  #   CSV.foreach('link/to/file.csv', headers: true) do |row|
-  #     list_id = lists_hash[row[:name]]
-  #     items << Item.new(list_id: list_id, title: row[:title])
-  #   end
-  #   Item.import(items)
+    required_line_3 = '# Wersja aplikacji: 1.2.0'
+    line_3 = File.open("#{self.load_file.file.path}", "r").each_line.take(3).last
+    line_3 = line_3.gsub(/[\n]/, '') if line_3.present?
 
+    line_1 == required_line_1 && line_3 == required_line_3
+  end
+
+  def load_data_from_csv_file
     @ww_points = []
     @zs_points = []
 
