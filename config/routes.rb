@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     resources :point_files, module: :projects, except: [:index] do
       get 'download', on: :member
       get 'datatables_index_zs_point', on: :collection # Displays zs_points for showed point_file
+      get 'datatables_index_ww_point', on: :collection # Displays ww_points for showed point_file
     end
   end
 

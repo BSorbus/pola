@@ -162,6 +162,15 @@ en:
         title: 'New Point File'
       edit:
         title: 'Edit -> Point File'
+    oi_data:
+      index:
+        title: 'Obszary Inwestycyjne'
+      show:
+        title: 'Obszar Inwestycyjny'
+      new:
+        title: 'Nowy Obszar Inwestycyjny'
+      edit:
+        title: 'Edycja -> Obszar Inwestycyjny'
     zs_point:
       index:
         title: 'Punkty ZS - Budynki w Zasięgu Sieci'

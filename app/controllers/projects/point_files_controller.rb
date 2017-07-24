@@ -10,6 +10,13 @@ class Projects::PointFilesController < ApplicationController
     end
   end
 
+  # WwPoints for showed PointFile
+  def datatables_index_ww_point
+    respond_to do |format|
+      format.json{ render json: PointFileWwPointsDatatable.new(view_context, { only_for_current_point_file_id: params[:point_file_id] }) }
+    end
+  end
+
 
   def download
     @point_file = PointFile.find(params[:id])

@@ -22,7 +22,7 @@ class PointFile < ApplicationRecord
 
   def loading_file_is_valid?
     unless check_csv_file
-     errors.add(:base, 'Plik "' + load_file.file.original_filename + '" nie jest prawidłowym plikiem wygenerowanym przy użyciu "Formularz planowania zasięgów i sieci NGA ver. 1.2.0".')
+     errors.add(:load_file, '"' + load_file.file.original_filename + '" nie jest prawidłowym plikiem wygenerowanym przy użyciu "Formularz planowania zasięgów i sieci NGA ver. 1.2.0".')
      throw :abort 
     end
   end

@@ -94,6 +94,15 @@ pl:
           inactive: 'Archiwalny'
           active: 'Aktualny'
         project_id: 'Projekt'
+        oi_2: 'Numer Obszaru'
+        oi_3: 'Nazwa Obszaru'
+        oi_4: 'Województwo'
+        oi_5: 'Całkowita liczba gosp. dom. możliwych do objęcia zasięgiem na obszarze inw.'
+        oi_6: 'Liczba gospodarstw domowych w punktach adresowych podstawowych'
+        oi_7: 'Minimalna liczba gospodarstw domowych do objęcia zasięgiem'
+        oi_8: 'Liczba adresów jednostek oświatowych'
+        oi_9: 'w tym liczba adresów jednostek oświatowych „A”'
+        oi_10: 'Maksymalna kwota dofinansowania dla obszaru interwencji'
   pages:
     home: 'Główna'
     help: 'Pomoc'
@@ -162,6 +171,15 @@ pl:
         title: 'Nowy Plik Punktów Adresowych'
       edit:
         title: 'Edycja -> Plik Punktów Adresowych'
+    oi_data:
+      index:
+        title: 'Obszary Inwestycyjne'
+      show:
+        title: 'Obszar Inwestycyjny'
+      new:
+        title: 'Nowy Obszar Inwestycyjny'
+      edit:
+        title: 'Edycja -> Obszar Inwestycyjny'
     zs_point:
       index:
         title: 'Punkty ZS - Budynki w Zasięgu Sieci'

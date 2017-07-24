@@ -203,6 +203,14 @@ td:hover {
   color: white; 
 }
 
+.panel-oi-data {
+  border-color: #ddd  
+}
+.panel-oi-data > .panel-heading {
+  background: $brand-primary; //#1A3069;
+  color: white; 
+}
+
 .panel-point {
   border-color: #ddd  
 }
