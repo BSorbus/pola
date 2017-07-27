@@ -4,6 +4,13 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
+          <% if policy(:event).index? %>
+            <li><%= link_to events_path do %>
+              <span class="glyphicon glyphicon-calendar"></span>&nbsp;<%=t "pages.event.index.title" %>
+              <% end %>
+            </li>
+          <% end %>
+
           <% if policy(:project).index? %>
             <li><%= link_to projects_path do %>
               <span class="glyphicon glyphicon-book"></span>&nbsp;<%=t "pages.project.index.title" %>

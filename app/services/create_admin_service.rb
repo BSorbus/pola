@@ -10,7 +10,7 @@ class CreateAdminService
   end
 
   def call_simple(email, name, pass, note)
-    user = User.find_or_create_by!(email: "#{email}") do |user|
+    user = User.find_or_create_by!(email: "#{email}".downcase) do |user|
         user.name = "#{name}"
         user.password = "#{pass}"
         user.password_confirmation = "#{pass}"

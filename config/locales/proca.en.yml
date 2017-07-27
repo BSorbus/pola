@@ -42,6 +42,9 @@ en:
       attachment: 'Attachment'
       point_file: 'Address Point File'
       point: 'Point'
+      ww_point: 'Punkt Adresowy'
+      zs_point: 'Węzeł'
+      event: 'Zdarzenie/Zadanie'
     attributes:
       user:
         name: 'Name'
@@ -94,6 +97,29 @@ en:
           inactive: 'Inactive'
           active: 'Active'
         project_id: 'Project'
+        oi_2: 'Numer Obszaru'
+        oi_3: 'Nazwa Obszaru'
+        oi_4: 'Województwo'
+        oi_5: 'Całkowita liczba gosp. dom. możliwych do objęcia zasięgiem na obszarze inw.'
+        oi_6: 'Liczba gospodarstw domowych w punktach adresowych podstawowych'
+        oi_7: 'Minimalna liczba gospodarstw domowych do objęcia zasięgiem'
+        oi_8: 'Liczba adresów jednostek oświatowych'
+        oi_9: 'w tym liczba adresów jednostek oświatowych „A”'
+        oi_10: 'Maksymalna kwota dofinansowania dla obszaru interwencji'
+        dp_2: 'Nazwa'
+        dp_3: 'NIP'
+        dp_4: 'RPT'
+        dp_5: 'Miejscowość'
+        dp_6: 'Ulica'
+        dp_7: 'Nr porządkowy'
+        dp_8: 'Kod pocztowy'
+      event:
+        title: 'Title'
+        all_day: 'All day'
+        start_date: 'Start'
+        end_date: 'End'
+        url_action: 'Url'
+        color: 'Color'
   pages:
     home: 'Home'
     help: 'Help'
@@ -189,6 +215,15 @@ en:
         title: 'Nowy Punkt WW - Własny/Współdzielony węzeł telekomunikacyjny'
       edit:
         title: 'Edycja -> Punktu WW - Własny/Współdzielony węzeł telekomunikacyjny'
+    event:
+      index:
+        title: 'Zdarzenia/Zadania'
+      show:
+        title: 'Zdarzenie/Zadanie'
+      new:
+        title: 'Nowe Zdarzenie/Zadanie'
+      edit:
+        title: 'Edycja -> Zdarzenie/Zadanie'
   pundit:
     default: ' SECURITY: Access denied!'
     work_policy:
@@ -228,6 +263,12 @@ en:
       user_show?: ' SECURITY: You cannot watch this attachments for user!'
       user_create?: ' SECURITY: You cannot create attachments for user!'
       user_destroy?: ' SECURITY: You cannot destroy attachments for user!'
+    event_policy:
+      index?: ' SECURITY: You cannot watch list of events!'
+      show?: ' SECURITY: You cannot watch this event!'
+      update?: ' SECURITY: You cannot edit this event!'
+      create?: ' SECURITY: You cannot create events!'
+      destroy?: ' SECURITY: You cannot destroy events!'
   helpers:
     actions: "Action"
     links:

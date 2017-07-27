@@ -1,0 +1,82 @@
+<div class="col-sm-11">
+  <%= form_with(model: event, local: true) do |f| %>
+
+    <% input_disabled ||= false  
+       #if input_disabled is not passed to the partial it doesn't crash. 
+       # We default it to false 
+    %>
+
+    <%= form_errors_for event %>
+
+    <% if policy(:event).create? %> 
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="row">
+
+            <div class="form-group col-sm-8">
+              <%= f.label :title, class: 'control-label' %>
+              <%= f.text_field :title, autofocus: true, class: 'form-control input-sm', disabled: input_disabled %>
+            </div>
+
+            <div class="form-group col-sm-4">
+              <%= f.label :all_day, class: 'control-label' %><br>
+              <%= f.radio_button(:all_day, false, disabled: input_disabled) %>
+              <%= f.label(:all_day_false, "Nie" ) %>
+              <%= f.radio_button(:all_day, true, disabled: input_disabled) %>
+              <%= f.label(:all_day_true, "Tak" ) %>
+
+
+            </div>
+
+          </div>  <!-- /row -->
+        </div>  <!-- /col-sm-12 -->
+
+
+        <div class="col-sm-12">
+          <div class="row">
+            <div class="form-group col-sm-4">
+              <%= f.label :start_date, class: 'control-label' %>
+              <%= f.text_field :start_date, class: 'form-control input-sm datetimepicker', 
+                                disabled: input_disabled %>
+            </div>
+
+            <div class="form-group col-sm-4">
+              <%= f.label :end_date, class: 'control-label' %>
+              <%= f.text_field :end_date, class: 'form-control input-sm datetimepicker', 
+                                disabled: input_disabled %>
+            </div>
+
+            <div class="form-group col-sm-4">
+              <%= f.label :color, class: 'control-label' %>
+              <%= f.select :color, 
+                    options_for_select(Event::EVENT_COLORS, selected: event.color),
+                    { include_blank: true }, 
+                    { autofocus: false, class: 'form-control input-sm', disabled: input_disabled } %>
+            </div>
+
+          </div> <!-- /row -->
+        </div> <!--/col-sm-12 -->
+
+      </div>  <!-- /row -->
+    <% end %>
+
+
+    <hr class="hr-without-top-margin">
+
+
+    <% if input_disabled %>
+      <!-- for "Show" -->
+    <% else %>
+      <!-- form "New"/"Edit" -->
+      <div class="row">
+        <%= link_to t('Index', default: t("helpers.links.index")), events_path, :class => 'btn btn-default glyphicon glyphicon-th-list' %>
+
+        <%= link_to t('Back', default: t("helpers.links.back")), :back, :class => 'btn btn-default glyphicon glyphicon-arrow-left' %>
+
+        <%= f.submit nil, :class => 'btn btn-primary' %>
+      </div> <!-- /row -->
+    <% end %>
+    
+  <% end %>
+
+</div> <!--/col-sm-11-->

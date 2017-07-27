@@ -5,6 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+ruby '2.4.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.2'
@@ -74,6 +75,8 @@ gem 'pundit'
 gem 'carrierwave', '~> 1.0'
 gem 'file_validators'
 #gem 'premailer-rails'
-gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',
-                              :git => 'https://github.com/Nerian/bootstrap-datepicker-rails.git'
 gem 'activerecord-import'
+
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.14.30'

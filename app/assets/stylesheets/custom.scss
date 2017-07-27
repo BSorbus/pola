@@ -32,7 +32,7 @@ $btn-default-bg:         lighten(#BECC25, 48.5%) !default;
 // import the CSS framework
 @import "bootstrap-sprockets";
 @import "bootstrap";
-
+@import "bootstrap-datetimepicker";
 
 
 
@@ -186,6 +186,14 @@ td:hover {
   background-color: lighten(#BECC25, 48.5%)
 }
 
+
+.panel-event {
+  border-color: #ddd  
+}
+.panel-event > .panel-heading {
+  background: $brand-primary; //#1A3069;
+  color: white; 
+}
 
 .panel-ww-point {
   border-color: #ddd  

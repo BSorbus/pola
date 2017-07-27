@@ -43,6 +43,14 @@ puts "ADD ROLE: #{role.name}   TO USER: #{user.email}"
 role = CreateRoleService.new.project_observer
 puts 'CREATED ROLE: ' << role.name
 
+role = CreateRoleService.new.event_admin
+puts 'CREATED ROLE: ' << role.name
+user.roles << role
+puts "ADD ROLE: #{role.name}   TO USER: #{user.email}"
+
+role = CreateRoleService.new.event_observer
+puts 'CREATED ROLE: ' << role.name
+
 
 role = CreateRoleService.new.accessorization_manager
 puts 'CREATED ROLE: ' << role.name
@@ -80,6 +88,10 @@ puts 'CREATED SIMPLE USER: ' << user.email
 
 # Simple User 6
 user = CreateAdminService.new.call_simple('bogdan.jarzab@uke.gov.pl', 'Bogdan Jarząb', '1qazXSW@', 'Tel. 601-333-456')
+puts 'CREATED SIMPLE USER: ' << user.email
+
+# Simple User 7
+user = CreateAdminService.new.call_simple('andrzej.kaczor@uke.gov.pl', 'Andrzej Kaczor', '1qazXSW@', 'Tel. 601-333-456')
 puts 'CREATED SIMPLE USER: ' << user.email
 
 

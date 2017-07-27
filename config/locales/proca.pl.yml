@@ -41,7 +41,9 @@ pl:
       customer: 'Wnioskodawca'
       attachment: 'Załącznik'
       point_file: 'Plik Punktów Adresowych'
-      point: 'Punkt Adresowy'
+      ww_point: 'Punkt Adresowy'
+      zs_point: 'Węzeł'
+      event: 'Zdarzenie/Zadanie'
     attributes:
       user:
         name: 'Imię i Nazwisko'
@@ -103,6 +105,20 @@ pl:
         oi_8: 'Liczba adresów jednostek oświatowych'
         oi_9: 'w tym liczba adresów jednostek oświatowych „A”'
         oi_10: 'Maksymalna kwota dofinansowania dla obszaru interwencji'
+        dp_2: 'Nazwa'
+        dp_3: 'NIP'
+        dp_4: 'RPT'
+        dp_5: 'Miejscowość'
+        dp_6: 'Ulica'
+        dp_7: 'Nr porządkowy'
+        dp_8: 'Kod pocztowy'
+      event:
+        title: 'Tytuł'
+        all_day: 'Wydarzenie całodniowe'
+        start_date: 'Początek'
+        end_date: 'Koniec'
+        url_action: 'Url'
+        color: 'Kolor'
   pages:
     home: 'Główna'
     help: 'Pomoc'
@@ -198,6 +214,15 @@ pl:
         title: 'Nowy Punkt WW - Własny/Współdzielony węzeł telekomunikacyjny'
       edit:
         title: 'Edycja -> Punktu WW - Własny/Współdzielony węzeł telekomunikacyjny'
+    event:
+      index:
+        title: 'Zdarzenia/Zadania'
+      show:
+        title: 'Zdarzenie/Zadanie'
+      new:
+        title: 'Nowe Zdarzenie/Zadanie'
+      edit:
+        title: 'Edycja -> Zdarzenie/Zadanie'
   pundit:
     default: ' BRAK UPRAWNIEŃ: Nie można wykonać tej czynności!'
     work_policy:
@@ -237,6 +262,12 @@ pl:
       user_show?: ' BRAK UPRAWNIEŃ: Nie możesz pobierać załączników do użytkownika!'
       user_create?: ' BRAK UPRAWNIEŃ: Nie możesz zapisywać załączników do użytkownika!'
       user_destroy?: ' BRAK UPRAWNIEŃ: Nie możesz usuwać załączników do użytkownika!'
+    event_policy:
+      index?: ' BRAK UPRAWNIEŃ: Nie możesz wyświetlać listy zdarzeń/zadań!'
+      show?: ' BRAK UPRAWNIEŃ: Nie możesz wyświetlać zdarzenia/zadania!'
+      update?: ' BRAK UPRAWNIEŃ: Nie możesz edytować zdarzenia/zadania!'
+      create?: ' BRAK UPRAWNIEŃ: Nie możesz tworzyć zdarzeń/zadań!'
+      destroy?: ' BRAK UPRAWNIEŃ: Nie możesz usuwać zdarzeń/zadań!'
   helpers:
     actions: "Akcje"
     links:

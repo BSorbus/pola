@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :zs_points
-  resources :ww_points
+  resources :events
   devise_for :users, controllers: {
     confirmations: 'users/confirmations',
     passwords: 'users/passwords',
@@ -48,6 +47,9 @@ Rails.application.routes.draw do
   get 'static_pages/help'
 
   resources :attachments, only: [:show, :destroy]
+
+  resources :zs_points
+  resources :ww_points
 
 
 end
