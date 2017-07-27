@@ -7,40 +7,55 @@
   <%= form_errors_for @event %>
 
   <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-6">
       <div class="row">
 
-        <div class="form-group col-sm-8">
+        <div class="form-group col-sm-12">
           <p><strong><%= Event.human_attribute_name(:title) %></strong></p>
           <%= @event.title %>
         </div>
-        <div class="form-group col-sm-4">
+
+        <div class="form-group col-sm-6">
+          <p><strong><%= Event.human_attribute_name(:status) %></strong></p>
+          <%= enum_l(@event, :status) %>
+        </div>
+
+        <div class="form-group col-sm-6">
           <p><strong><%= Event.human_attribute_name(:all_day) %></strong></p>
-          <%= @event.all_day? ? 'Tak' : 'Nie' %>
+          <%= t @event.all_day %>
         </div>
 
       </div>  <!-- /row -->
-    </div>  <!-- /col-sm-12 -->
-  </div>  <!-- /row --> 
+    </div>  <!-- /col-sm-6 -->
+
+    <div class="col-sm-6">
+      <div class="row">
+        <div class="form-group col-sm-12">
+          <p><strong><%= Event.human_attribute_name(:note) %></strong></p>
+          <%= @event.note.gsub("\r\n", "<br>").html_safe %> 
+        </div>
+      </div>
+    </div> <!--/col-sm-6 -->
+  </div>  <!-- /row -->
 
   <div class="row">
     <div class="col-sm-12">
 
       <div class="row">
-        <div class="form-group col-sm-4">
+        <div class="form-group col-sm-3">
           <p><strong><%= Event.human_attribute_name(:start_date) %></strong></p>
           <%= @event.start_date.present? ? @event.start_date.strftime("%Y-%m-%d %H:%M") : '' %>
         </div>
 
-        <div class="form-group col-sm-4">
+        <div class="form-group col-sm-3">
           <p><strong><%= Event.human_attribute_name(:end_date) %></strong></p>
           <%= @event.end_date.present? ? @event.end_date.strftime("%Y-%m-%d %H:%M") : '' %>
         </div>
 
-        <div class="form-group col-sm-4">
-          <p><strong><%= Event.human_attribute_name(:color) %></strong></p>
-          <%= @event.color %>
-        </div>         
+        <div class="form-group col-sm-6">
+          <p><strong><%= Event.human_attribute_name(:project_id) %></strong></p>
+          <%= @event.project.try(:number_as_link) %>
+        </div>
 
       </div>
 

@@ -32,6 +32,8 @@
 en:
   'true': 'True'
   'false': 'False'
+  'True': 'True'
+  'False': 'False'
   activerecord:
     errors:
       messages:

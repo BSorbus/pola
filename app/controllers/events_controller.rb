@@ -2,6 +2,17 @@ class EventsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
+
+  def send_status
+    event = Event.find(params[:id])
+    params[:users_ids].each do |i|
+      user = User.find(i)
+      StatusMailer.event_status_email(user, event).deliver_now
+    end
+    #flash[:success] = t('activerecord.successfull.messages.created', data: @event.fullname)
+    redirect_to event, notice: "Email status about \"#{event.title}\" was successfully sent."
+  end
+
   # GET /events
   # GET /events.json
   def index
@@ -21,7 +32,6 @@ class EventsController < ApplicationController
     @event.all_day = true
     @event.start_date = Time.zone.now
     @event.end_date = Time.zone.now
-    authorize :event, :new?
   end
 
   # GET /events/1/edit
@@ -84,6 +94,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:title, :all_day, :start_date, :end_date, :color, :url_action)
+      params.require(:event).permit(:title, :all_day, :start_date, :end_date, :color, :status, :note, :project_id, accessorizations_attributes: [:id, :event_id, :user_id, :role_id, :_destroy])
     end
 end

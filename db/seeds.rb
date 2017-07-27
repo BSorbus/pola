@@ -58,10 +58,10 @@ puts 'CREATED ROLE: ' << role.name
 role = CreateRoleService.new.accessorization_observer
 puts 'CREATED ROLE: ' << role.name
 
-role = CreateRoleService.new.role_for_projects_publisher
+role = CreateRoleService.new.role_for_event_observer
 puts 'CREATED ROLE: ' << role.name
 
-role = CreateRoleService.new.role_for_projects_writer
+role = CreateRoleService.new.role_for_event_performer
 puts 'CREATED ROLE: ' << role.name
 
 
@@ -136,40 +136,94 @@ puts 'CREATED CUSTOMER: ' << customer4.name
 
 
 # example projects
-project = Project.create( number: '1/2017', 
+project1 = Project.create( number: '1/2017', 
                           registration: Time.zone.today - 5.days, 
-                          deadline: Time.zone.today + 11.weeks, 
                           project_status: project_status1, 
                           customer: customer1)
-puts 'CREATED SIMPLE PROJECT: ' << project.number
+puts 'CREATED SIMPLE PROJECT: ' << project1.number
 
-project = Project.create( number: '2/2017', 
+project2 = Project.create( number: '2/2017', 
                           registration: Time.zone.today - 5.days, 
-                          deadline: Time.zone.today + 12.weeks, 
                           project_status: project_status2, 
                           customer: customer2)
-puts 'CREATED SIMPLE PROJECT: ' << project.number
+puts 'CREATED SIMPLE PROJECT: ' << project2.number
 
-project = Project.create( number: '3/2017', 
+project3 = Project.create( number: '3/2017', 
                           registration: Time.zone.today - 3.days, 
-                          deadline: Time.zone.today + 13.weeks, 
                           project_status: project_status2, 
                           customer: customer2)
-puts 'CREATED SIMPLE PROJECT: ' << project.number
+puts 'CREATED SIMPLE PROJECT: ' << project3.number
 
-project = Project.create( number: '4/2017', 
+project4 = Project.create( number: '4/2017', 
                           registration: Time.zone.today - 2.days, 
-                          deadline: Time.zone.today + 14.weeks, 
                           project_status: project_status2, 
                           customer: customer3)
-puts 'CREATED SIMPLE PROJECT: ' << project.number
+puts 'CREATED SIMPLE PROJECT: ' << project4.number
 
-project = Project.create( number: '5/2017', 
+project5 = Project.create( number: '5/2017', 
                           registration: Time.zone.today, 
-                          deadline: Time.zone.today + 15.weeks, 
                           project_status: project_status3, 
                           customer: customer4)
-puts 'CREATED SIMPLE PROJECT: ' << project.number
+puts 'CREATED SIMPLE PROJECT: ' << project5.number
+
+
+
+# example events
+event1 = Event.create( title: 'Ocena merytoryczna II stopnia - 1/2017', 
+                      all_day: true, 
+                      start_date: Time.zone.today + 2.weeks, 
+                      end_date: Time.zone.today + 2.weeks, 
+                      note: "",
+                      status: :verification, 
+                      project: project1)
+puts 'CREATED SIMPLE EVENT: ' << event1.title
+
+event2 = Event.create( title: 'Ocena merytoryczna II stopnia - 2/2017', 
+                      all_day: true, 
+                      start_date: Time.zone.today + 2.weeks, 
+                      end_date: Time.zone.today + 2.weeks, 
+                      note: "", 
+                      status: :closed, 
+                      project: project2)
+puts 'CREATED SIMPLE EVENT: ' << event2.title
+
+event3 = Event.create( title: 'Ocena merytoryczna II stopnia - 3/2017', 
+                      all_day: true, 
+                      start_date: Time.zone.today + 14.weeks, 
+                      end_date: Time.zone.today + 14.weeks, 
+                      note: "", 
+                      status: :opened, 
+                      project: project3)
+puts 'CREATED SIMPLE EVENT: ' << event3.title
+
+event4 = Event.create( title: 'Ocena merytoryczna II stopnia - 4/2017', 
+                      all_day: true, 
+                      start_date: Time.zone.today + 15.weeks, 
+                      end_date: Time.zone.today + 15.weeks, 
+                      note: "", 
+                      status: :verification, 
+                      project: project4)
+puts 'CREATED SIMPLE EVENT: ' << event4.title
+
+event5 = Event.create( title: 'Ocena merytoryczna II stopnia - 5/2017', 
+                      all_day: true, 
+                      start_date: Time.zone.today + 15.weeks, 
+                      end_date: Time.zone.today + 15.weeks, 
+                      note: "", 
+                      status: :opened, 
+                      project: project5)
+puts 'CREATED SIMPLE EVENT: ' << event5.title
+
+
+event6 = Event.create( title: 'Ocena merytorycznej II stopnia po proteście - 2/2017', 
+                      all_day: true, 
+                      start_date: Time.zone.today + 17.weeks, 
+                      end_date: Time.zone.today + 17.weeks, 
+                      note: "", 
+                      status: :opened, 
+                      project: project2)
+puts 'CREATED SIMPLE EVENT: ' << event6.title
+
 
 
 # accessorizations
@@ -179,37 +233,33 @@ simple3 = User.find_by(email: 'mariusz.krupa@uke.gov.pl')
 simple4 = User.find_by(email: 'marcin.dudek@uke.gov.pl')
 simple5 = User.find_by(email: 'piotr.majewski@uke.gov.pl')
 
-writer = Role.find_by(name: 'Opiniujący')
-publisher = Role.find_by(name: 'Opiniujący i Publikujący')
+observer = Role.find_by(name: 'Obserwator')
+performer = Role.find_by(name: 'Wykonawca')
 
-project = Project.find_by(number: '1/2017')
-a = project.accessorizations.create(user: simple1, role: publisher)
-puts "ADD #{a.user.email} TO #{a.project.number} AS #{a.role.name}"
-a = project.accessorizations.create(user: simple2, role: writer)
-puts "ADD #{a.user.email} TO #{a.project.number} AS #{a.role.name}"
-a = project.accessorizations.create(user: simple3, role: writer)
-puts "ADD #{a.user.email} TO #{a.project.number} AS #{a.role.name}"
+a = event1.accessorizations.create(user: simple1, role: performer)
+puts "ADD #{a.user.name} TO #{a.event.title} AS #{a.role.name}"
+a = event1.accessorizations.create(user: simple2, role: observer)
+puts "ADD #{a.user.name} TO #{a.event.title} AS #{a.role.name}"
+a = event1.accessorizations.create(user: simple3, role: observer)
+puts "ADD #{a.user.name} TO #{a.event.title} AS #{a.role.name}"
 
-project = Project.find_by(number: '2/2017')
-a = project.accessorizations.create(user: simple1, role: publisher)
-puts "ADD #{a.user.email} TO #{a.project.number} AS #{a.role.name}"
-a = project.accessorizations.create(user: simple2, role: writer)
-puts "ADD #{a.user.email} TO #{a.project.number} AS #{a.role.name}"
-a = project.accessorizations.create(user: simple3, role: writer)
-puts "ADD #{a.user.email} TO #{a.project.number} AS #{a.role.name}"
+a = event2.accessorizations.create(user: simple1, role: performer)
+puts "ADD #{a.user.name} TO #{a.event.title} AS #{a.role.name}"
+a = event2.accessorizations.create(user: simple2, role: observer)
+puts "ADD #{a.user.name} TO #{a.event.title} AS #{a.role.name}"
+a = event2.accessorizations.create(user: simple3, role: observer)
+puts "ADD #{a.user.name} TO #{a.event.title} AS #{a.role.name}"
 
-project = Project.find_by(number: '3/2017')
-a = project.accessorizations.create(user: simple4, role: publisher)
-puts "ADD #{a.user.email} TO #{a.project.number} AS #{a.role.name}"
-a = project.accessorizations.create(user: simple1, role: writer)
-puts "ADD #{a.user.email} TO #{a.project.number} AS #{a.role.name}"
-a = project.accessorizations.create(user: simple2, role: writer)
-puts "ADD #{a.user.email} TO #{a.project.number} AS #{a.role.name}"
+a = event3.accessorizations.create(user: simple4, role: performer)
+puts "ADD #{a.user.name} TO #{a.event.title} AS #{a.role.name}"
+a = event3.accessorizations.create(user: simple1, role: observer)
+puts "ADD #{a.user.name} TO #{a.event.title} AS #{a.role.name}"
+a = event3.accessorizations.create(user: simple2, role: observer)
+puts "ADD #{a.user.name} TO #{a.event.title} AS #{a.role.name}"
 
-project = Project.find_by(number: '4/2017')
-a = project.accessorizations.create(user: simple3, role: publisher)
-puts "ADD #{a.user.email} TO #{a.project.number} AS #{a.role.name}"
-a = project.accessorizations.create(user: simple4, role: writer)
-puts "ADD #{a.user.email} TO #{a.project.number} AS #{a.role.name}"
-a = project.accessorizations.create(user: simple5, role: writer)
-puts "ADD #{a.user.email} TO #{a.project.number} AS #{a.role.name}"
+a = event4.accessorizations.create(user: simple3, role: performer)
+puts "ADD #{a.user.name} TO #{a.event.title} AS #{a.role.name}"
+a = event4.accessorizations.create(user: simple4, role: observer)
+puts "ADD #{a.user.name} TO #{a.event.title} AS #{a.role.name}"
+a = event4.accessorizations.create(user: simple5, role: observer)
+puts "ADD #{a.user.name} TO #{a.event.title} AS #{a.role.name}"

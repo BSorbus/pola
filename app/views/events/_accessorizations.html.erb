@@ -8,7 +8,7 @@
       </tr>
     <thead>
     <tbody>
-      <% Accessorization.includes(:user, :project).where(project: @project).order('users.name').each do |accessorization| %>
+      <% Accessorization.includes(:user, :event).where(event: @event).order('users.name').each do |accessorization| %>
         <tr>
           <td>
             <%= accessorization.user.try(:name_as_link) %>
@@ -18,7 +18,7 @@
           </td>
           <td>
             <%= link_to ' ',
-                send_status_project_path(id: @project.id, users_ids: [accessorization.user_id] ), 
+                send_status_event_path(id: @event.id, users_ids: [accessorization.user_id] ), 
                 data: { confirm: t('helpers.links.confirm_send_email', data: accessorization.user.fullname) }, 
                 class: "glyphicon glyphicon-envelope", title: t('tooltip.send_email'), rel: 'tooltip' %>
           </td>

@@ -1,15 +1,15 @@
 class AccessorizationsDatatable < AjaxDatatablesRails::Base
 
-  def_delegators :@view, :link_to, :project_path
+  def_delegators :@view, :link_to, :event_path, :project_path
 
   def view_columns
     @view_columns ||= {
-      id:         { source: "Project.id", cond: :eq, searchable: false, orderable: false },
-      name:       { source: "Project.number", cond: :like, searchable: true, orderable: true },
+      id:         { source: "Event.id", cond: :eq, searchable: false, orderable: false },
+      title:      { source: "Event.title", cond: :like, searchable: true, orderable: true },
+      end_date:   { source: "Event.end_date", cond: :like, searchable: true, orderable: true },
+      project:    { source: "Project.number", cond: :like, searchable: true, orderable: true },
       status:     { source: "ProjectStatus.name", cond: :like, searchable: true, orderable: true },
-      deadline:   { source: "Project.deadline", cond: :like, searchable: true, orderable: true },
-      customer:   { source: "Customer.name", cond: :like, searchable: true, orderable: true },
-      flat:       { source: "Project.id", cond: filter_custom_column_condition }
+      flat:       { source: "Event.id", cond: filter_custom_column_condition }
     }
   end
 
@@ -17,10 +17,11 @@ class AccessorizationsDatatable < AjaxDatatablesRails::Base
     records.map do |record|
       {
         id:         record.id,
-        name:       link_to(record.number, project_path(record.id)),
-        status:     record.project_status.try(:name),
-        deadline:   record.try(:deadline),
-        customer:   record.customer.try(:name_as_link),
+        title:      link_to(record.title, event_path(record.id)),
+        end_date:   record.end_date.present? ? record.end_date.strftime("%Y-%m-%d %H:%M") : '' ,
+#        project:    record.project.try(:number_as_link),
+        project:    link_to(record.project.number, project_path(record.project.id)),
+        status:     record.project.project_status.try(:name),
         flat:       record.flat_assigned_users
       }
     end
@@ -30,11 +31,11 @@ class AccessorizationsDatatable < AjaxDatatablesRails::Base
 
   def get_raw_records
     if options[:only_for_current_user_id].present? 
-      Project.joins(:accessorizations, :customer).includes(:project_status).references(:project_status, :customer, :accessorizations).where(accessorizations: {user_id: options[:only_for_current_user_id]}).all
+      Event.joins(:accessorizations, project: [:project_status]).references(:accessorizations, :project, :project_status).where(accessorizations: {user_id: options[:only_for_current_user_id]}).all
     elsif options[:only_for_current_role_id].present?
-      Project.joins(:accessorizations, :customer).includes(:project_status).references(:project_status, :customer, :accessorizations).where(accessorizations: {role_id: options[:only_for_current_role_id]}).all
+      Event.joins(:accessorizations, project: [:project_status]).references(:accessorizations, :project, :project_status).where(accessorizations: {role_id: options[:only_for_current_role_id]}).all
     else
-      Project.joins(:accessorizations, :customer).includes(:project_status).references(:project_status, :customer, :accessorizations).all
+      Event.joins(:accessorizations, project: [:project_status]).references(:accessorizations, :project, :project_status).all
     end
   end
 
@@ -42,12 +43,12 @@ class AccessorizationsDatatable < AjaxDatatablesRails::Base
     #->(column) { ::Arel::Nodes::SqlLiteral.new(column.field.to_s).matches("#{ column.search.value }%") }
     ->(column) {
         sanitize_search_text = Loofah.fragment(column).text;
-        sql_str = "(projects.id IN (" +
-          "SELECT accessorizations.project_id FROM accessorizations, users WHERE " + 
+        sql_str = "(events.id IN (" +
+          "SELECT accessorizations.event_id FROM accessorizations, users WHERE " + 
           "accessorizations.user_id = users.id AND " + 
           "users.name ilike '%#{sanitize_search_text}%' " +
           "UNION " +
-          "SELECT accessorizations.project_id FROM accessorizations, roles WHERE " + 
+          "SELECT accessorizations.event_id FROM accessorizations, roles WHERE " + 
           "accessorizations.role_id = roles.id AND " + 
           "roles.name ilike '%#{sanitize_search_text}%' " +
           "))";

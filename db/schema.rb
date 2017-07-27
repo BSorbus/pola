@@ -16,15 +16,15 @@ ActiveRecord::Schema.define(version: 20170726212519) do
   enable_extension "plpgsql"
 
   create_table "accessorizations", force: :cascade do |t|
-    t.integer "project_id"
+    t.integer "event_id"
     t.integer "user_id"
     t.integer "role_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["project_id", "user_id"], name: "index_accessorizations_on_project_id_and_user_id", unique: true
-    t.index ["project_id"], name: "index_accessorizations_on_project_id"
+    t.index ["event_id", "user_id"], name: "index_accessorizations_on_event_id_and_user_id", unique: true
+    t.index ["event_id"], name: "index_accessorizations_on_event_id"
     t.index ["role_id"], name: "index_accessorizations_on_role_id"
-    t.index ["user_id", "project_id"], name: "index_accessorizations_on_user_id_and_project_id", unique: true
+    t.index ["user_id", "event_id"], name: "index_accessorizations_on_user_id_and_event_id", unique: true
     t.index ["user_id"], name: "index_accessorizations_on_user_id"
   end
 
@@ -52,10 +52,16 @@ ActiveRecord::Schema.define(version: 20170726212519) do
     t.boolean "all_day"
     t.datetime "start_date"
     t.datetime "end_date"
-    t.string "color"
-    t.string "url_action"
+    t.integer "status"
+    t.integer "project_id"
+    t.text "note", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["end_date"], name: "index_events_on_end_date"
+    t.index ["project_id"], name: "index_events_on_project_id"
+    t.index ["start_date"], name: "index_events_on_start_date"
+    t.index ["status"], name: "index_events_on_status"
+    t.index ["title"], name: "index_events_on_title"
   end
 
   create_table "point_files", force: :cascade do |t|
@@ -103,7 +109,6 @@ ActiveRecord::Schema.define(version: 20170726212519) do
   create_table "projects", force: :cascade do |t|
     t.string "number"
     t.date "registration"
-    t.date "deadline"
     t.text "note", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

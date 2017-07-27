@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :events
   devise_for :users, controllers: {
     confirmations: 'users/confirmations',
     passwords: 'users/passwords',
@@ -42,6 +41,13 @@ Rails.application.routes.draw do
     get 'datatables_index_user', on: :collection # Displays accessorizations for showed user
     get 'datatables_index_role', on: :collection # Displays accessorizations for showed role
   end    
+
+  resources :events do
+    get 'send_status', on: :member 
+  end
+
+
+
   root 'static_pages#home'
   get 'static_pages/home'
   get 'static_pages/help'

@@ -67,17 +67,16 @@ en:
         special: 'System?'
         note: 'Note'
       accessorization:
-        project_id: 'Project'
+        event_id: 'Project'
         user_id: 'User'
         role_id: 'Role'
       project:
         number: 'Number'
         registration: 'Registration'
-        deadline: 'Deadline'
         note: 'Note'
         project_status_id: 'Status'
         customer_id: 'Customer'
-        flat_assigned_users: 'Assigned users'
+        flat_assigned_events: 'Events'
       project_status:
         name: 'Name'
       customer:
@@ -118,8 +117,13 @@ en:
         all_day: 'All day'
         start_date: 'Start'
         end_date: 'End'
-        url_action: 'Url'
-        color: 'Color'
+        project_id: 'Project'
+        note: 'Note'
+        statuses:
+          opened: 'Open'
+          verification: 'Verification'
+          closed: 'Close'
+        flat_assigned_users: 'Assigned users'
   pages:
     home: 'Home'
     help: 'Help'

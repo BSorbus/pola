@@ -10,48 +10,67 @@
 
     <% if policy(:event).create? %> 
       <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-6">
           <div class="row">
 
-            <div class="form-group col-sm-8">
+            <div class="form-group col-sm-12">
               <%= f.label :title, class: 'control-label' %>
               <%= f.text_field :title, autofocus: true, class: 'form-control input-sm', disabled: input_disabled %>
             </div>
 
-            <div class="form-group col-sm-4">
+            <div class="form-group col-sm-6">
+              <%= f.label :status, class: 'control-label' %>
+              <%= f.select :status, 
+                    enum_options_for_select(Event, :status),
+#                    PointFile.statuses.keys.map {|status| [status.titleize, status]},
+                    { include_blank: false }, 
+                    { autofocus: true, class: 'form-control input-sm', disabled: input_disabled } %>
+            </div>
+
+            <div class="form-group col-sm-6">
               <%= f.label :all_day, class: 'control-label' %><br>
               <%= f.radio_button(:all_day, false, disabled: input_disabled) %>
-              <%= f.label(:all_day_false, "Nie" ) %>
+              <%= f.label(:all_day_false, t("false") ) %>
               <%= f.radio_button(:all_day, true, disabled: input_disabled) %>
-              <%= f.label(:all_day_true, "Tak" ) %>
-
-
+              <%= f.label(:all_day_true, t("true") ) %>
             </div>
 
           </div>  <!-- /row -->
-        </div>  <!-- /col-sm-12 -->
+        </div>  <!-- /col-sm-6 -->
 
+        <div class="col-sm-6">
+          <div class="row">
+            <div class="form-group col-sm-12">
+              <%= f.label :note, class: 'control-label' %>
+              <%= f.text_area :note, :rows => 5, class: 'form-control input-sm', disabled: input_disabled %>
+            </div>
+          </div>
+        </div> <!--/col-sm-6 -->
+      </div>  <!-- /row -->
 
+      <div class="row">
         <div class="col-sm-12">
           <div class="row">
-            <div class="form-group col-sm-4">
+            <div class="form-group col-sm-3">
               <%= f.label :start_date, class: 'control-label' %>
               <%= f.text_field :start_date, class: 'form-control input-sm datetimepicker', 
                                 disabled: input_disabled %>
             </div>
 
-            <div class="form-group col-sm-4">
+            <div class="form-group col-sm-3">
               <%= f.label :end_date, class: 'control-label' %>
               <%= f.text_field :end_date, class: 'form-control input-sm datetimepicker', 
                                 disabled: input_disabled %>
             </div>
 
-            <div class="form-group col-sm-4">
-              <%= f.label :color, class: 'control-label' %>
-              <%= f.select :color, 
-                    options_for_select(Event::EVENT_COLORS, selected: event.color),
-                    { include_blank: true }, 
-                    { autofocus: false, class: 'form-control input-sm', disabled: input_disabled } %>
+            <div class="form-group col-sm-6">
+              <%= f.label :project_id, class: "control-label" %>
+              <%= f.hidden_field :project_id,
+                                class: "form-control input-sm select2project", 
+                                placeholder: t('placeholder.select2project'),
+                                style: "width:100%",
+                                disabled: input_disabled %>
+              <small class="help-block"><%= t('help_block_text.select2project') %></small>
             </div>
 
           </div> <!-- /row -->
@@ -59,6 +78,48 @@
 
       </div>  <!-- /row -->
     <% end %>
+
+
+    <hr>
+
+    <div class="panel-group" id="myaccordion">
+
+      <% if true %> <!-- #policy(:accessorization).update? %> -->
+        <!-- Roles.whers(special: false)-->
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="panel panel-accessorization">
+              <div class="panel-heading">
+                <div class="panel-title">
+                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#myaccordion" href="#collapse_project_accessorizations" >
+                    <span class="glyphicon glyphicon-book">&nbsp;<%= t "pages.accessorization.event_show" %></span>
+                    <i class="indicator glyphicon glyphicon-chevron-right pull-right"></i>
+                  </a>
+                </div>
+              </div>
+              <div id="collapse_project_accessorizations" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <div class="col-sm-12">
+
+                    <div class='accessorizations clearfix'>
+                      <div class='accessorizations-sub-form'>
+                        <%= f.fields_for :accessorizations do |accessorization_form|  %>
+                          <%= render 'accessorization_fields', f: accessorization_form %> 
+                        <% end %>
+                      </div>
+                      <%= link_to_add_fields( t("helpers.links.link_to_add_fields_accessorization"), f, :accessorizations) %>
+                    </div>
+
+                  </div> <!--/class="col-sm-12" -->
+                </div> <!-- /panel-body -->
+              </div> <!-- /id="collapse_project_accessorizations" -->
+            </div> <!-- /panel -->
+          </div> <!-- /col-sm-11 col-sm-offset-1 -->
+        </div> <!-- /row -->
+      <% end %>
+
+    </div> <!-- /class="panel-group" id="myaccordion" -->
+
 
 
     <hr class="hr-without-top-margin">

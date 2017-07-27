@@ -66,17 +66,16 @@ pl:
         special: 'Systemowa?'
         note: 'Uwagi'
       accessorization:
-        project_id: 'Projekt'
+        event_id: 'Zadanie'
         user_id: 'Użytkownik'
         role_id: 'Rola'
       project:
         number: 'Numer'
         registration: 'Rejestracja'
-        deadline: 'Termin realizacji'
         note: 'Uwagi'
         project_status_id: 'Status'
         customer_id: 'Wnioskodawca'
-        flat_assigned_users: 'Użytkownicy procedujący'
+        flat_assigned_events: 'Zadania'
       project_status:
         name: 'Nazwa'
       customer:
@@ -117,8 +116,13 @@ pl:
         all_day: 'Wydarzenie całodniowe'
         start_date: 'Początek'
         end_date: 'Koniec'
-        url_action: 'Url'
-        color: 'Kolor'
+        project_id: 'Projekt'
+        note: 'Uwagi'
+        statuses:
+          opened: 'Otwarte'
+          verification: 'Weryfikacja'
+          closed: 'Zamknięte'
+        flat_assigned_users: 'Użytkownicy realizujący'
   pages:
     home: 'Główna'
     help: 'Pomoc'
@@ -132,10 +136,10 @@ pl:
       links_www3_title: 'Opis projektu'
       links_www3: 'https://mc.gov.pl/projekty/polska-cyfrowa-po-pc-2014-2020/opis-projektu'
     accessorization:
-      user_show: 'Uczestniczy w projektach'
-      project_show: 'Użytkownicy procedujący'
+      user_show: 'Zadania'
+      event_show: 'Użytkownicy realizujący zadanie'
       customer_show: 'Projekty'
-      role_show: 'Wykorzystana w projektach'
+      role_show: 'Zadania'
     role:
       index:
         title: 'Role'

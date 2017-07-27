@@ -29,7 +29,7 @@ class User < ApplicationRecord
   has_and_belongs_to_many :roles
 
   has_many :accessorizations, dependent: :nullify, index_errors: true
-  has_many :accesses_projects, :through => :accessorizations, source: :project
+  has_many :accesses_events, :through => :accessorizations, source: :event
 
   has_many :attachments, as: :attachmenable
 
@@ -43,14 +43,14 @@ class User < ApplicationRecord
   def has_links
     analize_value = true
     if self.accessorizations.any? 
-     errors.add(:base, 'Nie można usunąć konta "' + self.try(:fullname) + '" do którego są przypisane Projekty.')
+     errors.add(:base, 'Nie można usunąć konta "' + self.try(:fullname) + '" do którego są przypisane Zadania.')
      analize_value = false
     end
     throw :abort unless analize_value 
   end
 
-  def flat_assigned_projects
-    Accessorization.includes(:project, :role).where(user_id: self.id).order("projects.number").map {|row| "#{row.project.try(:number_as_link)} - #{row.role.try(:name_as_link)}" }.join('<br>').html_safe
+  def flat_assigned_events
+    Accessorization.includes(:event, :role).where(user_id: self.id).order("events.date_start").map {|row| "#{row.event.try(:title_as_link)} - #{row.role.try(:name_as_link)}" }.join('<br>').html_safe
   end
 
   def fullname

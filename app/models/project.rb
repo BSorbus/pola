@@ -4,16 +4,13 @@ class Project < ApplicationRecord
   include  ActionView::Helpers::SanitizeHelper
 
   # relations
-  has_many :accessorizations, dependent: :destroy, index_errors: true
-  has_many :accesses_users, :through => :accessorizations, source: :user
   belongs_to :project_status
   belongs_to :customer
   has_many :point_files, dependent: :destroy
   has_one :last_active_point_file, -> { where(status: :active).order(load_date: :desc) },
     class_name: 'PointFile', foreign_key: :project_id
 
-
-
+  has_many :events, dependent: :destroy
   has_many :attachments, as: :attachmenable
 
   # validates
@@ -21,25 +18,20 @@ class Project < ApplicationRecord
                     length: { in: 1..100 },
                     :uniqueness => { :case_sensitive => false }
 
-  accepts_nested_attributes_for :accessorizations, reject_if: :all_blank, allow_destroy: true
+  validates :customer_id, presence: true
 
-  def flat_assigned_users
-    # 1. Without sort by user.name
-    # self.accessorizations.order(:id).flat_map {|row| row.link_assigned_user_as }.join('<br>').html_safe
- 
-    # 2. With sort by user.name, but OUTER LEFT join.
-    #Accessorization.includes(:user, :role).where(project_id: self.id).order("users.name").map {|row| "#{row.user.present? ? row.user.name_as_link : ''} - #{row.role.present? ? row.role.name_as_link : ''}" }.join('<br>').html_safe
-
-    # 3. change {row.user.present? ? row.user.name_as_link : ''}  -> {row.user.try(:name_as_link)}
-    Accessorization.includes(:user, :role).where(project_id: self.id).order("users.name").map {|row| "#{row.user.try(:name_as_link)} - #{row.role.try(:name_as_link)}" }.join('<br>').html_safe
-  end
 
   def fullname
-    "#{self.number} (#{self.project_status.name})"
+    "#{self.number}"
   end
 
   def number_as_link
     "<a href=#{url_helpers.project_path(self)}>#{self.fullname}</a>".html_safe
+  end
+
+  def flat_assigned_events
+    # 1. Without sort by user.name
+    self.events.order(end_date: :desc).flat_map {|row| "#{row.try(:title_as_link)}" }.join('<br>').html_safe
   end
 
   # Scope for select2: "project_select"

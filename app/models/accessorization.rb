@@ -1,13 +1,13 @@
 class Accessorization < ApplicationRecord
 
   # relations
-  belongs_to :project
+  belongs_to :event
   belongs_to :user
   belongs_to :role #, -> { only_not_special }
 
   # validates
   validates :user_id, presence: true,  
-                      uniqueness: { :scope => [:project_id], :message => "jest już przypisany do tego projektu" }  
+                      uniqueness: { scope: [:event_id], :message => "jest już przypisany do tego zadania" }  
 
   #validates_presence_of :project
   #validates_presence_of :user

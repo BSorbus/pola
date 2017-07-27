@@ -12,6 +12,15 @@ class StatusMailer < ActionMailer::Base
     mail(to: user.email, subject: "PROCA - projekt #{@project.try(:number)} (#{@project.customer.try(:name)})" )
   end
 
+  def event_status_email(user, event)
+    @url  = Rails.application.secrets.domain_name
+    @user = user
+    @event = event
+    attachments.inline['logo.jpg'] = File.read("app/assets/images/proca.png")
+
+    mail(to: user.email, subject: "PROCA - #{@event.try(:title)} (#{@event.project.try(:number)})" )
+  end
+
 end
 
 # preview
