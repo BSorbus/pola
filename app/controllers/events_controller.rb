@@ -17,7 +17,7 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     authorize :event, :index?
-    @events = Event.where(start_date: params[:start]..params[:end])
+    @events = Event.where(start_date: params[:start]..params[:end]).or(Event.where(end_date: params[:start]..params[:end]))
   end
 
   # GET /events/1

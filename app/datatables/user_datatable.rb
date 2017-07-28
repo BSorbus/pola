@@ -25,7 +25,7 @@ class UserDatatable < AjaxDatatablesRails::Base
         current_sign_in_ip: record.current_sign_in_ip,
         current_sign_in_at: record.current_sign_in_at.present? ? record.current_sign_in_at.strftime("%Y-%m-%d %H:%M:%S") : '' ,
         note:               truncate(record.note, length: 50),
-        flat:               record.try(:flat_assigned_projects)
+        flat:               record.try(:flat_assigned_events)
       }
     end
   end

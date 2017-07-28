@@ -49,8 +49,8 @@ class User < ApplicationRecord
     throw :abort unless analize_value 
   end
 
-  def flat_assigned_events
-    Accessorization.includes(:event, :role).where(user_id: self.id).order("events.date_start").map {|row| "#{row.event.try(:title_as_link)} - #{row.role.try(:name_as_link)}" }.join('<br>').html_safe
+  def flat_assigned_events 
+    Accessorization.includes(:event, :role).where(user_id: self.id).order("events.start_date").map {|row| "#{row.event.try(:title_as_link)} - #{row.role.try(:name_as_link)}" }.join('<br>').html_safe
   end
 
   def fullname

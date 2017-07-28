@@ -4,7 +4,7 @@
       <tr>
         <th class="col-sm-3"><%= Project.human_attribute_name(:number) %></th>
         <th class="col-sm-3"><%= Project.human_attribute_name(:project_status_id) %></th>
-        <th class="col-sm-6"><%= Project.human_attribute_name(:flat_assigned_users) %></th>
+        <th class="col-sm-6"><%= Project.human_attribute_name(:flat_assigned_events) %></th>
       </tr>
     <thead>
     <tbody>
@@ -17,7 +17,7 @@
             <%= project.project_status.try(:name) %>
           </td>
           <td>
-            <%= project.try(:flat_assigned_users) %>
+            <%= project.try(:flat_assigned_events) %>
           </td>
         </tr>
       <% end %>
