@@ -3,22 +3,18 @@
     <thead>
       <tr>
         <th class="col-sm-6"><%= Event.human_attribute_name(:title) %></th>
-        <th class="col-sm-2"><%= Event.human_attribute_name(:end_date) %></th>
+        <th class="col-sm-1"><%= Event.human_attribute_name(:end_date) %></th>
+        <th class="col-sm-1"><%= Event.human_attribute_name(:status) %></th>
         <th class="col-sm-3"><%= Event.human_attribute_name(:flat_assigned_users) %></th>
       </tr>
     <thead>
     <tbody>
       <% @project.events.order(end_date: :desc).each do |event| %>
         <tr>
-          <td>
-            <%= event.try(:title_as_link) %>
-          </td>
-          <td>
-            <%= event.end_date.present? ? event.end_date.strftime("%Y-%m-%d %H:%M") : '' %>
-          </td>
-          <td>
-            <%= event.try(:flat_assigned_users) %>
-          </td>
+          <td><%= event.try(:title_as_link) %></td>
+          <td><%= event.end_date.present? ? event.end_date.strftime("%Y-%m-%d %H:%M") : '' %></td>
+          <td><%= enum_l(event, :status) %></td>
+          <td><%= event.try(:flat_assigned_users) %></td>
         </tr>
       <% end %>
     </tbody>

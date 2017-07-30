@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170726212519) do
+ActiveRecord::Schema.define(version: 20170729221720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,14 @@ ActiveRecord::Schema.define(version: 20170726212519) do
     t.index ["name"], name: "index_customers_on_name"
   end
 
+  create_table "event_types", force: :cascade do |t|
+    t.string "name"
+    t.string "activities", default: [], array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_event_types_on_name"
+  end
+
   create_table "events", force: :cascade do |t|
     t.string "title"
     t.boolean "all_day"
@@ -57,7 +65,9 @@ ActiveRecord::Schema.define(version: 20170726212519) do
     t.text "note", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "event_type_id"
     t.index ["end_date"], name: "index_events_on_end_date"
+    t.index ["event_type_id"], name: "index_events_on_event_type_id"
     t.index ["project_id"], name: "index_events_on_project_id"
     t.index ["start_date"], name: "index_events_on_start_date"
     t.index ["status"], name: "index_events_on_status"
@@ -245,6 +255,7 @@ ActiveRecord::Schema.define(version: 20170726212519) do
     t.index ["zs_9"], name: "index_zs_points_on_zs_9"
   end
 
+  add_foreign_key "events", "event_types"
   add_foreign_key "point_files", "projects"
   add_foreign_key "projects", "customers"
   add_foreign_key "projects", "project_statuses"

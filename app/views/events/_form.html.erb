@@ -18,7 +18,7 @@
               <%= f.text_field :title, autofocus: true, class: 'form-control input-sm', disabled: input_disabled %>
             </div>
 
-            <div class="form-group col-sm-6">
+            <div class="form-group col-sm-12">
               <%= f.label :status, class: 'control-label' %>
               <%= f.select :status, 
                     enum_options_for_select(Event, :status),
@@ -27,13 +27,6 @@
                     { autofocus: true, class: 'form-control input-sm', disabled: input_disabled } %>
             </div>
 
-            <div class="form-group col-sm-6">
-              <%= f.label :all_day, class: 'control-label' %><br>
-              <%= f.radio_button(:all_day, false, disabled: input_disabled) %>
-              <%= f.label(:all_day_false, t("false") ) %>
-              <%= f.radio_button(:all_day, true, disabled: input_disabled) %>
-              <%= f.label(:all_day_true, t("true") ) %>
-            </div>
 
           </div>  <!-- /row -->
         </div>  <!-- /col-sm-6 -->
@@ -44,6 +37,7 @@
               <%= f.label :note, class: 'control-label' %>
               <%= f.text_area :note, :rows => 5, class: 'form-control input-sm', disabled: input_disabled %>
             </div>
+
           </div>
         </div> <!--/col-sm-6 -->
       </div>  <!-- /row -->
@@ -64,6 +58,33 @@
             </div>
 
             <div class="form-group col-sm-6">
+              <%= f.label :all_day, class: 'control-label' %><br>
+              <%= f.radio_button(:all_day, false, disabled: input_disabled) %>
+              <%= f.label(:all_day_false, t("false") ) %>
+              <%= f.radio_button(:all_day, true, disabled: input_disabled) %>
+              <%= f.label(:all_day_true, t("true") ) %>
+            </div>
+
+
+          </div> <!-- /row -->
+        </div> <!--/col-sm-12 -->
+
+      </div>  <!-- /row -->
+
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="row">
+
+            <div class="form-group col-sm-6">
+              <%= f.label :event_type_id, class: 'control-label' %>
+              <%= f.select :event_type_id, 
+                    EventType.all.order(:name).collect {|v| [ "#{v[:name]}", v[:id] ] },
+                    { include_blank: false }, 
+                    { autofocus: false, class: 'form-control input-sm', disabled: input_disabled } %>
+            </div>
+
+            <div class="form-group col-sm-6">
               <%= f.label :project_id, class: "control-label" %>
               <%= f.hidden_field :project_id,
                                 class: "form-control input-sm select2project", 
@@ -77,6 +98,9 @@
         </div> <!--/col-sm-12 -->
 
       </div>  <!-- /row -->
+
+
+
     <% end %>
 
 

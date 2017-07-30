@@ -1,2 +1,42 @@
-<h1>StaticPages#help</h1>
-<p>Find me in app/views/static_pages/help.html.erb</p>
+<div class="tab-content col-md-10">
+  <div class="tab-pane active" id="tab_a">
+    <div class="row">
+      <div class="col-sm-12 clearfix">
+        <div class="well" id='calendar'></div>
+      </div>  
+    </div>  
+  </div>
+
+  <div class="tab-pane" id="tab_b">
+    <div class="row">
+      <div class="col-sm-12 clearfix">
+        <div class="well">
+
+       <h4>Tabela</h4>
+      <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames
+          ac turpis egestas.</p>
+
+
+        </div>
+      </div>  
+    </div>  
+  </div>
+
+
+</div><!-- tab content -->
+
+<ul class="nav nav-pills nav-stacked col-md-2">
+  <li class="active"><a href="#tab_a" data-toggle="pill">Kalendarz</a></li>
+  <li><a href="#tab_b" data-toggle="pill">Tabela</a></li>
+
+
+              <br>
+              <br>
+              <br>
+              <% if policy(:event).new? %>
+                <%= link_to t('New', default: t("helpers.links.new")), new_event_path, 
+                                    :class => 'btn btn-primary glyphicon glyphicon-plus ' %> 
+              <% end %>
+
+</ul>
+

@@ -60,7 +60,7 @@ en:
         last_activity_at: 'Last activity at'
         password_changed_at: 'Password changed at'
         note: 'Note'
-        flat_assigned_projects: 'Related projects'
+        flat_assigned_events: 'Related events'
       role:
         name: 'Name'
         activities: 'Activities'
@@ -118,6 +118,7 @@ en:
         start_date: 'Start'
         end_date: 'End'
         project_id: 'Project'
+        event_type_id: 'Event type'
         note: 'Note'
         statuses:
           opened: 'Open'

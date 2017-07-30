@@ -59,7 +59,7 @@ pl:
         last_activity_at: 'Ostatnia aktywność'
         password_changed_at: 'Ostatnia zmiana hasła'
         note: 'Uwagi'
-        flat_assigned_projects: 'Powiązane projekty'
+        flat_assigned_events: 'Powiązane zadania'
       role:
         name: 'Nazwa'
         activities: 'Uprawnienia'
@@ -117,6 +117,7 @@ pl:
         start_date: 'Początek'
         end_date: 'Koniec'
         project_id: 'Projekt'
+        event_type_id: 'Typ zadania'
         note: 'Uwagi'
         statuses:
           opened: 'Otwarte'

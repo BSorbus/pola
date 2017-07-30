@@ -29,7 +29,8 @@ class User < ApplicationRecord
   has_and_belongs_to_many :roles
 
   has_many :accessorizations, dependent: :nullify, index_errors: true
-  has_many :accesses_events, :through => :accessorizations, source: :event
+  has_many :accesses_events, through: :accessorizations, source: :event
+  has_many :accesses_roles, through: :accessorizations, source: :role
 
   has_many :attachments, as: :attachmenable
 
@@ -50,7 +51,7 @@ class User < ApplicationRecord
   end
 
   def flat_assigned_events 
-    Accessorization.includes(:event, :role).where(user_id: self.id).order("events.start_date").map {|row| "#{row.event.try(:title_as_link)} - #{row.role.try(:name_as_link)}" }.join('<br>').html_safe
+    Accessorization.includes(:event, :role).where(user_id: self.id).order("events.end_date desc").map {|row| "#{row.event.try(:title_as_link)} - #{row.role.try(:name_as_link)}" }.join('<br>').html_safe
   end
 
   def fullname

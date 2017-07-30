@@ -40,7 +40,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
-    authorize @project, :index?
+    authorize @project, :show?
   end
 
   # GET /projects/new

@@ -30,7 +30,7 @@ class ProjectDatatable < AjaxDatatablesRails::Base
 
   def get_raw_records
     #Project.joins(:project_status, :customer).all
-    Project.includes(:project_status, :customer, :events).references(:project_status, :customer, :events).all
+    Project.joins(:project_status, :customer).includes(:events).references(:project_status, :customer, :events).all
   end
 
 

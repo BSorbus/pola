@@ -91,7 +91,7 @@ user = CreateAdminService.new.call_simple('bogdan.jarzab@uke.gov.pl', 'Bogdan Ja
 puts 'CREATED SIMPLE USER: ' << user.email
 
 # Simple User 7
-user = CreateAdminService.new.call_simple('andrzej.kaczor@uke.gov.pl', 'Andrzej Kaczor', '1qazXSW@', 'Tel. 601-333-456')
+user = CreateAdminService.new.call_simple('andrzej.kaczor@uke.gov.pl', 'Andrzej Kaczor', '1qazXSW@', 'Tel. 668 470 833')
 puts 'CREATED SIMPLE USER: ' << user.email
 
 
@@ -168,6 +168,16 @@ puts 'CREATED SIMPLE PROJECT: ' << project5.number
 
 
 
+event_type1 = EventType.find_or_create_by!(name: "Typ 1") do |role|
+  role.activities += %w(opiniowanie:index opiniowanie:show opiniowanie:create opiniowanie:update opiniowanie:delete)
+  role.save!
+end
+
+event_type2 = EventType.find_or_create_by!(name: "Typ 2") do |role|
+  role.activities += %w(opiniowanie_dwa:index opiniowanie_dwa:show opiniowanie_dwa:create opiniowanie_dwa:update opiniowanie_dwa:delete)
+  role.save!
+end
+
 # example events
 event1 = Event.create( title: 'Ocena merytoryczna II stopnia - 1/2017', 
                       all_day: true, 
@@ -175,6 +185,7 @@ event1 = Event.create( title: 'Ocena merytoryczna II stopnia - 1/2017',
                       end_date: Time.zone.today + 2.weeks, 
                       note: "",
                       status: :verification, 
+                      event_type: event_type1, 
                       project: project1)
 puts 'CREATED SIMPLE EVENT: ' << event1.title
 
@@ -184,6 +195,7 @@ event2 = Event.create( title: 'Ocena merytoryczna II stopnia - 2/2017',
                       end_date: Time.zone.today + 2.weeks, 
                       note: "", 
                       status: :closed, 
+                      event_type: event_type1, 
                       project: project2)
 puts 'CREATED SIMPLE EVENT: ' << event2.title
 
@@ -193,6 +205,7 @@ event3 = Event.create( title: 'Ocena merytoryczna II stopnia - 3/2017',
                       end_date: Time.zone.today + 14.weeks, 
                       note: "", 
                       status: :opened, 
+                      event_type: event_type1, 
                       project: project3)
 puts 'CREATED SIMPLE EVENT: ' << event3.title
 
@@ -202,6 +215,7 @@ event4 = Event.create( title: 'Ocena merytoryczna II stopnia - 4/2017',
                       end_date: Time.zone.today + 15.weeks, 
                       note: "", 
                       status: :verification, 
+                      event_type: event_type1, 
                       project: project4)
 puts 'CREATED SIMPLE EVENT: ' << event4.title
 
@@ -211,6 +225,7 @@ event5 = Event.create( title: 'Ocena merytoryczna II stopnia - 5/2017',
                       end_date: Time.zone.today + 15.weeks, 
                       note: "", 
                       status: :opened, 
+                      event_type: event_type1, 
                       project: project5)
 puts 'CREATED SIMPLE EVENT: ' << event5.title
 
@@ -221,6 +236,7 @@ event6 = Event.create( title: 'Ocena merytorycznej II stopnia po proteście - 2/
                       end_date: Time.zone.today + 17.weeks, 
                       note: "", 
                       status: :opened, 
+                      event_type: event_type2, 
                       project: project2)
 puts 'CREATED SIMPLE EVENT: ' << event6.title
 
@@ -232,6 +248,7 @@ simple2 = User.find_by(email: 'michal.lassa@uke.gov.pl')
 simple3 = User.find_by(email: 'mariusz.krupa@uke.gov.pl')
 simple4 = User.find_by(email: 'marcin.dudek@uke.gov.pl')
 simple5 = User.find_by(email: 'piotr.majewski@uke.gov.pl')
+simple6 = User.find_by(email: 'bogdan.jarzab@uke.gov.pl')
 
 observer = Role.find_by(name: 'Obserwator')
 performer = Role.find_by(name: 'Wykonawca')
@@ -262,4 +279,14 @@ puts "ADD #{a.user.name} TO #{a.event.title} AS #{a.role.name}"
 a = event4.accessorizations.create(user: simple4, role: observer)
 puts "ADD #{a.user.name} TO #{a.event.title} AS #{a.role.name}"
 a = event4.accessorizations.create(user: simple5, role: observer)
+puts "ADD #{a.user.name} TO #{a.event.title} AS #{a.role.name}"
+
+a = event5.accessorizations.create(user: simple3, role: performer)
+puts "ADD #{a.user.name} TO #{a.event.title} AS #{a.role.name}"
+a = event5.accessorizations.create(user: simple4, role: observer)
+puts "ADD #{a.user.name} TO #{a.event.title} AS #{a.role.name}"
+a = event5.accessorizations.create(user: simple5, role: observer)
+puts "ADD #{a.user.name} TO #{a.event.title} AS #{a.role.name}"
+
+a = event6.accessorizations.create(user: simple6, role: performer)
 puts "ADD #{a.user.name} TO #{a.event.title} AS #{a.role.name}"

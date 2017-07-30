@@ -4,7 +4,8 @@ class Role < ApplicationRecord
   # relations
   has_and_belongs_to_many :users
   has_many :accessorizations, dependent: :nullify
-  has_many :accesses_events, :through => :accessorizations, source: :event
+  has_many :accesses_events, through: :accessorizations, source: :event
+  has_many :accesses_users, through: :accessorizations, source: :user
 
   # validates
   validates :name, presence: true,

@@ -32,6 +32,8 @@ class EventsController < ApplicationController
     @event.all_day = true
     @event.start_date = Time.zone.now
     @event.end_date = Time.zone.now
+
+    authorize @event, :new?
   end
 
   # GET /events/1/edit
@@ -94,6 +96,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:title, :all_day, :start_date, :end_date, :color, :status, :note, :project_id, accessorizations_attributes: [:id, :event_id, :user_id, :role_id, :_destroy])
+      params.require(:event).permit(:title, :all_day, :start_date, :end_date, :color, :status, :note, :project_id, :event_type_id, accessorizations_attributes: [:id, :event_id, :user_id, :role_id, :_destroy])
     end
 end
