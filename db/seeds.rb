@@ -168,13 +168,13 @@ puts 'CREATED SIMPLE PROJECT: ' << project5.number
 
 
 
-event_type1 = EventType.find_or_create_by!(name: "Typ 1") do |role|
-  role.activities += %w(opiniowanie:index opiniowanie:show opiniowanie:create opiniowanie:update opiniowanie:delete)
+event_type1 = EventType.find_or_create_by!(name: "Ocena merytoryczna II stopnia") do |role|
+  role.activities += %w(opiniowanie:* project:index project:show customer:index customer:show attachment:4project_index attachment:4project_show)
   role.save!
 end
 
-event_type2 = EventType.find_or_create_by!(name: "Typ 2") do |role|
-  role.activities += %w(opiniowanie_dwa:index opiniowanie_dwa:show opiniowanie_dwa:create opiniowanie_dwa:update opiniowanie_dwa:delete)
+event_type2 = EventType.find_or_create_by!(name: "Ocena merytorycznej II stopnia po proteście") do |role|
+  role.activities += %w(opiniowanie2:* opiniowanie:index opiniowanie:show project:index project:show customer:index customer:show attachment:4project_index attachment:4project_show)
   role.save!
 end
 

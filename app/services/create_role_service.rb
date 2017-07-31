@@ -114,7 +114,7 @@ class CreateRoleService
   def role_for_event_observer
     role = Role.find_or_create_by!(name: "Obserwator") do |role|
       role.special = false
-      role.activities += %w(customer:index customer:show project:index project:show)
+      role.activities += %w(*:index *:show)
       role.note = "Rola Projektowa, która służy do obserwowania procesu realizacji zadań/zleceń.\r\n(Przypisz tę rolę projektową tzw. 'Użytkownikowi obserwującemu' w konkretnym Projekcie)"
       role.save!
     end
@@ -123,7 +123,7 @@ class CreateRoleService
   def role_for_event_performer
     role = Role.find_or_create_by!(name: "Wykonawca") do |role|
       role.special = false
-      role.activities += %w(customer:index customer:show project:index project:show)
+      role.activities += %w(*:index *:show *:create *:update *:delete)
       role.note = "Rola Projektowa, która służy do realizacji zadania/zlecenia.\r\n(Przypisz tę rolę projektową tzw. 'Użytkownikowi wykonującemu' zadanie w konkretnym Projekcie)"
       role.save!
     end
