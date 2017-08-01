@@ -7,6 +7,18 @@ class ApplicationPolicy
     @record = record
   end
 
+
+  def event_type_activities
+    EventType.joins(events: {accessorizations: [:user]})
+      .references(:event, :accessorization, :user)
+      .where(events: {status: [Event.statuses[:opened], Event.statuses[:verification]]}, 
+            accessorizations: {user_id: [@user]})
+      .select(:activities).distinct.map(&:activities).flatten 
+
+    # wybierz activites z events np.;
+    # ["project:*", "opinion:*" ]
+  end
+
   def user_activities
     @user.roles.select(:activities).distinct.map(&:activities).flatten
   end

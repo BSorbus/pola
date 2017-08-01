@@ -1,5 +1,7 @@
 class AttachmentsController < ApplicationController
   before_action :authenticate_user!
+  after_action :verify_authorized, only: [:show, :create, :destroy]
+
 
   # GET /attachments/1
   # GET /attachments/1.json

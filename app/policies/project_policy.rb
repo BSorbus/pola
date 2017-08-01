@@ -6,29 +6,10 @@ class ProjectPolicy < ApplicationPolicy
     @model = model
   end
 
-# p.eventses_roles.where(accessorizations: {user_id: [4]})
-# p.eventses_roles.where(events: {status: [Event.statuses[:opened], Event.statuses[:verification], Event.statuses[:closed] ]})
-
-# p.eventses_roles.where(events: {status: [Event.statuses[:opened], Event.statuses[:verification], Event.statuses[:closed] ]}, 
-#                        accessorizations: {user_id: [4]})
-
-
-# p.eventses_roles.where(events: {status: [Event.statuses[:opened], Event.statuses[:verification], Event.statuses[:closed] ]}, 
-#                        accessorizations: {user_id: [7]}).select(:activities)
-
-
-  def event_type_activities
-    EventType.joins(:events, events: [:accessorizations], events: {accessorizations: [:user]}).
-      references(:event, :accessorization, :user).
-      where(events: {status: [Event.statuses[:opened], Event.statuses[:verification]]}, accessorizations: {user_id: [@user]}).
-      select(:activities).distinct.map(&:activities).flatten 
-
-    # wybierz activites z events np.;
-    # ["project:*", "opinion:*" ]
-  end
 
   def user_for_event_activities
-    @model.eventses_roles.where(events: {status: [Event.statuses[:opened], Event.statuses[:verification]]}, 
+    # project.eventses_roles....
+    @model.class.to_s == 'Symbol' ? [] : @model.eventses_roles.where(events: {status: [Event.statuses[:opened], Event.statuses[:verification]]}, 
                       accessorizations: {user_id: [@user]}).select(:activities).distinct.map(&:activities).flatten
 
     # wybierz activites for user accessorizations from events ex.;
@@ -58,18 +39,11 @@ class ProjectPolicy < ApplicationPolicy
 
 
   def index?
-    user_activities.include? 'project:index'
-  end
-
-
-  def show_through_accesssorizations?
-    event_activities.include? 'project:show'
+    (user_activities.include? 'project:index') || (event_activities.include? 'project:index')
   end
 
   def show?
-    res = user_activities.include? 'project:show'
-    res = show_through_accesssorizations? unless res
-    res
+    (user_activities.include? 'project:show') || (event_activities.include? 'project:show')
   end
  
   def new?
@@ -77,7 +51,7 @@ class ProjectPolicy < ApplicationPolicy
   end
 
   def create?
-    user_activities.include? 'project:create'
+    (user_activities.include? 'project:create') || (event_activities.include? 'project:create')
   end
 
   def edit?
@@ -85,11 +59,11 @@ class ProjectPolicy < ApplicationPolicy
   end
 
   def update?
-    user_activities.include? 'project:update'
+    (user_activities.include? 'project:update') || (event_activities.include? 'project:update')
   end
 
   def destroy?
-    user_activities.include? 'project:delete'
+    (user_activities.include? 'project:delete') || (event_activities.include? 'project:delete')
   end
  
   class Scope < Struct.new(:user, :scope)

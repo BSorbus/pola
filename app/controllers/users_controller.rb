@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  after_action :verify_authorized, except: [:index, :datatables_index_role, :datatables_index, :select2_index]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
 

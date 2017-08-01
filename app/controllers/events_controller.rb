@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
+  after_action :verify_authorized, except: [:index]
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
 
