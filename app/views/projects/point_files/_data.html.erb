@@ -46,14 +46,14 @@
     <!-- for "Show" -->
     <div class="row">
       <%= link_to t('Back', default: t("helpers.links.back")), project_path(@point_file.project), :class => 'btn btn-default glyphicon glyphicon-arrow-left' %>
-      <% if true %> <!-- #policy(@point_file).destroy? %> -->
+      <% if policy(@point_file).destroy? %>
         <%= link_to t('Delete', default: t("helpers.links.destroy")), project_point_file_path(@point_file.project, @point_file),
                             method: :delete,
                             data: { confirm: t('helpers.links.confirm_destroy', data: @point_file.fullname) }, 
                             :class => "btn btn-danger glyphicon glyphicon-trash" %>
       <% end %>
 
-      <% if true %> <!-- #policy(@point_file).edit? %> -->
+      <% if policy(@point_file).edit? %>
         <%= link_to t('Edit', default: t("helpers.links.edit")), edit_project_point_file_path(@point_file.project, @point_file), 
                         :class => "btn btn-primary glyphicon glyphicon-edit" %>  
       <% end %>

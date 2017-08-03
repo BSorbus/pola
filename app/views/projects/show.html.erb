@@ -25,13 +25,13 @@
 
 
   <!-- Attachments for this project-->
-  <% if policy(:attachment).project_index? || policy(:attachment).project_show? %>
+  <% if policy(:attachment).project_index? %>
     <%= render 'attachments/attachments_in_panel', attachmenable: @project %>
   <% end %>
 
 
   <!-- PointFiles-->
-  <% if policy(:accessorization).index? %>
+  <% if policy(:point_file).index? %>
     <div class="row">
       <div class="col-sm-11 col-sm-offset-1">
         <div class="panel panel-point-file">

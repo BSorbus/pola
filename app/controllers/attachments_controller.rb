@@ -17,7 +17,7 @@ class AttachmentsController < ApplicationController
 
     # to działa
     @attachment = Attachment.find(params[:id])
-    attachment_authorize(:attachment, "show", @attachment.attachmenable_type.singularize.downcase)    
+    attachment_authorize(@attachment, "show", @attachment.attachmenable_type.singularize.downcase)    
     # to działa
     # send_file "#{@attachment.attached_file.file.file}"
 
@@ -30,8 +30,8 @@ class AttachmentsController < ApplicationController
   # POST /attachments
   # POST /attachments.json
   def create
-    attachment_authorize(:attachment, "create", params[:controller].classify.deconstantize.singularize.downcase)    
     @attachment = params[:attachment].present? ? @attachmenable.attachments.new(attachment_params) : @attachmenable.attachments.new()
+    attachment_authorize(@attachment, "create", params[:controller].classify.deconstantize.singularize.downcase)    
 
     respond_to do |format|
       if @attachment.save
@@ -48,7 +48,7 @@ class AttachmentsController < ApplicationController
   # DELETE /attachments/1.json
   def destroy
     @attachment = Attachment.find(params[:id])
-    attachment_authorize(:attachment, "destroy", @attachment.attachmenable_type.singularize.downcase)    
+    attachment_authorize(@attachment, "destroy", @attachment.attachmenable_type.singularize.downcase)    
     if @attachment.destroy
       flash[:success] = t('activerecord.successfull.messages.destroyed', data: @attachment.fullname)
       redirect_to @attachment.attachmenable

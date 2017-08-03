@@ -27,26 +27,42 @@ role = CreateRoleService.new.user_observer
 puts 'CREATED ROLE: ' << role.name
 
 
+role = CreateRoleService.new.user_attachment_admin
+puts 'CREATED ROLE: ' << role.name
+
+role = CreateRoleService.new.user_attachment_observer
+puts 'CREATED ROLE: ' << role.name
+
+
 role = CreateRoleService.new.customer_admin
 puts 'CREATED ROLE: ' << role.name
-user.roles << role
-puts "ADD ROLE: #{role.name}   TO USER: #{user.email}"
 
 role = CreateRoleService.new.customer_observer
 puts 'CREATED ROLE: ' << role.name
 
 role = CreateRoleService.new.project_admin
 puts 'CREATED ROLE: ' << role.name
-user.roles << role
-puts "ADD ROLE: #{role.name}   TO USER: #{user.email}"
 
 role = CreateRoleService.new.project_observer
 puts 'CREATED ROLE: ' << role.name
 
+
+role = CreateRoleService.new.project_attachment_admin
+puts 'CREATED ROLE: ' << role.name
+
+role = CreateRoleService.new.project_attachment_observer
+puts 'CREATED ROLE: ' << role.name
+
+
+role = CreateRoleService.new.project_point_file_admin
+puts 'CREATED ROLE: ' << role.name
+
+role = CreateRoleService.new.project_point_file_observer
+puts 'CREATED ROLE: ' << role.name
+
+
 role = CreateRoleService.new.event_admin
 puts 'CREATED ROLE: ' << role.name
-user.roles << role
-puts "ADD ROLE: #{role.name}   TO USER: #{user.email}"
 
 role = CreateRoleService.new.event_observer
 puts 'CREATED ROLE: ' << role.name
@@ -169,12 +185,12 @@ puts 'CREATED SIMPLE PROJECT: ' << project5.number
 
 
 event_type1 = EventType.find_or_create_by!(name: "Ocena merytoryczna II stopnia") do |role|
-  role.activities += %w(opiniowanie:* project:index project:show customer:index customer:show attachment:4project_index attachment:4project_show)
+  role.activities += %w(opiniowanie:* project:index project:show customer:index customer:show attachment:project_index attachment:project_show point_file:index point_file:download point_file:show)
   role.save!
 end
 
 event_type2 = EventType.find_or_create_by!(name: "Ocena merytorycznej II stopnia po proteście") do |role|
-  role.activities += %w(opiniowanie2:* opiniowanie:index opiniowanie:show project:index project:show customer:index customer:show attachment:4project_index attachment:4project_show)
+  role.activities += %w(opiniowanie2:* opiniowanie:index opiniowanie:show project:index project:show customer:index customer:show attachment:project_index attachment:project_show point_file:index point_file:download point_file:show)
   role.save!
 end
 

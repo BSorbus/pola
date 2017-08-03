@@ -248,10 +248,10 @@ pl:
       add_remove_role_user?: ' BRAK UPRAWNIEŃ: Nie możesz użytkownikom dodawać ani usuwać ról!'
     project_policy:
       index?: ' BRAK UPRAWNIEŃ: Nie możesz wyświetlać listy projektów!'
-      show?: ' BRAK UPRAWNIEŃ: Nie możesz oglądać szczegółów projektu!'
-      update?: ' BRAK UPRAWNIEŃ: Nie możesz edytować danych projektu!'
+      show?: ' BRAK UPRAWNIEŃ: Nie możesz oglądać szczegółów tego projektu!'
+      update?: ' BRAK UPRAWNIEŃ: Nie możesz edytować danych tego projektu!'
       create?: ' BRAK UPRAWNIEŃ: Nie możesz tworzyć projektów!'
-      destroy?: ' BRAK UPRAWNIEŃ: Nie możesz usuwać projektów!'
+      destroy?: ' BRAK UPRAWNIEŃ: Nie możesz usuwać tego projektu!'
     customer_policy:
       index?: ' BRAK UPRAWNIEŃ: Nie możesz wyświetlać listy wnioskodawców!'
       show?: ' BRAK UPRAWNIEŃ: Nie możesz oglądać szczegółów wnioskodawcy!'

@@ -35,6 +35,7 @@ class Customer < ApplicationRecord
     "<a href=#{url_helpers.customer_path(self)}>#{self.name}</a>".html_safe
   end
 
+
   # Scope for select2: "customer_select"
   # * parameters   :
   #   * +query_str+ -> string for search. 

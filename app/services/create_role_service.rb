@@ -21,7 +21,7 @@ class CreateRoleService
   def user_admin
     role = Role.find_or_create_by!(name: "Administrator Użytkowników") do |role|
       role.special = true
-      role.activities += %w(user:index user:show user:create user:update user:delete role:add_remove_role_user attachment:4user_index attachment:4user_show attachment:4user_create attachment:4user_delete)
+      role.activities += %w(user:index user:show user:create user:update user:delete role:add_remove_role_user)
       role.note = "Rola służy do zarządzania Użytkownikami i przypisywania im Ról Systemowych. \r\n (Przypisz tylko zaawansowanym Administratorom systemu)"
       role.save!
     end
@@ -29,11 +29,30 @@ class CreateRoleService
   def user_observer
     role = Role.find_or_create_by!(name: "Obserwator Użytkowników") do |role|
       role.special = true
-      role.activities += %w(user:index user:show attachment:4user_index attachment:4user_show)
+      role.activities += %w(user:index user:show)
       role.note = "Rola służy do wyświetlania informacji o Użytkownikach. \r\n (Przypisz Administratorom systemu oraz Koordynatorom POPC)"
       role.save!
     end
   end
+
+  # user_attachments
+  def user_attachment_admin
+    role = Role.find_or_create_by!(name: "Administrator załączników Użytkownika") do |role|
+      role.special = true
+      role.activities += %w(attachment:user_index attachment:user_show attachment:user_create attachment:user_delete)
+      role.note = "Rola służy do zarządzania załącznikami przypisanymi do Użytkowników. \r\n (Przypisz tylko Administratorom systemu oraz Koordynatorom POPC)"
+      role.save!
+    end
+  end
+  def user_attachment_observer
+    role = Role.find_or_create_by!(name: "Obserwator załączników Użytkownika") do |role|
+      role.special = true
+      role.activities += %w(attachment:user_index attachment:user_show)
+      role.note = "Rola służy do wyświetlania i pobierania załączników przypisanych do Użytkowników. \r\n (Przypisz Administratorom systemu oraz Koordynatorom POPC)"
+      role.save!
+    end
+  end
+
 
   # customers
   def customer_admin
@@ -57,7 +76,7 @@ class CreateRoleService
   def project_admin
     role = Role.find_or_create_by!(name: "Administrator Projektów") do |role|
       role.special = true
-      role.activities += %w(project:index project:show project:create project:update project:delete attachment:4project_index attachment:4project_show attachment:4project_create attachment:4project_delete)
+      role.activities += %w(project:index project:show project:create project:update project:delete)
       role.note = "Rola służy do zarządzania Projektami.\r\n(Przypisz tylko Administratorom systemu oraz Koordynatorom POPC)"
       role.save!
     end
@@ -65,11 +84,49 @@ class CreateRoleService
   def project_observer
     role = Role.find_or_create_by!(name: "Obserwator Projektów") do |role|
       role.special = true
-      role.activities += %w(project:index project:show attachment:4project_index attachment:4project_show)
+      role.activities += %w(project:index project:show)
       role.note = "Rola służy do wyświetlania informacji o Projektach.\r\n(Przypisz wszystkim, którzy mogą przeglądać Projekty)"
       role.save!
     end
   end
+
+  # project_attachments
+  def project_attachment_admin
+    role = Role.find_or_create_by!(name: "Administrator Załączników Projektu") do |role|
+      role.special = true
+      role.activities += %w(attachment:project_index attachment:project_show attachment:project_create attachment:project_delete)
+      role.note = "Rola służy do zarządzania załącznikami przypisanymi do Projektów. \r\n (Przypisz tylko Administratorom systemu oraz Koordynatorom POPC)"
+      role.save!
+    end
+  end
+  def project_attachment_observer
+    role = Role.find_or_create_by!(name: "Obserwator Załączników Projektu") do |role|
+      role.special = true
+      role.activities += %w(attachment:project_index attachment:project_show)
+      role.note = "Rola służy do wyświetlania i pobierania załączników przypisanych do Projektów. \r\n (Przypisz Administratorom systemu oraz Koordynatorom POPC)"
+      role.save!
+    end
+  end
+
+  # project_point_files
+  def project_point_file_admin
+    role = Role.find_or_create_by!(name: "Administrator Plików Punktów Adresowych") do |role|
+      role.special = true
+      role.activities += %w(point_file:index point_file:download point_file:show point_file:create point_file:update point_file:delete)
+      role.note = "Rola służy do zarządzania plikami punktów adresowych przypisanymi do Projektów. \r\n (Przypisz tylko Administratorom systemu oraz Koordynatorom POPC)"
+      role.save!
+    end
+  end
+  def project_point_file_observer
+    role = Role.find_or_create_by!(name: "Obserwator Plików Punktów Adresowych") do |role|
+      role.special = true
+      role.activities += %w(point_file:index point_file:download point_file:show)
+      role.note = "Rola służy do wyświetlania i pobierania plików punktów adresowych przypisanych do Projektów. \r\n (Przypisz Administratorom systemu oraz Koordynatorom POPC)"
+      role.save!
+    end
+  end
+
+
 
   # events
   def event_admin

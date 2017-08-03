@@ -1,4 +1,4 @@
-class ProjectPolicy < ApplicationPolicy
+class PointFilePolicy < ApplicationPolicy
   attr_reader :user, :model
 
   def initialize(user, model)
@@ -16,7 +16,7 @@ class ProjectPolicy < ApplicationPolicy
     else
       EventType.joins(events: {accessorizations: [:user], project: []})
         .references(:event, :accessorization, :user, :project)
-        .where(events: {status: [Event.statuses[:opened], Event.statuses[:verification]], project: [@model]}, 
+        .where(events: {status: [Event.statuses[:opened], Event.statuses[:verification]], project: [@model.project]}, 
               accessorizations: {user_id: [@user]})
         .select(:activities).distinct.map(&:activities).flatten
     end      
@@ -29,7 +29,7 @@ class ProjectPolicy < ApplicationPolicy
     if @model.class.to_s == 'Symbol'
       []
     else
-      @model.eventses_roles
+      @model.project.eventses_roles
         .where(events: {status: [Event.statuses[:opened], Event.statuses[:verification]]}, 
                accessorizations: {user_id: [@user]})
         .select(:activities).distinct.map(&:activities).flatten
@@ -39,11 +39,18 @@ class ProjectPolicy < ApplicationPolicy
   end
 
   def index?
-    (user_activities.include? 'project:index') || (event_activities(@model).include? 'project:index')
+    # user_activities.include? 'point_file:index'
+    (user_activities.include? 'point_file:index') || (event_activities(@model).include? 'point_file:index')
   end
 
+  def download?
+    # user_activities.include? 'point_file:download'
+    (user_activities.include? 'point_file:download') || (event_activities(@model).include? 'point_file:download')
+  end
+ 
   def show?
-    (user_activities.include? 'project:show') || (event_activities(@model).include? 'project:show')
+    # user_activities.include? 'point_file:show'
+    (user_activities.include? 'point_file:show') || (event_activities(@model).include? 'point_file:show')
   end
  
   def new?
@@ -51,7 +58,8 @@ class ProjectPolicy < ApplicationPolicy
   end
 
   def create?
-    (user_activities.include? 'project:create') || (event_activities(@model).include? 'project:create')
+    # user_activities.include? 'point_file:create'
+    (user_activities.include? 'point_file:create') || (event_activities(@model).include? 'point_file:create')
   end
 
   def edit?
@@ -59,13 +67,16 @@ class ProjectPolicy < ApplicationPolicy
   end
 
   def update?
-    (user_activities.include? 'project:update') || (event_activities(@model).include? 'project:update')
+    # user_activities.include? 'point_file:update'
+    (user_activities.include? 'point_file:update') || (event_activities(@model).include? 'point_file:update')
   end
 
   def destroy?
-    (user_activities.include? 'project:delete') || (event_activities(@model).include? 'project:delete')
+    # user_activities.include? 'point_file:delete'
+    (user_activities.include? 'point_file:delete') || (event_activities(@model).include? 'point_file:delete')
   end
  
+
   class Scope < Struct.new(:user, :scope)
     def resolve
       scope

@@ -28,7 +28,7 @@
 </div>
 
 <div class="col-sm-12">
-  <% if true %> <!-- #policy(:customer).new?  -->
+  <% if policy(:point_file).new? %>
     <%= link_to t('New', default: t("helpers.links.new")), new_project_point_file_path(@project), 
                         :class => 'btn btn-primary glyphicon glyphicon-plus pull-right' %> 
   <% end %>

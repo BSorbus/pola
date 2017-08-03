@@ -252,7 +252,7 @@ en:
       show?: ' SECURITY: You cannot watch this project!'
       update?: ' SECURITY: You cannot edit this project!'
       create?: ' SECURITY: You cannot create projects!'
-      destroy?: ' SECURITY: You cannot destroy projects!'
+      destroy?: ' SECURITY: You cannot destroy this project!'
     customer_policy:
       index?: ' SECURITY: You cannot watch list of customers!'
       show?: ' SECURITY: You cannot watch this customer!'

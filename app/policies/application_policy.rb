@@ -7,16 +7,25 @@ class ApplicationPolicy
     @record = record
   end
 
+  def event_activities(accesses_model)
+    a = event_type_activities
+    b = event_user_activities
 
-  def event_type_activities
-    EventType.joins(events: {accessorizations: [:user]})
-      .references(:event, :accessorization, :user)
-      .where(events: {status: [Event.statuses[:opened], Event.statuses[:verification]]}, 
-            accessorizations: {user_id: [@user]})
-      .select(:activities).distinct.map(&:activities).flatten 
-
-    # wybierz activites z events np.;
-    # ["project:*", "opinion:*" ]
+    ab = []
+    a.each do |str_a|
+      if str_a.include? ':*'
+        b.each do |str_b|
+          if str_b.include? '*:'
+            ab << "#{str_a.gsub(':*', '' )}:#{str_b.gsub('*:', '' )}" 
+          else
+            ab << str_b
+          end
+        end
+      else
+        ab << str_a
+      end
+    end
+    return ab
   end
 
   def user_activities
