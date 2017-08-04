@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
   before_action :authenticate_user!
-  after_action :verify_authorized, except: [:index, :datatables_index, :select2_index]
+  after_action :verify_authorized, except: [:index, :datatables_index]
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
 
 
