@@ -20,15 +20,12 @@ class RolePolicy < ApplicationPolicy
   end
 
   def show?
-    user_activities.include? 'role:show'
-  end
-
-  def show_only_not_special?
-    user_activities.include? 'role:show_only_not_special'
-  end
-
-  def show_any?
-    show? || show_only_not_special?
+    if @model.is_special?
+      user_activities.include? 'role:show'
+    else
+    # (user_activities & ['role:show', 'role:show_only_not_special']).any?
+      (user_activities.include? 'role:show') || (user_activities.include? 'role:show_only_not_special') 
+    end
   end
 
   def new?
@@ -54,12 +51,7 @@ class RolePolicy < ApplicationPolicy
   def add_remove_role_user?
     user_activities.include? 'role:add_remove_role_user'
   end
- 
-  def only_not_special_add_remove_role_user?
-    user_activities.include? 'role:add_remove_role_user_only_not_special'
-  end
- 
- 
+  
   class Scope < Struct.new(:user, :scope)
     def resolve
       scope

@@ -15,14 +15,9 @@ class Event < ApplicationRecord
   belongs_to :project
   belongs_to :event_type
 
-  has_many :accessorizations, dependent: :delete_all, index_errors: true, foreign_key: :event_id
+  has_many :accessorizations, dependent: :delete_all, index_errors: true
   has_many :accesses_users, through: :accessorizations, source: :user
   has_many :accesses_roles, through: :accessorizations, source: :role
-
-
-  # has_many :accesses_roles_for_user, -> { joins(:users).where(accessorizations: {user_id: [5]})}, through: :accessorizations, source: :role
-
-  has_many :accesses_roles_for_user, ->(u) { merge( User.where(accessorizations: {user_id: [u]}) ) }, through: :accessorizations, source: :role
 
 
   # validates

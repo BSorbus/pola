@@ -11,6 +11,7 @@ class CustomersController < ApplicationController
   end
 
   def select2_index
+    authorize :customer, :index?
     params[:q] = params[:q]
     @customers = Customer.order(:name).finder_customer(params[:q])
     @customers_on_page = @customers.page(params[:page]).per(params[:page_limit])
@@ -25,7 +26,6 @@ class CustomersController < ApplicationController
   # GET /customers.json
   def index
     authorize :customer, :index?
-    @customers = Customer.all
   end
 
   # GET /customers/1

@@ -21,6 +21,7 @@ class ProjectsController < ApplicationController
   end
 
   def select2_index
+    authorize :project, :index?
     params[:q] = params[:q]
     @projects = Project.order(:number).finder_project(params[:q])
     @projects_on_page = @projects.page(params[:page]).per(params[:page_limit])
@@ -35,7 +36,6 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     authorize :project, :index?
-    @projects = Project.order(:number).all
   end
 
   # GET /projects/1

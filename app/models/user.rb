@@ -32,7 +32,7 @@ class User < ApplicationRecord
   has_many :accesses_events, through: :accessorizations, source: :event
   has_many :accesses_roles, through: :accessorizations, source: :role
 
-  has_many :attachments, as: :attachmenable
+  has_many :attachments, as: :attachmenable, dependent: :destroy
 
   accepts_nested_attributes_for :accessorizations, reject_if: :all_blank, allow_destroy: true
 

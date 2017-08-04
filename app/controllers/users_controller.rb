@@ -17,6 +17,7 @@ class UsersController < ApplicationController
   end
 
   def select2_index
+    authorize :user, :index?
     #params[:q] = (params[:q]).upcase
     params[:q] = params[:q]
     @users = User.order(:name).finder_user(params[:q])
@@ -32,7 +33,6 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     authorize :user, :index?
-    @users = User.order(:name).all
   end
 
   # GET /users/1

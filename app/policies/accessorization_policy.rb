@@ -10,30 +10,9 @@ class AccessorizationPolicy < ApplicationPolicy
     user_activities.include? 'accessorization:index'
   end
 
-  def show?
-    user_activities.include? 'accessorization:show'
+  def create_update_delete?
+    user_activities.include? 'accessorization:create_update_delete'
   end
-
-  def new?
-    create?
-  end
-
-  def create?
-    user_activities.include? 'accessorization:create'
-  end
-
-  def edit?
-    update?
-  end
-
-  def update?
-    user_activities.include? 'accessorization:update'
-  end
-
-  def destroy?
-    user_activities.include? 'accessorization:delete'
-  end
- 
 
   class Scope < Struct.new(:user, :scope)
     def resolve

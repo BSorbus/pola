@@ -37,7 +37,7 @@ class CreateRoleService
 
   # user_attachments
   def user_attachment_admin
-    role = Role.find_or_create_by!(name: "Administrator załączników Użytkownika") do |role|
+    role = Role.find_or_create_by!(name: "Administrator Załączników Użytkownika") do |role|
       role.special = true
       role.activities += %w(attachment:user_index attachment:user_show attachment:user_create attachment:user_delete)
       role.note = "Rola służy do zarządzania załącznikami przypisanymi do Użytkowników. \r\n (Przypisz tylko Administratorom systemu oraz Koordynatorom POPC)"
@@ -45,7 +45,7 @@ class CreateRoleService
     end
   end
   def user_attachment_observer
-    role = Role.find_or_create_by!(name: "Obserwator załączników Użytkownika") do |role|
+    role = Role.find_or_create_by!(name: "Obserwator Załączników Użytkownika") do |role|
       role.special = true
       role.activities += %w(attachment:user_index attachment:user_show)
       role.note = "Rola służy do wyświetlania i pobierania załączników przypisanych do Użytkowników. \r\n (Przypisz Administratorom systemu oraz Koordynatorom POPC)"
@@ -150,9 +150,9 @@ class CreateRoleService
 
 
   def accessorization_manager
-    role = Role.find_or_create_by!(name: "Menadżer Ról Projektowych") do |role|
+    role = Role.find_or_create_by!(name: "Administrator Ról Projektowych") do |role|
       role.special = true
-      role.activities += %w(accessorization:index accessorization:show accessorization:create accessorization:update accessorization:delete role:index_only_not_special role:show_only_not_special role:add_remove_role_user_only_not_special)
+      role.activities += %w(accessorization:index accessorization:create_update_delete role:index_only_not_special role:show_only_not_special)
       role.note = "Rola służy zarządzania Rolami Projektowymi.\r\n(Przypisz tylko Administratorom oraz Koordynatorom POPC)"
       role.save!
     end
@@ -160,7 +160,7 @@ class CreateRoleService
   def accessorization_observer
     role = Role.find_or_create_by!(name: "Obserwator Ról Projektowych") do |role|
       role.special = true
-      role.activities += %w(accessorization:index accessorization:show role:index_only_not_special role:show_only_not_special)
+      role.activities += %w(accessorization:index role:index_only_not_special role:show_only_not_special)
       role.note = "Rola służy do wyświetlania informacji o przypisanych Użytkownikach do projektów.\r\n(Przypisz wszystkim, którzy mogą przeglądać Projekty)"
       role.save!
     end

@@ -7,6 +7,8 @@ class PointFile < ApplicationRecord
 
   # relations
   belongs_to :project
+  has_many :accesses_roles, through: :project, source: :accesses_roles
+
   has_many :ww_points, dependent: :delete_all
   has_many :zs_points, dependent: :delete_all
 

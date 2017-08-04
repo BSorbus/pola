@@ -1,62 +1,29 @@
-<p id="notice"><%= notice %></p>
-
-
-<div class="container">
-  <% if policy(:role).index? %>
-    <div class="col-sm-12">
-      <div class="row">
-        <h3><span class="glyphicon glyphicon-sunglasses" aria-hidden="true"> 
-          <%= t "pages.role.index.title_special" %>  
-          </span>
-        </h3>
-        <div class="column">
-          <table class="table table-hover">
-            <tbody>
-              <% @roles.where(special: true).each do |role| %>
-                <tr>
-                  <%= render role %>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
-      </div> <!--/row -->
-    </div> <!--/col-sm-12 -->
-  <% end %>
-
+<div class="row">
   <div class="col-sm-12">
     <div class="row">
-      <% if policy(:role).new? %>
-        <%= link_to t('New', default: t("helpers.links.new")), new_role_path, 
-                            :class => 'btn btn-primary glyphicon glyphicon-plus pull-right' %> 
-      <% end %>
+      <h3><span class="glyphicon glyphicon-sunglass" aria-hidden="true"> 
+        <%= t "pages.role.index.title" %>  
+        </span>
+      </h3>
     </div> <!--/row -->
   </div> <!--/col-sm-12 -->
 
-  <br>
-
-  <% if policy(:role).index? || policy(:role).index_only_not_special? %>
-    <div class="col-sm-12">
-      <div class="row">
-        <h3><span class="glyphicon glyphicon-sunglasses" aria-hidden="true"> 
-          <%= t "pages.role.index.title_not_special" %>  
-          </span>
-        </h3>
-        <div class="column">
-          <table class="table table-hover">
-            <tbody>
-              <% @roles.where(special: false).each do |role| %>
-                <tr>
-                  <%= render role %>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
-      </div> <!--/row -->
-    </div> <!--/col-sm-12 -->
-  <% end %>
-
+  <div class="col-sm-12">
+    <table id="roles-table" class="hover cell-border" cellspacing="0" width="100%", data-source="<%= datatables_index_roles_path(format: :json) %>">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th class='col-sm-3'><%= Role.human_attribute_name(:name) %></th>
+          <th class='col-sm-1'><%= Role.human_attribute_name(:special) %></th>
+          <th class='col-sm-4'><%= Role.human_attribute_name(:note) %></th>
+          <th class='col-sm-4'><%= Role.human_attribute_name(:activities) %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- data from ajax -->
+      </tbody>
+    </table>
+  </div> <!--/col-sm-12 -->
 
 
   <div class="col-sm-12">
@@ -67,4 +34,4 @@
       <% end %>
     </div> <!--/row -->
   </div> <!--/col-sm-12 -->
-</div> <!--/coontainer -->
+</div> <!--/row -->

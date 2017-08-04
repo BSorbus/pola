@@ -10,17 +10,19 @@ class ProjectPolicy < ApplicationPolicy
     if @model.class.to_s == 'Symbol'
       EventType.joins(events: {accessorizations: [:user]})
         .references(:event, :accessorization, :user)
-        .where(events: {status: [Event.statuses[:opened], Event.statuses[:verification]]}, 
-              accessorizations: {user_id: [@user]})
+        .where(events: {status: [Event.statuses[:opened], Event.statuses[:verification]], 
+                        accessorizations: {user_id: [@user]}
+                        })
         .select(:activities).distinct.map(&:activities).flatten
     else
       EventType.joins(events: {accessorizations: [:user], project: []})
         .references(:event, :accessorization, :user, :project)
-        .where(events: {status: [Event.statuses[:opened], Event.statuses[:verification]], project: [@model]}, 
-              accessorizations: {user_id: [@user]})
+        .where(events: {status: [Event.statuses[:opened], Event.statuses[:verification]], 
+                        accessorizations: {user_id: [@user]},
+                        project: [@model] 
+                        })
         .select(:activities).distinct.map(&:activities).flatten
     end      
-
     # wybierz activites z events np.;
     # ["project:*", "opinion:*" ]
   end
@@ -29,7 +31,7 @@ class ProjectPolicy < ApplicationPolicy
     if @model.class.to_s == 'Symbol'
       []
     else
-      @model.eventses_roles
+      @model.accesses_roles
         .where(events: {status: [Event.statuses[:opened], Event.statuses[:verification]]}, 
                accessorizations: {user_id: [@user]})
         .select(:activities).distinct.map(&:activities).flatten

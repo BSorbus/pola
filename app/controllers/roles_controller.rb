@@ -1,8 +1,14 @@
 class RolesController < ApplicationController
   before_action :authenticate_user!
-  after_action :verify_authorized, except: [:index, :datatables_index_user]
+  after_action :verify_authorized, except: [:index, :datatables_index, :datatables_index_user]
   before_action :set_role, only: [:show, :edit, :update, :destroy]
 
+
+  def datatables_index
+    respond_to do |format|
+      format.json{ render json: RoleDatatable.new(view_context) }
+    end
+  end
 
   def datatables_index_user
     respond_to do |format|
@@ -13,14 +19,13 @@ class RolesController < ApplicationController
   # GET /roles
   # GET /roles.json
   def index
-    authorize :role, :index_any?
-    @roles = Role.all
+    authorize :role, :index_any? # zablokuj po implemetacji scope w RoleDatatable
   end
 
   # GET /roles/1
   # GET /roles/1.json
   def show
-    authorize @role, :show_any?
+    authorize @role, :show?
   end
 
   # GET /roles/new

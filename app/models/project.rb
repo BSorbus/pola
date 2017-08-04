@@ -11,13 +11,10 @@ class Project < ApplicationRecord
     class_name: 'PointFile', foreign_key: :project_id
 
   has_many :attachments, as: :attachmenable, dependent: :destroy
-#  has_many :events, dependent: :destroy
-
-
   has_many :events, dependent: :nullify, index_errors: true
-  has_many :eventses_users, through: :events, source: :accesses_users
-  has_many :eventses_roles, through: :events, source: :accesses_roles
+  has_many :accesses_roles, through: :events, source: :accesses_roles
 
+  has_many :eventses_event_types, through: :events, source: :event_type 
 
   # validates
   validates :number, presence: true,

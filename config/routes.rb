@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   end
 
   resources :roles do
+    get 'datatables_index', on: :collection
     get 'datatables_index_user', on: :collection # Displays roles for showed user
     resources :users, only: [:create, :destroy], controller: 'roles/users'
   end    

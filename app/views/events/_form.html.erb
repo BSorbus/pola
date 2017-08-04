@@ -105,12 +105,10 @@
     <% end %>
 
 
-    <hr>
+    <% if policy(:accessorization).create_update_delete? %>
+      <hr>
+      <div class="panel-group" id="myaccordion">
 
-    <div class="panel-group" id="myaccordion">
-
-      <% if true %> <!-- #policy(:accessorization).update? %> -->
-        <!-- Roles.whers(special: false)-->
         <div class="row">
           <div class="col-sm-12">
             <div class="panel panel-accessorization">
@@ -141,11 +139,9 @@
             </div> <!-- /panel -->
           </div> <!-- /col-sm-11 col-sm-offset-1 -->
         </div> <!-- /row -->
-      <% end %>
 
-    </div> <!-- /class="panel-group" id="myaccordion" -->
-
-
+      </div> <!-- /class="panel-group" id="myaccordion" -->
+    <% end %>
 
     <hr class="hr-without-top-margin">
 
