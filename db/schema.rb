@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170729221720) do
+ActiveRecord::Schema.define(version: 20170805222313) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,13 @@ ActiveRecord::Schema.define(version: 20170729221720) do
     t.index ["name"], name: "index_customers_on_name"
   end
 
+  create_table "event_statuses", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_event_statuses_on_name"
+  end
+
   create_table "event_types", force: :cascade do |t|
     t.string "name"
     t.string "activities", default: [], array: true
@@ -60,18 +67,45 @@ ActiveRecord::Schema.define(version: 20170729221720) do
     t.boolean "all_day"
     t.datetime "start_date"
     t.datetime "end_date"
-    t.integer "status"
     t.integer "project_id"
     t.text "note", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "event_status_id", default: 1
     t.bigint "event_type_id"
     t.index ["end_date"], name: "index_events_on_end_date"
+    t.index ["event_status_id"], name: "index_events_on_event_status_id"
     t.index ["event_type_id"], name: "index_events_on_event_type_id"
     t.index ["project_id"], name: "index_events_on_project_id"
     t.index ["start_date"], name: "index_events_on_start_date"
-    t.index ["status"], name: "index_events_on_status"
     t.index ["title"], name: "index_events_on_title"
+  end
+
+  create_table "opinions", force: :cascade do |t|
+    t.bigint "project_id"
+    t.bigint "user_id"
+    t.boolean "sec22_rate"
+    t.text "sec22"
+    t.boolean "sec23_rate"
+    t.text "sec23"
+    t.boolean "sec24_rate"
+    t.text "sec24"
+    t.boolean "sec25_rate"
+    t.text "sec25"
+    t.boolean "sec28_rate"
+    t.text "sec28"
+    t.boolean "sec33_rate"
+    t.text "sec33"
+    t.text "sec41"
+    t.text "sec42"
+    t.text "sec43"
+    t.boolean "sec51_rate"
+    t.text "sec51"
+    t.text "sec61"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_opinions_on_project_id"
+    t.index ["user_id"], name: "index_opinions_on_user_id"
   end
 
   create_table "point_files", force: :cascade do |t|
@@ -140,12 +174,14 @@ ActiveRecord::Schema.define(version: 20170729221720) do
   end
 
   create_table "roles_users", id: false, force: :cascade do |t|
-    t.integer "role_id"
-    t.integer "user_id"
+    t.bigint "role_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["role_id", "user_id"], name: "index_roles_users_on_role_id_and_user_id", unique: true
+    t.index ["role_id"], name: "index_roles_users_on_role_id"
     t.index ["user_id", "role_id"], name: "index_roles_users_on_user_id_and_role_id", unique: true
+    t.index ["user_id"], name: "index_roles_users_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -255,10 +291,15 @@ ActiveRecord::Schema.define(version: 20170729221720) do
     t.index ["zs_9"], name: "index_zs_points_on_zs_9"
   end
 
+  add_foreign_key "events", "event_statuses"
   add_foreign_key "events", "event_types"
+  add_foreign_key "opinions", "projects"
+  add_foreign_key "opinions", "users"
   add_foreign_key "point_files", "projects"
   add_foreign_key "projects", "customers"
   add_foreign_key "projects", "project_statuses"
+  add_foreign_key "roles_users", "roles"
+  add_foreign_key "roles_users", "users"
   add_foreign_key "ww_points", "point_files"
   add_foreign_key "zs_points", "point_files"
 end

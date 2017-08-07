@@ -42,9 +42,10 @@ en:
       attachment: 'Attachment'
       point_file: 'Address Point File'
       point: 'Point'
-      ww_point: 'Punkt Adresowy'
-      zs_point: 'Węzeł'
-      event: 'Zdarzenie/Zadanie'
+      ww_point: 'Address point'
+      zs_point: 'Telecom node'
+      event: 'Event'
+      opinion: 'Opinion'
     attributes:
       user:
         name: 'Name'
@@ -118,12 +119,9 @@ en:
         start_date: 'Start'
         end_date: 'End'
         project_id: 'Project'
+        event_status_id: 'Event status'
         event_type_id: 'Event type'
         note: 'Note'
-        statuses:
-          opened: 'Open'
-          verification: 'Verification'
-          closed: 'Close'
         flat_assigned_users: 'Assigned users'
   pages:
     home: 'Home'
@@ -222,13 +220,22 @@ en:
         title: 'Edycja -> Punktu WW - Własny/Współdzielony węzeł telekomunikacyjny'
     event:
       index:
-        title: 'Zdarzenia/Zadania'
+        title: 'Events'
       show:
-        title: 'Zdarzenie/Zadanie'
+        title: 'Event'
       new:
-        title: 'Nowe Zdarzenie/Zadanie'
+        title: 'New Event'
       edit:
-        title: 'Edycja -> Zdarzenie/Zadanie'
+        title: 'Edit -> Event'
+    opinion:
+      index:
+        title: 'Opinions'
+      show:
+        title: 'Opinion'
+      new:
+        title: 'New Opinion'
+      edit:
+        title: 'Edit -> Opinion'
   pundit:
     default: ' SECURITY: Access denied!'
     work_policy:

@@ -8,19 +8,14 @@ class ProjectPolicy < ApplicationPolicy
 
   def event_type_activities
     if @model.class.to_s == 'Symbol'
-      EventType.joins(events: {accessorizations: [:user]})
-        .references(:event, :accessorization, :user)
-        .where(events: {status: [Event.statuses[:opened], Event.statuses[:verification]], 
-                        accessorizations: {user_id: [@user]}
-                        })
+      EventType.joins(events: {accessorizations: [:user], event_status: []})
+        .where(events: {accessorizations: {user_id: [@user]}})
+        .merge(EventStatus.status_can_change)
         .select(:activities).distinct.map(&:activities).flatten
     else
-      EventType.joins(events: {accessorizations: [:user], project: []})
-        .references(:event, :accessorization, :user, :project)
-        .where(events: {status: [Event.statuses[:opened], Event.statuses[:verification]], 
-                        accessorizations: {user_id: [@user]},
-                        project: [@model] 
-                        })
+      EventType.joins(events: {accessorizations: [:user], event_status: [], project: []})
+        .where(events: {accessorizations: {user_id: [@user]}, project: [@model]})
+        .merge(EventStatus.status_can_change)
         .select(:activities).distinct.map(&:activities).flatten
     end      
     # wybierz activites z events np.;
@@ -31,9 +26,9 @@ class ProjectPolicy < ApplicationPolicy
     if @model.class.to_s == 'Symbol'
       []
     else
-      @model.accesses_roles
-        .where(events: {status: [Event.statuses[:opened], Event.statuses[:verification]]}, 
-               accessorizations: {user_id: [@user]})
+      Role.joins(accessorizations: {user:[], event: [:event_status, :project]})
+        .where(accessorizations: {user: [@user], events: {project: [@model]}})
+        .merge(EventStatus.status_can_change)
         .select(:activities).distinct.map(&:activities).flatten
     end
     # wybierz activites for user accessorizations from events ex.;

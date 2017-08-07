@@ -1,23 +1,11 @@
 class Event < ApplicationRecord
   delegate :url_helpers, to: 'Rails.application.routes'
 
-  enum status: [:opened, :verification, :closed]
-
-  EVENT_COLORS = [['Black',   'black'], 
-                  ['Blue',    'blue'],
-                  ['Gray',    'gray'],
-                  ['green',   'green'], 
-                  ['fuchsia', 'fuchsia'],
-                  ['orange',  'orange'],
-                  ['red',     'red']]
-
-
   belongs_to :project
+  belongs_to :event_status
   belongs_to :event_type
 
   has_many :accessorizations, dependent: :delete_all, index_errors: true
-  has_many :accesses_users, through: :accessorizations, source: :user
-  has_many :accesses_roles, through: :accessorizations, source: :role
 
 
   # validates
@@ -27,11 +15,11 @@ class Event < ApplicationRecord
 
   validates :start_date, presence: true
   validates :end_date, presence: true
-  validates :status, presence: true
   validates :project_id, presence: true
 
 
   accepts_nested_attributes_for :accessorizations, reject_if: :all_blank, allow_destroy: true
+
 
   def fullname
     "#{self.title}"
@@ -53,7 +41,7 @@ class Event < ApplicationRecord
   end
 
   def color_value
-    if self.closed?
+    if self.event_status_id == EventStatus::EVENT_STATUS_CLOSED
       'gray'
     else 
       case (self.end_date.to_date - Time.zone.now.to_date).to_i

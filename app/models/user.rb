@@ -29,15 +29,15 @@ class User < ApplicationRecord
   has_and_belongs_to_many :roles
 
   has_many :accessorizations, dependent: :nullify, index_errors: true
-  has_many :accesses_events, through: :accessorizations, source: :event
-  has_many :accesses_roles, through: :accessorizations, source: :role
 
   has_many :attachments, as: :attachmenable, dependent: :destroy
+  has_many :opinions, dependent: :nullify
 
   accepts_nested_attributes_for :accessorizations, reject_if: :all_blank, allow_destroy: true
 
   # callbacks
   before_destroy :has_links, prepend: true
+
 
 
 
@@ -47,11 +47,19 @@ class User < ApplicationRecord
      errors.add(:base, 'Nie można usunąć konta "' + self.try(:fullname) + '" do którego są przypisane Zadania.')
      analize_value = false
     end
+    if self.opinions.any? 
+     errors.add(:base, 'Nie można usunąć konta "' + self.try(:fullname) + '" do którego są przypisane Opinie.')
+     analize_value = false
+    end
     throw :abort unless analize_value 
   end
 
   def flat_assigned_events 
     Accessorization.includes(:event, :role).where(user_id: self.id).order("events.end_date desc").map {|row| "#{row.event.try(:title_as_link)} - #{row.role.try(:name_as_link)}" }.join('<br>').html_safe
+  end
+
+  def flat_assigned_events_with_status 
+    Accessorization.joins(event: [:event_status], role: []).where(user_id: self.id).order("events.end_date desc").map {|row| "#{row.event.try(:title_as_link)} - [#{row.event.event_status.name}] - #{row.role.try(:name_as_link)}" }.join('<br>').html_safe
   end
 
   def fullname

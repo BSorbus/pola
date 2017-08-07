@@ -2,9 +2,10 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <th class="col-sm-6"><%= Event.human_attribute_name(:title) %></th>
+        <th class="col-sm-4"><%= Event.human_attribute_name(:title) %></th>
+        <th class="col-sm-2"><%= Event.human_attribute_name(:event_type_id) %></th>
         <th class="col-sm-1"><%= Event.human_attribute_name(:end_date) %></th>
-        <th class="col-sm-1"><%= Event.human_attribute_name(:status) %></th>
+        <th class="col-sm-2"><%= Event.human_attribute_name(:event_status_id) %></th>
         <th class="col-sm-3"><%= Event.human_attribute_name(:flat_assigned_users) %></th>
       </tr>
     <thead>
@@ -12,8 +13,9 @@
       <% @project.events.order(end_date: :desc).each do |event| %>
         <tr>
           <td><%= event.try(:title_as_link) %></td>
+          <td><%= event.event_type.try(:name) %></td>
           <td><%= event.end_date.present? ? event.end_date.strftime("%Y-%m-%d %H:%M") : '' %></td>
-          <td><%= enum_l(event, :status) %></td>
+          <td><%= event.event_status.try(:name) %></td>
           <td><%= event.try(:flat_assigned_users) %></td>
         </tr>
       <% end %>
@@ -21,3 +23,4 @@
   </table>
 
 </div>
+

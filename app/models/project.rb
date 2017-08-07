@@ -6,15 +6,16 @@ class Project < ApplicationRecord
   # relations
   belongs_to :project_status
   belongs_to :customer
+
   has_many :point_files, dependent: :destroy
   has_one :last_active_point_file, -> { where(status: :active).order(load_date: :desc) },
     class_name: 'PointFile', foreign_key: :project_id
 
   has_many :attachments, as: :attachmenable, dependent: :destroy
-  has_many :events, dependent: :nullify, index_errors: true
-  has_many :accesses_roles, through: :events, source: :accesses_roles
 
-  has_many :eventses_event_types, through: :events, source: :event_type 
+  has_many :events, dependent: :nullify, index_errors: true
+
+  has_many :opinions, dependent: :destroy
 
   # validates
   validates :number, presence: true,
@@ -48,6 +49,10 @@ class Project < ApplicationRecord
   def flat_assigned_events
     # 1. Without sort by user.name
     self.events.order(end_date: :desc).flat_map {|row| "#{row.try(:title_as_link)}" }.join('<br>').html_safe
+  end
+
+  def flat_assigned_events_with_status
+    self.events.order(end_date: :desc).flat_map {|row| "#{row.try(:title_as_link)} - [#{row.event_status.name}]" }.join('<br>').html_safe
   end
 
   # Scope for select2: "project_select"

@@ -25,7 +25,8 @@ class UserDatatable < AjaxDatatablesRails::Base
         current_sign_in_ip: record.current_sign_in_ip,
         current_sign_in_at: record.current_sign_in_at.present? ? record.current_sign_in_at.strftime("%Y-%m-%d %H:%M:%S") : '' ,
         note:               truncate(record.note, length: 50),
-        flat:               record.try(:flat_assigned_events)
+#        flat:               record.try(:flat_assigned_events)
+        flat:               record.try(:flat_assigned_events_with_status)
       }
     end
   end
@@ -41,9 +42,13 @@ class UserDatatable < AjaxDatatablesRails::Base
     ->(column) {
         sanitize_search_text = Loofah.fragment(column).text;
         sql_str = "(users.id IN (" +
-          "SELECT accessorizations.user_id FROM accessorizations, projects WHERE " + 
-          "accessorizations.project_id = projects.id AND " + 
-          "projects.number ilike '%#{sanitize_search_text}%' " +
+          "SELECT accessorizations.user_id FROM accessorizations, events WHERE " + 
+          "accessorizations.event_id = events.id AND " + 
+          "events.title ilike '%#{sanitize_search_text}%' " +
+          "UNION " +
+          "SELECT accessorizations.user_id FROM accessorizations, events, event_statuses WHERE " + 
+          "accessorizations.event_id = events.id AND events.event_status_id = event_statuses.id AND " + 
+          "event_statuses.name ilike '%#{sanitize_search_text}%' " +
           "UNION " +
           "SELECT accessorizations.user_id FROM accessorizations, roles WHERE " + 
           "accessorizations.role_id = roles.id AND " + 

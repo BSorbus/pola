@@ -3,8 +3,10 @@
     <thead>
       <tr>
         <th                  >ID</th>
-        <th class="col-sm-5"><%= Event.human_attribute_name(:title) %></th>
+        <th class="col-sm-2"><%= Event.human_attribute_name(:title) %></th>
+        <th class="col-sm-2"><%= Event.human_attribute_name(:event_type_id) %></th>
         <th class="col-sm-1"><%= Event.human_attribute_name(:end_date) %></th>
+        <th class="col-sm-1"><%= Event.human_attribute_name(:event_status_id) %></th>
         <th class="col-sm-1"><%= Event.human_attribute_name(:project_id) %></th>
         <th class="col-sm-2"><%= Project.human_attribute_name(:project_status_id) %></th>
         <th class="col-sm-3"><%= Event.human_attribute_name(:flat_assigned_users) %></th>

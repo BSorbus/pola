@@ -8,19 +8,14 @@ class PointFilePolicy < ApplicationPolicy
 
   def event_type_activities
     if @model.class.to_s == 'Symbol'
-      EventType.joins(events: {accessorizations: [:user]})
-        .references(:event, :accessorization, :user)
-        .where(events: {status: [Event.statuses[:opened], Event.statuses[:verification]], 
-                        accessorizations: {user_id: [@user]}
-                        })
+      EventType.joins(events: {accessorizations: [:user], event_status: []})
+        .where(events: {accessorizations: {user_id: [@user]}})
+        .merge(EventStatus.status_can_change)
         .select(:activities).distinct.map(&:activities).flatten
     else
-      EventType.joins(events: {accessorizations: [:user], project: []})
-        .references(:event, :accessorization, :user, :project)
-        .where(events: {status: [Event.statuses[:opened], Event.statuses[:verification]], 
-                        accessorizations: {user_id: [@user]},
-                        project: [@model.project] 
-                        })
+      EventType.joins(events: {accessorizations: [:user], event_status: [], project: []})
+        .where(events: {accessorizations: {user_id: [@user]}, project: [@model.project]})
+        .merge(EventStatus.status_can_change)
         .select(:activities).distinct.map(&:activities).flatten
     end      
     # wybierz activites z events np.;
@@ -31,10 +26,9 @@ class PointFilePolicy < ApplicationPolicy
     if @model.class.to_s == 'Symbol'
       []
     else
-#      @model.project.eventses_roles
-      @model.accesses_roles
-        .where(events: {status: [Event.statuses[:opened], Event.statuses[:verification]]}, 
-               accessorizations: {user_id: [@user]})
+      Role.joins(accessorizations: {user:[], event: [:event_status, :project]})
+        .where(accessorizations: {user: [@user], events: {project: [@model.project]}})
+        .merge(EventStatus.status_can_change)
         .select(:activities).distinct.map(&:activities).flatten
     end
     # wybierz activites for user accessorizations from events ex.;
@@ -42,17 +36,14 @@ class PointFilePolicy < ApplicationPolicy
   end
 
   def index?
-    # user_activities.include? 'point_file:index'
     (user_activities.include? 'point_file:index') || (event_activities(@model).include? 'point_file:index')
   end
 
   def download?
-    # user_activities.include? 'point_file:download'
     (user_activities.include? 'point_file:download') || (event_activities(@model).include? 'point_file:download')
   end
  
   def show?
-    # user_activities.include? 'point_file:show'
     (user_activities.include? 'point_file:show') || (event_activities(@model).include? 'point_file:show')
   end
  
@@ -61,7 +52,6 @@ class PointFilePolicy < ApplicationPolicy
   end
 
   def create?
-    # user_activities.include? 'point_file:create'
     (user_activities.include? 'point_file:create') || (event_activities(@model).include? 'point_file:create')
   end
 

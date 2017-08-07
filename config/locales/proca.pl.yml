@@ -44,6 +44,7 @@ pl:
       ww_point: 'Punkt Adresowy'
       zs_point: 'Węzeł'
       event: 'Zdarzenie/Zadanie'
+      opinion: 'Opinia'
     attributes:
       user:
         name: 'Imię i Nazwisko'
@@ -117,12 +118,9 @@ pl:
         start_date: 'Początek'
         end_date: 'Koniec'
         project_id: 'Projekt'
+        event_status_id: 'Status zadania'
         event_type_id: 'Typ zadania'
         note: 'Uwagi'
-        statuses:
-          opened: 'Otwarte'
-          verification: 'Weryfikacja'
-          closed: 'Zamknięte'
         flat_assigned_users: 'Użytkownicy realizujący'
   pages:
     home: 'Główna'
@@ -228,6 +226,15 @@ pl:
         title: 'Nowe Zdarzenie/Zadanie'
       edit:
         title: 'Edycja -> Zdarzenie/Zadanie'
+    opinion:
+      index:
+        title: 'Opinie'
+      show:
+        title: 'Opinia'
+      new:
+        title: 'Nowa Opinia'
+      edit:
+        title: 'Edycja -> Opinia'
   pundit:
     default: ' BRAK UPRAWNIEŃ: Nie można wykonać tej czynności!'
     work_policy:

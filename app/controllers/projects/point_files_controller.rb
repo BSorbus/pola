@@ -40,7 +40,7 @@ class Projects::PointFilesController < ApplicationController
     @point_file = PointFile.new
     @point_file.project = @project
     @point_file.load_date = Time.zone.today 
-    authorize :point_file, :new?
+    authorize @point_file, :new?
   end
 
   # GET /point_files/1/edit

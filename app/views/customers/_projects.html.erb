@@ -17,7 +17,7 @@
             <%= project.project_status.try(:name) %>
           </td>
           <td>
-            <%= project.try(:flat_assigned_events) %>
+            <%= project.try(:flat_assigned_events_with_status) %>
           </td>
         </tr>
       <% end %>

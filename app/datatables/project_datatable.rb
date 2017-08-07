@@ -21,7 +21,7 @@ class ProjectDatatable < AjaxDatatablesRails::Base
         status:   record.project_status.try(:name),
         note:     truncate(record.note, length: 50),
         customer: record.customer.try(:name_as_link),
-        flat:     record.flat_assigned_events
+        flat:     record.flat_assigned_events_with_status
       }
     end
   end
@@ -41,6 +41,10 @@ class ProjectDatatable < AjaxDatatablesRails::Base
         sql_str = "(projects.id IN (" +
           "SELECT events.project_id FROM events WHERE " + 
           "events.title ilike '%#{sanitize_search_text}%' " +
+          "UNION " +
+          "SELECT events.project_id FROM events, event_statuses WHERE " + 
+          "events.event_status_id = event_statuses.id AND " + 
+          "event_statuses.name ilike '%#{sanitize_search_text}%' " +
           "))";
         ::Arel::Nodes::SqlLiteral.new("#{sql_str}") 
         }

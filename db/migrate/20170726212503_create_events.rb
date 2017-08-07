@@ -5,7 +5,6 @@ class CreateEvents < ActiveRecord::Migration[5.1]
       t.boolean :all_day
       t.datetime :start_date, index: true
       t.datetime :end_date, index: true
-      t.integer :status, index: true
       t.integer :project_id, index: true
       t.text :note, default: ""
 

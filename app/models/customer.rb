@@ -3,7 +3,6 @@ class Customer < ApplicationRecord
 
   # relations
   has_many :projects, dependent: :destroy
-  has_many :accesses_roles, through: :projects, source: :accesses_roles
 
   # validates
   validates :name, presence: true,

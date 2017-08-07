@@ -183,75 +183,78 @@ project5 = Project.create( number: '5/2017',
 puts 'CREATED SIMPLE PROJECT: ' << project5.number
 
 
+event_status_opened = EventStatus.find_or_create_by!(name: "Otwarte")
+event_status_verification = EventStatus.find_or_create_by!(name: "Weryfikacja")
+event_status_closed = EventStatus.find_or_create_by!(name: "Zamknięte")
 
-event_type1 = EventType.find_or_create_by!(name: "Ocena merytoryczna II stopnia") do |role|
+event_type1 = EventType.find_or_create_by!(name: "Ocenianie") do |role|
   role.activities += %w(opiniowanie:* project:index project:show customer:index customer:show attachment:project_index attachment:project_show point_file:index point_file:download point_file:show)
   role.save!
 end
 
-event_type2 = EventType.find_or_create_by!(name: "Ocena merytorycznej II stopnia po proteście") do |role|
+event_type2 = EventType.find_or_create_by!(name: "Ocenianie po proteście") do |role|
   role.activities += %w(opiniowanie2:* opiniowanie:index opiniowanie:show project:index project:show customer:index customer:show attachment:project_index attachment:project_show point_file:index point_file:download point_file:show)
   role.save!
 end
 
 # example events
-event1 = Event.create( title: 'Ocena merytoryczna II stopnia - 1/2017', 
+event1 = Event.create( title: 'Ocena - 1/2017', 
                       all_day: true, 
                       start_date: Time.zone.today + 2.weeks, 
                       end_date: Time.zone.today + 2.weeks, 
                       note: "",
-                      status: :verification, 
+                      event_status: event_status_verification, 
                       event_type: event_type1, 
                       project: project1)
 puts 'CREATED SIMPLE EVENT: ' << event1.title
 
-event2 = Event.create( title: 'Ocena merytoryczna II stopnia - 2/2017', 
+event2 = Event.create( title: 'Ocena - 2/2017', 
                       all_day: true, 
                       start_date: Time.zone.today + 2.weeks, 
                       end_date: Time.zone.today + 2.weeks, 
                       note: "", 
-                      status: :closed, 
+                      event_status: event_status_closed, 
                       event_type: event_type1, 
                       project: project2)
 puts 'CREATED SIMPLE EVENT: ' << event2.title
 
-event3 = Event.create( title: 'Ocena merytoryczna II stopnia - 3/2017', 
+event3 = Event.create( title: 'Ocena - 3/2017', 
                       all_day: true, 
                       start_date: Time.zone.today + 14.weeks, 
                       end_date: Time.zone.today + 14.weeks, 
                       note: "", 
-                      status: :opened, 
+                      event_status: event_status_opened, 
                       event_type: event_type1, 
                       project: project3)
 puts 'CREATED SIMPLE EVENT: ' << event3.title
 
-event4 = Event.create( title: 'Ocena merytoryczna II stopnia - 4/2017', 
+event4 = Event.create( title: 'Ocena - 4/2017', 
                       all_day: true, 
                       start_date: Time.zone.today + 15.weeks, 
                       end_date: Time.zone.today + 15.weeks, 
                       note: "", 
-                      status: :verification, 
+                      event_status: event_status_verification, 
                       event_type: event_type1, 
                       project: project4)
 puts 'CREATED SIMPLE EVENT: ' << event4.title
 
-event5 = Event.create( title: 'Ocena merytoryczna II stopnia - 5/2017', 
+event5 = Event.create( title: 'Ocena - 5/2017', 
                       all_day: true, 
                       start_date: Time.zone.today + 15.weeks, 
                       end_date: Time.zone.today + 15.weeks, 
                       note: "", 
-                      status: :opened, 
+                      event_status: event_status_opened, 
                       event_type: event_type1, 
                       project: project5)
 puts 'CREATED SIMPLE EVENT: ' << event5.title
 
 
-event6 = Event.create( title: 'Ocena merytorycznej II stopnia po proteście - 2/2017', 
+event6 = Event.create( title: 'Ocena po proteście - 2/2017', 
                       all_day: true, 
                       start_date: Time.zone.today + 17.weeks, 
                       end_date: Time.zone.today + 17.weeks, 
                       note: "", 
-                      status: :opened, 
+                      event_status: event_status_opened, 
                       event_type: event_type2, 
                       project: project2)
 puts 'CREATED SIMPLE EVENT: ' << event6.title
