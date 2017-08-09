@@ -14,6 +14,7 @@ class Project < ApplicationRecord
   has_many :attachments, as: :attachmenable, dependent: :destroy
 
   has_many :events, dependent: :nullify, index_errors: true
+  has_many :comments, through: :events, source: :comments
 
   has_many :opinions, dependent: :destroy
 

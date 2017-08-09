@@ -40,12 +40,12 @@ ActiveRecord::Schema.define(version: 20170808215646) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.bigint "project_id"
+    t.bigint "event_id"
     t.bigint "user_id"
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["project_id"], name: "index_comments_on_project_id"
+    t.index ["event_id"], name: "index_comments_on_event_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
@@ -301,7 +301,7 @@ ActiveRecord::Schema.define(version: 20170808215646) do
     t.index ["zs_9"], name: "index_zs_points_on_zs_9"
   end
 
-  add_foreign_key "comments", "projects"
+  add_foreign_key "comments", "events"
   add_foreign_key "comments", "users"
   add_foreign_key "events", "event_statuses"
   add_foreign_key "events", "event_types"

@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :comments
   devise_for :users, controllers: {
     confirmations: 'users/confirmations',
     passwords: 'users/passwords',
@@ -47,6 +46,7 @@ Rails.application.routes.draw do
 
   resources :events do
     get 'send_status', on: :member 
+    resources :comments, module: :events, except: [:index]
   end
 
 

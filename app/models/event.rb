@@ -7,6 +7,7 @@ class Event < ApplicationRecord
 
   has_many :accessorizations, dependent: :delete_all, index_errors: true
 
+  has_many :comments, dependent: :delete_all
 
   # validates
   validates :title, presence: true,
