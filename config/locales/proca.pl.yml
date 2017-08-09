@@ -44,6 +44,7 @@ pl:
       ww_point: 'Punkt Adresowy'
       zs_point: 'Węzeł'
       event: 'Zdarzenie/Zadanie'
+      comment: 'Komentarz'
       opinion: 'Opinia'
     attributes:
       user:
@@ -122,6 +123,10 @@ pl:
         event_type_id: 'Typ zadania'
         note: 'Uwagi'
         flat_assigned_users: 'Użytkownicy realizujący'
+      comment:
+        project_id: 'Projekt'
+        user_id: 'Autor'
+        body: 'Treść'
   pages:
     home: 'Główna'
     help: 'Pomoc'
@@ -226,6 +231,13 @@ pl:
         title: 'Nowe Zdarzenie/Zadanie'
       edit:
         title: 'Edycja -> Zdarzenie/Zadanie'
+    comment:
+      index:
+        title: 'Komentarze'
+      show:
+        title: 'Komentarz'
+      new:
+        title: 'Nowy Komentarz'
     opinion:
       index:
         title: 'Opinie'

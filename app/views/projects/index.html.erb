@@ -1,9 +1,9 @@
 <div class="row">
   <div class="col-sm-12">
     <div class="row">
-      <h3><span class="glyphicon glyphicon-book" aria-hidden="true"> 
-        <%= t "pages.project.index.title" %>  
-        </span>
+      <h3 class="center">
+        <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
+        <span><%= t "pages.project.index.title" %></span>
       </h3>
     </div> <!--/row -->
   </div> <!--/col-sm-12 -->
@@ -30,8 +30,10 @@
   <div class="col-sm-12">
     <div class="row">
       <% if policy(:project).new? %> 
-        <%= link_to t('New', default: t("helpers.links.new")), new_project_path, 
-                            :class => 'btn btn-primary glyphicon glyphicon-plus pull-right' %> 
+        <%= link_to new_project_path, class: "btn btn-primary pull-right" do %>
+          <span class="glyphicon glyphicon-plus"></span>
+          <%= t("helpers.links.new") %>
+        <% end %>
       <% end %>
     </div> <!--/row -->
   </div> <!--/col-sm-12 -->

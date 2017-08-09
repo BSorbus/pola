@@ -18,10 +18,13 @@
           </td>
           <td><%= attachment.file_size %></td>
           <td>
-            <%= link_to ' ', attachment_path(attachment),
-                            method: :delete,
-                            data: { confirm: t('helpers.links.confirm_destroy', data: attachment.attached_file_identifier) }, 
-                            :class => "glyphicon glyphicon-trash", title: t('tooltip.destroy'), rel: 'tooltip' %>
+            <%= link_to attachment_path(attachment),
+                                method: :delete,
+                                data: { confirm: t('helpers.links.confirm_destroy', data: attachment.attached_file_identifier) }, 
+                                title: t('tooltip.destroy'), 
+                                rel: 'tooltip' do %>
+              <span class="glyphicon glyphicon-trash"></span>
+            <% end %>
           </td>
         </tr>
       <% end %>

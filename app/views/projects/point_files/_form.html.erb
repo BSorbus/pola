@@ -65,6 +65,11 @@
 
         <%= link_to t('Back', default: t("helpers.links.back")), :back, :class => 'btn btn-default glyphicon glyphicon-arrow-left' %>
 
+        <%= link_to :back, class: "btn btn-default" do %>
+          <span class="glyphicon glyphicon-arrow-left"></span>
+          <%= t("helpers.links.back") %>
+        <% end %>
+
         <%= f.submit nil, :class => 'btn btn-primary' %>
       </div> <!-- /row -->
     <% end %>

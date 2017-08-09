@@ -50,18 +50,27 @@
   <% if input_disabled %>
     <!-- for "Show" -->
     <div class="row">
-      <%= link_to t('Index', default: t("helpers.links.index")), projects_path, :class => 'btn btn-default glyphicon glyphicon-th-list' %>
+
+      <%= link_to projects_path, class: "btn btn-default" do %>
+        <span class="glyphicon glyphicon-th-list"></span>
+        <%= t("helpers.links.index") %>
+      <% end %>
 
       <% if policy(@project).destroy? %>
-        <%= link_to t('Delete', default: t("helpers.links.destroy")), project_path(@project),
+        <%= link_to project_path(@project),
                             method: :delete,
                             data: { confirm: t('helpers.links.confirm_destroy', data: @project.number) }, 
-                            :class => "btn btn-danger glyphicon glyphicon-trash" %>
+                            class: "btn btn-danger" do %>
+          <span class="glyphicon glyphicon-trash"></span>
+          <%= t("helpers.links.destroy") %>
+        <% end %>
       <% end %>
 
       <% if policy(@project).edit? %>
-        <%= link_to t('Edit', default: t("helpers.links.edit")), edit_project_path(@project), 
-                        :class => "btn btn-primary glyphicon glyphicon-edit" %>  
+        <%= link_to edit_project_path(@project), class: "btn btn-primary" do %>
+          <span class="glyphicon glyphicon-edit"></span>
+          <%= t("helpers.links.edit") %>
+        <% end %>
       <% end %>
 
     </div> <!-- /row -->

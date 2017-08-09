@@ -21,7 +21,9 @@
 
 <div class="col-sm-12">
   <% if true %> <!-- #policy(:opinion).new? %> -->
-    <%= link_to t('New', default: t("helpers.links.new")), new_project_opinion_path(@project), 
-                        :class => 'btn btn-primary glyphicon glyphicon-plus pull-right' %> 
+    <%= link_to new_project_opinion_path(@project), class: "btn btn-primary pull-right" do %>
+      <span class="glyphicon glyphicon-plus"></span>
+      <%= t("helpers.links.new") %>
+    <% end %>
   <% end %>
 </div> <!--/col-sm-12 -->

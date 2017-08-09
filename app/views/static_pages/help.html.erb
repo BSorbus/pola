@@ -34,9 +34,10 @@
               <br>
               <br>
               <% if policy(:event).new? %>
-                <%= link_to t('New', default: t("helpers.links.new")), new_event_path, 
-                                    :class => 'btn btn-primary glyphicon glyphicon-plus ' %> 
-              <% end %>
+                <%= link_to new_event_path, class: "btn btn-primary" do %>
+                  <span class="glyphicon glyphicon-plus"></span>
+                  <%= t("helpers.links.new") %>
+                <% end %>
 
 </ul>
 

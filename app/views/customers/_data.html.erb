@@ -40,18 +40,27 @@
   <% if input_disabled %>
     <!-- for "Show" -->
     <div class="row">
-      <%= link_to t('Index', default: t("helpers.links.index")), customers_path, :class => 'btn btn-default glyphicon glyphicon-th-list' %>
+
+      <%= link_to customers_path, class: "btn btn-default" do %>
+        <span class="glyphicon glyphicon-th-list"></span>
+        <%= t("helpers.links.index") %>
+      <% end %>
 
       <% if policy(@customer).destroy? %>
-        <%= link_to t('Delete', default: t("helpers.links.destroy")), customer_path(@customer),
+        <%= link_to customer_path(@customer),
                             method: :delete,
                             data: { confirm: t('helpers.links.confirm_destroy', data: @customer.name) }, 
-                            :class => "btn btn-danger glyphicon glyphicon-trash" %>
+                            class: "btn btn-danger" do %>
+          <span class="glyphicon glyphicon-trash"></span>
+          <%= t("helpers.links.destroy") %>
+        <% end %>
       <% end %>
 
       <% if policy(@customer).edit? %>
-        <%= link_to t('Edit', default: t("helpers.links.edit")), edit_customer_path(@customer), 
-                        :class => "btn btn-primary glyphicon glyphicon-edit" %>  
+        <%= link_to edit_customer_path(@customer), class: "btn btn-primary" do %>
+          <span class="glyphicon glyphicon-edit"></span>
+          <%= t("helpers.links.edit") %>
+        <% end %>
       <% end %>
 
     </div> <!-- /row -->
