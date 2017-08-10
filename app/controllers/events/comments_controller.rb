@@ -38,6 +38,8 @@ class Events::CommentsController < ApplicationController
         flash[:success] = t('activerecord.successfull.messages.created', data: @comment.fullname)
         format.html { redirect_to event_path(@event) }
         format.json { render :show, status: :created, location: @comment }
+#        format.js { render status: :created, layout: false, js: 'events/comments/create.js.rb' }
+        format.js   { render status: :created, layout: false, file: 'comments/create_from_event.js.erb' }
       else
         flash[:error] = t('activerecord.errors.messages.created', data: @comment.fullname)
         format.html { redirect_to event_path(@event) }

@@ -46,7 +46,7 @@ Rails.application.routes.draw do
 
   resources :events do
     get 'send_status', on: :member 
-    resources :comments, module: :events, except: [:index]
+    resources :comments, module: :events, except: [:index, :show]
   end
 
 

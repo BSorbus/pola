@@ -1,0 +1,11 @@
+<li class="timeline-item">
+  <div class="timeline-info">
+    <span><%= comment.created_at.strftime("%Y-%m-%d %H:%M") %></span>
+  </div>
+  <div class="timeline-marker"></div>
+  <div class="timeline-content">
+    <h3 class="timeline-title"><small>zadanie: </small><%= comment.event.title_as_link %></h3>
+    <p><%= comment.body.gsub("\r\n", "<br>").html_safe %></p>
+    <p class="pull-right"><i>~ <%= comment.user.fullname %></i></p>
+  </div>
+</li>
