@@ -4,7 +4,9 @@
   </div>
   <div class="timeline-marker"></div>
   <div class="timeline-content">
-    <h3 class="timeline-title"><small>zadanie: </small><%= comment.event.title_as_link %></h3>
+    <% unless @event.present? %>
+      <h4 class="timeline-title"><small>zadanie: </small><%= comment.event.title_as_link %></h4>
+    <% end %>
     <p><%= comment.body.gsub("\r\n", "<br>").html_safe %></p>
     <p class="pull-right"><i>~ <%= comment.user.fullname %></i></p>
   </div>
