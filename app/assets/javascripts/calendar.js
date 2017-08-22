@@ -9,17 +9,18 @@ $(document).ready(function() {
 		header: {
 			left: 'prevYear,prev,next,nextYear today',
 			center: 'title',
-			right: 'month,agendaWeek,agendaDay,listYear,listMonth'
+			right: 'listYear,listMonth,month,agendaWeek,agendaDay'
 		},
 		buttonText: {
+	    listYear: 	'lista-rok',
+	    listMonth: 	'lista-miesiąc',
 	    today:    	'dziś',
 	    month:    	'miesiąc',
 	    week:     	'tydzień',
 	    day:      	'dzień',
-	    list:     	'lista-dzień',
-	    listYear: 	'lista-rok',
-	    listMonth: 	'lista-miesiąc'
+	    list:     	'lista-dzień'
 		},
+		defaultView: 'listYear',
 		locale: 'pl',
 		timezone: 'local',
 		allDayText: 'Cały dzień',

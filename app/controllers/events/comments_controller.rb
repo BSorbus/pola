@@ -1,6 +1,6 @@
 class Events::CommentsController < ApplicationController
   before_action :authenticate_user!
-#  after_action :verify_authorized, except: []
+  after_action :verify_authorized, except: []
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
 
@@ -8,7 +8,7 @@ class Events::CommentsController < ApplicationController
   # GET /comments/1.json
   def show
     @event = load_event
-#    authorize @comment, :download?
+    authorize @comment, :show?
   end
 
   # GET /comments/new
@@ -16,13 +16,13 @@ class Events::CommentsController < ApplicationController
     @event = load_event
     @comment = Comment.new
     @comment.event = @event
-#    authorize @comment, :new?
+    authorize @comment, :new?
   end
 
   # GET /comments/1/edit
   def edit
     @event = load_event
-#    authorize @point_file, :edit?
+    authorize @comment, :edit?
   end
 
   # POST /comments
@@ -32,16 +32,15 @@ class Events::CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     @comment.event = @event
     @comment.user = current_user
-#    authorize @comment, :create?
+    authorize @comment, :create?
     respond_to do |format|
       if @comment.save
-        flash[:success] = t('activerecord.successfull.messages.created', data: @comment.fullname)
+        flash.now[:success] = t('activerecord.successfull.messages.created', data: @comment.fullname)
         format.html { redirect_to event_path(@event) }
         format.json { render :show, status: :created, location: @comment }
-#        format.js { render status: :created, layout: false, js: 'events/comments/create.js.rb' }
         format.js   { render status: :created, layout: false, file: 'comments/create_from_event.js.erb' }
       else
-        flash[:error] = t('activerecord.errors.messages.created', data: @comment.fullname)
+        flash.now[:error] = t('activerecord.errors.messages.created', data: @comment.fullname)
         format.html { redirect_to event_path(@event) }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
@@ -61,7 +60,7 @@ class Events::CommentsController < ApplicationController
     #   end
     # end
     @event = load_event
-#    authorize @comment, :update?
+    authorize @comment, :update?
     respond_to do |format|
       if @comment.update(comment_params)
         flash[:success] = t('activerecord.successfull.messages.updated', data: @comment.fullname)

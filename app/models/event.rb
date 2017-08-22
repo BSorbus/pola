@@ -6,6 +6,7 @@ class Event < ApplicationRecord
   belongs_to :event_type
 
   has_many :accessorizations, dependent: :delete_all, index_errors: true
+  has_many :accesses_users, through: :accessorizations, source: :user
 
   has_many :comments, dependent: :delete_all
 

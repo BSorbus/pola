@@ -1,0 +1,24 @@
+<%= image_tag attachments['logo.jpg'].url, size: "256x146" %>
+<br>
+<br>
+<p>
+  W programie <strong>PROCA</strong> do zadania <strong><%= link_to @event.try(:title), event_url(@event), target: "_blank" %></strong> dodano komentarz:
+</p>
+<br>
+
+<p><i>"<%= @comment.body.gsub("\r\n", "<br>").html_safe %></i></p>
+<br>
+<p><i>~ <%= @comment.user.fullname %>, <%= @comment.created_at.strftime("%Y-%m-%d %H:%M") %>"</p>
+
+<br>
+
+<div align="center"><div style="border-top: 1px solid #C7D540; width:100%; line-height:1px; height:1px; font-size:1px;">&#160;</div></div>
+</div>
+
+<p><small>
+  Ta wiadomość została wysłana automatycznie. Proszę nie odpisywać.
+</small></p>
+
+<div align="center"><div style="border-top: 1px solid #C7D540; width:100%; line-height:1px; height:1px; font-size:1px;">&#160;</div></div>
+</div>
+

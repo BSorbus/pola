@@ -68,6 +68,13 @@ role = CreateRoleService.new.event_observer
 puts 'CREATED ROLE: ' << role.name
 
 
+role = CreateRoleService.new.comment_admin
+puts 'CREATED ROLE: ' << role.name
+
+role = CreateRoleService.new.comment_observer
+puts 'CREATED ROLE: ' << role.name
+
+
 role = CreateRoleService.new.accessorization_manager
 puts 'CREATED ROLE: ' << role.name
 
@@ -188,12 +195,12 @@ event_status_verification = EventStatus.find_or_create_by!(name: "Weryfikacja")
 event_status_closed = EventStatus.find_or_create_by!(name: "Zamknięte")
 
 event_type1 = EventType.find_or_create_by!(name: "Ocenianie") do |role|
-  role.activities += %w(opiniowanie:* project:index project:show customer:index customer:show attachment:project_index attachment:project_show point_file:index point_file:download point_file:show)
+  role.activities += %w(opiniowanie:* event:index event:show accessorization:index comment:index comment:show project:index project:show customer:index customer:show attachment:project_index attachment:project_show point_file:index point_file:download point_file:show)
   role.save!
 end
 
 event_type2 = EventType.find_or_create_by!(name: "Ocenianie po proteście") do |role|
-  role.activities += %w(opiniowanie2:* opiniowanie:index opiniowanie:show project:index project:show customer:index customer:show attachment:project_index attachment:project_show point_file:index point_file:download point_file:show)
+  role.activities += %w(opiniowanie2:* opiniowanie:index opiniowanie:show event:index event:show accessorization:index comment:index comment:show project:index project:show customer:index customer:show attachment:project_index attachment:project_show point_file:index point_file:download point_file:show)
   role.save!
 end
 

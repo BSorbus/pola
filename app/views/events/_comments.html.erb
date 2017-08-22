@@ -12,6 +12,8 @@
 </div>
 
 
-<div class="row">
-  <%= render 'events/comments/form' %>
-</div>
+<% if policy(@comment).create? %>
+  <div class="row">
+    <%= render 'events/comments/form', event: @event, comment: @comment %>
+  </div>
+<% end %>

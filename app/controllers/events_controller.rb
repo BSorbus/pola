@@ -25,6 +25,7 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     authorize @event, :show?
+    @comment = @event.comments.new
   end
 
   # GET /events/new

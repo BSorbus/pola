@@ -1,4 +1,4 @@
-class AccessorizationPolicy < ApplicationPolicy
+class CommentPolicy < ApplicationPolicy
   attr_reader :user, :model
 
   def initialize(user, model)
@@ -36,14 +36,29 @@ class AccessorizationPolicy < ApplicationPolicy
   end
 
   def index?
-    # user_activities.include? 'accessorization:index'
-    (user_activities.include? 'accessorization:index') || (event_activities(@model).include? 'accessorization:index')
+    # user_activities.include? 'comment:index'
+    (user_activities.include? 'comment:index') || (event_activities(@model).include? 'comment:index')
   end
 
-  def create_update_delete?
-    # user_activities.include? 'accessorization:create_update_delete'
-    (user_activities.include? 'accessorization:create_update_delete') || (event_activities(@model).include? 'accessorization:create_update_delete')
+  def show?
+    # user_activities.include? 'comment:show'
+    (user_activities.include? 'comment:show') || (event_activities(@model).include? 'comment:show')
   end
+ 
+  def new?
+    create?
+  end
+
+  def create?
+    # user_activities.include? 'comment:create'
+    (user_activities.include? 'comment:create') || (event_activities(@model).include? 'comment:create')
+  end
+
+  def destroy?
+    # user_activities.include? 'comment:delete'
+    (user_activities.include? 'comment:delete') || (event_activities(@model).include? 'comment:delete')
+  end
+ 
 
   class Scope < Struct.new(:user, :scope)
     def resolve
