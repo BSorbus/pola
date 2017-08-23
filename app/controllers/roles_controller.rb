@@ -42,6 +42,7 @@ class RolesController < ApplicationController
   # POST /roles
   # POST /roles.json
   def create
+    # @role = Role.new(name: params[:role][:name], note: params[:role][:note], special: params[:role][:special],activities: params[:role][:activities].split)
     @role = Role.new(role_params)
     authorize @role, :create?
     respond_to do |format|
@@ -59,9 +60,9 @@ class RolesController < ApplicationController
   # PATCH/PUT /roles/1
   # PATCH/PUT /roles/1.json
   def update
-    aa
     authorize @role, :update?
     respond_to do |format|
+      # if @role.update(name: params[:role][:name], note: params[:role][:note], special: params[:role][:special],activities: params[:role][:activities].split)
       if @role.update(role_params)
         flash[:success] = t('activerecord.successfull.messages.updated', data: @role.fullname)
         format.html { redirect_to @role }
@@ -101,6 +102,8 @@ class RolesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def role_params
-      params.require(:role).permit(:name, :note, :activities, :special)
+      # params.require(:role).permit(:name, :note, :activities, :special)
+      activities_array = params[:role][:activities].split || []
+      params.require(:role).permit(:name, :note, :special).merge(activities: activities_array)
     end
 end

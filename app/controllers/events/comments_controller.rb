@@ -1,23 +1,8 @@
 class Events::CommentsController < ApplicationController
   before_action :authenticate_user!
   after_action :verify_authorized, except: []
-  before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  before_action :set_comment, only: [:update, :destroy]
 
-
-  # GET /comments/1
-  # GET /comments/1.json
-  def show
-    @event = load_event
-    authorize @comment, :show?
-  end
-
-  # GET /comments/new
-  def new
-    @event = load_event
-    @comment = Comment.new
-    @comment.event = @event
-    authorize @comment, :new?
-  end
 
   # GET /comments/1/edit
   def edit
@@ -50,15 +35,6 @@ class Events::CommentsController < ApplicationController
   # PATCH/PUT /comments/1
   # PATCH/PUT /comments/1.json
   def update
-    # respond_to do |format|
-    #   if @comment.update(comment_params)
-    #     format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
-    #     format.json { render :show, status: :ok, location: @comment }
-    #   else
-    #     format.html { render :edit }
-    #     format.json { render json: @comment.errors, status: :unprocessable_entity }
-    #   end
-    # end
     @event = load_event
     authorize @comment, :update?
     respond_to do |format|
@@ -85,10 +61,11 @@ class Events::CommentsController < ApplicationController
     authorize @comment, :destroy?
     if @comment.destroy
       flash[:success] = t('activerecord.successfull.messages.destroyed', data: @comment.fullname)
-      redirect_to event_path(@event)
+      #redirect_to event_path(@event)
+      redirect_to request.referer
     else 
       flash.now[:error] = t('activerecord.errors.messages.destroyed', data: @comment.fullname)
-      render :show
+      redirect_to request.referer
     end      
   end
 

@@ -9,5 +9,16 @@
     <% end %>
     <p><%= comment.body.gsub("\r\n", "<br>").html_safe %></p>
     <p class="pull-right"><i>~ <%= comment.user.fullname %></i></p>
+
+    <% if policy(comment).destroy? %>
+      <%= link_to event_comment_path(comment.event, comment),
+                          method: :delete,
+                          data: { confirm: t('helpers.links.confirm_destroy', data: comment.fullname) }, 
+                          title: t('tooltip.destroy'), 
+                          rel: 'tooltip' do %>
+        <span class="glyphicon glyphicon-trash text-danger"></span>
+      <% end %>
+    <% end %>
+
   </div>
 </li>

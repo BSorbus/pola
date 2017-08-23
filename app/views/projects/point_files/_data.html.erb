@@ -50,11 +50,7 @@
         <%= t("helpers.links.back") %>
       <% end %>
 
-
-      <%= link_to t('Back', default: t("helpers.links.back")), project_path(@point_file.project), :class => 'btn btn-default glyphicon glyphicon-arrow-left' %>
-
       <% if policy(@point_file).destroy? %>
-
         <%= link_to project_point_file_path(@point_file.project, @point_file),
                             method: :delete,
                             data: { confirm: t('helpers.links.confirm_destroy', data: @point_file.fullname) }, 
@@ -62,11 +58,6 @@
           <span class="glyphicon glyphicon-trash"></span>
           <%= t("helpers.links.destroy") %>
         <% end %>
-
-        <%= link_to t('Delete', default: t("helpers.links.destroy")), project_point_file_path(@point_file.project, @point_file),
-                            method: :delete,
-                            data: { confirm: t('helpers.links.confirm_destroy', data: @point_file.fullname) }, 
-                            :class => "btn btn-danger glyphicon glyphicon-trash" %>
       <% end %>
 
       <% if policy(@point_file).edit? %>
@@ -74,9 +65,6 @@
           <span class="glyphicon glyphicon-edit"></span>
           <%= t("helpers.links.edit") %>
         <% end %>
-
-        <%= link_to t('Edit', default: t("helpers.links.edit")), edit_project_point_file_path(@point_file.project, @point_file), 
-                        :class => "btn btn-primary glyphicon glyphicon-edit" %>  
       <% end %>
 
     </div> <!-- /row -->
