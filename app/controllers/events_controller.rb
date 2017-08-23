@@ -1,8 +1,14 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
-  after_action :verify_authorized, except: [:index]
+  after_action :verify_authorized, except: [:index, :datatables_index]
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
+
+  def datatables_index
+    respond_to do |format|
+      format.json{ render json: EventDatatable.new(view_context) }
+    end
+  end
 
   def send_status
     event = Event.find(params[:id])
