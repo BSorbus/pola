@@ -8,7 +8,8 @@ class Comment < ApplicationRecord
   validates :body, presence: true,
                     length: { minimum: 3 }
 
-  after_create :send_notification
+  # callbacks
+  after_commit :send_notification, on: :create
 
   def fullname
     "#{truncate(body, length: 50)}"

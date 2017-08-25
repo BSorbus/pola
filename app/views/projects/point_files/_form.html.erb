@@ -63,8 +63,6 @@
       <div class="row">
         <%= link_to @project.try(:number), project_path(@project), :class => 'btn btn-default' %>
 
-        <%= link_to t('Back', default: t("helpers.links.back")), :back, :class => 'btn btn-default glyphicon glyphicon-arrow-left' %>
-
         <%= link_to :back, class: "btn btn-default" do %>
           <span class="glyphicon glyphicon-arrow-left"></span>
           <%= t("helpers.links.back") %>

@@ -22,6 +22,13 @@ class Event < ApplicationRecord
 
   accepts_nested_attributes_for :accessorizations, reject_if: :all_blank, allow_destroy: true
 
+  after_commit :send_notification, on: [:create, :update]
+  
+
+  def send_notification
+    StatusMailer.new_update_event_email(self).deliver_later if self.accesses_users.any?
+  end
+
 
   def fullname
     "#{self.title}"

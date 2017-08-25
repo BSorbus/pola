@@ -1,7 +1,76 @@
-<div class="center jumbotron">
-   <h1>
-    <strong>PR</strong>ogram <strong>O</strong>peracyjny Polska <strong>C</strong>yfrow<strong>A</strong>.
-  </h1>
-  <br>
-  <h2>PROCA</h2>
-</div>
+<% content_for :upper_part_page do %>
+
+  <!-- Half Page Image Background Carousel Header -->
+  <div id="myCarousel" class="carousel slide">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for Slides -->
+    <div class="carousel-inner">
+        <div class="item active">
+
+          <div class="view">
+            <video class="video-full fillvideo" autoplay loop muted>
+              <source src="<%= asset_path('1.mp4') %>" type="video/mp4" />
+            </video>
+          </div>
+          <div class="carousel-caption">
+            <h3>UKE</h3>
+            <p>Urząd Komunikacji Elektronicznej</p>
+          </div>
+
+        </div>
+        <div class="item">
+          <!-- Set the second background image using inline CSS below.
+          <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Wszędzie');"></div> -->
+
+          <div class="view">
+            <video class="video-full fillvideo" autoplay loop muted>
+              <source src="<%= asset_path('2.mp4') %>" type="video/mp4" />
+            </video>
+          </div>
+          <div class="carousel-caption">
+            <h3>PROCA</h3>
+            <p><strong>PR</strong>ogram <strong>O</strong>peracyjny Polska <strong>C</strong>yfrow<strong>A</strong></p>
+          </div>
+
+        </div>
+        <div class="item">
+          <!-- Set the next background image using inline CSS below. -->
+
+          <div class="view">
+            <video class="video-full fillvideo" autoplay loop muted>
+              <source src="<%= asset_path('3.mp4') %>" type="video/mp4" />
+            </video>
+          </div>
+          <div class="carousel-caption">
+            <h3>Czas na wykorzystanie nowoczesnych technologii</h3>
+            <p>Dostęp do danych przez przeglądarkę bez konieczności instalowania programu i kłopotliwych aktualizacji</p>
+          </div>
+
+        </div>
+      </div> <!-- /div class="carousel-inner" -->
+
+      <!-- Controls -->
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <span class="icon-prev"></span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <span class="icon-next"></span>
+      </a>
+
+  </div>
+
+
+  <!-- Script to Activate the Carousel -->
+  <script>
+  $('.carousel').carousel({
+      interval: 10000 //changes the speed
+  });
+  </script>
+
+<% end %><!--/ content_for :upper_part_page -->

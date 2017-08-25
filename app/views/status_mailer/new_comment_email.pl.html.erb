@@ -2,7 +2,7 @@
 <br>
 <br>
 <p>
-  W programie <strong>PROCA</strong> do zadania <strong><%= link_to @event.try(:title), event_url(@event), target: "_blank" %></strong> dodano komentarz:
+  W programie <strong>PROCA</strong>, do zadania <strong><%= link_to @comment.event.try(:title), event_url(@comment.event), target: "_blank" %></strong>, dotyczącego projektu <strong><%= link_to @comment.event.project.try(:number), project_url(@comment.event.project), target: "_blank" %></strong>, dodano komentarz:
 </p>
 <br>
 
@@ -10,14 +10,13 @@
 <br>
 <p><i>~ <%= @comment.user.fullname %>, <%= @comment.created_at.strftime("%Y-%m-%d %H:%M") %>"</p>
 
-<br>
 
+
+<br>
 <div align="center"><div style="border-top: 1px solid #C7D540; width:100%; line-height:1px; height:1px; font-size:1px;">&#160;</div></div>
 </div>
 
-<p><small>
-  Ta wiadomość została wysłana automatycznie. Proszę nie odpisywać.
-</small></p>
+<p><small>Ta wiadomość została wysłana automatycznie. Proszę nie odpisywać.</small></p>
 
 <div align="center"><div style="border-top: 1px solid #C7D540; width:100%; line-height:1px; height:1px; font-size:1px;">&#160;</div></div>
 </div>

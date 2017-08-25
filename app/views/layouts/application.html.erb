@@ -10,11 +10,12 @@
 
   <body>
     <%= render 'layouts/header' %>
-    <div class="container">
+    <%= yield(:upper_part_page) %>
+    <main>
       <%= render 'layouts/messages' %>
       <%= yield :form_errors %>       
       <%= yield %>
-    </div>
+    </main>
     <%= render 'layouts/footer' %>
     <div class="container">
       <%= debug(params) if Rails.env.development? %>

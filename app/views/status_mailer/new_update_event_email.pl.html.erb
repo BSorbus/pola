@@ -1,0 +1,50 @@
+<%= image_tag attachments['logo.jpg'].url, size: "256x146" %>
+<br>
+<br>
+<p>
+  W programie <strong>PROCA</strong>, utworzono nowe lub  wprowadzono zmiany w zadaniu <strong><%= link_to @event.try(:title), event_url(@event), target: "_blank" %></strong>, dotyczącym projektu <strong><%= link_to @event.project.try(:number), project_url(@event.project), target: "_blank" %></strong>.
+</p>
+
+<br>
+<p>
+  <strong>Tytuł</strong>:<br>
+  <%= @event.try(:title) %><br>
+</p>
+<p>
+  <strong>Status zadania</strong>:<br>
+  <%= @event.event_status.try(:name) %><br>
+</p>
+<p>
+  <strong>Typ zadania</strong>:<br>
+  <%= @event.event_type.try(:name) %><br>
+</p>
+<p>
+  <strong>Projekt</strong>:<br>
+  <%= @event.project.try(:fullname) %><br>
+</p>
+<p>
+  <strong>Uwagi</strong>:<br>
+  <i><%= @event.note.gsub("\r\n", "<br>").html_safe %></i>
+</p>
+
+
+
+
+<br>
+<p>
+  <strong>Lista użytkowników</strong>:<br>
+  <% Accessorization.includes(:user, :role).where(event_id: @event.id).order("users.name").each do |row| %>
+    <%= "#{row.user.try(:fullname)} - #{row.role.try(:fullname)}" %><br>
+  <% end %>
+</p>
+
+
+
+<br>
+<div align="center"><div style="border-top: 1px solid #C7D540; width:100%; line-height:1px; height:1px; font-size:1px;">&#160;</div></div>
+</div>
+
+<p><small>Ta wiadomość została wysłana automatycznie. Proszę nie odpisywać.</small></p>
+
+<div align="center"><div style="border-top: 1px solid #C7D540; width:100%; line-height:1px; height:1px; font-size:1px;">&#160;</div></div>
+</div>

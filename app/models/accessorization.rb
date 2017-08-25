@@ -13,4 +13,6 @@ class Accessorization < ApplicationRecord
   #validates_presence_of :user
   #validates_presence_of :role
 
+  # callbacks
+
 end

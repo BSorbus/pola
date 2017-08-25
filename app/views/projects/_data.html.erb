@@ -37,7 +37,7 @@
       <div class="row">
         <div class="form-group col-sm-12">
           <p><strong><%= Project.human_attribute_name(:note) %></strong></p>
-          <%= @project.note.gsub("\r\n", "<br>").html_safe %>
+          <%= text_with_break_line(@project.note) %>
         </div>
       </div>
     </div> <!--/col-sm-6 -->

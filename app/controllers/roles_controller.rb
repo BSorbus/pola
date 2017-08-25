@@ -103,7 +103,12 @@ class RolesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def role_params
       # params.require(:role).permit(:name, :note, :activities, :special)
-      activities_array = params[:role][:activities].split || []
-      params.require(:role).permit(:name, :note, :special).merge(activities: activities_array)
+
+      # activities_array = params[:role][:activities].split || []
+      # params.require(:role).permit(:name, :note, :special).merge(activities: activities_array)
+
+      params.require(:role).permit(:name, :note, :special, :activities).tap do |parameters|
+        parameters[:activities] = parameters[:activities].try(:split)
+      end
     end
 end

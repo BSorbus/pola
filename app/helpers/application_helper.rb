@@ -17,6 +17,10 @@ module ApplicationHelper
     end
   end
 
+  def text_with_break_line(text_data)
+    text_data.gsub("\r\n", "<br>").html_safe
+  end
+
   # for nested_attribute
   def link_to_add_fields(name, f, association, opts={})
     # creaate a new object given the form object, and the association name

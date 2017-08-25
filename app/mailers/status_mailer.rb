@@ -22,14 +22,18 @@ class StatusMailer < ActionMailer::Base
   end
 
   def new_comment_email(comment)
-    @url  = Rails.application.secrets.domain_name
     @comment = comment
-    @event = comment.event
     emails = comment.event.accesses_users.order(:name).flat_map {|row| row.email }.join(',')
+    attachments.inline['logo.jpg'] = File.read("app/assets/images/proca.png")
+    mail(to: emails, subject: "PROCA - dotyczy zadania: #{@comment.event.try(:title)}" )
+  end
+
+  def new_update_event_email(event)
+    @event = event
+    emails = event.accesses_users.order(:name).flat_map {|row| row.email }.join(',')
     attachments.inline['logo.jpg'] = File.read("app/assets/images/proca.png")
     mail(to: emails, subject: "PROCA - dotyczy zadania: #{@event.try(:title)}" )
   end
-
 
 end
 
