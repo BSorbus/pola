@@ -35,24 +35,38 @@ $btn-default-bg:         lighten(#BECC25, 48.5%) !default;
 @import "bootstrap-datetimepicker";
 
 
+// Sticky Footer 
+.site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
 
-/* mixins, variables, etc. */
-
-
-/* universal */
+.site-content {
+  flex: 1;
+}
 
 body {
   background-color: #eee;
 }
 
-// apply styles to HTML elements
-// to make views framework-neutral
 main {
   @extend .container;
   padding-bottom: 15px;
   margin-top: 52px; // accommodate the navbar 51, 52 if hover:border-bottom 
 }
 
+footer {
+  margin-top: 0px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  background-color: white;
+  padding-left: 45px;
+  padding-right: 45px;
+  font-size: 1.3em;
+  border-top: 1px solid #C7D540;
+  color: $gray-light;
+}
 
 .center {
   text-align: center;
@@ -106,21 +120,6 @@ p {
   }
 }
 
-/* footer */
-
-footer {
-  padding-bottom: 200px;
-  background-color: white;
-  padding-left: 45px;
-  padding-right: 45px;
-  font-size: 1.3em;
-
-  margin-top: 80px;
-  padding-top: 25px;
-  border-top: 1px solid #C7D540;
-
-  color: $gray-light;
-}
 
 #error_explanation {
   @extend .alert;
