@@ -10,8 +10,8 @@ class UserDatatable < AjaxDatatablesRails::Base
       last_sign_in_at:    { source: "User.last_sign_in_at",  cond: :like, searchable: true, orderable: true },
       current_sign_in_ip: { source: "User.current_sign_in_ip",  cond: :like, searchable: true, orderable: true },
       current_sign_in_at: { source: "User.current_sign_in_at",  cond: :like, searchable: true, orderable: true },
-      note:               { source: "User.note",  cond: :like, searchable: true, orderable: true },
-      flat:               { source: "User.id", cond: filter_custom_column_condition }
+      flat:               { source: "User.id", cond: filter_custom_column_condition },
+      deleted_at:         { source: "User.deleted_at",  cond: :like, searchable: true, orderable: true }
     }
   end
 
@@ -24,9 +24,8 @@ class UserDatatable < AjaxDatatablesRails::Base
         last_sign_in_at:    record.last_sign_in_at.present? ? record.last_sign_in_at.strftime("%Y-%m-%d %H:%M:%S") : '' ,
         current_sign_in_ip: record.current_sign_in_ip,
         current_sign_in_at: record.current_sign_in_at.present? ? record.current_sign_in_at.strftime("%Y-%m-%d %H:%M:%S") : '' ,
-        note:               truncate(record.note, length: 50),
-#        flat:               record.try(:flat_assigned_events)
-        flat:               record.try(:flat_assigned_events_with_status)
+        flat:               record.try(:flat_assigned_events_with_status),
+        deleted_at:         record.deleted_at.present? ? record.deleted_at.strftime("%Y-%m-%d %H:%M:%S") : '' 
       }
     end
   end
