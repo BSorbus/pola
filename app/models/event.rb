@@ -5,10 +5,13 @@ class Event < ApplicationRecord
   belongs_to :event_status
   belongs_to :event_type
 
+  has_many :attachments, as: :attachmenable, dependent: :destroy
+
   has_many :accessorizations, dependent: :delete_all, index_errors: true
   has_many :accesses_users, through: :accessorizations, source: :user
 
   has_many :comments, dependent: :delete_all
+  has_many :opinions, dependent: :destroy
 
   # validates
   validates :title, presence: true,
@@ -22,6 +25,7 @@ class Event < ApplicationRecord
 
   accepts_nested_attributes_for :accessorizations, reject_if: :all_blank, allow_destroy: true
 
+  before_create { self.title = "#{title} - #{self.project.number}" }
   after_commit :send_notification, on: [:create, :update]
   
 

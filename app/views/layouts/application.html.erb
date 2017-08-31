@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Proca</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "PROCA" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "PROCA" %>">
+
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag 'application', media: 'all' %>

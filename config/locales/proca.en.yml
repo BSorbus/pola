@@ -45,7 +45,7 @@ en:
       ww_point: 'Address point'
       zs_point: 'Telecom node'
       event: 'Event'
-      opinion: 'Comment'
+      comment: 'Comment'
       opinion: 'Opinion'
     attributes:
       user:

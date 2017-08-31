@@ -15,8 +15,7 @@ class Project < ApplicationRecord
 
   has_many :events, dependent: :nullify, index_errors: true
   has_many :comments, through: :events, source: :comments
-
-  has_many :opinions, dependent: :destroy
+  has_many :opinions, through: :events, source: :opinions
 
   # validates
   validates :number, presence: true,
@@ -27,7 +26,6 @@ class Project < ApplicationRecord
 
   # callbacks
   before_destroy :has_links, prepend: true
-
 
 
   def has_links

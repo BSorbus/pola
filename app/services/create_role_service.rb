@@ -144,6 +144,24 @@ class CreateRoleService
     end
   end
 
+  # event_attachments
+  def event_attachment_admin
+    role = Role.find_or_create_by!(name: "Administrator Załączników Zadania/Zdarzenia") do |role|
+      role.special = true
+      role.activities += %w(attachment:event_index attachment:event_show attachment:event_create attachment:event_delete)
+      role.note = "Rola służy do zarządzania załącznikami przypisanymi do Projektów. \r\n (Przypisz tylko Administratorom systemu oraz Koordynatorom POPC)"
+      role.save!
+    end
+  end
+  def event_attachment_observer
+    role = Role.find_or_create_by!(name: "Obserwator Załączników Zadania/Zdarzenia") do |role|
+      role.special = true
+      role.activities += %w(attachment:event_index attachment:event_show)
+      role.note = "Rola służy do wyświetlania i pobierania załączników przypisanych do Projektów. \r\n (Przypisz Administratorom systemu oraz Koordynatorom POPC)"
+      role.save!
+    end
+  end
+
   # comments
   def comment_admin
     role = Role.find_or_create_by!(name: "Administrator Komentarzy") do |role|
@@ -188,7 +206,7 @@ class CreateRoleService
   def role_for_event_performer
     role = Role.find_or_create_by!(name: "Wykonawca") do |role|
       role.special = false
-      role.activities += %w(*:index *:show *:create *:update *:delete comment:create)
+      role.activities += %w(*:index *:show *:create *:update *:delete comment:create attachment:event_create attachment:event_delete)
       role.note = "Rola Projektowa, która służy do realizacji zadania/zlecenia.\r\n(Przypisz tę rolę projektową tzw. 'Użytkownikowi wykonującemu' zadanie w konkretnym Projekcie)"
       role.save!
     end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170826183456) do
+ActiveRecord::Schema.define(version: 20170826213751) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 20170826183456) do
   end
 
   create_table "opinions", force: :cascade do |t|
-    t.bigint "project_id"
+    t.bigint "event_id"
     t.bigint "user_id"
     t.boolean "sec22_rate"
     t.text "sec22"
@@ -114,7 +114,7 @@ ActiveRecord::Schema.define(version: 20170826183456) do
     t.text "sec61"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["project_id"], name: "index_opinions_on_project_id"
+    t.index ["event_id"], name: "index_opinions_on_event_id"
     t.index ["user_id"], name: "index_opinions_on_user_id"
   end
 
@@ -306,7 +306,7 @@ ActiveRecord::Schema.define(version: 20170826183456) do
   add_foreign_key "comments", "users"
   add_foreign_key "events", "event_statuses"
   add_foreign_key "events", "event_types"
-  add_foreign_key "opinions", "projects"
+  add_foreign_key "opinions", "events"
   add_foreign_key "opinions", "users"
   add_foreign_key "point_files", "projects"
   add_foreign_key "projects", "customers"

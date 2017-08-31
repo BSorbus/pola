@@ -1,7 +1,7 @@
 class CreateOpinions < ActiveRecord::Migration[5.1]
   def change
     create_table :opinions do |t|
-      t.references :project, foreign_key: true
+      t.references :event, foreign_key: true
       t.references :user, foreign_key: true
       t.boolean :sec22_rate
       t.text :sec22
