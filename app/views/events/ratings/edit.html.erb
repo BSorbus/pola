@@ -1,10 +1,10 @@
 <div class="row">
   <div class="col-sm-12">
-    <div class="panel panel-point-file">
+    <div class="panel panel-rating">
       <div class="panel-heading">
         <div class="panel-title">
-          <span class="glyphicon glyphicon-book">&nbsp;</span>
-          <span><%=t "pages.point_file.edit.title"%>:&nbsp;<%= @point_file.fullname %></span>
+          <span class="glyphicon glyphicon-list-alt">&nbsp;</span>
+          <span><%=t "pages.rating.edit.title"%>:&nbsp;<%= @rating.fullname %></span>    
         </div>
       </div>
         <div class="panel-body">
@@ -12,7 +12,7 @@
             <h1><span class="glyphicon glyphicon-edit"></span></h1> 
           </div> <!--/col-sm-1-->
 
-          <%= render 'form', project: @project, point_file: @point_file %>
+          <%= render 'form', event: @event, rating: @rating %>
     
         </div>
     </div> <!-- /panel -->

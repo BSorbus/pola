@@ -1,6 +1,6 @@
-class CreateOpinions < ActiveRecord::Migration[5.1]
+class CreateRatings < ActiveRecord::Migration[5.1]
   def change
-    create_table :opinions do |t|
+    create_table :ratings do |t|
       t.references :event, foreign_key: true
       t.references :user, foreign_key: true
       t.boolean :sec22_rate
@@ -21,6 +21,7 @@ class CreateOpinions < ActiveRecord::Migration[5.1]
       t.boolean :sec51_rate
       t.text :sec51
       t.text :sec61
+      t.text :note, default: ""
 
       t.timestamps
     end

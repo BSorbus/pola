@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  project: one
+  event: one
   user: one
   sec22_rate: false
   sec22: MyText
@@ -23,7 +23,7 @@ one:
   sec61: MyText
 
 two:
-  project: two
+  event: two
   user: two
   sec22_rate: false
   sec22: MyText

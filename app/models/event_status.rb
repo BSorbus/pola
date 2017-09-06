@@ -13,7 +13,7 @@ class EventStatus < ApplicationRecord
                     length: { in: 1..100 },
                     :uniqueness => { :case_sensitive => false }
 
-  # scope :can_change, -> { where(role: 'administrator') }
+  # scope
   scope :status_can_change, -> { where(id: [EVENT_STATUS_OPENED, EVENT_STATUS_VERIFICATION]) }
 
 end

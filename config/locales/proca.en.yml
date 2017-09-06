@@ -31,6 +31,7 @@
 
 en:
   hello: "Hello world"
+  restricted_area: "IP address - Request from restricted area!"
   activerecord:
     models:
       user: 'User'
@@ -46,6 +47,7 @@ en:
       zs_point: 'Telecom node'
       event: 'Event'
       comment: 'Comment'
+      rating: 'Ocena'
       opinion: 'Opinion'
     attributes:
       user:
@@ -128,6 +130,10 @@ en:
         project_id: 'Project'
         user_id: 'Author'
         body: 'Body'
+      rating:
+        event_id: 'Event'
+        user_id: 'Author'
+        updated_at: 'Updated'
   pages:
     home: 'Home'
     help: 'Help'
@@ -239,6 +245,15 @@ en:
         title: 'Comment'
       new:
         title: 'New Comment'
+    rating:
+      index:
+        title: 'Ratings'
+      show:
+        title: 'Rating'
+      new:
+        title: 'New Rating'
+      edit:
+        title: 'Edit -> Rating'
     opinion:
       index:
         title: 'Opinions'

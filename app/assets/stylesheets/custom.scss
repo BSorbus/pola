@@ -186,115 +186,123 @@ td:hover {
 }
 
 
-.panel-comment {
-  border-color: #ddd  
+.panel-rating {
+  border-color: #ddd;  
+  .panel-heading {
+    background: $brand-primary; //#1A3069;
+    color: white
+  }
 }
-.panel-comment > .panel-heading {
-  background: $brand-primary; //#1A3069;
-  color: white; 
+
+.panel-comment {
+  border-color: #ddd;  
+  .panel-heading {
+    background: $brand-primary; //#1A3069;
+    color: white
+  }
 }
 
 .panel-opinion {
-  border-color: #ddd  
-}
-.panel-opinion > .panel-heading {
-  background: $brand-primary; //#1A3069;
-  color: white; 
+  border-color: #ddd;
+  .panel-heading {
+    background: $brand-primary; //#1A3069;
+    color: white
+  }
 }
 
 .panel-event {
-  border-color: #ddd  
-}
-.panel-event > .panel-heading {
-  background: $brand-primary; //#1A3069;
-  color: white; 
+  border-color: #ddd;
+  .panel-heading {
+    background: $brand-primary; //#1A3069;
+    color: white
+  } 
 }
 
 .panel-ww-point {
-  border-color: #ddd  
-}
-.panel-ww-point > .panel-heading {
-  background: $brand-primary; //#1A3069;
-  color: white; 
+  border-color: #ddd;
+  .panel-heading {
+    background: $brand-primary; //#1A3069;
+    color: white
+  } 
 }
 
 .panel-zs-point {
-  border-color: #ddd  
-}
-.panel-zs-point > .panel-heading {
-  background: $brand-primary; //#1A3069;
-  color: white; 
+  border-color: #ddd;
+  .panel-heading {
+    background: $brand-primary; //#1A3069;
+    color: white
+  } 
 }
 
 .panel-oi-data {
-  border-color: #ddd  
-}
-.panel-oi-data > .panel-heading {
-  background: $brand-primary; //#1A3069;
-  color: white; 
+  border-color: #ddd;
+  .panel-heading {
+    background: $brand-primary; //#1A3069;
+    color: white
+  } 
 }
 
 .panel-point {
-  border-color: #ddd  
-}
-.panel-point > .panel-heading {
-  background: $brand-primary; //#1A3069;
-  color: white; 
+  border-color: #ddd;
+  .panel-heading {
+    background: $brand-primary; //#1A3069;
+    color: white
+  } 
 }
 
 .panel-point-file {
-  border-color: #ddd  
-}
-.panel-point-file > .panel-heading {
-  background: $brand-primary; //#1A3069;
-  color: white; 
+  border-color: #ddd;
+  .panel-heading {
+    background: $brand-primary; //#1A3069;
+    color: white
+  } 
 }
 
 .panel-attach {
-  border-color: #ddd  
-}
-.panel-attach > .panel-heading {
-  background: $brand-primary; // #2F4471; #89877a; #5E5E5E;
-  color: white; 
+  border-color: #ddd;
+  .panel-heading {
+    background: $brand-primary; // #2F4471; #89877a; #5E5E5E;
+    color: white
+  } 
 }
 
 .panel-customer {
-  border-color: #ddd  
-}
-.panel-customer > .panel-heading {
-  background: $brand-primary; //#1A3069;
-  color: white; 
+  border-color: #ddd;
+  .panel-heading {
+    background: $brand-primary; //#1A3069;
+    color: white
+  } 
 }
 
 .panel-project {
-  border-color: #ddd  
-}
-.panel-project > .panel-heading {
-  background: $brand-primary; //#2F4471;
-  color: white; 
+  border-color: #ddd;
+  .panel-heading {
+    background: $brand-primary; //#2F4471;
+    color: white
+  } 
 }
 
 .panel-accessorization {
-  border-color: #ddd  
-}
-.panel-accessorization > .panel-heading {
-  background: $brand-primary; //#2C52B4; 
-  color: white; 
+  border-color: #ddd;
+  .panel-heading {
+    background: $brand-primary; //#2C52B4; 
+    color: white
+  } 
 }
 
 .panel-user {
-  border-color: #ddd  
-}
-.panel-user > .panel-heading {
-  background: $brand-primary; //#476AB1;
-  color: white; 
+  border-color: #ddd;
+  .panel-heading {
+    background: $brand-primary; //#476AB1;
+    color: white
+  } 
 }
 
 .panel-role {
-  border-color: #ddd  
-}
-.panel-role > .panel-heading {
-  background: $brand-primary; //#576A95; 
-  color: white; 
+  border-color: #ddd;
+  .panel-heading {
+    background: $brand-primary; //#576A95; 
+    color: white
+  } 
 }
 

@@ -25,10 +25,10 @@ class Project < ApplicationRecord
   validates :customer_id, presence: true
 
   # callbacks
-  before_destroy :has_links, prepend: true
+  before_destroy :has_important_links, prepend: true
 
 
-  def has_links
+  def has_important_links
     analize_value = true
     if self.events.any? 
      errors.add(:base, 'Nie można usunąć projektu "' + self.try(:fullname) + '" do którego są przypisane Zadania.')

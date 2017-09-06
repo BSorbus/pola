@@ -2,13 +2,26 @@
 class StatusMailerPreview < ActionMailer::Preview
 
 
-#  def project_status_email(user, project)
+
+  # def project_status_email(user, project)
   def project_status_email
-    user = User.last
-    project = user.accesses_projects.first   
+    e = Event.last
+    user = e.accessorizations.first.user
     message = "Test message"
-    StatusMailer.project_status_email(user, project)
+    StatusMailer.project_status_email(user, e.project)
   end
 
 
+  # def new_comment_email(comment)
+  def new_comment_email
+    @comment = Comment.last
+    StatusMailer.new_comment_email(@comment)
+  end
+
+  # def new_update_event_email(event)
+  def new_update_event_email
+    @event = Event.last
+    StatusMailer.new_update_event_email(@event)
+  end
+ 
 end

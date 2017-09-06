@@ -31,6 +31,7 @@
 
 pl:
   hello: "Hello world"
+  restricted_area: "Adres IP - Wywołanie z obszaru ograniczonego!"
   activerecord:
     models:
       user: 'Użytkownik'
@@ -45,6 +46,7 @@ pl:
       zs_point: 'Węzeł'
       event: 'Zdarzenie/Zadanie'
       comment: 'Komentarz'
+      rating: 'Ocena'
       opinion: 'Opinia'
     attributes:
       user:
@@ -127,6 +129,10 @@ pl:
         project_id: 'Projekt'
         user_id: 'Autor'
         body: 'Treść'
+      rating:
+        event_id: 'Zadanie'
+        user_id: 'Autor'
+        updated_at: 'Aktualizacja'
   pages:
     home: 'Główna'
     help: 'Pomoc'
@@ -238,6 +244,15 @@ pl:
         title: 'Komentarz'
       new:
         title: 'Nowy Komentarz'
+    rating:
+      index:
+        title: 'Oceny'
+      show:
+        title: 'Ocena'
+      new:
+        title: 'Nowa Ocena'
+      edit:
+        title: 'Edycja -> Ocena'
     opinion:
       index:
         title: 'Opinie'

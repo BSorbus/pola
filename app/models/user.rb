@@ -36,12 +36,10 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :accessorizations, reject_if: :all_blank, allow_destroy: true
 
   # callbacks
-  before_destroy :has_links, prepend: true
+  before_destroy :has_important_links, prepend: true
 
 
-
-
-  def has_links
+  def has_important_links
     analize_value = true
     if self.accessorizations.any? 
      errors.add(:base, 'Nie można usunąć konta "' + self.try(:fullname) + '" do którego są przypisane Zadania.')

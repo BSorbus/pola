@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170826213751) do
+ActiveRecord::Schema.define(version: 20170905074104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -173,6 +173,34 @@ ActiveRecord::Schema.define(version: 20170826213751) do
     t.index ["project_status_id"], name: "index_projects_on_project_status_id"
   end
 
+  create_table "ratings", force: :cascade do |t|
+    t.bigint "event_id"
+    t.bigint "user_id"
+    t.boolean "sec22_rate"
+    t.text "sec22"
+    t.boolean "sec23_rate"
+    t.text "sec23"
+    t.boolean "sec24_rate"
+    t.text "sec24"
+    t.boolean "sec25_rate"
+    t.text "sec25"
+    t.boolean "sec28_rate"
+    t.text "sec28"
+    t.boolean "sec33_rate"
+    t.text "sec33"
+    t.text "sec41"
+    t.text "sec42"
+    t.text "sec43"
+    t.boolean "sec51_rate"
+    t.text "sec51"
+    t.text "sec61"
+    t.text "note", default: ""
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_ratings_on_event_id"
+    t.index ["user_id"], name: "index_ratings_on_user_id"
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.boolean "special", default: false, null: false
@@ -311,6 +339,8 @@ ActiveRecord::Schema.define(version: 20170826213751) do
   add_foreign_key "point_files", "projects"
   add_foreign_key "projects", "customers"
   add_foreign_key "projects", "project_statuses"
+  add_foreign_key "ratings", "events"
+  add_foreign_key "ratings", "users"
   add_foreign_key "roles_users", "roles"
   add_foreign_key "roles_users", "users"
   add_foreign_key "ww_points", "point_files"

@@ -32,7 +32,6 @@ Rails.application.routes.draw do
       get 'datatables_index_zs_point', on: :collection # Displays zs_points for showed point_file
       get 'datatables_index_ww_point', on: :collection # Displays ww_points for showed point_file
     end
-    resources :opinions, module: :projects, except: [:index]
   end
 
   resources :roles do
@@ -51,6 +50,7 @@ Rails.application.routes.draw do
     get 'datatables_index', on: :collection
     resources :attachments, module: :events, only: [:create]
     resources :comments, module: :events, only: [:create, :destroy]
+    resources :ratings, module: :events, except: [:index]
   end
 
 

@@ -11,7 +11,7 @@ class Event < ApplicationRecord
   has_many :accesses_users, through: :accessorizations, source: :user
 
   has_many :comments, dependent: :delete_all
-  has_many :opinions, dependent: :destroy
+  has_many :ratings, dependent: :destroy
 
   # validates
   validates :title, presence: true,
@@ -25,9 +25,20 @@ class Event < ApplicationRecord
 
   accepts_nested_attributes_for :accessorizations, reject_if: :all_blank, allow_destroy: true
 
+  # callbacks
   before_create { self.title = "#{title} - #{self.project.number}" }
   after_commit :send_notification, on: [:create, :update]
+  before_destroy :has_important_links, prepend: true
   
+
+  def has_important_links
+    analize_value = true
+    if self.ratings.any? 
+     errors.add(:base, 'Nie można usunąć zadania do którego są przypisane Oceny.')
+     analize_value = false
+    end
+    throw :abort unless analize_value 
+  end
 
   def send_notification
     StatusMailer.new_update_event_email(self).deliver_later if self.accesses_users.any?
