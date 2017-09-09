@@ -50,7 +50,9 @@ Rails.application.routes.draw do
     get 'datatables_index', on: :collection
     resources :attachments, module: :events, only: [:create]
     resources :comments, module: :events, only: [:create, :destroy]
-    resources :ratings, module: :events, except: [:index]
+    resources :ratings, module: :events, except: [:index] do
+      get 'export', on: :member 
+    end
   end
 
 

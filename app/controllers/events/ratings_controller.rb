@@ -1,14 +1,20 @@
 class Events::RatingsController < ApplicationController
   before_action :authenticate_user!
-#  after_action :verify_authorized, except: []
-  before_action :set_rating, only: [:show, :edit, :update, :destroy]
+  after_action :verify_authorized, except: []
+  before_action :set_rating, only: [:export, :show, :edit, :update, :destroy]
 
+
+  # GET /ratings/1.xls
+  def export
+    authorize @rating, :export?
+    send_data @rating.to_xls, filename: "rating_#{@rating.event.project.fullname}_#{Time.zone.today.strftime('%Y-%m-%d')}.xls"
+  end
 
   # GET /ratings/1
   # GET /ratings/1.json
   def show
     @event = load_event
-    #authorize @rating, :show?
+    authorize @rating, :show?
   end
 
   # GET /ratings/new
@@ -17,13 +23,13 @@ class Events::RatingsController < ApplicationController
     @rating = Rating.new
     @rating.event = @event
     @rating.user = current_user
-    #authorize @rating, :new?
+    authorize @rating, :new?
   end
 
   # GET /ratings/1/edit
   def edit
     @event = load_event
-    #authorize @rating, :edit?
+    authorize @rating, :edit?
   end
 
   # POST /ratings
@@ -33,7 +39,7 @@ class Events::RatingsController < ApplicationController
     @rating = Rating.new(rating_params)
     @rating.event = @event
     @rating.user = current_user
-    #authorize @rating, :create?
+    authorize @rating, :create?
     respond_to do |format|
       if @rating.save
         flash[:success] = t('activerecord.successfull.messages.created', data: @rating.fullname)
@@ -49,17 +55,8 @@ class Events::RatingsController < ApplicationController
   # PATCH/PUT /ratings/1
   # PATCH/PUT /ratings/1.json
   def update
-    # respond_to do |format|
-    #   if @rating.update(rating_params)
-    #     format.html { redirect_to @rating, notice: 'Opinion was successfully updated.' }
-    #     format.json { render :show, status: :ok, location: @rating }
-    #   else
-    #     format.html { render :edit }
-    #     format.json { render json: @rating.errors, status: :unprocessable_entity }
-    #   end
-    # end
     @event = load_event
-    #authorize @rating, :update?
+    authorize @rating, :update?
     respond_to do |format|
       if @rating.update(rating_params)
         flash[:success] = t('activerecord.successfull.messages.updated', data: @rating.fullname)
@@ -75,13 +72,8 @@ class Events::RatingsController < ApplicationController
   # DELETE /ratings/1
   # DELETE /ratings/1.json
   def destroy
-    # @rating.destroy
-    # respond_to do |format|
-    #   format.html { redirect_to ratings_url, notice: 'Opinion was successfully destroyed.' }
-    #   format.json { head :no_content }
-    # end
     @event = load_event
-    #authorize @rating, :destroy?
+    authorize @rating, :destroy?
     if @rating.destroy
       flash[:success] = t('activerecord.successfull.messages.destroyed', data: @rating.fullname)
       redirect_to event_path(@event)

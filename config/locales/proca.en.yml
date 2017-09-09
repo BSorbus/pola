@@ -324,11 +324,12 @@ en:
       confirm_send_email: 'Na pewno chcesz wysłać email do: "%{data}"?'
       destroy: " Usuń"
       destroy_account: "Usuń moje konto"
-      send_email: " Wyślij email"
-      download: " Pobierz"
-      print: " Wydruk"
-      account_off: " Wyłącz konto"
-      account_on: " Włącz konto"
+      send_email: " Send email"
+      download: " Download"
+      download_xls: " Download XLS"
+      print: " Print"
+      account_off: " Account Off"
+      account_on: " Account On"
       link_to_add_fields_accessorization: '[ + Add Accessorization]'
       link_to_remove_fields_accessorization: '[ - Remove Accessorization]'
       new_point_file:  ' Load new Points file'

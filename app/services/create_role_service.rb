@@ -181,6 +181,24 @@ class CreateRoleService
     end
   end
 
+  # ratings
+  def rating_admin
+    role = Role.find_or_create_by!(name: "Administrator Ocen") do |role|
+      role.special = true
+      role.activities += %w(rating:index rating:show rating:create rating:update rating:delete rating:export)
+      role.note = "Rola służy do zarządzania Ocenami w Zadaniach. \r\n(Przypisz Koordynatorom POPC)"
+      role.save!
+    end
+  end
+  def rating_observer
+    role = Role.find_or_create_by!(name: "Obserwator Ocen") do |role|
+      role.special = true
+      role.activities += %w(rating:index rating:show)
+      role.note = "Rola służy do wyświetlania Ocen w Zadaniach.\r\n(Przypisz wszystkim, którzy mogą przeglądać komentarze w Zadaniach)"
+      role.save!
+    end
+  end
+
 
 
 

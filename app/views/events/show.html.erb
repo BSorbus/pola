@@ -83,7 +83,7 @@
   <% end %>
 
   <!-- Ratings-->
-  <% if true %> <!-- # event_type == && policy(:rating).index? %> -->
+  <% if ( @event.event_type.activities.include?('rating:*') || @event.event_type.activities.include?('rating:index') ) && ( policy(:rating).index? ) %>
     <div class="row">
       <div class="col-sm-11 col-sm-offset-1">
         <div class="panel panel-rating">

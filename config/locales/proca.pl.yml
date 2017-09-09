@@ -130,9 +130,29 @@ pl:
         user_id: 'Autor'
         body: 'Treść'
       rating:
+        fullname: 'Ocena'
+        note: 'Uwagi'
         event_id: 'Zadanie'
         user_id: 'Autor'
         updated_at: 'Aktualizacja'
+        sec22_rate: 'Ocena'
+        sec22: 'Uzasadnienie'
+        sec23_rate: 'Ocena'
+        sec23: 'Uzasadnienie'
+        sec24_rate: 'Ocena'
+        sec24: 'Uzasadnienie'
+        sec25_rate: 'Ocena'
+        sec25: 'Uzasadnienie'
+        sec28_rate: 'Ocena'
+        sec28: 'Uzasadnienie'
+        sec33_rate: 'Punktacja'
+        sec41: '1. Zgłoszona uwaga'
+        sec42: '2. Zgłoszona uwaga'
+        sec43: '3. Zgłoszona uwaga'
+        sec51_rate: 'Tak/Nie'
+        sec51: 'Uwagi'
+        sec61_rate: 'Ocena końcowa'
+        sec61: 'Podsumowanie'
   pages:
     home: 'Główna'
     help: 'Pomoc'
@@ -301,12 +321,22 @@ pl:
       user_show?: ' BRAK UPRAWNIEŃ: Nie możesz pobierać załączników do użytkownika!'
       user_create?: ' BRAK UPRAWNIEŃ: Nie możesz zapisywać załączników do użytkownika!'
       user_destroy?: ' BRAK UPRAWNIEŃ: Nie możesz usuwać załączników do użytkownika!'
+      event_index?: ' BRAK UPRAWNIEŃ: Nie możesz wyświetlać listy załączników do zadania!'
+      event_show?: ' BRAK UPRAWNIEŃ: Nie możesz pobierać załączników do zadania!'
+      event_create?: ' BRAK UPRAWNIEŃ: Nie możesz zapisywać załączników do zadania!'
+      event_destroy?: ' BRAK UPRAWNIEŃ: Nie możesz usuwać załączników do zadania!'
     event_policy:
       index?: ' BRAK UPRAWNIEŃ: Nie możesz wyświetlać listy zdarzeń/zadań!'
       show?: ' BRAK UPRAWNIEŃ: Nie możesz wyświetlać zdarzenia/zadania!'
       update?: ' BRAK UPRAWNIEŃ: Nie możesz edytować zdarzenia/zadania!'
       create?: ' BRAK UPRAWNIEŃ: Nie możesz tworzyć zdarzeń/zadań!'
       destroy?: ' BRAK UPRAWNIEŃ: Nie możesz usuwać zdarzeń/zadań!'
+    comment_policy:
+      index?: ' BRAK UPRAWNIEŃ: Nie możesz wyświetlać listy komentarzy!'
+      show?: ' BRAK UPRAWNIEŃ: Nie możesz wyświetlać komentarza!'
+      update?: ' BRAK UPRAWNIEŃ: Nie możesz edytować komentarza!'
+      create?: ' BRAK UPRAWNIEŃ: Nie możesz tworzyć komentarzy!'
+      destroy?: ' BRAK UPRAWNIEŃ: Nie możesz usuwać komentarzy!'
   helpers:
     actions: "Akcje"
     links:
@@ -325,6 +355,7 @@ pl:
       destroy_account: "Usuń moje konto"
       send_email: " Wyślij email"
       download: " Pobierz"
+      download_xls: " Pobierz XLS"
       print: " Wydruk"
       account_off: " Wyłącz konto"
       account_on: " Włącz konto"

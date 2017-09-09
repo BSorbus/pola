@@ -13,13 +13,13 @@ class CreateRatings < ActiveRecord::Migration[5.1]
       t.text :sec25
       t.boolean :sec28_rate
       t.text :sec28
-      t.boolean :sec33_rate
-      t.text :sec33
+      t.decimal :sec33_rate, precision: 6, scale: 2
       t.text :sec41
       t.text :sec42
       t.text :sec43
       t.boolean :sec51_rate
       t.text :sec51
+      t.boolean :sec61_rate
       t.text :sec61
       t.text :note, default: ""
 

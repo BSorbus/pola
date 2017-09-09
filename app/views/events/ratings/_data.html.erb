@@ -7,21 +7,241 @@
   <%= form_errors_for @rating %>
 
   <div class="row">
+    <div class="col-sm-12">
+      <div>
+        <p>II. KRYTERIA MERYTORYCZNE OCENA: TAK/NIE</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">2. Obszary inwestycji</h3>
+    </div>
+    <div class="panel-body">
+
+      <div class="form-group col-sm-10">
+        <p><strong><%= Rating.human_attribute_name(:sec22) %></strong></p>
+        <%= text_with_break_line(@rating.sec22) %> 
+      </div>
+
+      <div class="form-group col-sm-2">
+        <p><strong><%= Rating.human_attribute_name(:sec22_rate) %></strong></p>
+        <%= @rating.sec22_rate.nil? ? '?' : t(@rating.sec22_rate) %>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">3. Wskaźniki produktu i rezultatu są:
+        <li>adekwatne dla danego rodzaju projektu</li>
+        <li>realne do osiągnięcia</li>
+        <li>odzwierciedlają założone cele projektu</li>
+      </h3>
+    </div>
+    <div class="panel-body">
+
+      <div class="form-group col-sm-10">
+        <p><strong><%= Rating.human_attribute_name(:sec23) %></strong></p>
+        <%= text_with_break_line(@rating.sec23) %> 
+      </div>
+
+      <div class="form-group col-sm-2">
+        <p><strong><%= Rating.human_attribute_name(:sec23_rate) %></strong></p>
+        <%= @rating.sec23_rate.nil? ? '?' : t(@rating.sec23_rate) %>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">4. Koncepcja techniczna projektu jest zgodna z wymaganiami dla sieci NGA - POPC, oraz wymaganiami dla podłączenia szkół/placówek edukacyjnych</h3>
+    </div>
+    <div class="panel-body">
+
+      <div class="form-group col-sm-10">
+        <p><strong><%= Rating.human_attribute_name(:sec24) %></strong></p>
+        <%= text_with_break_line(@rating.sec24) %> 
+      </div>
+
+      <div class="form-group col-sm-2">
+        <p><strong><%= Rating.human_attribute_name(:sec24_rate) %></strong></p>
+        <%= @rating.sec24_rate.nil? ? '?' : t(@rating.sec24_rate) %>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">5. Harmonogram zadań projektu i kamieni milowych oraz zakres finansowy jest:
+        <li>wykonalny/możliwy do przeprowadzenia</li>
+        <li>uwzględnia czas niezbędny na przeprowadzenie procedur konkurencyjnego wyboru i wpływ czynników zewnętrznych</li>
+      </h3>
+    </div>
+    <div class="panel-body">
+
+      <div class="form-group col-sm-10">
+        <p><strong><%= Rating.human_attribute_name(:sec25) %></strong></p>
+        <%= text_with_break_line(@rating.sec25) %> 
+      </div>
+
+      <div class="form-group col-sm-2">
+        <p><strong><%= Rating.human_attribute_name(:sec25_rate) %></strong></p>
+        <%= @rating.sec25_rate.nil? ? '?' : t(@rating.sec25_rate) %>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">8. Efektywność realizacji projektu - ocena techniczna i koszty</h3>
+    </div>
+    <div class="panel-body">
+
+      <div class="form-group col-sm-10">
+        <p><strong><%= Rating.human_attribute_name(:sec28) %></strong></p>
+        <%= text_with_break_line(@rating.sec28) %> 
+      </div>
+
+      <div class="form-group col-sm-2">
+        <p><strong><%= Rating.human_attribute_name(:sec28_rate) %></strong></p>
+        <%= @rating.sec28_rate.nil? ? '?' : t(@rating.sec28_rate) %>
+      </div>
+
+    </div>
+  </div>
+
+  <br>
+  <div class="row">
+    <div class="col-sm-12">
+      <div>
+        <p>III. KRYTERIA MERYTORYCZNE – WAGI PUNKTOWE</p>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">3. Zwiększenie minimalnego pokrycia siecią</h3>
+    </div>
+    <div class="panel-body">
+
+      <div class="col-sm-10">
+        <h4>100*min((M1i *1,5+M2i)/(Mmin i) - 1;2)(200 pkt)</h4>
+      </div>
+
+      <div class="form-group col-sm-2">
+        <p><strong><%= Rating.human_attribute_name(:sec33_rate) %></strong></p>
+        <%= @rating.sec33_rate %> 
+      </div>
+
+    </div>
+  </div>
+
+  <br>
+  <div class="row">
+    <div class="col-sm-12">
+      <div>
+        <p>IV. UWAGI ZGŁOSZONE DO WNIOSKODAWCY ORAZ TERMIN NA ICH PRZESŁANIE</p>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-body">
+
+      <div class="form-group col-sm-12">
+        <p><strong><%= Rating.human_attribute_name(:sec41) %></strong></p>
+        <%= text_with_break_line(@rating.sec41) %> 
+      </div>
+
+      <div class="form-group col-sm-12">
+        <p><strong><%= Rating.human_attribute_name(:sec42) %></strong></p>
+        <%= text_with_break_line(@rating.sec42) %> 
+      </div>
+
+      <div class="form-group col-sm-12">
+        <p><strong><%= Rating.human_attribute_name(:sec43) %></strong></p>
+        <%= text_with_break_line(@rating.sec43) %> 
+      </div>
+
+    </div>
+  </div>
+
+  <br>
+  <div class="row">
+    <div class="col-sm-12">
+      <div>
+        <p>V. OTRZYMANE WYJAŚNIENIA</p>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">1. Czy wyjaśnienia wpłynęły w wyznaczonym terminie?</h3>
+    </div>
+    <div class="panel-body">
+
+      <div class="form-group col-sm-10">
+        <p><strong><%= Rating.human_attribute_name(:sec51) %></strong></p>
+        <%= text_with_break_line(@rating.sec51) %> 
+      </div>
+
+      <div class="form-group col-sm-2">
+      <p><strong><%= Rating.human_attribute_name(:sec51_rate) %></strong></p>
+      <%= @rating.sec51_rate.nil? ? '?' : t(@rating.sec51_rate) %>
+      </div>
+
+    </div>
+  </div>
+
+  <br>
+  <div class="row">
+    <div class="col-sm-12">
+      <div>
+        <p>VI. OCENA KOŃCOWA</p>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">1. Końcowa ocena merytoryczna II stopnia (pozytywna/negatywna)</h3>
+    </div>
+    <div class="panel-body">
+
+      <div class="form-group col-sm-10">
+        <p><strong><%= Rating.human_attribute_name(:sec61) %></strong></p>
+        <%= text_with_break_line(@rating.sec61) %> 
+      </div>
+
+      <div class="form-group col-sm-2">
+        <p><strong><%= Rating.human_attribute_name(:sec61_rate) %></strong></p>
+        <%= @rating.sec61_rate.nil? ? '?' : t(@rating.sec61_rate) %>
+      </div>
+
+    </div>
+  </div>
+
+
+  <hr>
+
+  <div class="row">
     <div class="col-sm-6">
       <div class="row">
 
-        <div class="form-group col-sm-6">
-
-        </div>
-
-        <div class="form-group col-sm-6">
-        </div>
-
-        <div class="form-group col-sm-12">
+        <div class="col-sm-12">
+          <blockquote>
+            <p><strong>Ostatni wpis:</strong></p>
+            <h5><%= @rating.try(:lastwritter) %></h5>
+          </blockquote>
         </div>
 
       </div>  <!-- /row -->
-    </div>  <!-- /col-sm-12 -->
+    </div>  <!-- /col-sm-6 -->
 
     <div class="col-sm-6">
       <div class="row">
@@ -29,8 +249,9 @@
           <p><strong><%= Rating.human_attribute_name(:note) %></strong></p>
           <%= text_with_break_line(@rating.note) %>
         </div>
-      </div>
+      </div> <!-- /row -->
     </div> <!--/col-sm-6 -->
+
   </div>  <!-- /row -->
 
 
@@ -45,7 +266,7 @@
         <%= t("helpers.links.back") %>
       <% end %>
 
-      <% if true %> <!-- #policy(@rating).destroy? %> -->
+      <% if policy(@rating).destroy? %>
         <%= link_to event_rating_path(@rating.event, @rating),
                             method: :delete,
                             data: { confirm: t('helpers.links.confirm_destroy', data: @rating.fullname) }, 
@@ -55,10 +276,17 @@
         <% end %>
       <% end %>
 
-      <% if true %> <!-- #policy(@rating).edit? %> -->
+      <% if policy(@rating).edit? %> 
         <%= link_to edit_event_rating_path(@rating.event, @rating), class: "btn btn-primary" do %>
           <span class="glyphicon glyphicon-edit"></span>
           <%= t("helpers.links.edit") %>
+        <% end %>
+      <% end %>
+
+      <% if policy(@rating).export? %> 
+        <%= link_to export_event_rating_path(@rating.event, @rating), class: "btn btn-primary" do %>
+          <span class="glyphicon glyphicon-download"></span>
+          <%= t("helpers.links.export_xls") %>
         <% end %>
       <% end %>
 
