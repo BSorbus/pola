@@ -81,3 +81,5 @@ gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.14.30'
 # gem 'rack-mini-profiler'
+
+gem 'mina'

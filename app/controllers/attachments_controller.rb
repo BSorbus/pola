@@ -6,7 +6,7 @@ class AttachmentsController < ApplicationController
   # GET /attachments/1
   # GET /attachments/1.json
   def show
-    # @attachment = Attachment.find(params[:id])
+    @attachment = Attachment.find(params[:id])
     # saved_file = @attachment.attached_file.file
     # data = open(saved_file.file)
 
@@ -16,8 +16,7 @@ class AttachmentsController < ApplicationController
     #   disposition: "attachment"              
 
     # to działa
-    @attachment = Attachment.find(params[:id])
-    attachment_authorize(@attachment, "show", @attachment.attachmenable_type.singularize.downcase)    
+    attachment_authorize(@attachment, "show", @attachment.attachmenable_type.singularize.downcase)
     # to działa
     # send_file "#{@attachment.attached_file.file.file}"
 

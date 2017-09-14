@@ -30,3 +30,34 @@
     </tbody>
   </table>
 </div> <!--/col-sm-12 -->
+
+<div class="col-sm-12" class="clearfix">
+  <hr>
+  <div class="alert alert-success alert-dismissable">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <h4 class="alert-heading"><strong>Praca z mapą</strong></h4>
+    <p>Klikając w poszczególne wiersze tabeli umieszczasz punkty na mapie. 
+    Możesz również umieścić "hurtowo" wszystkie punkty z bieżacej strony wybierając przycisk [Punkty z listy]. Pamiętaj, że możesz zmieniać liczbę wyświetlanych wierszy, a zawartość listy filtrować.</p>
+    <p>Pamiętaj, by w pierwszej kolejności zainicjować/wyczyścić mapę - przycisk [Mapa]</p>
+  </div>
+  <div >
+    <%= button_tag "Mapa", type: "button", onclick: "myClearFunction()", class: "btn btn-primary", title: 'Inicjuje lub czyści mapę', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
+    <%#= button_tag "Show marker0", type: "button", onclick: "myShowFunction()", class: "btn btn-primary" %>
+    <%#= button_tag "Delete marker0", type: "button", onclick: "myDeleteFunction()", class: "btn btn-primary" %>
+    <%= button_tag "Punkty z listy", type: "button", onclick: "geoShowManyMarkers()", class: "btn btn-primary", title: 'Ładuje punkty z bieżącej strony tabeli. Możesz wybrać większą liczbę wierszy na stronie lub inną stronę.', 'data-toggle' => 'tooltip', 'data-placement' => 'right' %>
+  </div> <!--/col-sm-12 -->
+
+  <br>
+  <div >
+    <div id="iapi" class="clearfix"></div>
+  </div> <!--/col-sm-12 -->
+
+</div> <!--/col-sm-12 -->
+
+<script>
+
+  window.onload = function(){
+    //initMap();  
+    //myClearFunction();
+  };
+</script>

@@ -65,6 +65,28 @@ $(document).ready(function() {
   });
 
 
+
+  // $('#clubs tbody').on('click', 'tr', function () {
+  //   $(this).toggleClass('selected');
+  //   var rowData = oClubtable.row( this ).data()[0];
+  //   var newurl = window.location.protocol + '//' + window.location.host + '/clubs/' + rowData + '?locale=pl';
+  //   window.location.href = newurl;
+  // });
+
+  $('#point_file-zs_points-table tbody').on('click', 'tr', function () {
+    //$(this).toggleClass('selected');
+    var rowData = oPointFileZsPointstable.row( this ).data();
+    // alert( rowData['id'] );
+    // alert( {"obszar" : rowData['zs_3']}.obszar );
+    // alert( {"woj"    : rowData['zs_4']}.woj );
+    // alert( {"pow"    : rowData['zs_5']}.pow );
+    // alert( {"gmi"    : rowData['zs_6']}.gmi );
+    // alert( {"terc"   : rowData['zs_6']}.terc );
+    // alert( {"szer"   : rowData['zs_13']}.szer );
+    // alert( {"dlug"   : rowData['zs_14']}.dlug );
+
+    geoShowOneMarker( rowData );
+  });
   
 });
 

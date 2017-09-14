@@ -4,6 +4,8 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 
+# git push --mirror https://bitbucket.org/uke_bi/proca
+
 # Ignore bundler config.
 /.bundle
 
@@ -20,6 +22,7 @@
 
 # Ignore secretfiles.
 /config/secrets.yml
+/config/deploy.rb
 
 # Ignore uploaded files.
 /public/uploads/*

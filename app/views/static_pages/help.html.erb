@@ -1,57 +1,15 @@
 <div class="row">
-  <div class="tab-content col-sm-10 well">
-    <div class="tab-pane active" id="tab_a">
-      <div id='calendar'></div>
-    </div>
+  <div class="col-sm-12">
+    <div class="row">
+      <h3 class="center">
+        <span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span>
+        <span><%= t "pages.role.index.title" %></span>
+      </h3>
+    </div> <!--/row -->
+  </div> <!--/col-sm-12 -->
 
-    <div class="tab-pane" id="tab_b">
-      <div class="col-sm-12">
-        <div class="row">
-          <h3 class="center">
-            <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-            <span><%= t "pages.event.index.title" %></span>
-          </h3>
-        </div> <!--/row -->
-      </div> <!--/col-sm-12 -->
 
-      <div class="col-sm-12">
+</div> <!--/row -->
 
-        <table id="events-table" class="hover cell-border" cellspacing="0" width="100%", data-source="<%= datatables_index_events_path(format: :json) %>">
-          <thead>
-            <tr>
-              <th>id</th>
-              <th class='col-sm-4'><%= Event.human_attribute_name(:title) %></th>
-              <th class='col-sm-2'><%= Event.human_attribute_name(:event_type_id) %></th>
-              <th class='col-sm-1'><%= Event.human_attribute_name(:project_id) %></th>
-              <th class='col-sm-1'><%= Event.human_attribute_name(:end_date) %></th>
-              <th class='col-sm-1'><%= Event.human_attribute_name(:event_status_id) %></th>
-              <th class="col-sm-3"><%= Event.human_attribute_name(:flat_assigned_users) %></th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- data from ajax -->
-          </tbody>
-        </table>
 
-      </div>
-    </div>
-  </div><!-- tab content -->
 
-  <div class="col-sm-2">
-    <ul class="nav nav-pills nav-stacked">
-      <li class="active"><a href="#tab_a" data-toggle="pill">Kalendarz</a></li>
-      <li><a href="#tab_b" data-toggle="pill">Tabela</a></li>
-
-      <br>
-      <br>
-      <br>
-      <% if policy(:event).new? %>
-        <%= link_to new_event_path, class: "btn btn-primary" do %>
-          <span class="glyphicon glyphicon-plus"></span>
-          <%= t("helpers.links.new") %>
-        <% end %>
-      <% end %>
-
-    </ul>
-  </div><!-- tab content -->
-</div>
