@@ -1,9 +1,13 @@
 <footer class="footer">
   <div class='col-sm-4'>
-    <%= link_to image_tag("logo_uke_orzel.png", class: "img img-responsive", alt: "UKE" ), 'http://uke.gov.pl' %>
+    <h4><strong>Urząd Komunikacji Elektronicznej</strong></h4>
+    <h5>ul. Kasprzaka 18/20</h5>
+    <h5>01-211 Warszawa</h5>
+    <br>
+    <h6>&copy; 2017 UKE-BI-WUR</h6>
   </div>
 
-  <div class="col-sm-3 col-sm-offset-1">
+  <div class="col-sm-4 col-sm-offset-1">
     <h4><%= t('pages.footer.contact') %></h4>
       <ul><h5><span class="glyphicon glyphicon-envelope"></span> <%= mail_to "andrzej.kaczor@uke.gov.pl" %></h5></ul>
       <ul><h5><span class="glyphicon glyphicon-earphone"></span> +48 81 5288 488, +48 668 470 833 </h5></ul>
@@ -15,9 +19,6 @@
       <ul><h5><span class="glyphicon glyphicon-globe"></span> <%= link_to(t('pages.footer.links_www1_title'), t('pages.footer.links_www1'), target: "_blank") %></h5></ul>
       <ul><h5><span class="glyphicon glyphicon-globe"></span> <%= link_to(t('pages.footer.links_www2_title'), t('pages.footer.links_www2'), target: "_blank") %></h5></ul>
       <ul><h5><span class="glyphicon glyphicon-globe"></span> <%= link_to(t('pages.footer.links_www3_title'), t('pages.footer.links_www3'), target: "_blank") %></h5></ul>
-  </div>
-  <div class="col-sm-1">
-    <h4 class="pull-right"><small>&copy; UKE-BI-WUR 2017</small></h4>
   </div>
 
 </footer>

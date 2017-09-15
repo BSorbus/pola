@@ -157,8 +157,8 @@ pl:
     home: 'Główna'
     help: 'Pomoc'
     footer:
-      contact: 'Kontakt:'
-      links: 'Zobacz też:'
+      contact: 'kontakt:'
+      links: 'zobacz też:'
       links_www1_title: 'UKE'
       links_www1: 'https://uke.gov.pl'
       links_www2_title: 'Facebook'
