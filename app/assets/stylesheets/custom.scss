@@ -74,6 +74,16 @@ footer {
   }
 }
 
+.glyp-index-title {
+  color: $brand-primary;
+  //color: #BECC25;
+}
+
+.index-title {
+  color: $brand-primary;
+  letter-spacing: 1px;
+}
+
 .center {
   text-align: center;
   h1 {
@@ -106,23 +116,6 @@ h2 {
 p {
   font-size: 1.1em;
   line-height: 1.7em;
-}
-
-
-/* header */
-#logo {
-  float: left;
-  margin-right: 10px;
-  font-size: 1.7em;
-  color: #C7D540;
-  text-transform: uppercase;
-  letter-spacing: -1px;
-  padding-top: 9px;
-  font-weight: bold;
-  &:hover {
-    color: white;
-    text-decoration: none;
-  }
 }
 
 
@@ -196,14 +189,17 @@ td:hover {
 }  
 .panel-rating > .panel-heading {
   background: $brand-primary; //#1A3069;
-  color: white
+  color: white;
 }
 
 .panel-comment {
   border-color: #ddd;  
   .panel-heading {
     background: $brand-primary; //#1A3069;
-    color: white
+    color: white;
+    .glyphicon {
+      color: #BECC25;
+    }
   }
 }
 
@@ -211,7 +207,7 @@ td:hover {
   border-color: #ddd;
   .panel-heading {
     background: $brand-primary; //#1A3069;
-    color: white
+    color: white;
   }
 }
 
@@ -219,7 +215,7 @@ td:hover {
   border-color: #ddd;
   .panel-heading {
     background: $brand-primary; //#1A3069;
-    color: white
+    color: white;
   } 
 }
 
@@ -227,7 +223,7 @@ td:hover {
   border-color: #ddd;
   .panel-heading {
     background: $brand-primary; //#1A3069;
-    color: white
+    color: white;
   } 
 }
 
@@ -235,7 +231,7 @@ td:hover {
   border-color: #ddd;
   .panel-heading {
     background: $brand-primary; //#2F4471;
-    color: white
+    color: white;
   } 
 }
 
@@ -243,7 +239,7 @@ td:hover {
   border-color: #ddd;
   .panel-heading {
     background: $brand-primary; //#1A3069;
-    color: white
+    color: white;
   } 
 }
 
@@ -251,7 +247,7 @@ td:hover {
   border-color: #ddd;
   .panel-heading {
     background: $brand-primary; //#1A3069;
-    color: white
+    color: white;
   } 
 }
 
@@ -267,7 +263,7 @@ td:hover {
   border-color: #ddd;
   .panel-heading {
     background: $brand-primary; //#1A3069;
-    color: white
+    color: white;
   } 
 }
 
@@ -275,7 +271,7 @@ td:hover {
   border-color: #ddd;
   .panel-heading {
     background: $brand-primary; // #2F4471; #89877a; #5E5E5E;
-    color: white
+    color: white;
   } 
 }
 
@@ -283,7 +279,7 @@ td:hover {
   border-color: #ddd;
   .panel-heading {
     background: $brand-primary; //#1A3069;
-    color: white
+    color: white;
   } 
 }
 
@@ -291,7 +287,7 @@ td:hover {
   border-color: #ddd;
   .panel-heading {
     background: $brand-primary; //#2F4471;
-    color: white
+    color: white;
   } 
 }
 
@@ -299,7 +295,7 @@ td:hover {
   border-color: #ddd;
   .panel-heading {
     background: $brand-primary; //#2C52B4; 
-    color: white
+    color: white;
   } 
 }
 
@@ -307,7 +303,7 @@ td:hover {
   border-color: #ddd;
   .panel-heading {
     background: $brand-primary; //#476AB1;
-    color: white
+    color: white;
   } 
 }
 
@@ -315,7 +311,7 @@ td:hover {
   border-color: #ddd;
   .panel-heading {
     background: $brand-primary; //#576A95; 
-    color: white
+    color: white;
   } 
 }
 
