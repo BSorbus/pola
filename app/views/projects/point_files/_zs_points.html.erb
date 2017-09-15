@@ -40,27 +40,12 @@
     Możesz również zaznaczyć wiersze (pojedynczy klik) i wybrać [Punkty ZS - wstaw zaznaczone]. 
     Innym sposobem jest umieszczenie "hurtowo" wszystkiech punktów z bieżacej strony - przycisk [Punkty ZS - wstaw z listy]. 
     Pamiętaj, że możesz zmieniać liczbę wyświetlanych wierszy, a zawartość listy filtrować.</p>
-    <p>Uwaga! W pierwszej kolejności musisz zainicjować/wyczyścić mapę - przycisk [Mapa]</p>
+    <p>Uwaga! W pierwszej kolejności musisz zainicjować/wyczyścić mapę - przycisk [Mapa - pokaż/wyczyść] (poniżej)</p>
   </div>
   <div >
-    <%= button_tag "Mapa", type: "button", onclick: "geoClearFunction()", class: "btn btn-primary", title: 'Inicjuje lub czyści mapę', 'data-toggle' => 'tooltip' %>
     <%#= button_tag "Show marker0", type: "button", onclick: "myShowFunction()", class: "btn btn-primary" %>
     <%#= button_tag "Delete marker0", type: "button", onclick: "myDeleteFunction()", class: "btn btn-primary" %>
     <%= button_tag "Punkty ZS - wstaw zaznaczone", type: "button", onclick: "geoShowManyMarkersZS('.selected')", class: "btn btn-primary", title: 'Ładuje wybrane punkty z tabeli', 'data-toggle' => 'tooltip' %>
     <%= button_tag "Punkty ZS - wstaw z listy", type: "button", onclick: "geoShowManyMarkersZS()", class: "btn btn-primary", title: 'Ładuje punkty z bieżącej strony tabeli', 'data-toggle' => 'tooltip' %>
   </div> <!--/col-sm-12 -->
-
-  <br>
-  <div >
-    <div id="iapi" class="clearfix"></div>
-  </div> <!--/col-sm-12 -->
-
 </div> <!--/col-sm-12 -->
-
-<script>
-
-  window.onload = function(){
-    //initMap();  
-    //myClearFunction();
-  };
-</script>

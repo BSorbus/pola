@@ -231,6 +231,14 @@ td:hover {
   } 
 }
 
+.panel-map {
+  border-color: #ddd;
+  .panel-heading {
+    background: $brand-primary; //#2F4471;
+    color: white
+  } 
+}
+
 .panel-zs-point {
   border-color: #ddd;
   .panel-heading {

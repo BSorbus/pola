@@ -222,6 +222,9 @@ en:
         title: 'Nowy Punkt ZS - Budynek w Zasięgu Sieci'
       edit:
         title: 'Edycja -> Punktu ZS - Budynek w Zasięgu Sieci'
+    map:
+      index:
+        title: 'Map'
     ww_point:
       index:
         title: 'Punkty WW - Własne i Współdzielone węzły telekomunikacyjne'
