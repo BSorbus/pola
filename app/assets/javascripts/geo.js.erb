@@ -39,22 +39,6 @@ function initMap() {
 };
 
 
-function myClearFunction() {
-  ILITEAPI.init({
-    "divId" : "iapi",
-    "width" : "100%",
-    "height" : "51em",
-    "activeGpMaps" : ["gp0","gp1"],
-    "activeGpMapId" : "gp0",
-    "activeGpActions" : ["pan","fullExtent", "zoomIn"],
-    "useMenu": true,
-    "scale" : 2000000,
-
-    "marker" : [
-    ]
-  });
-};
-
 function myShowFunction() {
   ILITEAPI.showMarker(
     {
@@ -72,13 +56,32 @@ function myDeleteFunction() {
   //alert('delete')
 };
 
-function geoShowOneMarker(row) {
+
+function geoClearFunction() {
+  ILITEAPI.init({
+    "divId" : "iapi",
+    "width" : "100%",
+    "height" : "51em",
+    "activeGpMaps" : ["gp0","gp1"],
+    "activeGpMapId" : "gp0",
+    "gpplugins": ["clusterLayer"],
+    "activeGpActions" : ["pan","fullExtent", "zoomIn"],
+    "useMenu": true,
+    "scale" : 2000000,
+
+    "marker" : [
+    ]
+  });
+};
+
+// obsluga tabeli zs_points
+function geoShowOneMarkerZS(row) {
   var myMarkers = [
     { "sr": 4326,
       "x" : row['zs_14'],
       "y" : row['zs_13'],
       "opts" : {
-          "id" : row['id'],
+          "id" : "pointzs-"+row['id'],
           "show" : true,
           "title" :  "Obszar: "                             +row['zs_3'],
           "content": "Województwo: "                  +"<b>"+row['zs_4'] +"</b><br>"+
@@ -90,8 +93,8 @@ function geoShowOneMarker(row) {
                      "Ulica: "                        +"<b>"+row['zs_10']+"</b><br>"+
                      "kod ULIC: "                     +"<b>"+row['zs_11']+"</b><br>"+
                      "Nr porządkowy: "                +"<b>"+row['zs_12'] +"</b><br>"+
-                     "Szerokość geo: "                +"<b>"+row['zs_13'] +"</b><br>"+
-                     "Długość geo: "                  +"<b>"+row['zs_14'] +"</b><br>"+
+                     "Szerokość geograficzna: "       +"<b>"+row['zs_13'] +"</b><br>"+
+                     "Długość geograficzna: "         +"<b>"+row['zs_14'] +"</b><br>"+
                      "Rodzaj obiektu: "               +"<b>"+row['zs_15'] +"</b><br>"+
                      "Liczba lokali: "                +"<b>"+row['zs_16'] +"</b><br>"+
                      "Liczba placówek publicznych: "  +"<b>"+row['zs_17'] +"</b><br>"+
@@ -106,10 +109,10 @@ function geoShowOneMarker(row) {
 };
 
 
-function geoShowManyMarkers() {
+function geoShowManyMarkersZS(filter) {
   var myMarkers = [];
   var table = $('#point_file-zs_points-table').DataTable();
-  table.rows().every( function ( rowIdx, tableLoop, rowLoop ) {
+  table.rows(filter).every( function ( rowIdx, tableLoop, rowLoop ) {
     var row = this.data();
     myMarkers.push(
       { "sr": 4326,
@@ -128,8 +131,8 @@ function geoShowManyMarkers() {
                        "Ulica: "                        +"<b>"+row['zs_10']+"</b><br>"+
                        "kod ULIC: "                     +"<b>"+row['zs_11']+"</b><br>"+
                        "Nr porządkowy: "                +"<b>"+row['zs_12'] +"</b><br>"+
-                       "Szerokość geo: "                +"<b>"+row['zs_13'] +"</b><br>"+
-                       "Długość geo: "                  +"<b>"+row['zs_14'] +"</b><br>"+
+                       "Szerokość geograficzna: "       +"<b>"+row['zs_13'] +"</b><br>"+
+                       "Długość geograficzna: "         +"<b>"+row['zs_14'] +"</b><br>"+
                        "Rodzaj obiektu: "               +"<b>"+row['zs_15'] +"</b><br>"+
                        "Liczba lokali: "                +"<b>"+row['zs_16'] +"</b><br>"+
                        "Liczba placówek publicznych: "  +"<b>"+row['zs_17'] +"</b><br>"+
@@ -142,5 +145,77 @@ function geoShowManyMarkers() {
     )
   });
 
-  ILITEAPI.showManyMarker(myMarkers);
+  if ( myMarkers.length > 0 ) {
+    ILITEAPI.showManyMarker(myMarkers);
+  };
 };
+
+
+// obsluga tabeli ww_points
+function geoShowOneMarkerWW(row) {
+  
+  var myMarkers = [
+    { "sr": 4326,
+      "x" : row['ww_15'],
+      "y" : row['ww_14'],
+      "opts" : {
+           "id" : "pointww-"+row['id'],
+           "show" : true,
+           "title" :  "Wł. i współdz. węzły tel.: "    +row['ww_3'],
+           "content": "Województwo: "                  +"<b>"+row['ww_4'] +"</b><br>"+
+                      "Powiat: "                       +"<b>"+row['ww_5'] +"</b><br>"+
+                      "gmina: "                        +"<b>"+row['ww_6'] +"</b><br>"+
+                      "kod TERC: "                     +"<b>"+row['ww_7'] +"</b><br>"+
+                      "Miejscowość: "                  +"<b>"+row['ww_8'] +"</b><br>"+
+                      "kod SIMC: "                     +"<b>"+row['ww_9'] +"</b><br>"+
+                      "Ulica: "                        +"<b>"+row['ww_10']+"</b><br>"+
+                      "kod ULIC: "                     +"<b>"+row['ww_11']+"</b><br>"+
+                      "Nr porządkowy: "                +"<b>"+row['ww_12'] +"</b><br>"+
+                      "Kod pocztowy : "                +"<b>"+row['ww_13'] +"</b><br>"+
+                      "Szerokość geograficzna: "       +"<b>"+row['ww_14'] +"</b><br>"+
+                      "Długość geograficzna: "         +"<b>"+row['ww_15'] +"</b><br>"+
+                      "Rodzaj węzła: "                 +"<b>"+row['ww_16'] +"</b><br>"
+      }
+    }
+  ];  
+  ILITEAPI.showManyMarker(myMarkers)
+};
+
+
+function geoShowManyMarkersWW(filter) {
+  var myMarkers = [];
+  var table = $('#point_file-ww_points-table').DataTable();
+  table.rows(filter).every( function ( rowIdx, tableLoop, rowLoop ) {
+    var row = this.data();
+    myMarkers.push(
+      { "sr": 4326,
+        "x" : row['ww_15'],
+        "y" : row['ww_14'],
+        "opts" : {
+             "id" : "pointww-"+row['id'],
+             "show" : true,
+             "title" :  "Wł. i współdz. węzły tel.: "    +row['ww_3'],
+             "content": "Województwo: "                  +"<b>"+row['ww_4'] +"</b><br>"+
+                        "Powiat: "                       +"<b>"+row['ww_5'] +"</b><br>"+
+                        "gmina: "                        +"<b>"+row['ww_6'] +"</b><br>"+
+                        "kod TERC: "                     +"<b>"+row['ww_7'] +"</b><br>"+
+                        "Miejscowość: "                  +"<b>"+row['ww_8'] +"</b><br>"+
+                        "kod SIMC: "                     +"<b>"+row['ww_9'] +"</b><br>"+
+                        "Ulica: "                        +"<b>"+row['ww_10']+"</b><br>"+
+                        "kod ULIC: "                     +"<b>"+row['ww_11']+"</b><br>"+
+                        "Nr porządkowy: "                +"<b>"+row['ww_12'] +"</b><br>"+
+                        "Kod pocztowy : "                +"<b>"+row['ww_13'] +"</b><br>"+
+                        "Szerokość geograficzna: "       +"<b>"+row['ww_14'] +"</b><br>"+
+                        "Długość geograficzna: "         +"<b>"+row['ww_15'] +"</b><br>"+
+                        "Rodzaj węzła: "                 +"<b>"+row['ww_16'] +"</b><br>"
+        }
+      }
+    )
+  });
+
+  if ( myMarkers.length > 0 ) {
+    ILITEAPI.showManyMarker(myMarkers);
+  };
+};
+
+

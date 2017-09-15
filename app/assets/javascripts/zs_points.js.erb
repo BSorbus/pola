@@ -65,18 +65,14 @@ $(document).ready(function() {
   });
 
 
-
-  // $('#clubs tbody').on('click', 'tr', function () {
-  //   $(this).toggleClass('selected');
-  //   var rowData = oClubtable.row( this ).data()[0];
-  //   var newurl = window.location.protocol + '//' + window.location.host + '/clubs/' + rowData + '?locale=pl';
-  //   window.location.href = newurl;
-  // });
-
   $('#point_file-zs_points-table tbody').on('click', 'tr', function () {
+    $(this).toggleClass('selected');
+  });
+
+  $('#point_file-zs_points-table tbody').on('dblclick', 'tr', function () {
     //$(this).toggleClass('selected');
     var rowData = oPointFileZsPointstable.row( this ).data();
-    geoShowOneMarker( rowData );
+    geoShowOneMarkerZS( rowData );
   });
   
 });

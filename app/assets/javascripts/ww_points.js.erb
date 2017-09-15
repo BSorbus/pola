@@ -59,6 +59,15 @@ $(document).ready(function() {
     oPointFileWwPointstable.draw();
   });
 
+  $('#point_file-ww_points-table tbody').on('click', 'tr', function () {
+    $(this).toggleClass('selected');
+  });
+
+  $('#point_file-ww_points-table tbody').on('dblclick', 'tr', function () {
+    //$(this).toggleClass('selected');
+    var rowData = oPointFileWwPointstable.row( this ).data();
+    geoShowOneMarkerWW( rowData );
+  });
 
   
 });
