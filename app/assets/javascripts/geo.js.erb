@@ -49,6 +49,7 @@ function myClearFunction() {
     "activeGpActions" : ["pan","fullExtent", "zoomIn"],
     "useMenu": true,
     "scale" : 2000000,
+
     "marker" : [
     ]
   });
@@ -79,25 +80,25 @@ function geoShowOneMarker(row) {
       "opts" : {
           "id" : row['id'],
           "show" : true,
-          "title" :  "Obszar: "               +row['zs_3'],
-          "content": "Województwo: "          +row['zs_4'] +"<br>"+
-                     "Powiat: "               +row['zs_5'] +"<br>"+
-                     "gmina: "                +row['zs_6'] +"<br>"+
-                     "kod TERC: "             +row['zs_7'] +"<br>"+
-                     "Miejscowość: "          +row['zs_8'] +"<br>"+
-                     "kod SIMC: "             +row['zs_9'] +"<br>"+
-                     "Ulica: "                +row['zs_10']+"<br>"+
-                     "kod ULIC: "             +row['zs_11']+"<br>"+
-                     "Nr porządkowy: "        +row['zs_12'] +"<br>"+
-                     "Szerokość geo: "        +row['zs_13'] +"<br>"+
-                     "Długość geo: "          +row['zs_14'] +"<br>"+
-                     "Rodzaj obiektu: "       +row['zs_15'] +"<br>"+
-                     "Liczba lokali: "        +row['zs_16'] +"<br>"+
-                     "Liczba placówek publicznych: "  +row['zs_17'] +"<br>"+
-                     "Medium transmisyjne: "  +row['zs_18'] +"<br>"+
-                     "Maks oferowana gwarantowana przepustowość stacjonarnego przewodowego dostępu do Internetu [Mb/s]: " +row['zs_19'] +"<br>"+
-                     "Maks oferowana gwarantowana przepustowość stacjonarnego bezprzewodowego dostępu do Internetu [Mb/s]: "  +row['zs_20'] +"<br>"+
-                     "Maks. oferowana gwarantowana przepustowość stacjonarnego dostępu do Internetu dla jednostek oświatowych [Mb/s]: "  +row['zs_21']
+          "title" :  "Obszar: "                             +row['zs_3'],
+          "content": "Województwo: "                  +"<b>"+row['zs_4'] +"</b><br>"+
+                     "Powiat: "                       +"<b>"+row['zs_5'] +"</b><br>"+
+                     "gmina: "                        +"<b>"+row['zs_6'] +"</b><br>"+
+                     "kod TERC: "                     +"<b>"+row['zs_7'] +"</b><br>"+
+                     "Miejscowość: "                  +"<b>"+row['zs_8'] +"</b><br>"+
+                     "kod SIMC: "                     +"<b>"+row['zs_9'] +"</b><br>"+
+                     "Ulica: "                        +"<b>"+row['zs_10']+"</b><br>"+
+                     "kod ULIC: "                     +"<b>"+row['zs_11']+"</b><br>"+
+                     "Nr porządkowy: "                +"<b>"+row['zs_12'] +"</b><br>"+
+                     "Szerokość geo: "                +"<b>"+row['zs_13'] +"</b><br>"+
+                     "Długość geo: "                  +"<b>"+row['zs_14'] +"</b><br>"+
+                     "Rodzaj obiektu: "               +"<b>"+row['zs_15'] +"</b><br>"+
+                     "Liczba lokali: "                +"<b>"+row['zs_16'] +"</b><br>"+
+                     "Liczba placówek publicznych: "  +"<b>"+row['zs_17'] +"</b><br>"+
+                     "Medium transmisyjne: "          +"<b>"+row['zs_18'] +"</b><br>"+
+                     "Maks oferowana gwarantowana przepustowość stacjonarnego przewodowego dostępu do Internetu [Mb/s]: "               +"<b>"+row['zs_19']+"</b><br>"+
+                     "Maks oferowana gwarantowana przepustowość stacjonarnego bezprzewodowego dostępu do Internetu [Mb/s]: "            +"<b>"+row['zs_20']+"</b><br>"+
+                     "Maks. oferowana gwarantowana przepustowość stacjonarnego dostępu do Internetu dla jednostek oświatowych [Mb/s]: " +"<b>"+row['zs_21']+"</b>"
       }
     }
   ];  
@@ -117,25 +118,25 @@ function geoShowManyMarkers() {
         "opts" : {
             "id" : row['id'],
             "show" : true,
-            "title" :  "Obszar: "               +row['zs_3'],
-            "content": "Województwo: "          +row['zs_4'] +"<br>"+
-                       "Powiat: "               +row['zs_5'] +"<br>"+
-                       "gmina: "                +row['zs_6'] +"<br>"+
-                       "kod TERC: "             +row['zs_7'] +"<br>"+
-                       "Miejscowość: "          +row['zs_8'] +"<br>"+
-                       "kod SIMC: "             +row['zs_9'] +"<br>"+
-                       "Ulica: "                +row['zs_10']+"<br>"+
-                       "kod ULIC: "             +row['zs_11']+"<br>"+
-                       "Nr porządkowy: "        +row['zs_12'] +"<br>"+
-                       "Szerokość geo: "        +row['zs_13'] +"<br>"+
-                       "Długość geo: "          +row['zs_14'] +"<br>"+
-                       "Rodzaj obiektu: "       +row['zs_15'] +"<br>"+
-                       "Liczba lokali: "        +row['zs_16'] +"<br>"+
-                       "Liczba placówek publicznych: "  +row['zs_17'] +"<br>"+
-                       "Medium transmisyjne: "  +row['zs_18'] +"<br>"+
-                       "Maks oferowana gwarantowana przepustowość stacjonarnego przewodowego dostępu do Internetu [Mb/s]: " +row['zs_19'] +"<br>"+
-                       "Maks oferowana gwarantowana przepustowość stacjonarnego bezprzewodowego dostępu do Internetu [Mb/s]: "  +row['zs_20'] +"<br>"+
-                       "Maks. oferowana gwarantowana przepustowość stacjonarnego dostępu do Internetu dla jednostek oświatowych [Mb/s]: "  +row['zs_21']
+            "title" :  "Obszar: "                             +row['zs_3'],
+            "content": "Województwo: "                  +"<b>"+row['zs_4'] +"</b><br>"+
+                       "Powiat: "                       +"<b>"+row['zs_5'] +"</b><br>"+
+                       "gmina: "                        +"<b>"+row['zs_6'] +"</b><br>"+
+                       "kod TERC: "                     +"<b>"+row['zs_7'] +"</b><br>"+
+                       "Miejscowość: "                  +"<b>"+row['zs_8'] +"</b><br>"+
+                       "kod SIMC: "                     +"<b>"+row['zs_9'] +"</b><br>"+
+                       "Ulica: "                        +"<b>"+row['zs_10']+"</b><br>"+
+                       "kod ULIC: "                     +"<b>"+row['zs_11']+"</b><br>"+
+                       "Nr porządkowy: "                +"<b>"+row['zs_12'] +"</b><br>"+
+                       "Szerokość geo: "                +"<b>"+row['zs_13'] +"</b><br>"+
+                       "Długość geo: "                  +"<b>"+row['zs_14'] +"</b><br>"+
+                       "Rodzaj obiektu: "               +"<b>"+row['zs_15'] +"</b><br>"+
+                       "Liczba lokali: "                +"<b>"+row['zs_16'] +"</b><br>"+
+                       "Liczba placówek publicznych: "  +"<b>"+row['zs_17'] +"</b><br>"+
+                       "Medium transmisyjne: "          +"<b>"+row['zs_18'] +"</b><br>"+
+                       "Maks oferowana gwarantowana przepustowość stacjonarnego przewodowego dostępu do Internetu [Mb/s]: "               +"<b>"+row['zs_19']+"</b><br>"+
+                       "Maks oferowana gwarantowana przepustowość stacjonarnego bezprzewodowego dostępu do Internetu [Mb/s]: "            +"<b>"+row['zs_20']+"</b><br>"+
+                       "Maks. oferowana gwarantowana przepustowość stacjonarnego dostępu do Internetu dla jednostek oświatowych [Mb/s]: " +"<b>"+row['zs_21']+"</b>"
         }
       }
     )
