@@ -163,8 +163,10 @@ pl:
       links_www1: 'https://uke.gov.pl'
       links_www2_title: 'Facebook'
       links_www2: 'https://web.facebook.com/UrzadKomunikacjiElektronicznej'
-      links_www3_title: 'Polska Cyfrowa - PO PC'
-      links_www3: 'https://mc.gov.pl/polska-cyfrowa-po-pc'
+      links_www3_title: 'Twitter'
+      links_www3: 'https://twitter.com/uke2uke'
+      links_www4_title: 'Polska Cyfrowa - PO PC'
+      links_www4: 'https://mc.gov.pl/polska-cyfrowa-po-pc'
     accessorization:
       user_show: 'Zadania'
       event_show: 'Użytkownicy realizujący zadanie'
