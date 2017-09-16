@@ -91,33 +91,6 @@ ActiveRecord::Schema.define(version: 20170905074104) do
     t.index ["title"], name: "index_events_on_title"
   end
 
-  create_table "opinions", force: :cascade do |t|
-    t.bigint "event_id"
-    t.bigint "user_id"
-    t.boolean "sec22_rate"
-    t.text "sec22"
-    t.boolean "sec23_rate"
-    t.text "sec23"
-    t.boolean "sec24_rate"
-    t.text "sec24"
-    t.boolean "sec25_rate"
-    t.text "sec25"
-    t.boolean "sec28_rate"
-    t.text "sec28"
-    t.boolean "sec33_rate"
-    t.text "sec33"
-    t.text "sec41"
-    t.text "sec42"
-    t.text "sec43"
-    t.boolean "sec51_rate"
-    t.text "sec51"
-    t.text "sec61"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["event_id"], name: "index_opinions_on_event_id"
-    t.index ["user_id"], name: "index_opinions_on_user_id"
-  end
-
   create_table "point_files", force: :cascade do |t|
     t.bigint "project_id"
     t.date "load_date"
@@ -334,8 +307,6 @@ ActiveRecord::Schema.define(version: 20170905074104) do
   add_foreign_key "comments", "users"
   add_foreign_key "events", "event_statuses"
   add_foreign_key "events", "event_types"
-  add_foreign_key "opinions", "events"
-  add_foreign_key "opinions", "users"
   add_foreign_key "point_files", "projects"
   add_foreign_key "projects", "customers"
   add_foreign_key "projects", "project_statuses"

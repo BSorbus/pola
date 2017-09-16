@@ -1,0 +1,9 @@
+<td>
+  <%= rating.try(:fullname_as_link) %>
+</td>
+<td>
+  <%= rating.user.try(:name_as_link) %>
+</td>
+<td>
+  <%= rating.updated_at.strftime("%Y-%m-%d %H:%M:%S") %>
+</td>

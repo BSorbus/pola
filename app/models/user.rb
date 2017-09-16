@@ -31,7 +31,8 @@ class User < ApplicationRecord
   has_many :accessorizations, dependent: :nullify, index_errors: true
 
   has_many :attachments, as: :attachmenable, dependent: :destroy
-  has_many :opinions, dependent: :nullify
+  has_many :comments, dependent: :nullify
+  has_many :ratings, dependent: :nullify
 
   accepts_nested_attributes_for :accessorizations, reject_if: :all_blank, allow_destroy: true
 
@@ -42,11 +43,11 @@ class User < ApplicationRecord
   def has_important_links
     analize_value = true
     if self.accessorizations.any? 
-     errors.add(:base, 'Nie można usunąć konta "' + self.try(:fullname) + '" do którego są przypisane Zadania.')
+     errors.add(:base, 'Nie można usunąć konta "' + self.try(:fullname) + '" które jest powiązane z Zadaniami.')
      analize_value = false
     end
-    if self.opinions.any? 
-     errors.add(:base, 'Nie można usunąć konta "' + self.try(:fullname) + '" do którego są przypisane Opinie.')
+    if self.ratings.any? 
+     errors.add(:base, 'Nie można usunąć konta "' + self.try(:fullname) + '" które jest powiązane z Ocenami.')
      analize_value = false
     end
     throw :abort unless analize_value 

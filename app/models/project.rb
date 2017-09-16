@@ -15,7 +15,7 @@ class Project < ApplicationRecord
 
   has_many :events, dependent: :nullify, index_errors: true
   has_many :comments, through: :events, source: :comments
-  has_many :opinions, through: :events, source: :opinions
+  has_many :ratings, through: :events, source: :ratings
 
   # validates
   validates :number, presence: true,

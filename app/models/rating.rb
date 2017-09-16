@@ -1,6 +1,9 @@
 require 'csv'
 
 class Rating < ApplicationRecord
+  delegate :url_helpers, to: 'Rails.application.routes'
+
+  # relations
   belongs_to :event
   belongs_to :user
 
@@ -10,6 +13,10 @@ class Rating < ApplicationRecord
 
   def fullname
     "[dotyczy zadania: #{self.event.fullname}, projekt: #{self.event.project.fullname}]"
+  end
+
+  def fullname_as_link
+    "<a href=#{url_helpers.event_rating_path(self.event, self)}>#{self.fullname}</a>".html_safe
   end
 
   def lastwritter

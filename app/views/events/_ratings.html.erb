@@ -8,29 +8,22 @@
       </tr>
     <thead>
     <tbody>
-      <% @event.ratings.each do |rating| %>
-        <tr>
-          <td>
-            <%= link_to rating.fullname, event_rating_path(@event, rating)  %>
-          </td>
-          <td>
-            <%= rating.user.try(:name_as_link) %>
-          </td>
-          <td>
-            <%= rating.updated_at.strftime("%Y-%m-%d %H:%M:%S") %>
-          </td>
-        </tr>
-      <% end %>
+
+      <%= render @event.ratings.order(created_at: :asc) %>
+
      </tbody>
   </table>
 
 </div>
 
 <div class="col-sm-12">
-  <% if true %> <!-- #policy(:rating).new? %> -->
+  <% if ( @event.event_type.activities.include?('rating:*') || 
+          @event.event_type.activities.include?('rating:index') ) && ( policy(@event.ratings.new(user: current_user)).new? ) %>
     <%= link_to new_event_rating_path(@event), class: "btn btn-primary pull-right" do %>
       <span class="glyphicon glyphicon-plus"></span>
       <%= t("helpers.links.new") %>
     <% end %>
   <% end %>
 </div> <!--/col-sm-12 -->
+
+

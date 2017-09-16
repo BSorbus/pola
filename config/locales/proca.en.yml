@@ -48,7 +48,6 @@ en:
       event: 'Event'
       comment: 'Comment'
       rating: 'Ocena'
-      opinion: 'Opinion'
     attributes:
       user:
         name: 'Name'
@@ -259,15 +258,6 @@ en:
         title: 'New Rating'
       edit:
         title: 'Edit -> Rating'
-    opinion:
-      index:
-        title: 'Opinions'
-      show:
-        title: 'Opinion'
-      new:
-        title: 'New Opinion'
-      edit:
-        title: 'Edit -> Opinion'
   pundit:
     default: ' SECURITY: Access denied!'
     work_policy:

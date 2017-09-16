@@ -1,0 +1,17 @@
+<div class="col-sm-12">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th class="col-sm-7"><%= Rating.human_attribute_name(:fullname) %></th>
+        <th class="col-sm-3"><%= Rating.human_attribute_name(:user_id) %></th>
+        <th class="col-sm-2"><%= Rating.human_attribute_name(:updated_at) %></th>
+      </tr>
+    <thead>
+    <tbody>
+
+      <%= render @project.ratings.order(created_at: :asc) %>
+
+     </tbody>
+  </table>
+
+</div>
