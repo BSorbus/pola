@@ -78,5 +78,9 @@ $dropDown       : true;
   &:hover {
     color: white;
     text-decoration: none;
+
+    -webkit-transform: scale(1.15);
+    -moz-transform: scale(1.15);
+    transform: scale(1.15);
   }
 }
