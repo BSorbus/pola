@@ -1,44 +1,88 @@
 <%= image_tag attachments['logo.jpg'].url, size: "256x145" %>
 <br>
-<br>
-<p>
+
+<table class="email-table">
+  <tbody>
+    <tr class="header-row">
+      <td>
+        <h1>Witaj!</h1>
+      </td>
+    </tr>
+    <tr class="body-row">
+      <td>
+        <p>
   W programie <strong>PROCA</strong> utworzono nowe lub wprowadzono zmiany w zadaniu <strong><%= link_to @event.try(:title), event_url(@event), target: "_blank" %></strong>, dotyczącym projektu <strong><%= link_to @event.project.try(:number), project_url(@event.project), target: "_blank" %></strong>.
-</p>
+        </p>
+      </td>
+    </tr>
 
-<br>
-<p>
-  <strong>Tytuł</strong>:<br>
-  <%= @event.try(:title) %><br>
-</p>
-<p>
-  <strong>Status zadania</strong>:<br>
-  <%= @event.event_status.try(:name) %><br>
-</p>
-<p>
-  <strong>Typ zadania</strong>:<br>
-  <%= @event.event_type.try(:name) %><br>
-</p>
-<p>
-  <strong>Projekt</strong>:<br>
-  <%= @event.project.try(:fullname) %><br>
-</p>
-<p>
-  <strong>Uwagi</strong>:<br>
-  <i><%= @event.note.gsub("\r\n", "<br>").html_safe %></i>
-</p>
+  </tbody>
+</table>
+
+<table class="email-table">
+  <tbody>
+    <tr class="body-row">
+      <td>
+        <p><strong>Tytuł</strong>:</p>
+      </td>
+      <td>
+        <p><%= @event.try(:title) %></p>
+      </td>
+    </tr>
+
+    <tr class="body-row">
+      <td>
+        <p><strong>Status zadania</strong>:</p>
+      </td>
+      <td>
+        <p><%= @event.event_status.try(:name) %></p>
+      </td>
+    </tr>
+
+    <tr class="body-row">
+      <td>
+        <p><strong>Typ zadania</strong>:</p>
+      </td>
+      <td>
+        <p><%= @event.event_type.try(:name) %></p>
+      </td>
+    </tr>
+
+    <tr class="body-row">
+      <td>
+        <p><strong>Projekt</strong>:</p>
+      </td>
+      <td>
+        <p><%= @event.project.try(:fullname) %></p>
+      </td>
+    </tr>
+
+    <tr class="body-row">
+      <td>
+        <p><strong>Uwagi:</strong>:</p>
+      </td>
+      <td>
+        <p><i><%= @event.note.gsub("\r\n", "<br>").html_safe %></i></p>
+      </td>
+    </tr>
 
 
+    <% Accessorization.includes(:user, :role).where(event_id: @event.id).order("users.name").each_with_index do |row, index| %>
+      <tr class="body-row">
+        <td>
+          <% if index == 0 %>
+            <p><strong>Lista użytkowników</strong>:</p>
+          <% end %>
+        </td>
+        <td>
+          <p><%= "#{row.user.try(:fullname)} - #{row.role.try(:fullname)}" %></p>
+        </td>
+      </tr>
+    <% end %>
 
 
-<br>
-<p>
-  <strong>Lista użytkowników</strong>:<br>
-  <% Accessorization.includes(:user, :role).where(event_id: @event.id).order("users.name").each do |row| %>
-    <%= "#{row.user.try(:fullname)} - #{row.role.try(:fullname)}" %><br>
-  <% end %>
-</p>
-
-
+  </tbody>
+</table>
 
 <br>
 <div align="center"><div style="border-top: 1px solid #C7D540; width:100%; line-height:1px; height:1px; font-size:1px;">&#160;</div></div>
