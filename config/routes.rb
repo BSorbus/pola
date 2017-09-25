@@ -32,6 +32,9 @@ Rails.application.routes.draw do
       get 'datatables_index_zs_point', on: :collection # Displays zs_points for showed point_file
       get 'datatables_index_ww_point', on: :collection # Displays ww_points for showed point_file
     end
+    resources :proposal_files, module: :projects, except: [:index] do
+      get 'download', on: :member
+    end
   end
 
   resources :roles do

@@ -18,13 +18,13 @@ class PointFile < ApplicationRecord
   validates :status, presence: true,
                     :uniqueness => { scope: [:project_id] }, if: :status_active?
 
-  validate :loading_file_is_valid?, on: :create
+  before_save :loading_file_is_valid?, on: :create
 
 
   def loading_file_is_valid?
     unless check_csv_file
-     errors.add(:load_file, '"' + load_file.file.original_filename + '" nie jest prawidłowym plikiem wygenerowanym przy użyciu "Formularz planowania zasięgów i sieci NGA ver. 1.2.0".')
-     throw :abort 
+      errors.add(:load_file, '"' + load_file.file.original_filename + '" nie jest prawidłowym plikiem wygenerowanym przy użyciu "Formularz planowania zasięgów i sieci NGA ver. 1.2.0".')
+      throw :abort 
     end
   end
 

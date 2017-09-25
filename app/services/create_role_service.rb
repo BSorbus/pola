@@ -126,6 +126,24 @@ class CreateRoleService
     end
   end
 
+  # project_xml_files
+  def project_proposal_file_admin
+    role = Role.find_or_create_by!(name: "Administrator Plików Projektowych XML") do |role|
+      role.special = true
+      role.activities += %w(proposal_file:index proposal_file:download proposal_file:show proposal_file:create proposal_file:update proposal_file:delete)
+      role.note = "Rola służy do zarządzania plikami projektowymi xml przypisanymi do Projektów. \r\n (Przypisz tylko Administratorom systemu oraz Koordynatorom POPC)"
+      role.save!
+    end
+  end
+  def project_proposal_file_observer
+    role = Role.find_or_create_by!(name: "Obserwator Plików Projektowych XML") do |role|
+      role.special = true
+      role.activities += %w(proposal_file:index proposal_file:download proposal_file:show)
+      role.note = "Rola służy do wyświetlania i pobierania plików projektowych xml przypisanych do Projektów. \r\n (Przypisz Administratorom systemu oraz Koordynatorom POPC)"
+      role.save!
+    end
+  end
+
   # events
   def event_admin
     role = Role.find_or_create_by!(name: "Administrator Zdarzeń/Zadań") do |role|

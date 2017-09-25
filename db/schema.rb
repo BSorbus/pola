@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170905074104) do
+ActiveRecord::Schema.define(version: 20170923105536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,7 +93,7 @@ ActiveRecord::Schema.define(version: 20170905074104) do
 
   create_table "point_files", force: :cascade do |t|
     t.bigint "project_id"
-    t.date "load_date"
+    t.datetime "load_date"
     t.string "load_file"
     t.integer "status"
     t.text "note"
@@ -144,6 +144,19 @@ ActiveRecord::Schema.define(version: 20170905074104) do
     t.index ["customer_id"], name: "index_projects_on_customer_id"
     t.index ["number"], name: "index_projects_on_number"
     t.index ["project_status_id"], name: "index_projects_on_project_status_id"
+  end
+
+  create_table "proposal_files", force: :cascade do |t|
+    t.bigint "project_id"
+    t.datetime "load_date"
+    t.string "load_file"
+    t.integer "status"
+    t.text "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["load_date"], name: "index_proposal_files_on_load_date"
+    t.index ["project_id"], name: "index_proposal_files_on_project_id"
+    t.index ["status"], name: "index_proposal_files_on_status"
   end
 
   create_table "ratings", force: :cascade do |t|
@@ -310,6 +323,7 @@ ActiveRecord::Schema.define(version: 20170905074104) do
   add_foreign_key "point_files", "projects"
   add_foreign_key "projects", "customers"
   add_foreign_key "projects", "project_statuses"
+  add_foreign_key "proposal_files", "projects"
   add_foreign_key "ratings", "events"
   add_foreign_key "ratings", "users"
   add_foreign_key "roles_users", "roles"

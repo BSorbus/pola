@@ -1,7 +1,8 @@
 class Projects::PointFilesController < ApplicationController
   before_action :authenticate_user!
   after_action :verify_authorized, except: [:datatables_index_zs_point, :datatables_index_ww_point]
-  before_action :set_point_file, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :new, :edit, :create, :update, :destroy]
+  before_action :set_point_file, only: [:download, :show, :edit, :update, :destroy]
 
 
   # ZsPoints for showed PointFile
@@ -20,7 +21,6 @@ class Projects::PointFilesController < ApplicationController
 
 
   def download
-    @point_file = PointFile.find(params[:id])
     authorize @point_file, :download?
     send_file "#{@point_file.load_file.file.file}", 
       type: "#{@point_file.load_file.file.content_type}",
@@ -30,29 +30,25 @@ class Projects::PointFilesController < ApplicationController
   # GET /point_files/1
   # GET /point_files/1.json
   def show
-    @project = load_project
     authorize @point_file, :show?
   end
 
   # GET /point_files/new
   def new
-    @project = load_project
     @point_file = PointFile.new
     @point_file.project = @project
-    @point_file.load_date = Time.zone.today 
+    @point_file.load_date = Time.zone.now 
     authorize @point_file, :new?
   end
 
   # GET /point_files/1/edit
   def edit
-    @project = load_project
     authorize @point_file, :edit?
   end
 
   # POST /point_files
   # POST /point_files.json
   def create
-    @project = load_project
     @point_file = PointFile.new(point_file_params)
     @point_file.project = @project
     authorize @point_file, :create?
@@ -73,7 +69,6 @@ class Projects::PointFilesController < ApplicationController
   # PATCH/PUT /point_files/1
   # PATCH/PUT /point_files/1.json
   def update
-    @project = load_project
     authorize @point_file, :update?
     respond_to do |format|
       if @point_file.update(point_file_params)
@@ -90,7 +85,6 @@ class Projects::PointFilesController < ApplicationController
   # DELETE /point_files/1
   # DELETE /point_files/1.json
   def destroy
-    @project = load_project
     authorize @point_file, :destroy?
     if @point_file.destroy
       flash[:success] = t('activerecord.successfull.messages.destroyed', data: @point_file.fullname)
@@ -107,7 +101,7 @@ class Projects::PointFilesController < ApplicationController
       @point_file = PointFile.find(params[:id])
     end
 
-    def load_project
+    def set_project
       @project = Project.find(params[:project_id])
     end
 

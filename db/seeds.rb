@@ -61,6 +61,13 @@ role = CreateRoleService.new.project_point_file_observer
 puts 'CREATED ROLE: ' << role.name
 
 
+role = CreateRoleService.new.project_proposal_file_admin
+puts 'CREATED ROLE: ' << role.name
+
+role = CreateRoleService.new.project_proposal_file_observer
+puts 'CREATED ROLE: ' << role.name
+
+
 role = CreateRoleService.new.event_admin
 puts 'CREATED ROLE: ' << role.name
 
@@ -208,17 +215,17 @@ event_status_verification = EventStatus.find_or_create_by!(name: "Weryfikacja")
 event_status_closed = EventStatus.find_or_create_by!(name: "Zamknięte")
 
 event_type1 = EventType.find_or_create_by!(name: "Ocenianie") do |role|
-  role.activities += %w(rating:* event:index event:show accessorization:index comment:index comment:show project:index project:show customer:index customer:show attachment:project_index attachment:project_show attachment:event_index attachment:event_show point_file:index point_file:download point_file:show)
+  role.activities += %w(rating:* event:index event:show accessorization:index comment:index comment:show project:index project:show customer:index customer:show attachment:project_index attachment:project_show attachment:event_index attachment:event_show point_file:index point_file:download point_file:show proposal_file:index proposal_file:download proposal_file:show)
   role.save!
 end
 
 event_type2 = EventType.find_or_create_by!(name: "Ocenianie po proteście") do |role|
-  role.activities += %w(opiniowanie2:* rating:index rating:show event:index event:show accessorization:index comment:index comment:show project:index project:show customer:index customer:show attachment:project_index attachment:project_show attachment:event_index attachment:event_show point_file:index point_file:download point_file:show)
+  role.activities += %w(opiniowanie2:* rating:index rating:show event:index event:show accessorization:index comment:index comment:show project:index project:show customer:index customer:show attachment:project_index attachment:project_show attachment:event_index attachment:event_show point_file:index point_file:download point_file:show proposal_file:index proposal_file:download proposal_file:show)
   role.save!
 end
 
 event_type3 = EventType.find_or_create_by!(name: "Analiza DART") do |role|
-  role.activities += %w(for_role_scan:* event:index event:show accessorization:index comment:index comment:show project:index project:show customer:index customer:show attachment:project_index attachment:project_show attachment:event_index attachment:event_show point_file:index point_file:download point_file:show)
+  role.activities += %w(for_role_scan:* event:index event:show accessorization:index comment:index comment:show project:index project:show customer:index customer:show attachment:project_index attachment:project_show attachment:event_index attachment:event_show point_file:index point_file:download point_file:show proposal_file:index proposal_file:download proposal_file:show)
   role.save!
 end
 

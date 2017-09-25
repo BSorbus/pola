@@ -47,6 +47,7 @@ pl:
       event: 'Zdarzenie/Zadanie'
       comment: 'Komentarz'
       rating: 'Ocena'
+      proposal_file: 'Plik Projektu (XML)'
     attributes:
       user:
         name: 'Imię i Nazwisko'
@@ -152,6 +153,13 @@ pl:
         sec51: 'Uwagi'
         sec61_rate: 'Ocena końcowa'
         sec61: 'Podsumowanie'
+      proposal_file:
+        load_date: 'Data pobrania'
+        load_file: 'Plik'
+        status: 'Status'
+        statuses:
+          inactive: 'Archiwalny'
+          active: 'Aktualny'
   pages:
     home: 'Główna'
     help: 'Pomoc'
@@ -277,6 +285,15 @@ pl:
         title: 'Nowa Ocena'
       edit:
         title: 'Edycja -> Ocena'
+    proposal_file:
+      index:
+        title: 'Pliki Projektu (XML)'
+      show:
+        title: 'Plik Projektu (XML)'
+      new:
+        title: 'Nowy Plik Projektu (XML)'
+      edit:
+        title: 'Edycja -> Plik Pliku Projektu (XML)'
   pundit:
     default: ' BRAK UPRAWNIEŃ: Nie można wykonać tej czynności!'
     work_policy:
