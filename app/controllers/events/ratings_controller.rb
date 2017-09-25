@@ -95,6 +95,6 @@ class Events::RatingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rating_params
-      params.require(:rating).permit(:event_id, :user_id, :sec22_rate, :sec22, :sec23_rate, :sec23, :sec24_rate, :sec24, :sec25_rate, :sec25, :sec28_rate, :sec28, :sec33_rate, :sec33, :sec41, :sec42, :sec43, :sec51_rate, :sec51, :sec61, :note)
+      params.require(:rating).permit(:event_id, :user_id, :sec22_rate, :sec22, :sec23_rate, :sec23, :sec24_rate, :sec24, :sec25_rate, :sec25, :sec28_rate, :sec28, :sec33_rate, :sec33, :sec41, :sec42, :sec43, :sec51_rate, :sec51, :sec61_rate, :sec61, :note)
     end
 end

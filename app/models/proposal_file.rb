@@ -17,7 +17,7 @@ class ProposalFile < ApplicationRecord
 
   def loading_file_is_valid?
     unless check_xml_file
-      errors.add(:load_file, '"' + load_file.file.original_filename + '" nie jest prawidłowym plikiem XML projektu POPC".')
+      errors.add(:load_file, '"' + load_file.file.original_filename + '" nie jest prawidłowym plikiem XML projektu POPC (nabór 2)".')
       throw :abort 
     end
   end
