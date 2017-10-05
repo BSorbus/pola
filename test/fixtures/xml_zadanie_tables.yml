@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  xml_projekt_table: one
+  zadanie: MyString
+  numer_zadania: MyString
+  nazwa: MyString
+  opis_zadania: MyString
+  idkm_data_rozpoczecia: MyString
+  idkm_planowana_data_zakonczenia: MyString
+
+two:
+  xml_projekt_table: two
+  zadanie: MyString
+  numer_zadania: MyString
+  nazwa: MyString
+  opis_zadania: MyString
+  idkm_data_rozpoczecia: MyString
+  idkm_planowana_data_zakonczenia: MyString

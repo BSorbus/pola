@@ -1,6 +1,6 @@
 class Projects::ProposalFilesController < ApplicationController
   before_action :authenticate_user!
-#  after_action :verify_authorized, except: [:datatables_index_zs_proposal, :datatables_index_ww_proposal]
+  after_action :verify_authorized
   before_action :set_project, only: [:show, :new, :edit, :create, :update, :destroy]
   before_action :set_proposal_file, only: [:download, :show, :edit, :update, :destroy]
 

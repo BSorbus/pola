@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  xml_partner_table: one
+  wojewodztwo_id: MyString
+  wojewodztwo_opis: MyString
+  czy_na_terenie_calego_wojewodztwa: false
+  powiat_id: MyString
+  powiat_opis: MyString
+  czy_na_terenie_calego_powiatu: false
+  gmina_id: MyString
+  gmina_opis: MyString
+
+two:
+  xml_partner_table: two
+  wojewodztwo_id: MyString
+  wojewodztwo_opis: MyString
+  czy_na_terenie_calego_wojewodztwa: false
+  powiat_id: MyString
+  powiat_opis: MyString
+  czy_na_terenie_calego_powiatu: false
+  gmina_id: MyString
+  gmina_opis: MyString

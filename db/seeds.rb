@@ -152,6 +152,10 @@ ProjectStatus.find_or_create_by!(name: "II.4. [Odwołanie] Opiniowanie - zatwier
 ProjectStatus.find_or_create_by!(name: "II.5. [Odwołanie] Opiniowanie - podpisane")
 
 
+
+
+
+
 # example customers
 customer1 = Customer.create(name: 'Customer1')
 puts 'CREATED CUSTOMER: ' << customer1.name
@@ -210,9 +214,18 @@ project5 = Project.create( number: '5/2017',
 puts 'CREATED SIMPLE PROJECT: ' << project5.number
 
 
+# EVENT_STATUS_OPENED = 1
+# EVENT_STATUS_VERIFICATION_UKE = 2
+# EVENT_STATUS_CLOSED = 3
+# EVENT_STATUS_VERIFICATION_CPPC = 4
+# EVENT_STATUS_CANCELED = 5
+
 event_status_opened = EventStatus.find_or_create_by!(name: "Otwarte")
-event_status_verification = EventStatus.find_or_create_by!(name: "Weryfikacja")
+event_status_verification_uke = EventStatus.find_or_create_by!(name: "Weryfikacja UKE")
 event_status_closed = EventStatus.find_or_create_by!(name: "Zamknięte")
+event_status_verification_cppc = EventStatus.find_or_create_by!(name: "Weryfikacja CPPC")
+event_status_canceled = EventStatus.find_or_create_by!(name: "Anulowane")
+
 
 event_type1 = EventType.find_or_create_by!(name: "Ocenianie") do |role|
   role.activities += %w(rating:* event:index event:show accessorization:index comment:index comment:show project:index project:show customer:index customer:show attachment:project_index attachment:project_show attachment:event_index attachment:event_show point_file:index point_file:download point_file:show proposal_file:index proposal_file:download proposal_file:show)
@@ -236,7 +249,7 @@ event1 = Event.create( title: 'Ocena - 1/2017',
                       start_date: Time.zone.today + 2.weeks, 
                       end_date: Time.zone.today + 2.weeks, 
                       note: "",
-                      event_status: event_status_verification, 
+                      event_status: event_status_verification_uke, 
                       event_type: event_type1, 
                       project: project1)
 puts 'CREATED SIMPLE EVENT: ' << event1.title
@@ -266,7 +279,7 @@ event4 = Event.create( title: 'Ocena - 4/2017',
                       start_date: Time.zone.today + 15.weeks, 
                       end_date: Time.zone.today + 15.weeks, 
                       note: "", 
-                      event_status: event_status_verification, 
+                      event_status: event_status_verification_uke, 
                       event_type: event_type1, 
                       project: project4)
 puts 'CREATED SIMPLE EVENT: ' << event4.title

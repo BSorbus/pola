@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  xml_projekt_table: one
+  numer: 1
+  nazwa_id: MyString
+  nazwa_kod: MyString
+  nazwa_opis: MyString
+  typ: MyString
+  jednostka_miary_opis: MyString
+  wartosc_bazowa: MyString
+  wartosc_docelowa: MyString
+
+two:
+  xml_projekt_table: two
+  numer: 1
+  nazwa_id: MyString
+  nazwa_kod: MyString
+  nazwa_opis: MyString
+  typ: MyString
+  jednostka_miary_opis: MyString
+  wartosc_bazowa: MyString
+  wartosc_docelowa: MyString

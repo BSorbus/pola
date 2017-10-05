@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  xml_zadanie_table: one
+  nazwa: MyString
+  czy_oznacza_zakonczenie: false
+  planowana_data_zakonczenia: MyString
+  data_punktu_krytycznego: MyString
+  data_punktu_ostatecznego: MyString
+
+two:
+  xml_zadanie_table: two
+  nazwa: MyString
+  czy_oznacza_zakonczenie: false
+  planowana_data_zakonczenia: MyString
+  data_punktu_krytycznego: MyString
+  data_punktu_ostatecznego: MyString

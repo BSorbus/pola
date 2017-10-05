@@ -184,6 +184,39 @@ td:hover {
 }
 
 
+
+.panel-xml_zadanie_table {
+  border-color: #ddd;  
+  .panel-heading {
+    background: $brand-primary; //#1A3069;
+    color: white;
+  }
+}
+
+.panel-xml_wybrana_technologia_table {
+  border-color: #ddd;  
+  .panel-heading {
+    background: $brand-primary; //#1A3069;
+    color: white;
+  }
+}
+
+.panel-xml_wskaznik_table {
+  border-color: #ddd;  
+  .panel-heading {
+    background: $brand-primary; //#1A3069;
+    color: white;
+  }
+}
+
+.panel-xml_miejsce_realizacji_table {
+  border-color: #ddd;  
+  .panel-heading {
+    background: $brand-primary; //#1A3069;
+    color: white;
+  }
+}
+
 .panel-rating {
   border-color: #ddd
 }  

@@ -48,6 +48,10 @@ pl:
       comment: 'Komentarz'
       rating: 'Ocena'
       proposal_file: 'Plik Projektu (XML)'
+      xml_miejsce_realizacji_table: 'Miejsce Realizacji'
+      xml_wskaznik_table: 'Miejsce Realizacji'
+      xml_wybrana_technologia_table: 'Wybrana Technologia'
+      xml_zadanie_table: 'Zadanie'
     attributes:
       user:
         name: 'Imię i Nazwisko'
@@ -160,6 +164,34 @@ pl:
         statuses:
           inactive: 'Archiwalny'
           active: 'Aktualny'
+      xml_miejsce_realizacji_table:
+        wojewodztwo_opis: 'Województwo'
+        powiat_opis: 'Powiat'
+        gmina_opis: 'Gmina'
+      xml_wskaznik_table:
+        numer: 'Numer'
+        nazwa_id: 'Id'
+        nazwa_kod: 'Kod'
+        nazwa_opis: 'Opis'
+        typ: 'Typ'
+        jednostka_miary_opis: 'Jedn.miary'
+        wartosc_bazowa: 'Wart.bazowa'
+        wartosc_docelowa: 'Wart.docelowa'
+      xml_wybrana_technologia_table:
+        element_id: 'Id'
+        element_opis: 'Opis'
+      xml_zadanie_table:
+        zadanie: 'Zadanie'
+        numer_zadania: 'Nr'
+        nazwa: 'Nazwa'
+        idkm_data_rozpoczecia: 'Plan. data rozpoczęcia'
+        idkm_planowana_data_zakonczenia: 'Plan. data zakończenia'
+      xml_kamien_milowy_table:
+        nazwa: 'Nazwa'
+        czy_oznacza_zakonczenie: 'Zakończenie?'
+        planowana_data_zakonczenia: 'Plan. data zakończenia'
+        data_punktu_krytycznego: 'Data punktu krytycznego'
+        data_punktu_ostatecznego: 'Data punktu ostatecznego'
   pages:
     home: 'Główna'
     help: 'Pomoc'
@@ -294,6 +326,18 @@ pl:
         title: 'Nowy Plik Projektu (XML)'
       edit:
         title: 'Edycja -> Plik Pliku Projektu (XML)'
+    xml_miejsce_realizacji_table:
+      index:
+        title: 'Miejsca Realizacji'
+    xml_wskaznik_table:
+      index:
+        title: 'Wskaźniki mierzalne'
+    xml_wybrana_technologia_table:
+      index:
+        title: 'Wybrane technologie'
+    xml_zadanie_table:
+      index:
+        title: 'Zadania - kamienie milowe'
   pundit:
     default: ' BRAK UPRAWNIEŃ: Nie można wykonać tej czynności!'
     work_policy:

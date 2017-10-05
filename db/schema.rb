@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170923105536) do
+ActiveRecord::Schema.define(version: 20171003211801) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -154,6 +154,10 @@ ActiveRecord::Schema.define(version: 20170923105536) do
     t.text "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "nabor_id"
+    t.string "nabor_opis"
+    t.string "rodzaj_id"
+    t.string "rodzaj_opis"
     t.index ["load_date"], name: "index_proposal_files_on_load_date"
     t.index ["project_id"], name: "index_proposal_files_on_project_id"
     t.index ["status"], name: "index_proposal_files_on_status"
@@ -271,6 +275,114 @@ ActiveRecord::Schema.define(version: 20170923105536) do
     t.index ["ww_9"], name: "index_ww_points_on_ww_9"
   end
 
+  create_table "xml_kamien_milowy_tables", force: :cascade do |t|
+    t.bigint "xml_zadanie_table_id"
+    t.string "nazwa"
+    t.boolean "czy_oznacza_zakonczenie"
+    t.string "planowana_data_zakonczenia"
+    t.string "data_punktu_krytycznego"
+    t.string "data_punktu_ostatecznego"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["xml_zadanie_table_id"], name: "index_xml_kamien_milowy_tables_on_xml_zadanie_table_id"
+  end
+
+  create_table "xml_miejsce_realizacji_tables", force: :cascade do |t|
+    t.bigint "xml_partner_table_id"
+    t.string "wojewodztwo_id"
+    t.string "wojewodztwo_opis"
+    t.boolean "czy_na_terenie_calego_wojewodztwa"
+    t.string "powiat_id"
+    t.string "powiat_opis"
+    t.boolean "czy_na_terenie_calego_powiatu"
+    t.string "gmina_id"
+    t.string "gmina_opis"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["xml_partner_table_id"], name: "index_xml_miejsce_realizacji_tables_on_xml_partner_table_id"
+  end
+
+  create_table "xml_partner_tables", force: :cascade do |t|
+    t.bigint "proposal_file_id"
+    t.string "dp_nazwa"
+    t.string "dp_nip"
+    t.string "dp_regon"
+    t.string "dp_as_miejscowosc_id"
+    t.string "dp_as_miejscowosc_opis"
+    t.string "dp_as_kod_pocztowy"
+    t.string "dp_as_ulica_id"
+    t.string "dp_as_ulica_opis"
+    t.string "dp_as_nr"
+    t.string "dp_as_lokal"
+    t.string "dp_as_telefon"
+    t.string "dp_as_faks"
+    t.string "dp_as_email"
+    t.string "dp_as_epuap"
+    t.string "numer_wpisu_uke"
+    t.string "mrp_obszar_realizacji_id"
+    t.string "mrp_obszar_realizacji_opis"
+    t.integer "mrp_maksymalna_kwota_dofinansowania"
+    t.decimal "mrp_maksymalna_intensywnosc_wsparcia", precision: 6, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["proposal_file_id"], name: "index_xml_partner_tables_on_proposal_file_id"
+  end
+
+  create_table "xml_projekt_tables", force: :cascade do |t|
+    t.bigint "proposal_file_id"
+    t.string "do_tytul"
+    t.date "do_okres_realizacji_data_od"
+    t.date "do_okres_realizacji_data_do"
+    t.date "do_okres_kwalifikowalnosci_wydatkow_data_od"
+    t.date "do_okres_kwalifikowalnosci_wydatkow_data_do"
+    t.decimal "mfp_mfo_mf_wydatki_ogolem", precision: 15, scale: 2
+    t.decimal "mfp_mfo_mf_wydatki_kwalifikowane", precision: 15, scale: 2
+    t.decimal "mfp_mfo_mf_dofinansowanie", precision: 15, scale: 2
+    t.decimal "mfp_mfo_mf_procent_dofinansowania", precision: 6, scale: 2
+    t.decimal "mfp_mfo_mf_wklad_ue", precision: 15, scale: 2
+    t.decimal "mfp_mfo_mf_procent_dofinansowanie_ue", precision: 6, scale: 2
+    t.decimal "mfp_mfo_mf_wklad_wlasny", precision: 15, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["proposal_file_id"], name: "index_xml_projekt_tables_on_proposal_file_id"
+  end
+
+  create_table "xml_wskaznik_tables", force: :cascade do |t|
+    t.bigint "xml_projekt_table_id"
+    t.integer "numer"
+    t.string "nazwa_id"
+    t.string "nazwa_kod"
+    t.string "nazwa_opis"
+    t.string "typ"
+    t.string "jednostka_miary_opis"
+    t.string "wartosc_bazowa"
+    t.string "wartosc_docelowa"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["xml_projekt_table_id"], name: "index_xml_wskaznik_tables_on_xml_projekt_table_id"
+  end
+
+  create_table "xml_wybrana_technologia_tables", force: :cascade do |t|
+    t.bigint "xml_projekt_table_id"
+    t.string "element_id"
+    t.string "element_opis"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["xml_projekt_table_id"], name: "index_xml_wybrana_technologia_tables_on_xml_projekt_table_id"
+  end
+
+  create_table "xml_zadanie_tables", force: :cascade do |t|
+    t.bigint "xml_projekt_table_id"
+    t.string "zadanie"
+    t.string "numer_zadania"
+    t.string "nazwa"
+    t.string "idkm_data_rozpoczecia"
+    t.string "idkm_planowana_data_zakonczenia"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["xml_projekt_table_id"], name: "index_xml_zadanie_tables_on_xml_projekt_table_id"
+  end
+
   create_table "zs_points", force: :cascade do |t|
     t.bigint "point_file_id"
     t.string "zs_2", limit: 10
@@ -329,5 +441,12 @@ ActiveRecord::Schema.define(version: 20170923105536) do
   add_foreign_key "roles_users", "roles"
   add_foreign_key "roles_users", "users"
   add_foreign_key "ww_points", "point_files"
+  add_foreign_key "xml_kamien_milowy_tables", "xml_zadanie_tables"
+  add_foreign_key "xml_miejsce_realizacji_tables", "xml_partner_tables"
+  add_foreign_key "xml_partner_tables", "proposal_files"
+  add_foreign_key "xml_projekt_tables", "proposal_files"
+  add_foreign_key "xml_wskaznik_tables", "xml_projekt_tables"
+  add_foreign_key "xml_wybrana_technologia_tables", "xml_projekt_tables"
+  add_foreign_key "xml_zadanie_tables", "xml_projekt_tables"
   add_foreign_key "zs_points", "point_files"
 end

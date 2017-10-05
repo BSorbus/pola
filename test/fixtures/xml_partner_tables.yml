@@ -1,0 +1,45 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  proposal_file: one
+  dp_nazwa: MyString
+  dp_nip: MyString
+  dp_regon: MyString
+  dp_as_miejscowosc_id: MyString
+  dp_as_miejscowosc_opis: MyString
+  dp_as_kod_pocztowy: MyString
+  dp_as_ulica_id: MyString
+  dp_as_ulica_opis: MyString
+  dp_as_nr: MyString
+  dp_as_lokal: MyString
+  dp_as_telefon: MyString
+  dp_as_faks: MyString
+  dp_as_email: MyString
+  dp_as_epuap: MyString
+  numer_wpisu_uke: MyString
+  mrp_obszar_realizacji_id: MyString
+  mrp_obszar_realizacji_opis: MyString
+  mrp_maksymalna_kwota_dofinansowania: 1
+  mrp_maksymalna_intensywnosc_wsparcia: 9.99
+
+two:
+  proposal_file: two
+  dp_nazwa: MyString
+  dp_nip: MyString
+  dp_regon: MyString
+  dp_as_miejscowosc_id: MyString
+  dp_as_miejscowosc_opis: MyString
+  dp_as_kod_pocztowy: MyString
+  dp_as_ulica_id: MyString
+  dp_as_ulica_opis: MyString
+  dp_as_nr: MyString
+  dp_as_lokal: MyString
+  dp_as_telefon: MyString
+  dp_as_faks: MyString
+  dp_as_email: MyString
+  dp_as_epuap: MyString
+  numer_wpisu_uke: MyString
+  mrp_obszar_realizacji_id: MyString
+  mrp_obszar_realizacji_opis: MyString
+  mrp_maksymalna_kwota_dofinansowania: 1
+  mrp_maksymalna_intensywnosc_wsparcia: 9.99

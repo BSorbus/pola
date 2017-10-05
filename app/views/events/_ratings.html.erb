@@ -18,7 +18,7 @@
 
 <div class="col-sm-12">
   <% if ( @event.event_type.activities.include?('rating:*') || 
-          @event.event_type.activities.include?('rating:index') ) && ( policy(@event.ratings.new(user: current_user)).new? ) %>
+          @event.event_type.activities.include?('rating:index') ) && ( policy(@event.ratings.new(user: current_user)).new? ) & @event.ratings.empty? %>
     <%= link_to new_event_rating_path(@event), class: "btn btn-primary pull-right" do %>
       <span class="glyphicon glyphicon-plus"></span>
       <%= t("helpers.links.new") %>

@@ -1,6 +1,7 @@
 class Events::RatingsController < ApplicationController
   before_action :authenticate_user!
   after_action :verify_authorized, except: []
+  before_action :set_event, only: [:show, :new, :edit, :create, :update, :destroy]
   before_action :set_rating, only: [:export, :show, :edit, :update, :destroy]
 
 
@@ -13,29 +14,27 @@ class Events::RatingsController < ApplicationController
   # GET /ratings/1
   # GET /ratings/1.json
   def show
-    @event = load_event
     authorize @rating, :show?
   end
 
   # GET /ratings/new
   def new
-    @event = load_event
     @rating = Rating.new
     @rating.event = @event
     @rating.user = current_user
+    @rating.sec51 = 'Nie dotyczy'
     authorize @rating, :new?
   end
 
   # GET /ratings/1/edit
   def edit
-    @event = load_event
     authorize @rating, :edit?
+    @rating.user = current_user
   end
 
   # POST /ratings
   # POST /ratings.json
   def create
-    @event = load_event
     @rating = Rating.new(rating_params)
     @rating.event = @event
     @rating.user = current_user
@@ -55,7 +54,7 @@ class Events::RatingsController < ApplicationController
   # PATCH/PUT /ratings/1
   # PATCH/PUT /ratings/1.json
   def update
-    @event = load_event
+    @rating.user = current_user
     authorize @rating, :update?
     respond_to do |format|
       if @rating.update(rating_params)
@@ -72,7 +71,6 @@ class Events::RatingsController < ApplicationController
   # DELETE /ratings/1
   # DELETE /ratings/1.json
   def destroy
-    @event = load_event
     authorize @rating, :destroy?
     if @rating.destroy
       flash[:success] = t('activerecord.successfull.messages.destroyed', data: @rating.fullname)
@@ -89,7 +87,7 @@ class Events::RatingsController < ApplicationController
       @rating = Rating.find(params[:id])
     end
 
-    def load_event
+    def set_event
       @event = Event.find(params[:event_id])
     end
 

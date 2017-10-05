@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  proposal_file: one
+  do_tytul: MyString
+  do_okres_realizacji_data_od: 2017-09-30
+  do_okres_realizacji_data_do: 2017-09-30
+  do_okres_kwalifikowalnosci_wydatkow_data_od: 2017-09-30
+  do_okres_kwalifikowalnosci_wydatkow_data_do: 2017-09-30
+  mfp_mfo_mf_wydatki_ogolem: 9.99
+  mfp_mfo_mf_wydatki_kwalifikowane: 9.99
+  mfp_mfo_mf_dofinansowanie: 9.99
+  mfp_mfo_mf_procent_dofinansowania: 9.99
+  mfp_mfo_mf_wklad_ue: 9.99
+  mfp_mfo_mf_procent_dofinansowanie_ue: 9.99
+  mfp_mfo_mf_wklad_wlasny: 9.99
+
+two:
+  proposal_file: two
+  do_tytul: MyString
+  do_okres_realizacji_data_od: 2017-09-30
+  do_okres_realizacji_data_do: 2017-09-30
+  do_okres_kwalifikowalnosci_wydatkow_data_od: 2017-09-30
+  do_okres_kwalifikowalnosci_wydatkow_data_do: 2017-09-30
+  mfp_mfo_mf_wydatki_ogolem: 9.99
+  mfp_mfo_mf_wydatki_kwalifikowane: 9.99
+  mfp_mfo_mf_dofinansowanie: 9.99
+  mfp_mfo_mf_procent_dofinansowania: 9.99
+  mfp_mfo_mf_wklad_ue: 9.99
+  mfp_mfo_mf_procent_dofinansowanie_ue: 9.99
+  mfp_mfo_mf_wklad_wlasny: 9.99

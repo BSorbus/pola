@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  xml_projekt_table: one
+  element_id: 1
+  element_opis: MyString
+
+two:
+  xml_projekt_table: two
+  element_id: 1
+  element_opis: MyString

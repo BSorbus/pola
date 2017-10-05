@@ -26,109 +26,102 @@
 
 
   <!-- Oi-->
-  <% if true %> <!-- #policy(:zz_point).index? %> -->
-    <div class="row">
-      <div class="col-sm-11 col-sm-offset-1">
-        <div class="panel panel-oi-data">
-          <div class="panel-heading">
-            <div class="panel-title">
-              <a class="accordion-toggle" data-toggle="collapse" data-parent="#myaccordion" href="#collapse_point_file_oi_data" >
-                <span class="glyphicon glyphicon-map-marker">&nbsp;</span>
-                <span><%= t "pages.oi_data.show.title" %></span>
-                <i class="indicator glyphicon glyphicon-chevron-right pull-right"></i>
-              </a>
-            </div>
+  <div class="row">
+    <div class="col-sm-11 col-sm-offset-1">
+      <div class="panel panel-oi-data">
+        <div class="panel-heading">
+          <div class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#myaccordion" href="#collapse_point_file_oi_data" >
+              <span class="glyphicon glyphicon-map-marker">&nbsp;</span>
+              <span><%= t "pages.oi_data.show.title" %></span>
+              <i class="indicator glyphicon glyphicon-chevron-right pull-right"></i>
+            </a>
           </div>
-          <div id="collapse_point_file_oi_data" class="panel-collapse collapse">
-            <div class="panel-body">
+        </div>
+        <div id="collapse_point_file_oi_data" class="panel-collapse collapse">
+          <div class="panel-body">
 
-              <%= render 'oi_data' %>
+            <%= render 'oi_data' %>
 
-            </div> <!-- /panel-body -->
-          </div> <!-- /id="collapse_point_file_oi_data" -->
-        </div> <!-- /panel -->
-      </div> <!-- /col-sm-11 col-sm-offset-1 -->
-    </div> <!-- /row -->
-  <% end %>
+          </div> <!-- /panel-body -->
+        </div> <!-- /id="collapse_point_file_oi_data" -->
+      </div> <!-- /panel -->
+    </div> <!-- /col-sm-11 col-sm-offset-1 -->
+  </div> <!-- /row -->
 
 
   <!-- ZSPoints-->
-  <% if true %> <!-- #policy(:zz_point).index? %> -->
-    <div class="row">
-      <div class="col-sm-11 col-sm-offset-1">
-        <div class="panel panel-zs-point">
-          <div class="panel-heading">
-            <div class="panel-title">
-              <a class="accordion-toggle" data-toggle="collapse" data-parent="#myaccordion" href="#collapse_point_file_zs_points" >
-                <span class="glyphicon glyphicon-home">&nbsp;</span>
-                <span><%= t "pages.zs_point.index.title" %></span>
-                <i class="indicator glyphicon glyphicon-chevron-right pull-right"></i>
-              </a>
-            </div>
+  <div class="row">
+    <div class="col-sm-11 col-sm-offset-1">
+      <div class="panel panel-zs-point">
+        <div class="panel-heading">
+          <div class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#myaccordion" href="#collapse_point_file_zs_points" >
+              <span class="glyphicon glyphicon-home">&nbsp;</span>
+              <span><%= t "pages.zs_point.index.title" %></span>
+              <i class="indicator glyphicon glyphicon-chevron-right pull-right"></i>
+            </a>
           </div>
-          <div id="collapse_point_file_zs_points" class="panel-collapse collapse">
-            <div class="panel-body">
+        </div>
+        <div id="collapse_point_file_zs_points" class="panel-collapse collapse">
+          <div class="panel-body">
 
-              <%= render 'zs_points' %>
+            <%= render 'zs_points' %>
 
-            </div> <!-- /panel-body -->
-          </div> <!-- /id="collapse_point_file_zs_points" -->
-        </div> <!-- /panel -->
-      </div> <!-- /col-sm-11 col-sm-offset-1 -->
-    </div> <!-- /row -->
-  <% end %>
+          </div> <!-- /panel-body -->
+        </div> <!-- /id="collapse_point_file_zs_points" -->
+      </div> <!-- /panel -->
+    </div> <!-- /col-sm-11 col-sm-offset-1 -->
+  </div> <!-- /row -->
+
 
   <!-- Map-->
-  <% if true %> <!-- #policy(:zz_point).index? %> -->
-    <div class="row">
-      <div class="col-sm-11 col-sm-offset-1">
-        <div class="panel panel-map">
-          <div class="panel-heading">
-            <div class="panel-title">
-              <a class="accordion-toggle" data-toggle="collapse" data-parent="#myaccordion" href="#collapse_maps" >
-                <span class="glyphicon glyphicon-globe">&nbsp;</span>
-                <span><%= t "pages.map.index.title" %></span>
-                <i class="indicator glyphicon glyphicon-chevron-right pull-right"></i>
-              </a>
-            </div>
+  <div class="row">
+    <div class="col-sm-11 col-sm-offset-1">
+      <div class="panel panel-map">
+        <div class="panel-heading">
+          <div class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#myaccordion" href="#collapse_maps" >
+              <span class="glyphicon glyphicon-globe">&nbsp;</span>
+              <span><%= t "pages.map.index.title" %></span>
+              <i class="indicator glyphicon glyphicon-chevron-right pull-right"></i>
+            </a>
           </div>
-          <div id="collapse_maps" class="panel-collapse collapse">
-            <div class="panel-body">
+        </div>
+        <div id="collapse_maps" class="panel-collapse collapse">
+          <div class="panel-body">
 
-              <%= render 'maps' %>
+            <%= render 'maps' %>
 
-            </div> <!-- /panel-body -->
-          </div> <!-- /id="collapse_customer_maps" -->
-        </div> <!-- /panel -->
-      </div> <!-- /col-sm-11 col-sm-offset-1 -->
-    </div> <!-- /row -->
-  <% end %>
+          </div> <!-- /panel-body -->
+        </div> <!-- /id="collapse_customer_maps" -->
+      </div> <!-- /panel -->
+    </div> <!-- /col-sm-11 col-sm-offset-1 -->
+  </div> <!-- /row -->
+
 
   <!-- WWPoints-->
-  <% if true %> <!-- #policy(:zz_point).index? %> -->
-    <div class="row">
-      <div class="col-sm-11 col-sm-offset-1">
-        <div class="panel panel-ww-point">
-          <div class="panel-heading">
-            <div class="panel-title">
-              <a class="accordion-toggle" data-toggle="collapse" data-parent="#myaccordion" href="#collapse_point_file_ww_points" >
-                <span class="glyphicon glyphicon-home">&nbsp;</span>
-                <span><%= t "pages.ww_point.index.title" %></span>
-                <i class="indicator glyphicon glyphicon-chevron-right pull-right"></i>
-              </a>
-            </div>
+  <div class="row">
+    <div class="col-sm-11 col-sm-offset-1">
+      <div class="panel panel-ww-point">
+        <div class="panel-heading">
+          <div class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#myaccordion" href="#collapse_point_file_ww_points" >
+              <span class="glyphicon glyphicon-home">&nbsp;</span>
+              <span><%= t "pages.ww_point.index.title" %></span>
+              <i class="indicator glyphicon glyphicon-chevron-right pull-right"></i>
+            </a>
           </div>
-          <div id="collapse_point_file_ww_points" class="panel-collapse collapse">
-            <div class="panel-body">
+        </div>
+        <div id="collapse_point_file_ww_points" class="panel-collapse collapse">
+          <div class="panel-body">
 
-              <%= render 'ww_points' %>
+            <%= render 'ww_points' %>
 
-            </div> <!-- /panel-body -->
-          </div> <!-- /id="collapse_point_file_ww_points" -->
-        </div> <!-- /panel -->
-      </div> <!-- /col-sm-11 col-sm-offset-1 -->
-    </div> <!-- /row -->
-  <% end %>
-
+          </div> <!-- /panel-body -->
+        </div> <!-- /id="collapse_point_file_ww_points" -->
+      </div> <!-- /panel -->
+    </div> <!-- /col-sm-11 col-sm-offset-1 -->
+  </div> <!-- /row -->
 
 </div> <!-- /class="panel-group" id="myaccordion" -->
