@@ -48,6 +48,7 @@ pl:
       comment: 'Komentarz'
       rating: 'Ocena'
       proposal_file: 'Plik Projektu (XML)'
+      xml_partner_table: 'Partner'
       xml_miejsce_realizacji_table: 'Miejsce Realizacji'
       xml_wskaznik_table: 'Miejsce Realizacji'
       xml_wybrana_technologia_table: 'Wybrana Technologia'
@@ -164,6 +165,39 @@ pl:
         statuses:
           inactive: 'Archiwalny'
           active: 'Aktualny'
+      xml_partner_table:
+        dp_nazwa: 'Nazwa'
+        dp_nip: 'NIP'
+        dp_regon: 'REGON'
+        dp_as_miejscowosc_id: 'Miejscowość id'
+        dp_as_miejscowosc_opis: 'Miejscowość'
+        dp_as_kod_pocztowy: 'Kod pocztowy'
+        dp_as_ulica_id: 'Ulica id'
+        dp_as_ulica_opis: 'Ulica'
+        dp_as_nr: 'Nr'
+        dp_as_lokal: 'Lokal'
+        dp_as_telefon: 'Telefon'
+        dp_as_faks: 'Faks'
+        dp_as_email: 'Email'
+        dp_as_epuap: 'ePuap'
+        numer_wpisu_uke: 'Nr wpisu UKE (RPT)'
+        mrp_obszar_realizacji_id: 'Obszar realizacji id'
+        mrp_obszar_realizacji_opis: 'Obszar realizacji'
+        mrp_maksymalna_kwota_dofinansowania: 'Max kwota dofinansowania'
+        mrp_maksymalna_intensywnosc_wsparcia: 'Max. intensywność wsparcia'
+      xml_projekt_table:
+        do_tytul: 'Tytuł'
+        do_okres_realizacji_data_od: 'Okres realizacja data od'
+        do_okres_realizacji_data_do: 'Okres realizacja data do'
+        do_okres_kwalifikowalnosci_wydatkow_data_od: 'Okres kwalifikowalności wydatków data od'
+        do_okres_kwalifikowalnosci_wydatkow_data_do: 'Okres kwalifikowalności wydatków data do'
+        mfp_mfo_mf_wydatki_ogolem: 'Wydatki ogółem'
+        mfp_mfo_mf_wydatki_kwalifikowane: 'Wydatki kwalifikowane'
+        mfp_mfo_mf_dofinansowanie: 'Dofinansowanie'
+        mfp_mfo_mf_procent_dofinansowania: 'Procent dofinansowania'
+        mfp_mfo_mf_wklad_ue: 'Wkład UE'
+        mfp_mfo_mf_procent_dofinansowanie_ue: 'Procent dofinansowania UE'
+        mfp_mfo_mf_wklad_wlasny: 'Wkład własny'
       xml_miejsce_realizacji_table:
         wojewodztwo_opis: 'Województwo'
         powiat_opis: 'Powiat'
@@ -326,6 +360,9 @@ pl:
         title: 'Nowy Plik Projektu (XML)'
       edit:
         title: 'Edycja -> Plik Pliku Projektu (XML)'
+    xml_data:
+      show:
+        title: 'Dane Ogólne'
     xml_miejsce_realizacji_table:
       index:
         title: 'Miejsca Realizacji'

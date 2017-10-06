@@ -185,6 +185,14 @@ td:hover {
 
 
 
+.panel-xml-data {
+  border-color: #ddd;  
+  .panel-heading {
+    background: $brand-primary; //#1A3069;
+    color: white;
+  }
+}
+
 .panel-xml_zadanie_table {
   border-color: #ddd;  
   .panel-heading {
