@@ -11,6 +11,9 @@ class Rating < ApplicationRecord
   validates :event_id, presence: true,  
                       uniqueness: { message: "Ocena do tego zadania już istnieje" }  
 
+  validates :sec33_rate, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 200 } 
+                      
+
   def fullname
     "[dotyczy zadania: #{self.event.fullname}, projekt: #{self.event.project.fullname}]"
   end
