@@ -19,7 +19,7 @@ class MyMailer < Devise::Mailer
     else
       opts[:template_name] = 'confirmation_instructions'
     end
-    super
+    #super
   end
 
   # Overrides same inside Devise::Mailer
