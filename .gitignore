@@ -4,7 +4,7 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 
-# git push --mirror https://bitbucket.org/uke_bi/proca
+# git push --mirror https://bitbucket.org/uke_bi/pola
 
 # Ignore bundler config.
 /.bundle

@@ -34,11 +34,11 @@ pl:
       deleted_account: "Konto zostało usunięte lub wyłączone!"  
     mailer:
       confirmation_instructions:
-        subject: "PROCA - Instrukcja aktywacji konta"
+        subject: "POLA - Instrukcja aktywacji konta"
       reset_password_instructions:
-        subject: "PROCA - Instrukcja zresetowania hasła"
+        subject: "POLA - Instrukcja zresetowania hasła"
       unlock_instructions:
-        subject: "PROCA - Instrukcja odblokowania konta"
+        subject: "POLA - Instrukcja odblokowania konta"
     omniauth_callbacks:
       failure: "Logowanie przez konto %{kind} zakończyło się błędem: \"%{reason}\"."
       success: "Zalogowałeś się pomyślnie przez konto %{kind}."

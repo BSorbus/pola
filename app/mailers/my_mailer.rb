@@ -8,10 +8,10 @@ class MyMailer < Devise::Mailer
   # Overrides same inside Devise::Mailer
   def confirmation_instructions(record, token, opts={})
     @url  = Rails.application.secrets.domain_name
-    attachments.inline['logo.jpg'] = File.read("app/assets/images/proca.png")
+    attachments.inline['logo.jpg'] = File.read("app/assets/images/pola.png")
     # !!!!!!!!!!!!!!!!!!!!!!
     # opts[:to] = 'BSorbus@gmail.com'   
-    # opts[:subject] = "PROCA - Instrukcja aktywowania konta"
+    # opts[:subject] = "POLA - Instrukcja aktywowania konta"
 
     # Use different e-mail templates for signup e-mail confirmation and for when a user changes e-mail address.
     if record.pending_reconfirmation?
@@ -25,14 +25,14 @@ class MyMailer < Devise::Mailer
   # Overrides same inside Devise::Mailer
   def reset_password_instructions(record, token, opts={})
     @url  = Rails.application.secrets.domain_name
-    attachments.inline['logo.jpg'] = File.read("app/assets/images/proca.png")
+    attachments.inline['logo.jpg'] = File.read("app/assets/images/pola.png")
     super
   end
 
   # Overrides same inside Devise::Mailer
   def unlock_instructions(record, token, opts={})
     @url  = Rails.application.secrets.domain_name
-    attachments.inline['logo.jpg'] = File.read("app/assets/images/proca.png")
+    attachments.inline['logo.jpg'] = File.read("app/assets/images/pola.png")
     super
   end
 
