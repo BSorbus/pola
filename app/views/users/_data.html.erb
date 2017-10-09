@@ -20,6 +20,16 @@
           <%= @user.email %>
         </div>
 
+        <div class="form-group col-sm-12">
+          <p><strong><%= User.human_attribute_name(:legitimation) %></strong></p>
+          <%= @user.legitimation %>
+        </div>
+
+        <div class="form-group col-sm-12">
+          <p><strong><%= User.human_attribute_name(:position) %></strong></p>
+          <%= @user.position %>
+        </div>
+
       </div>  <!-- /row -->
     </div>  <!-- /col-sm-6 -->
 

@@ -68,6 +68,8 @@ pl:
         last_activity_at: 'Ostatnia aktywność'
         password_changed_at: 'Ostatnia zmiana hasła'
         note: 'Uwagi'
+        legitimation: 'Legitymacja'
+        position: 'Stanowisko'
         flat_assigned_events: 'Powiązane zadania'
       role:
         name: 'Nazwa'

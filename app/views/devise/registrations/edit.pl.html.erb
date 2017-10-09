@@ -23,6 +23,7 @@
         </div>
       <% end %>
 
+<div class="col-sm-6">
       <div class="form-group">
         <%= f.label :name, class: 'control-label' %>
         <%= f.text_field :name, class: 'form-control' %>
@@ -35,9 +36,19 @@
         <% end %>
       </div>
       <div class="form-group">
+        <%= f.label :legitimation, class: 'control-label' %>
+        <%= f.text_field :legitimation, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :position, class: 'control-label' %>
+        <%= f.text_field :position, class: 'form-control' %>
+      </div>
+      <div class="form-group">
         <%= f.label :esod_password, class: 'control-label' %>
         <%= f.password_field :esod_password, :autocomplete => 'off', class: 'form-control' %>
       </div>
+</div>
+<div class="col-sm-6">
       <div class="well">
         <div class="form-group">
           <small class="help-block"><%= t('devise.registrations.form.edit.blank_passwords_text') %></small>
@@ -58,7 +69,7 @@
       </div>
       <%= f.submit t('devise.registrations.form.edit.button_submit'), :class => 'btn btn-primary pull-right' %> <!-- Button: 'Update' -->
     <% end %>
-
+</div>
       </div>
 <!--  <div class="panel-footer">
   
