@@ -55,6 +55,9 @@ main {
   @extend .container;
   padding-bottom: 15px;
   margin-top: 52px; // accommodate the navbar 51, 52 if hover:border-bottom 
+  a, a:hover {
+    text-decoration: none !important;
+  }
 }
 
 footer {
@@ -72,6 +75,10 @@ footer {
     text-decoration: none !important;
     color: #C7D540 !important;
   }
+}
+
+.deviseform {
+  padding-top: 25px;  
 }
 
 .glyp-index-title {
