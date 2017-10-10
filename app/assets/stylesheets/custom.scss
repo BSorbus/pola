@@ -149,6 +149,10 @@ p {
   margin-bottom: -18px; 
 }
 
+.hr-without-margins {
+  margin-top: 3px;  /*default: 20px; */
+  margin-bottom: 12px;
+}
 
 .spinner {
   position: fixed;

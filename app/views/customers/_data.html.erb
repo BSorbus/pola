@@ -15,11 +15,49 @@
           <%= @customer.name %>
         </div>
 
-        <div class="form-group col-sm-12">
-          <p><strong>NIP</strong></p>
-          12345678901
+        <div class="form-group col-sm-4">
+          <p><strong><%= Customer.human_attribute_name(:nip) %></strong></p>
+          <%= @customer.nip %>
         </div>
 
+        <div class="form-group col-sm-4">
+          <p><strong><%= Customer.human_attribute_name(:regon) %></strong></p>
+          <%= @customer.regon %>
+        </div>
+
+        <div class="form-group col-sm-4">
+          <p><strong><%= Customer.human_attribute_name(:rpt) %></strong></p>
+          <%= @customer.rpt %>
+        </div>
+      </div>  <!-- /row -->
+
+      <hr class="hr-without-margins">
+      <div class="row">
+        <div class="form-group col-sm-8">
+          <p><strong><%= Customer.human_attribute_name(:address_city) %></strong></p>
+          <%= @customer.address_city %>
+        </div>
+
+        <div class="form-group col-sm-4">
+          <p><strong><%= Customer.human_attribute_name(:address_postal_code) %></strong></p>
+          <%= @customer.address_postal_code %>
+        </div>
+      </div>  <!-- /row -->
+      <div class="row">
+        <div class="form-group col-sm-8">
+          <p><strong><%= Customer.human_attribute_name(:address_street) %></strong></p>
+          <%= @customer.address_street %>
+        </div>
+
+        <div class="form-group col-sm-2">
+          <p><strong><%= Customer.human_attribute_name(:address_house) %></strong></p>
+          <%= @customer.address_house %>
+        </div>
+
+        <div class="form-group col-sm-2">
+          <p><strong><%= Customer.human_attribute_name(:address_number) %></strong></p>
+          <%= @customer.address_number %>
+        </div>
       </div>  <!-- /row -->
     </div>  <!-- /col-sm-6 -->
 
@@ -29,7 +67,29 @@
           <p><strong><%= Customer.human_attribute_name(:note) %></strong></p>
           <%= text_with_break_line(@customer.note) %>
         </div>
-      </div>
+      </div>  <!-- /row -->
+
+      <hr class="hr-without-margins">
+      <div class="row">
+        <div class="form-group col-sm-6">
+          <p><strong><%= Customer.human_attribute_name(:phone) %></strong></p>
+          <%= @customer.phone %>
+        </div>
+        <div class="form-group col-sm-6">
+          <p><strong><%= Customer.human_attribute_name(:fax) %></strong></p>
+          <%= @customer.fax %>
+        </div>
+      </div>  <!-- /row -->
+      <div class="row">
+        <div class="form-group col-sm-6">
+          <p><strong><%= Customer.human_attribute_name(:email) %></strong></p>
+          <%= @customer.email %>
+        </div>
+        <div class="form-group col-sm-6">
+          <p><strong><%= Customer.human_attribute_name(:epuap) %></strong></p>
+          <%= @customer.epuap %>
+        </div>
+      </div> <!-- /row -->
     </div> <!--/col-sm-6 -->
   </div>  <!-- /row -->
 

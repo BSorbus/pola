@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171009001313) do
+ActiveRecord::Schema.define(version: 20171010111120) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,18 @@ ActiveRecord::Schema.define(version: 20171009001313) do
     t.text "note", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "nip"
+    t.string "regon"
+    t.string "address_city"
+    t.string "address_street"
+    t.string "address_house"
+    t.string "address_number"
+    t.string "address_postal_code"
+    t.string "phone"
+    t.string "fax"
+    t.string "email"
+    t.string "epuap"
+    t.string "rpt"
     t.index ["name"], name: "index_customers_on_name"
   end
 

@@ -4,9 +4,15 @@ class CustomerDatatable < AjaxDatatablesRails::Base
 
   def view_columns
     @view_columns ||= {
-      id:        { source: "Customer.id", cond: :eq, searchable: false, orderable: false },
-      name:      { source: "Customer.name", cond: :like, searchable: true, orderable: true },
-      note:      { source: "Customer.note",  cond: :like, searchable: true, orderable: true },
+      id:             { source: "Customer.id", cond: :eq, searchable: false, orderable: false },
+      name:           { source: "Customer.name", cond: :like, searchable: true, orderable: true },
+      nip:            { source: "Customer.nip",  cond: :like, searchable: true, orderable: true },
+      regon:          { source: "Customer.regon",  cond: :like, searchable: true, orderable: true },
+      rpt:            { source: "Customer.rpt",  cond: :like, searchable: true, orderable: true },
+      address_city:   { source: "Customer.address_city",  cond: :like, searchable: true, orderable: true },
+      address_street: { source: "Customer.address_street",  cond: :like, searchable: true, orderable: true },
+      address_house:  { source: "Customer.address_house",  cond: :like, searchable: true, orderable: true },
+      address_number: { source: "Customer.address_number",  cond: :like, searchable: true, orderable: true },
       flat:      { source: "Customer.id", cond: filter_custom_column_condition }
     }
   end
@@ -14,10 +20,16 @@ class CustomerDatatable < AjaxDatatablesRails::Base
   def data
     records.map do |record|
       {
-        id:       record.id,
-        name:     record.try(:name_as_link),
-        note:     truncate(record.note, length: 50),
-        flat:     record.try(:flat_assigned_projects)
+        id:             record.id,
+        name:           record.try(:name_as_link),
+        nip:            record.nip,
+        regon:          record.regon,
+        rpt:            record.rpt,
+        address_city:   record.address_city,
+        address_street: record.address_street,
+        address_house:  record.address_house,
+        address_number: record.address_number,
+        flat:           record.try(:flat_assigned_projects)
       }
     end
   end
