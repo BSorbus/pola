@@ -1,61 +1,73 @@
 <header class="navbar navbar-default navbar-fixed-top">
   <div class="container">
-    <%= link_to "POLA", root_path, id: "logo" %>
-    <nav>
-      <ul class="nav navbar-nav navbar-right">
-        <% if user_signed_in? %>
-          <% if policy(:event).index? %>
-            <li><%= link_to events_path do %>
-              <span class="glyphicon glyphicon-calendar"></span>&nbsp;<%=t "pages.event.index.title" %>
-              <% end %>
-            </li>
-          <% end %>
 
-          <% if policy(:project).index? %>
-            <li><%= link_to projects_path do %>
-              <span class="glyphicon glyphicon-book"></span>&nbsp;<%=t "pages.project.index.title" %>
-              <% end %>
-            </li>
-          <% end %>
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to "POLA", root_path, id: "logo" %>
+    </div>
 
-          <% if policy(:customer).index? %>
-            <li><%= link_to customers_path do %>
-              <span class="glyphicon glyphicon-flag"></span>&nbsp;<%=t "pages.customer.index.title" %>
-              <% end %>
-            </li>
-          <% end %>
-
-          <% if policy(:user).index? %>
-            <li><%= link_to users_path do %>
-              <span class="glyphicon glyphicon-user"></span>&nbsp;<%=t "pages.user.index.title" %>
-              <% end %>
-            </li>
-          <% end %>
-
-          <% if policy(:role).index_any? %>
-            <li><%= link_to roles_path do %>
-              <span class="glyphicon glyphicon-sunglasses"></span>&nbsp;<%=t "pages.role.index.title" %>
-              <% end %>
-            </li>
-          <% end %>
-
-          <li><%= link_to edit_user_registration_path do %>
-            <span class="glyphicon glyphicon-edit"></span>&nbsp;<%= current_user.name %>
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+      <nav>
+        <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>
+            <% if policy(:event).index? %>
+              <li><%= link_to events_path do %>
+                <span class="glyphicon glyphicon-calendar"></span>&nbsp;<%=t "pages.event.index.title" %>
+                <% end %>
+              </li>
             <% end %>
-          </li>
-          <li><%= link_to destroy_user_session_path, :method=>'delete' do %>
-            <span class="glyphicon glyphicon-log-out"></span>&nbsp;<%=t "devise.link_to.sign_out" %>
-            <% end %>
-          </li>
-        <% else %>
-          <li><%= link_to new_user_session_path do %>
-            <span class="glyphicon glyphicon-log-in"></span>&nbsp;<%=t "devise.link_to.sign_in" %>
-            <% end %>
-          </li>
-        <% end %>
 
-      </ul>
-    </nav>
+            <% if policy(:project).index? %>
+              <li><%= link_to projects_path do %>
+                <span class="glyphicon glyphicon-book"></span>&nbsp;<%=t "pages.project.index.title" %>
+                <% end %>
+              </li>
+            <% end %>
+
+            <% if policy(:customer).index? %>
+              <li><%= link_to customers_path do %>
+                <span class="glyphicon glyphicon-flag"></span>&nbsp;<%=t "pages.customer.index.title" %>
+                <% end %>
+              </li>
+            <% end %>
+
+            <% if policy(:user).index? %>
+              <li><%= link_to users_path do %>
+                <span class="glyphicon glyphicon-user"></span>&nbsp;<%=t "pages.user.index.title" %>
+                <% end %>
+              </li>
+            <% end %>
+
+            <% if policy(:role).index_any? %>
+              <li><%= link_to roles_path do %>
+                <span class="glyphicon glyphicon-sunglasses"></span>&nbsp;<%=t "pages.role.index.title" %>
+                <% end %>
+              </li>
+            <% end %>
+
+            <li><%= link_to edit_user_registration_path do %>
+              <span class="glyphicon glyphicon-edit"></span>&nbsp;<%= current_user.name %>
+              <% end %>
+            </li>
+            <li><%= link_to destroy_user_session_path, :method=>'delete' do %>
+              <span class="glyphicon glyphicon-log-out"></span>&nbsp;<%=t "devise.link_to.sign_out" %>
+              <% end %>
+            </li>
+          <% else %>
+            <li><%= link_to new_user_session_path do %>
+              <span class="glyphicon glyphicon-log-in"></span>&nbsp;<%=t "devise.link_to.sign_in" %>
+              <% end %>
+            </li>
+          <% end %>
+
+        </ul>
+      </nav>
+    </div>
   </div>
 </header>
 

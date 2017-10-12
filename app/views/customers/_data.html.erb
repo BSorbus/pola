@@ -9,28 +9,23 @@
   <div class="row">
     <div class="col-sm-6">
       <div class="row">
-
         <div class="form-group col-sm-12">
           <p><strong><%= Customer.human_attribute_name(:name) %></strong></p>
           <%= @customer.name %>
         </div>
-
         <div class="form-group col-sm-4">
           <p><strong><%= Customer.human_attribute_name(:nip) %></strong></p>
           <%= @customer.nip %>
         </div>
-
         <div class="form-group col-sm-4">
           <p><strong><%= Customer.human_attribute_name(:regon) %></strong></p>
           <%= @customer.regon %>
         </div>
-
         <div class="form-group col-sm-4">
           <p><strong><%= Customer.human_attribute_name(:rpt) %></strong></p>
           <%= @customer.rpt %>
         </div>
       </div>  <!-- /row -->
-
       <hr class="hr-without-margins">
       <div class="row">
         <div class="form-group col-sm-8">
@@ -63,14 +58,6 @@
 
     <div class="col-sm-6">
       <div class="row">
-        <div class="form-group col-sm-12">
-          <p><strong><%= Customer.human_attribute_name(:note) %></strong></p>
-          <%= text_with_break_line(@customer.note) %>
-        </div>
-      </div>  <!-- /row -->
-
-      <hr class="hr-without-margins">
-      <div class="row">
         <div class="form-group col-sm-6">
           <p><strong><%= Customer.human_attribute_name(:phone) %></strong></p>
           <%= @customer.phone %>
@@ -90,6 +77,13 @@
           <%= @customer.epuap %>
         </div>
       </div> <!-- /row -->
+      <hr class="hr-without-margins">
+      <div class="row">
+        <div class="form-group col-sm-12">
+          <p><strong><%= Customer.human_attribute_name(:note) %></strong></p>
+          <%= text_with_break_line(@customer.note) %>
+        </div>
+      </div>  <!-- /row -->
     </div> <!--/col-sm-6 -->
   </div>  <!-- /row -->
 

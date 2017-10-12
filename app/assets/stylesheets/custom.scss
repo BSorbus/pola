@@ -53,6 +53,7 @@ body {
 
 main {
   @extend .container;
+  //width: 100%;
   padding-bottom: 15px;
   margin-top: 52px; // accommodate the navbar 51, 52 if hover:border-bottom 
   a, a:hover {
@@ -364,3 +365,10 @@ td:hover {
   } 
 }
 
+
+/*.panel {
+  -webkit-box-shadow: 6px 6px 3px 0px rgba(0,0,0,0.55);
+  -moz-box-shadow: 6px 6px 3px 0px rgba(0,0,0,0.55);
+  box-shadow: 6px 6px 3px 0px rgba(0,0,0,0.55);
+}  
+*/

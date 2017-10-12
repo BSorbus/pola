@@ -308,7 +308,7 @@ DEPENDENCIES
   pg (~> 0.18)
   puma (~> 3.7)
   pundit
-  rails (~> 5.1.2)
+  rails (~> 5.1.4)
   sass-rails (~> 5.0)
   select2-rails (= 3.5.9.3)
   selenium-webdriver
