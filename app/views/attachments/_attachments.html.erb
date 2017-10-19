@@ -1,11 +1,11 @@
-<div class="col-sm-7">
-
+<div class="col-sm-12">
   <table class="table table-hover">
     <thead>
       <tr>
-        <th class="col-sm-9"><%= Attachment.human_attribute_name(:attached_file_identifier) %></th>
-        <th class="col-sm-2"><%= Attachment.human_attribute_name(:file_size) %></th>
-        <th class="col-sm-1"></th>
+        <th><%= Attachment.human_attribute_name(:attached_file_identifier) %></th>
+        <th><%= Attachment.human_attribute_name(:note) %></th>
+        <th><%= Attachment.human_attribute_name(:file_size) %></th>
+        <th></th>
       </tr>
     </thead>
 
@@ -16,6 +16,7 @@
             <!--"Show" as download-->
             <%= link_to attachment.attached_file_identifier, attachment_path(attachment), title: t('tooltip.download'), rel: 'tooltip' %>
           </td>
+          <td><%= text_with_break_line(attachment.note) %></td>
           <td><%= attachment.file_size %></td>
           <td>
             <%= link_to attachment_path(attachment),
@@ -31,24 +32,25 @@
     </tbody>
 
   </table>
+</div> <!-- /col-sm-12 -->
 
-</div> <!-- /col-sm-7 -->
-
-<div class="col-sm-5">
-
+<div class="col-sm-12">
+  <hr>
   <%= form_for [attachmenable, Attachment.new] do |f| %>
 
-    <div class="form-group col-sm-12">
-
+    <div class="form-group col-sm-6">
       <%= f.label :attached_file, class: 'control-label' %><br>
       <%= f.file_field :attached_file, class: 'form-control input-sm' %>
+    </div>
 
+    <div class="form-group col-sm-6">
+      <%= f.label :note, class: 'control-label' %>
+      <%= f.text_area :note, :rows => 5, class: 'form-control input-sm' %>
     </div>
 
     <div class="col-sm-12">
       <%= f.submit nil, class: 'btn btn-primary pull-right' %>
-    </div> <!-- /row -->
+    </div> 
 
   <% end %>
-
-</div> <!-- /col-sm-5 -->
+</div> <!-- /col-sm-12 -->

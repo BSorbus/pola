@@ -44,7 +44,7 @@ pl:
       point_file: 'Plik Punktów Adresowych'
       ww_point: 'Punkt Adresowy'
       zs_point: 'Węzeł'
-      event: 'Zdarzenie/Zadanie'
+      event: 'Zadanie'
       comment: 'Komentarz'
       rating: 'Ocena'
       proposal_file: 'Plik Projektu (XML)'
@@ -112,6 +112,7 @@ pl:
         attached_file_identifier: 'Plik'
         file_content_type: 'Typ'
         file_size: 'Rozmiar'
+        note: 'Uwagi'
       point_file:
         load_date: 'Data pobrania'
         load_file: 'Plik'
@@ -136,6 +137,7 @@ pl:
         dp_6: 'Ulica'
         dp_7: 'Nr porządkowy'
         dp_8: 'Kod pocztowy'
+        note: 'Uwagi'
       event:
         title: 'Tytuł'
         all_day: 'Wydarzenie całodniowe'
@@ -181,6 +183,7 @@ pl:
         statuses:
           inactive: 'Archiwalny'
           active: 'Aktualny'
+        note: 'Uwagi'
       xml_partner_table:
         dp_nazwa: 'Nazwa'
         dp_nip: 'NIP'
@@ -344,13 +347,13 @@ pl:
         title: 'Edycja -> Punktu WW - Własny/Współdzielony węzeł telekomunikacyjny'
     event:
       index:
-        title: 'Zdarzenia/Zadania'
+        title: 'Zadania'
       show:
-        title: 'Zdarzenie/Zadanie'
+        title: 'Zadanie'
       new:
-        title: 'Nowe Zdarzenie/Zadanie'
+        title: 'Nowe Zadanie'
       edit:
-        title: 'Edycja -> Zdarzenie/Zadanie'
+        title: 'Edycja -> Zadanie'
     comment:
       index:
         title: 'Komentarze'
@@ -435,11 +438,11 @@ pl:
       event_create?: ' BRAK UPRAWNIEŃ: Nie możesz zapisywać załączników do zadania!'
       event_destroy?: ' BRAK UPRAWNIEŃ: Nie możesz usuwać załączników do zadania!'
     event_policy:
-      index?: ' BRAK UPRAWNIEŃ: Nie możesz wyświetlać listy zdarzeń/zadań!'
-      show?: ' BRAK UPRAWNIEŃ: Nie możesz wyświetlać zdarzenia/zadania!'
-      update?: ' BRAK UPRAWNIEŃ: Nie możesz edytować zdarzenia/zadania!'
-      create?: ' BRAK UPRAWNIEŃ: Nie możesz tworzyć zdarzeń/zadań!'
-      destroy?: ' BRAK UPRAWNIEŃ: Nie możesz usuwać zdarzeń/zadań!'
+      index?: ' BRAK UPRAWNIEŃ: Nie możesz wyświetlać listy zadań!'
+      show?: ' BRAK UPRAWNIEŃ: Nie możesz wyświetlać zadania!'
+      update?: ' BRAK UPRAWNIEŃ: Nie możesz edytować zadania!'
+      create?: ' BRAK UPRAWNIEŃ: Nie możesz tworzyć zadań!'
+      destroy?: ' BRAK UPRAWNIEŃ: Nie możesz usuwać zadań!'
     comment_policy:
       index?: ' BRAK UPRAWNIEŃ: Nie możesz wyświetlać listy komentarzy!'
       show?: ' BRAK UPRAWNIEŃ: Nie możesz wyświetlać komentarza!'
