@@ -1,9 +1,11 @@
 class Event < ApplicationRecord
   delegate :url_helpers, to: 'Rails.application.routes'
 
+  # relations
   belongs_to :project
   belongs_to :event_status
   belongs_to :event_type
+  belongs_to :errand
 
   has_many :attachments, as: :attachmenable, dependent: :destroy
 
@@ -21,6 +23,7 @@ class Event < ApplicationRecord
   validates :start_date, presence: true
   validates :end_date, presence: true
   validates :project_id, presence: true
+  validates :errand_id, presence: true
 
 
   accepts_nested_attributes_for :accessorizations, reject_if: :all_blank, allow_destroy: true

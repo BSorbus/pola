@@ -1,0 +1,61 @@
+<div class="panel-group" id="myaccordion">
+
+  <!-- Dane -->
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel panel-errand">
+        <div class="panel-heading">
+          <div class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#myaccordion" href="#collapse_data" >
+              <span class="glyphicon glyphicon-tasks">&nbsp;</span>
+              <span><%=t "pages.errand.show.title" %>:&nbsp;<%= @errand.fullname %></span>
+              <i class="indicator glyphicon glyphicon-chevron-down  pull-right"></i>
+            </a>
+          </div> 
+        </div>
+        <div id="collapse_data" class="panel-collapse collapse in">
+          <div class="panel-body">         
+
+            <%= render 'data', input_disabled: true %>
+
+          </div> <!-- /panel-body -->
+        </div> <!-- /id="collapse_data" -->
+      </div> <!-- /panel -->
+    </div> <!-- /col-sm-12-->
+  </div> <!-- /row -->
+
+
+  <!-- Attachments for this errand-->
+  <% if policy(:attachment).errand_index? %>
+    <%= render 'attachments/attachments_in_panel', attachmenable: @errand %>
+  <% end %>
+
+
+  <!-- Events && Accessorizations-->
+  <%# if policy(:accessorization).index? %>
+  <% if policy(:event).index? %>
+    <div class="row">
+      <div class="col-sm-11 col-sm-offset-1">
+        <div class="panel panel-accessorization">
+          <div class="panel-heading">
+            <div class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#myaccordion" href="#collapse_accessorizations" >
+                <span class="glyphicon glyphicon-calendar">&nbsp;</span>
+                <span><%= t "pages.accessorization.role_show" %></span>
+                <i class="indicator glyphicon glyphicon-chevron-right pull-right"></i>
+              </a>
+            </div>
+          </div>
+          <div id="collapse_accessorizations" class="panel-collapse collapse">
+            <div class="panel-body">
+
+              <%= render 'accessorizations' %>
+
+            </div> <!-- /panel-body -->
+          </div> <!-- /id="collapse_accessorizations" -->
+        </div> <!-- /panel -->
+      </div> <!-- /col-sm-11 col-sm-offset-1 -->
+    </div> <!-- /row -->
+  <% end %>
+
+</div> <!-- /class="panel-group" id="myaccordion" -->

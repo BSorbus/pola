@@ -37,7 +37,7 @@ class CustomersController < ApplicationController
   # GET /customers/new
   def new
     @customer = Customer.new
-    authorize :customer, :new?
+    authorize @customer, :new?
   end
 
   # GET /customers/1/edit

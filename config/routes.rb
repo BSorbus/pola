@@ -46,6 +46,7 @@ Rails.application.routes.draw do
   resources :accessorizations do
     get 'datatables_index_user', on: :collection # Displays accessorizations for showed user
     get 'datatables_index_role', on: :collection # Displays accessorizations for showed role
+    get 'datatables_index_errand', on: :collection # Displays accessorizations for showed role
   end    
 
   resources :events do
@@ -58,6 +59,11 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :errands do
+    get 'select2_index', on: :collection
+    get 'datatables_index', on: :collection
+    resources :attachments, module: :errands, only: [:create]
+  end
 
 
   root 'static_pages#home'

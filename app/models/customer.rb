@@ -76,7 +76,7 @@ class Customer < ApplicationRecord
   def self.one_param_sql(one_query_word)
     #escaped_query_str = sanitize("%#{query_str}%")
     escaped_query_str = Loofah.fragment("'%#{one_query_word}%'").text
-    "(" + %w(customers.name customers.note).map { |column| "#{column} ilike #{escaped_query_str}" }.join(" OR ") + ")"
+    "(" + %w(customers.name customers.address_city customers.nip customers.regon customers.rpt).map { |column| "#{column} ilike #{escaped_query_str}" }.join(" OR ") + ")"
   end
 
 end

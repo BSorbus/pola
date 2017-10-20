@@ -68,6 +68,20 @@ role = CreateRoleService.new.project_proposal_file_observer
 puts 'CREATED ROLE: ' << role.name
 
 
+role = CreateRoleService.new.errand_admin
+puts 'CREATED ROLE: ' << role.name
+
+role = CreateRoleService.new.errand_observer
+puts 'CREATED ROLE: ' << role.name
+
+
+role = CreateRoleService.new.errand_attachment_admin
+puts 'CREATED ROLE: ' << role.name
+
+role = CreateRoleService.new.errand_attachment_observer
+puts 'CREATED ROLE: ' << role.name
+
+
 role = CreateRoleService.new.event_admin
 puts 'CREATED ROLE: ' << role.name
 
@@ -170,16 +184,16 @@ customer4 = Customer.create(name: 'Customer4')
 puts 'CREATED CUSTOMER: ' << customer4.name
 
 customer5 = Customer.create(name: 'Customer5')
-puts 'CREATED CUSTOMER: ' << customer4.name
+puts 'CREATED CUSTOMER: ' << customer5.name
 
 customer6 = Customer.create(name: 'Customer6')
-puts 'CREATED CUSTOMER: ' << customer4.name
+puts 'CREATED CUSTOMER: ' << customer6.name
 
 customer7 = Customer.create(name: 'Customer7')
-puts 'CREATED CUSTOMER: ' << customer4.name
+puts 'CREATED CUSTOMER: ' << customer7.name
 
 customer8 = Customer.create(name: 'Customer8')
-puts 'CREATED CUSTOMER: ' << customer4.name
+puts 'CREATED CUSTOMER: ' << customer8.name
 
 
 # example projects
@@ -214,6 +228,7 @@ project5 = Project.create( number: '5/2017',
 puts 'CREATED SIMPLE PROJECT: ' << project5.number
 
 
+
 # EVENT_STATUS_OPENED = 1
 # EVENT_STATUS_VERIFICATION_UKE = 2
 # EVENT_STATUS_CLOSED = 3
@@ -227,20 +242,86 @@ event_status_verification_cppc = EventStatus.find_or_create_by!(name: "Weryfikac
 event_status_canceled = EventStatus.find_or_create_by!(name: "Anulowane")
 
 
-event_type1 = EventType.find_or_create_by!(name: "Ocenianie") do |role|
+event_type1 = EventType.find_or_create_by!(name: "Ocena") do |role|
   role.activities += %w(rating:* event:index event:show accessorization:index comment:index comment:show project:index project:show customer:index customer:show attachment:project_index attachment:project_show attachment:event_index attachment:event_show point_file:index point_file:download point_file:show proposal_file:index proposal_file:download proposal_file:show)
   role.save!
 end
 
-event_type2 = EventType.find_or_create_by!(name: "Ocenianie po proteście") do |role|
+event_type2 = EventType.find_or_create_by!(name: "Ocena protest") do |role|
   role.activities += %w(opiniowanie2:* rating:index rating:show event:index event:show accessorization:index comment:index comment:show project:index project:show customer:index customer:show attachment:project_index attachment:project_show attachment:event_index attachment:event_show point_file:index point_file:download point_file:show proposal_file:index proposal_file:download proposal_file:show)
   role.save!
 end
 
-event_type3 = EventType.find_or_create_by!(name: "Analiza DART") do |role|
+event_type3 = EventType.find_or_create_by!(name: "Analiza Sąd") do |role|
+  role.activities += %w(opiniowanie2:* rating:index rating:show event:index event:show accessorization:index comment:index comment:show project:index project:show customer:index customer:show attachment:project_index attachment:project_show attachment:event_index attachment:event_show point_file:index point_file:download point_file:show proposal_file:index proposal_file:download proposal_file:show)
+  role.save!
+end
+
+event_type4 = EventType.find_or_create_by!(name: "Opinia zmian") do |role|
+  role.activities += %w(opiniowanie2:* rating:index rating:show event:index event:show accessorization:index comment:index comment:show project:index project:show customer:index customer:show attachment:project_index attachment:project_show attachment:event_index attachment:event_show point_file:index point_file:download point_file:show proposal_file:index proposal_file:download proposal_file:show)
+  role.save!
+end
+
+event_type5 = EventType.find_or_create_by!(name: "Kontrola realizacja") do |role|
+  role.activities += %w(opiniowanie2:* rating:index rating:show event:index event:show accessorization:index comment:index comment:show project:index project:show customer:index customer:show attachment:project_index attachment:project_show attachment:event_index attachment:event_show point_file:index point_file:download point_file:show proposal_file:index proposal_file:download proposal_file:show)
+  role.save!
+end
+
+event_type6 = EventType.find_or_create_by!(name: "Kontrola zakończenie") do |role|
+  role.activities += %w(opiniowanie2:* rating:index rating:show event:index event:show accessorization:index comment:index comment:show project:index project:show customer:index customer:show attachment:project_index attachment:project_show attachment:event_index attachment:event_show point_file:index point_file:download point_file:show proposal_file:index proposal_file:download proposal_file:show)
+  role.save!
+end
+
+event_type7 = EventType.find_or_create_by!(name: "Kontrola trwałość") do |role|
+  role.activities += %w(opiniowanie2:* rating:index rating:show event:index event:show accessorization:index comment:index comment:show project:index project:show customer:index customer:show attachment:project_index attachment:project_show attachment:event_index attachment:event_show point_file:index point_file:download point_file:show proposal_file:index proposal_file:download proposal_file:show)
+  role.save!
+end
+
+event_type8 = EventType.find_or_create_by!(name: "Analiza danych") do |role|
   role.activities += %w(for_role_scan:* event:index event:show accessorization:index comment:index comment:show project:index project:show customer:index customer:show attachment:project_index attachment:project_show attachment:event_index attachment:event_show point_file:index point_file:download point_file:show proposal_file:index proposal_file:download proposal_file:show)
   role.save!
 end
+
+event_type9 = EventType.find_or_create_by!(name: "Hurt cenniki") do |role|
+  role.activities += %w(for_role_scan:* event:index event:show accessorization:index comment:index comment:show project:index project:show customer:index customer:show attachment:project_index attachment:project_show attachment:event_index attachment:event_show point_file:index point_file:download point_file:show proposal_file:index proposal_file:download proposal_file:show)
+  role.save!
+end
+
+event_type0 = EventType.find_or_create_by!(name: "Inne") do |role|
+  role.activities += %w(for_role_scan:* event:index event:show accessorization:index comment:index comment:show project:index project:show customer:index customer:show attachment:project_index attachment:project_show attachment:event_index attachment:event_show point_file:index point_file:download point_file:show proposal_file:index proposal_file:download proposal_file:show)
+  role.save!
+end
+
+
+errand_status1 = ErrandStatus.find_or_create_by!(name: "Przekazane do UKE")
+errand_status2 = ErrandStatus.find_or_create_by!(name: "W realizacji")
+errand_status3 = ErrandStatus.find_or_create_by!(name: "Weryfikacja")
+errand_status4 = ErrandStatus.find_or_create_by!(name: "Zakończone")
+
+errand_type1 = ErrandType.find_or_create_by!(name: "Ocena")
+errand_type2 = ErrandType.find_or_create_by!(name: "Ocena protest")
+errand_type3 = ErrandType.find_or_create_by!(name: "Analiza Sąd")
+errand_type4 = ErrandType.find_or_create_by!(name: "Opinia zmian")
+errand_type5 = ErrandType.find_or_create_by!(name: "Kontrola realizacja")
+errand_type6 = ErrandType.find_or_create_by!(name: "Kontrola zakończenie")
+errand_type7 = ErrandType.find_or_create_by!(name: "Kontrola trwałość")
+errand_type8 = ErrandType.find_or_create_by!(name: "Analiza danych")
+errand_type9 = ErrandType.find_or_create_by!(name: "Hurt cenniki")
+errand_type0 = ErrandType.find_or_create_by!(name: "Inne")
+
+
+# example errands
+errand1 = Errand.create(number: 'Zlecenie 1', 
+                        principal: 'Ministerstwo Cyfryzacji', 
+                        errand_type: errand_type1, 
+                        errand_status: errand_status2)
+puts 'CREATED ERRAND: ' << errand1.number
+
+errand2 = Errand.create(number: 'Zlecenie 2', 
+                        principal: 'Ministerstwo Cyfryzacji', 
+                        errand_type: errand_type2, 
+                        errand_status: errand_status2)
+puts 'CREATED ERRAND: ' << errand2.number
 
 
 # example events
@@ -250,7 +331,8 @@ event1 = Event.create( title: 'Ocena - 1/2017',
                       end_date: Time.zone.today + 2.weeks, 
                       note: "",
                       event_status: event_status_verification_uke, 
-                      event_type: event_type1, 
+                      event_type: event_type1,
+                      errand: errand1, 
                       project: project1)
 puts 'CREATED SIMPLE EVENT: ' << event1.title
 
@@ -261,6 +343,7 @@ event2 = Event.create( title: 'Ocena - 2/2017',
                       note: "", 
                       event_status: event_status_closed, 
                       event_type: event_type1, 
+                      errand: errand1, 
                       project: project2)
 puts 'CREATED SIMPLE EVENT: ' << event2.title
 
@@ -271,6 +354,7 @@ event3 = Event.create( title: 'Ocena - 3/2017',
                       note: "", 
                       event_status: event_status_opened, 
                       event_type: event_type1, 
+                      errand: errand1, 
                       project: project3)
 puts 'CREATED SIMPLE EVENT: ' << event3.title
 
@@ -281,6 +365,7 @@ event4 = Event.create( title: 'Ocena - 4/2017',
                       note: "", 
                       event_status: event_status_verification_uke, 
                       event_type: event_type1, 
+                      errand: errand1, 
                       project: project4)
 puts 'CREATED SIMPLE EVENT: ' << event4.title
 
@@ -291,6 +376,7 @@ event5 = Event.create( title: 'Ocena - 5/2017',
                       note: "", 
                       event_status: event_status_opened, 
                       event_type: event_type1, 
+                      errand: errand1, 
                       project: project5)
 puts 'CREATED SIMPLE EVENT: ' << event5.title
 
@@ -302,6 +388,7 @@ event6 = Event.create( title: 'Ocena po proteście - 2/2017',
                       note: "", 
                       event_status: event_status_opened, 
                       event_type: event_type2, 
+                      errand: errand2, 
                       project: project2)
 puts 'CREATED SIMPLE EVENT: ' << event6.title
 

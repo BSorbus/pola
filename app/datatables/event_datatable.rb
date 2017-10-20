@@ -7,6 +7,7 @@ class EventDatatable < AjaxDatatablesRails::Base
       id:        { source: "Event.id", cond: :eq, searchable: false, orderable: false },
       title:     { source: "Event.title", cond: :like, searchable: true, orderable: true },
       type:      { source: "EventType.name", cond: :like, searchable: true, orderable: true },
+      errand:    { source: "Errand.number",  cond: :like, searchable: true, orderable: true },
       project:   { source: "Project.number",  cond: :like, searchable: true, orderable: true },
       end_date:  { source: "Event.end_date", cond: :like, searchable: true, orderable: true },
       status:    { source: "EventStatus.name", cond: :like, searchable: true, orderable: true },
@@ -20,6 +21,7 @@ class EventDatatable < AjaxDatatablesRails::Base
         id:       record.id,
         title:    record.try(:title_as_link),
         type:     record.event_type.try(:name),
+        errand:   record.errand.try(:number_as_link),
         project:  record.project.try(:number_as_link),
         end_date: record.end_date.present? ? record.end_date.strftime("%Y-%m-%d %H:%M") : '' ,
         status:   record.event_status.try(:name),
@@ -31,7 +33,7 @@ class EventDatatable < AjaxDatatablesRails::Base
   private
 
   def get_raw_records
-    Event.joins(:event_type, :project, :event_status).references(:event_type, :project, :event_status).all
+    Event.joins(:event_type, :errand, :project, :event_status).references(:event_type, :errand, :project, :event_status).all
   end
 
 

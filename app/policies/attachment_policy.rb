@@ -99,6 +99,28 @@ class AttachmentPolicy < ApplicationPolicy
   end
  
 
+  # Attachments for showed errand 
+  def errand_index?
+    # user_activities.include? 'attachment:index'
+    user_activities.include? 'attachment:errand_index'
+  end
+
+  def errand_show?
+    # user_activities.include? 'attachment:show'
+    user_activities.include? 'attachment:errand_show'
+  end
+ 
+  def errand_create?
+    # user_activities.include? 'attachment:create'
+    user_activities.include? 'attachment:errand_create'
+  end
+
+  def errand_destroy?
+    # user_activities.include? 'attachment:delete'
+    user_activities.include? 'attachment:errand_delete'
+  end
+ 
+
   # Attachments for showed event 
   def event_index?
     # user_activities.include? 'attachment:index'
@@ -123,7 +145,7 @@ class AttachmentPolicy < ApplicationPolicy
     # user_activities.include? 'attachment:event_delete'
     (user_activities.include? 'attachment:event_delete') || (event_activities(@model).include? 'attachment:event_delete')
   end
- 
+
   class Scope < Struct.new(:user, :scope)
     def resolve
       scope

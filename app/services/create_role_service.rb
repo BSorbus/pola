@@ -144,38 +144,74 @@ class CreateRoleService
     end
   end
 
+  # errands
+  def errand_admin
+    role = Role.find_or_create_by!(name: "Administrator Zleceń") do |role|
+      role.special = true
+      role.activities += %w(errand:index errand:show errand:create errand:update errand:delete)
+      role.note = "Rola służy do zarządzania Zleceniami. \r\n(Przypisz Koordynatorom POPC)"
+      role.save!
+    end
+  end
+  def errand_observer
+    role = Role.find_or_create_by!(name: "Obserwator Zleceń") do |role|
+      role.special = true
+      role.activities += %w(errand:index errand:show)
+      role.note = "Rola służy do wyświetlania informacji o Zleceniach.\r\n(Przypisz wszystkim, którzy mogą przeglądać Zlecenia)"
+      role.save!
+    end
+  end
+
+  # errand_attachments
+  def errand_attachment_admin
+    role = Role.find_or_create_by!(name: "Administrator Załączników Zlecenia") do |role|
+      role.special = true
+      role.activities += %w(attachment:errand_index attachment:errand_show attachment:errand_create attachment:errand_delete)
+      role.note = "Rola służy do zarządzania załącznikami przypisanymi do Zleceń. \r\n (Przypisz tylko Administratorom systemu oraz Koordynatorom POPC)"
+      role.save!
+    end
+  end
+  def errand_attachment_observer
+    role = Role.find_or_create_by!(name: "Obserwator Załączników Zlecenia") do |role|
+      role.special = true
+      role.activities += %w(attachment:errand_index attachment:errand_show)
+      role.note = "Rola służy do wyświetlania i pobierania załączników przypisanych do Zleceń. \r\n (Przypisz Administratorom systemu oraz Koordynatorom POPC)"
+      role.save!
+    end
+  end
+
   # events
   def event_admin
-    role = Role.find_or_create_by!(name: "Administrator Zdarzeń/Zadań") do |role|
+    role = Role.find_or_create_by!(name: "Administrator Zadań") do |role|
       role.special = true
       role.activities += %w(event:index event:show event:create event:update event:delete)
-      role.note = "Rola służy do zarządzania Zdarzeniami/Zadaniami. \r\n(Przypisz Koordynatorom POPC)"
+      role.note = "Rola służy do zarządzania Zadaniami. \r\n(Przypisz Koordynatorom POPC)"
       role.save!
     end
   end
   def event_observer
-    role = Role.find_or_create_by!(name: "Obserwator Zdarzeń/Zadań") do |role|
+    role = Role.find_or_create_by!(name: "Obserwator Zadań") do |role|
       role.special = true
       role.activities += %w(event:index event:show)
-      role.note = "Rola służy do wyświetlania informacji o Zadaniach/Zdarzeniach.\r\n(Przypisz wszystkim, którzy mogą przeglądać Zadania/Zdarzenia)"
+      role.note = "Rola służy do wyświetlania informacji o Zadaniach.\r\n(Przypisz wszystkim, którzy mogą przeglądać Zadania/Zdarzenia)"
       role.save!
     end
   end
 
   # event_attachments
   def event_attachment_admin
-    role = Role.find_or_create_by!(name: "Administrator Załączników Zadania/Zdarzenia") do |role|
+    role = Role.find_or_create_by!(name: "Administrator Załączników Zadania") do |role|
       role.special = true
       role.activities += %w(attachment:event_index attachment:event_show attachment:event_create attachment:event_delete)
-      role.note = "Rola służy do zarządzania załącznikami przypisanymi do Projektów. \r\n (Przypisz tylko Administratorom systemu oraz Koordynatorom POPC)"
+      role.note = "Rola służy do zarządzania załącznikami przypisanymi do Zadań. \r\n (Przypisz tylko Administratorom systemu oraz Koordynatorom POPC)"
       role.save!
     end
   end
   def event_attachment_observer
-    role = Role.find_or_create_by!(name: "Obserwator Załączników Zadania/Zdarzenia") do |role|
+    role = Role.find_or_create_by!(name: "Obserwator Załączników Zadania") do |role|
       role.special = true
       role.activities += %w(attachment:event_index attachment:event_show)
-      role.note = "Rola służy do wyświetlania i pobierania załączników przypisanych do Projektów. \r\n (Przypisz Administratorom systemu oraz Koordynatorom POPC)"
+      role.note = "Rola służy do wyświetlania i pobierania załączników przypisanych do Zadań. \r\n (Przypisz Administratorom systemu oraz Koordynatorom POPC)"
       role.save!
     end
   end

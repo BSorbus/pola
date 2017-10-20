@@ -15,6 +15,13 @@
       <nav>
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
+            <% if policy(:errand).index? %>
+              <li><%= link_to errands_path do %>
+                <span class="glyphicon glyphicon-tasks"></span>&nbsp;<%=t "pages.errand.index.title" %>
+                <% end %>
+              </li>
+            <% end %>
+
             <% if policy(:event).index? %>
               <li><%= link_to events_path do %>
                 <span class="glyphicon glyphicon-calendar"></span>&nbsp;<%=t "pages.event.index.title" %>

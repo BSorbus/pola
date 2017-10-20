@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171019085921) do
+ActiveRecord::Schema.define(version: 20171019222850) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,41 @@ ActiveRecord::Schema.define(version: 20171019085921) do
     t.index ["name"], name: "index_customers_on_name"
   end
 
+  create_table "errand_statuses", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "errand_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_errand_types_on_name"
+  end
+
+  create_table "errands", force: :cascade do |t|
+    t.string "number"
+    t.string "principal"
+    t.bigint "errand_status_id"
+    t.bigint "errand_type_id"
+    t.date "order_date"
+    t.date "adoption_date"
+    t.date "start_date"
+    t.date "end_date"
+    t.text "note", default: ""
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["adoption_date"], name: "index_errands_on_adoption_date"
+    t.index ["end_date"], name: "index_errands_on_end_date"
+    t.index ["errand_status_id"], name: "index_errands_on_errand_status_id"
+    t.index ["errand_type_id"], name: "index_errands_on_errand_type_id"
+    t.index ["number"], name: "index_errands_on_number"
+    t.index ["order_date"], name: "index_errands_on_order_date"
+    t.index ["principal"], name: "index_errands_on_principal"
+    t.index ["start_date"], name: "index_errands_on_start_date"
+  end
+
   create_table "event_statuses", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -96,7 +131,9 @@ ActiveRecord::Schema.define(version: 20171019085921) do
     t.datetime "updated_at", null: false
     t.bigint "event_status_id", default: 1
     t.bigint "event_type_id"
+    t.bigint "errand_id"
     t.index ["end_date"], name: "index_events_on_end_date"
+    t.index ["errand_id"], name: "index_events_on_errand_id"
     t.index ["event_status_id"], name: "index_events_on_event_status_id"
     t.index ["event_type_id"], name: "index_events_on_event_type_id"
     t.index ["project_id"], name: "index_events_on_project_id"
@@ -445,6 +482,9 @@ ActiveRecord::Schema.define(version: 20171019085921) do
 
   add_foreign_key "comments", "events"
   add_foreign_key "comments", "users"
+  add_foreign_key "errands", "errand_statuses"
+  add_foreign_key "errands", "errand_types"
+  add_foreign_key "events", "errands"
   add_foreign_key "events", "event_statuses"
   add_foreign_key "events", "event_types"
   add_foreign_key "point_files", "projects"

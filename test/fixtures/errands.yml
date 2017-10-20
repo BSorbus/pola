@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  number: MyString
+  principal: MyString
+  errand_status: one
+  errand_type: one
+  order_date: 2017-10-19
+  adoption_date: 2017-10-19
+  start_date: 2017-10-19
+  end_date: 2017-10-19
+  note: MyText
+
+two:
+  number: MyString
+  principal: MyString
+  errand_status: two
+  errand_type: two
+  order_date: 2017-10-19
+  adoption_date: 2017-10-19
+  start_date: 2017-10-19
+  end_date: 2017-10-19
+  note: MyText

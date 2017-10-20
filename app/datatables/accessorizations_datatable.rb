@@ -24,7 +24,6 @@ class AccessorizationsDatatable < AjaxDatatablesRails::Base
         event_type:   record.event_type.try(:name),
         end_date:     record.end_date.present? ? record.end_date.strftime("%Y-%m-%d %H:%M") : '' ,
         event_status: record.event_status.try(:name),
-#        project:     record.project.try(:number_as_link),
         project:      link_to(record.project.number, project_path(record.project.id)),
         status:       record.project.project_status.try(:name),
         flat:         record.flat_assigned_users
@@ -38,14 +37,18 @@ class AccessorizationsDatatable < AjaxDatatablesRails::Base
     if options[:only_for_current_user_id].present? 
       Event.joins(:event_type, :event_status, :accessorizations, project: [:project_status])
            .references(:event_type, :event_status, :accessorizations, :project, :project_status)
-           .where(accessorizations: {user_id: options[:only_for_current_user_id]}).all
+           .where(accessorizations: {user_id: options[:only_for_current_user_id]}).distinct
     elsif options[:only_for_current_role_id].present?
       Event.joins(:event_type, :event_status, :accessorizations, project: [:project_status])
            .references(:event_type, :event_status, :accessorizations, :project, :project_status)
-           .where(accessorizations: {role_id: options[:only_for_current_role_id]}).all
+           .where(accessorizations: {role_id: options[:only_for_current_role_id]}).distinct   # .group('events.id')
+    elsif options[:only_for_current_errand_id].present?
+      Event.joins(:errand, :event_type, :event_status, project: [:project_status])
+           .references(:event_type, :event_status, :accessorizations, :project, :project_status)
+           .where(errand_id: options[:only_for_current_errand_id]).all
     else
       Event.joins(:event_type, :accessorizations, project: [:project_status])
-           .references(:event_type, :accessorizations, :project, :project_status).all
+           .references(:event_type, :accessorizations, :project, :project_status).distinct
     end
   end
 

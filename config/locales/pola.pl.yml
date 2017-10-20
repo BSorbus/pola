@@ -44,7 +44,12 @@ pl:
       point_file: 'Plik Punktów Adresowych'
       ww_point: 'Punkt Adresowy'
       zs_point: 'Węzeł'
+      event_status: 'Status Zadania'
+      event_type: 'Typ Zadania'
       event: 'Zadanie'
+      errand_status: 'Status Zlecenia'
+      errand_type: 'Typ Zlecenia'
+      errand: 'Zlecenie'
       comment: 'Komentarz'
       rating: 'Ocena'
       proposal_file: 'Plik Projektu (XML)'
@@ -138,6 +143,16 @@ pl:
         dp_7: 'Nr porządkowy'
         dp_8: 'Kod pocztowy'
         note: 'Uwagi'
+      errand:
+        number: 'Numer'
+        principal: 'Zleceniodawca'
+        errand_status_id: 'Status zlecenia'
+        errand_type_id: 'Typ zlecenia'
+        order_date: 'Data zlecenia'
+        adoption_date: 'Data przyjęcia zlecenia'
+        start_date: 'Data rozpoczęcia'
+        end_date: 'Data zakończenia'
+        note: 'Uwagi'
       event:
         title: 'Tytuł'
         all_day: 'Wydarzenie całodniowe'
@@ -147,6 +162,7 @@ pl:
         event_status_id: 'Status zadania'
         event_type_id: 'Typ zadania'
         note: 'Uwagi'
+        errand_id: 'Zlecenie'
         flat_assigned_users: 'Użytkownicy realizujący'
       comment:
         project_id: 'Projekt'
@@ -345,6 +361,15 @@ pl:
         title: 'Nowy Punkt WW - Własny/Współdzielony węzeł telekomunikacyjny'
       edit:
         title: 'Edycja -> Punktu WW - Własny/Współdzielony węzeł telekomunikacyjny'
+    errand:
+      index:
+        title: 'Zlecenia'
+      show:
+        title: 'Zlecenie'
+      new:
+        title: 'Nowe Zlecenie'
+      edit:
+        title: 'Edycja -> Zlecenie'
     event:
       index:
         title: 'Zadania'
@@ -433,10 +458,20 @@ pl:
       user_show?: ' BRAK UPRAWNIEŃ: Nie możesz pobierać załączników do użytkownika!'
       user_create?: ' BRAK UPRAWNIEŃ: Nie możesz zapisywać załączników do użytkownika!'
       user_destroy?: ' BRAK UPRAWNIEŃ: Nie możesz usuwać załączników do użytkownika!'
+      errand_index?: ' BRAK UPRAWNIEŃ: Nie możesz wyświetlać listy załączników do zlecenia!'
+      errand_show?: ' BRAK UPRAWNIEŃ: Nie możesz pobierać załączników do zlecenia!'
+      errand_create?: ' BRAK UPRAWNIEŃ: Nie możesz zapisywać załączników do zlecenia!'
+      errand_destroy?: ' BRAK UPRAWNIEŃ: Nie możesz usuwać załączników do zlecenia!'
       event_index?: ' BRAK UPRAWNIEŃ: Nie możesz wyświetlać listy załączników do zadania!'
       event_show?: ' BRAK UPRAWNIEŃ: Nie możesz pobierać załączników do zadania!'
       event_create?: ' BRAK UPRAWNIEŃ: Nie możesz zapisywać załączników do zadania!'
       event_destroy?: ' BRAK UPRAWNIEŃ: Nie możesz usuwać załączników do zadania!'
+    errand_policy:
+      index?: ' BRAK UPRAWNIEŃ: Nie możesz wyświetlać listy zleceń!'
+      show?: ' BRAK UPRAWNIEŃ: Nie możesz wyświetlać zlecenia!'
+      update?: ' BRAK UPRAWNIEŃ: Nie możesz edytować zlecenia!'
+      create?: ' BRAK UPRAWNIEŃ: Nie możesz tworzyć zleceń!'
+      destroy?: ' BRAK UPRAWNIEŃ: Nie możesz usuwać zadań!'
     event_policy:
       index?: ' BRAK UPRAWNIEŃ: Nie możesz wyświetlać listy zadań!'
       show?: ' BRAK UPRAWNIEŃ: Nie możesz wyświetlać zadania!'
@@ -487,10 +522,12 @@ pl:
     download: 'Pobierz'
     send_email: 'Wyślij email'
   help_block_text:
-    select2project: 'Wyszukiwanie po: Numer, Uwagi. Warunki oddzielaj spacją'
-    select2user: 'Wyszukiwanie po: Nazwa, Email. Warunki oddzielaj spacją'
-    select2customer: 'Wyszukiwanie po: Nazwa, Uwagi. Warunki oddzielaj spacją'
+    select2project: 'Szukanie po: Numer, Uwagi. Warunki oddzielaj spacją'
+    select2user: 'Szukanie po: Nazwa, Email. Warunki oddzielaj spacją'
+    select2customer: 'Szukanie po: Nazwa, Adres-Miejscowość, Nip, Regon, Rpt. Warunki oddzielaj spacją'
+    select2errand: 'Szukanie po: Numer, Data zlecenia, Data przyjęcia. Warunki oddzielaj spacją'
   placeholder:
     select2project: 'Wybierz Projekt'
     select2user: 'Wybierz Użytkownika'
     select2customer: 'Wybierz Wnioskodawcę'
+    select2errand: 'Wybierz Zlecenie'
