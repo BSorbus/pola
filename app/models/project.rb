@@ -1,6 +1,7 @@
 class Project < ApplicationRecord
   delegate :url_helpers, to: 'Rails.application.routes'
 
+  include ActionView::Helpers::TextHelper
   include  ActionView::Helpers::SanitizeHelper
 
   # relations
@@ -41,7 +42,7 @@ class Project < ApplicationRecord
   end
 
   def fullname
-    "#{self.number}"
+    "#{self.number} [#{truncate(self.customer.name, length: 30)}] [#{self.project_status.name}]"
   end
 
   def number_as_link

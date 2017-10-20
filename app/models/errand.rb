@@ -38,7 +38,6 @@ class Errand < ApplicationRecord
      analize_value = false
     end
 
-
     if self.start_date.present? && self.start_date > Time.zone.now.to_date
      errors.add(:start_date, '- błędna data')
      analize_value = false
