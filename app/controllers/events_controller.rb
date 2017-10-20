@@ -92,6 +92,7 @@ class EventsController < ApplicationController
     else 
       flash.now[:error] = t('activerecord.errors.messages.destroyed', data: @event.fullname)
       #redirect_to :back
+      @comment = @event.comments.new
       render :show
     end      
   end
