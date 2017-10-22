@@ -124,11 +124,11 @@ puts 'CREATED ROLE: ' << role.name
 
 
 # Simple User 1
-user = CreateAdminService.new.call_simple('krzysztof.frydrych@uke.gov.pl', 'Krzysztof Frydrych', '1qazXSW@', '')
+user = CreateAdminService.new.call_simple('klaudia.markwat@uke.gov.pl', 'Klaudia Markwat', '1qazXSW@', '')
 puts 'CREATED SIMPLE USER: ' << user.email
 
 # Simple User 2
-user = CreateAdminService.new.call_simple('michal.lassa@uke.gov.pl', 'Michał Łassa', '1qazXSW@', '')
+user = CreateAdminService.new.call_simple('pawel.dabrowski@uke.gov.pl', 'Paweł Dąbrowski', '1qazXSW@', '')
 puts 'CREATED SIMPLE USER: ' << user.email
 
 # Simple User 3
@@ -136,7 +136,7 @@ user = CreateAdminService.new.call_simple('mariusz.krupa@uke.gov.pl', 'Mariusz K
 puts 'CREATED SIMPLE USER: ' << user.email
 
 # Simple User 4
-user = CreateAdminService.new.call_simple('marcin.dudek@uke.gov.pl', 'Marcin Dudek', '1qazXSW@', '')
+user = CreateAdminService.new.call_simple('radoslaw.michalek@uke.gov.pl', 'Tadosław Michałek', '1qazXSW@', '')
 puts 'CREATED SIMPLE USER: ' << user.email
 
 # Simple User 5
