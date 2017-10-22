@@ -9,6 +9,109 @@
   </div> <!--/col-sm-12 -->
 
 
+
+
+
+
+
+
+      <div class="col-sm-3 col-sm-offset-9">
+        <div class="row">
+          <button class="btn btn-link pull-right" data-toggle="modal" data-target="#modal-0">
+            Uwagi ogólne
+          </button>
+          </div>
+        <div class="row">
+          <button class="btn btn-link pull-right" data-toggle="modal" data-target="#modal-1">
+            Przygotowanie sesji egzaminacyjnej - sekretariat
+          </button>
+        </div>
+      </div>
+
+  <!-- Modal -->
+  <!-- #modal-0 Uwagi ogólne-->
+  <div class="modal fade" id="modal-0" tabindex="-1" role="dialog" aria-labelledby="modal-0" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="todo-label"><strong>Uwagi ogólne</strong></h4>
+        </div>
+        <div class="modal-body">
+          <p>System <strong>"NetPAR 2015"</strong> jest przeznaczony do:</p>
+          <p>1. Ewidencjonowania sesji egzaminacyjnych i osób egzaminowanych.</p>
+          <p>2. Ewidencjonowania wyników egzaminów i kopii elektronicznych (skanów) powstałych dokumentów.</p>
+          <p>3. Wspomagania procesu przeprowadzania egzaminów, w tym drukowania kart i protokołów egzaminacyjnych.</p>
+          <p>4. Automatycznego generowania świadectw na podstawie wyników egzaminów.</p>
+          <p>5. Ewidencjonowania wydawanych świadectw i ich elektronicznych kopii.</p>
+          <p>6. Łatwego, szybkiego i prostego udostępniania informacji o wydawanych świadectwach osobom wydającym pozwolenia lub innym upoważnionym użytkownikom.</p>
+          <br>
+          <p>Wymagania i ograniczenia</p>
+          <p>1. Program działa w przeglądarkach <span class="text-success"> Chrome, Safari, Opera i Mozilla Firefox.</span> Nie działa w przeglądarce <span class="text-danger">Internet Explorer.</span></p>
+          <p>2. W programie stosowane jest kodowanie UTF-8 i ustawiona jest strefa czasowa (time-zone) "Warsow"</p>
+          <p>3. System działa w zamkniętej sieci UKE i nie jest dostępny z zewnątrz.</p>
+          <p>4. Aby korzystać z Systemu <strong>"NetPAR 2015"</strong> musisz posiadać aktywne konto pocztowe w domenie uke.gov.pl</p>
+          <p>5. System wymaga zmieniania hasła nie rzadziej niż raz w miesiącu. </p>
+          <p>6. Hasło musi zawierać małą i wielką literę oraz cyfrę i znak specjalny. Długość hasła nie może być mniejsza niż 8 znaków.</p>
+          <p>7. 3 ostatnie hasła są zapamiętywane i nie mogą być użyte w czasie zmieniania hasła.</p>
+          <br>
+          <p>Ogólne</p>
+          <p>1. Rozmiar zapisywanych załączników został ograniczony do maksymalnej wielkości 10 MB. </p>
+          <p>2. Daty zapisywane są w formacie YYYY-MM-DD, co usprawnia sortowanie w tabelach</p>
+          <p>3. We wszystkich polach "Szukaj:" został zastosowany mechanizm wyszukiwania przybliżonych wartości bez rozróżniania wielkości liter.</p>
+          <p>Np. wprowadzając w pole "Szukaj:" przykładową wartość "nowak" otrzymamy listę zawierającą:</p> 
+          <p>"Nowak"</br>
+            "Nowakowski"</br>
+            "Nowakowska"</br>
+            ...</p>
+          <p>4. Sortowanie prezentowanych w tabelach danych odbywa się poprzez kliknięcie w nagłówek kolumny. Można sortować jednocześnie po kilku kolumnach, kolejno klikając w ich nagłówki przy równocześnie wciśniętym klawiszu <kbd> Shift </kbd></p>
+          <br>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Zamknij</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- #modal-1 Przygotowanie sesji egzaminacyjnej-->
+  <div class="modal fade" id="modal-1" tabindex="-1" role="dialog" aria-labelledby="modal-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="todo-label"><strong>Przygotowanie sesji egzaminacyjnej</strong></h4>
+        </div>
+        <div class="modal-body">
+          <p>Gdy harmonogram sesji egzaminacyjnych jest już ogłoszony należy poszczególne sesje zarejestrować w systemie.</p>
+          <p>1. Wybierz w menu "Egzaminy-Egzaminy ... (LOT/MOR/RA)"</p>
+          <%#= image_tag("help-menu-exams.jpg") %><br>
+          <p>2. Gdy wyświetli się lista egzaminów wybierz przycisk "Nowy" (lewy dolny róg) i otwórz formularz "Nowy Egzamin (LOT/MOR/RA)"</p>
+          <%#= image_tag("help-index-exams.jpg") %><br>
+          <p>3. Wprowadź stosowne informacje dotyczące sesji, tj. Numer, Datę i Miejscowość. Jeżeli znasz już skład komisji uzupełnij także te informacje.</p>
+          <p>4. W miarę napływu wniosków o przystąpienie do egzaminu uzupełniaj listę "Osób Egzaminowanych". 
+          Możesz to zrobić wybierając odpowiednią "Sesję Egzaminacyjną" i dodając w panelu "Osoby Egzaminowane" nowe pozycje</p> 
+          <%#= image_tag("help-panel-examinations.jpg") %><br>
+          <p>lub odszukując/dopisując nowe osoby (menu "Klient") dodawać im wpisy w panelu "Udział w Egzaminach"</p>
+          <%#= image_tag("help-add-to-exam.jpg") %><br>
+          <p>5. Po wprowadzeniu ostatniej osoby wnioskującej o przystąpienie do egzaminu, przygotowania do przeprowadzenia egzaminu są zakończone.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Zamknij</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
 </div> <!--/row -->
 
 
