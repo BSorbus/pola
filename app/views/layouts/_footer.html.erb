@@ -32,7 +32,7 @@
         <div class="thumbnail">
           <img src="http://placehold.it/300x300" alt="">
           <div class="caption">
-            <h4>Andrzej Kaczor</h4>
+            <h4>Andrzej <br>Kaczor</h4>
             <h5>
               Realizacja merytoryczna. Analityk i projektant systemu.
             </h5>
@@ -48,7 +48,7 @@
         <div class="thumbnail">
           <img src="http://placehold.it/300x300" alt="">
           <div class="caption">
-            <h4>Bogdan Jarząb</h4>
+            <h4>Bogdan <br>Jarząb</h4>
             <h5>
               Realizacja techniczna projektu. Architekt, projektant i programista systemu.
             </h5>
@@ -63,7 +63,7 @@
         <div class="thumbnail">
           <img src="http://placehold.it/300x300" alt="">
           <div class="caption">
-            <h4>Klaudia Markwat</h4>
+            <h4>Klaudia <br>Markwat</h4>
             <h5>
               Nadzór merytoryczny.
             </h5>
@@ -79,7 +79,7 @@
         <div class="thumbnail">
           <img src="http://placehold.it/300x300" alt="">
           <div class="caption">
-            <h4>Paweł Dąbrowski</h4>
+            <h4>Paweł <br>Dąbrowski</h4>
             <h5>
               Wsparcie merytoryczne.
             </h5>
@@ -94,7 +94,7 @@
         <div class="thumbnail">
           <img src="http://placehold.it/300x300" alt="">
           <div class="caption">
-            <h4>Piotr Majewski</h4>
+            <h4>Piotr <br>Majewski</h4>
             <h5>
               Wsparcie techniczne.</h5>
             <div>
@@ -108,7 +108,7 @@
         <div class="thumbnail">
           <img src="http://placehold.it/300x300" alt="">
           <div class="caption">
-            <h4>Radosław Michałek</h4>
+            <h4>Radosław <br>Michałek</h4>
             <h5>
               Kierownik projektu.
             </h5>
@@ -122,5 +122,12 @@
       </div>
     </div> <!-- /row display-flex -->
   </div>
+
+  <script>
+    $('#authors').on('shown.bs.collapse', function () {
+      $("html, body").animate({ scrollTop: $(document).height()-$(window).height() });
+    });
+  </script>
+
 
 </footer>
