@@ -6,7 +6,6 @@ class ErrandDatatable < AjaxDatatablesRails::Base
     @view_columns ||= {
       id:             { source: "Errand.id", cond: :eq, searchable: false, orderable: false },
       number:         { source: "Errand.number", cond: :like, searchable: true, orderable: true },
-      type:           { source: "ErrandType.name", cond: :like, searchable: true, orderable: true },
       order_date:     { source: "Errand.order_date", cond: :like, searchable: true, orderable: true },
       principal:      { source: "Errand.principal",  cond: :like, searchable: true, orderable: true },
       adoption_date:  { source: "Errand.adoption_date", cond: :like, searchable: true, orderable: true },
@@ -21,7 +20,6 @@ class ErrandDatatable < AjaxDatatablesRails::Base
       {
         id:             record.id,
         number:         link_to(record.number, errand_path(record.id)),
-        type:           record.errand_type.try(:name),
         order_date:     record.order_date.present? ? record.order_date.strftime("%Y-%m-%d") : '' ,
         principal:      record.principal,
         adoption_date:  record.adoption_date.present? ? record.adoption_date.strftime("%Y-%m-%d") : '' ,
@@ -35,7 +33,7 @@ class ErrandDatatable < AjaxDatatablesRails::Base
   private
 
   def get_raw_records
-    Errand.joins(:errand_type, :errand_status).references(:errand_type, :errand_status).all
+    Errand.joins(:errand_status).references(:errand_status).all
   end
 
 

@@ -99,6 +99,6 @@ class ErrandsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def errand_params
-      params.require(:errand).permit(:number, :principal, :errand_status_id, :errand_type_id, :order_date, :adoption_date, :start_date, :end_date, :note)
+      params.require(:errand).permit(:number, :principal, :errand_status_id, :order_date, :adoption_date, :start_date, :end_date, :note)
     end
 end

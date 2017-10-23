@@ -298,28 +298,15 @@ errand_status2 = ErrandStatus.find_or_create_by!(name: "W realizacji")
 errand_status3 = ErrandStatus.find_or_create_by!(name: "Weryfikacja")
 errand_status4 = ErrandStatus.find_or_create_by!(name: "Zakończone")
 
-errand_type1 = ErrandType.find_or_create_by!(name: "Ocena")
-errand_type2 = ErrandType.find_or_create_by!(name: "Ocena protest")
-errand_type3 = ErrandType.find_or_create_by!(name: "Analiza Sąd")
-errand_type4 = ErrandType.find_or_create_by!(name: "Opinia zmian")
-errand_type5 = ErrandType.find_or_create_by!(name: "Kontrola realizacja")
-errand_type6 = ErrandType.find_or_create_by!(name: "Kontrola zakończenie")
-errand_type7 = ErrandType.find_or_create_by!(name: "Kontrola trwałość")
-errand_type8 = ErrandType.find_or_create_by!(name: "Analiza danych")
-errand_type9 = ErrandType.find_or_create_by!(name: "Hurt cenniki")
-errand_type0 = ErrandType.find_or_create_by!(name: "Inne")
-
 
 # example errands
 errand1 = Errand.create(number: 'Zlecenie 1', 
                         principal: 'Ministerstwo Cyfryzacji', 
-                        errand_type: errand_type1, 
                         errand_status: errand_status2)
 puts 'CREATED ERRAND: ' << errand1.number
 
 errand2 = Errand.create(number: 'Zlecenie 2', 
                         principal: 'Ministerstwo Cyfryzacji', 
-                        errand_type: errand_type2, 
                         errand_status: errand_status2)
 puts 'CREATED ERRAND: ' << errand2.number
 

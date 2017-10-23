@@ -5,7 +5,6 @@ class Errand < ApplicationRecord
 
   # relations
   belongs_to :errand_status
-  belongs_to :errand_type
 
   has_many :attachments, as: :attachmenable, dependent: :destroy
   has_many :events, dependent: :nullify, index_errors: true
@@ -83,7 +82,7 @@ class Errand < ApplicationRecord
   end
 
   def fullname
-    "#{self.number} [#{self.order_date}, #{self.adoption_date}] [#{self.errand_type.name}, #{self.errand_status.name}]"
+    "#{self.number} [#{self.order_date}, #{self.adoption_date}] [#{self.errand_status.name}]"
   end
 
   def number_as_link

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171019222850) do
+ActiveRecord::Schema.define(version: 20171023215756) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,18 +76,10 @@ ActiveRecord::Schema.define(version: 20171019222850) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "errand_types", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_errand_types_on_name"
-  end
-
   create_table "errands", force: :cascade do |t|
     t.string "number"
     t.string "principal"
     t.bigint "errand_status_id"
-    t.bigint "errand_type_id"
     t.date "order_date"
     t.date "adoption_date"
     t.date "start_date"
@@ -98,7 +90,6 @@ ActiveRecord::Schema.define(version: 20171019222850) do
     t.index ["adoption_date"], name: "index_errands_on_adoption_date"
     t.index ["end_date"], name: "index_errands_on_end_date"
     t.index ["errand_status_id"], name: "index_errands_on_errand_status_id"
-    t.index ["errand_type_id"], name: "index_errands_on_errand_type_id"
     t.index ["number"], name: "index_errands_on_number"
     t.index ["order_date"], name: "index_errands_on_order_date"
     t.index ["principal"], name: "index_errands_on_principal"
@@ -483,7 +474,6 @@ ActiveRecord::Schema.define(version: 20171019222850) do
   add_foreign_key "comments", "events"
   add_foreign_key "comments", "users"
   add_foreign_key "errands", "errand_statuses"
-  add_foreign_key "errands", "errand_types"
   add_foreign_key "events", "errands"
   add_foreign_key "events", "event_statuses"
   add_foreign_key "events", "event_types"
