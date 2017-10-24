@@ -74,12 +74,12 @@ gem 'ajax-datatables-rails', '~> 0.4.0'
 gem 'pundit'
 gem 'carrierwave', '~> 1.0'
 gem 'file_validators'
-# gem 'premailer-rails'
 gem 'activerecord-import'
 
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.14.30'
-# gem 'rack-mini-profiler'
+
+gem 'chartkick'
 
 gem 'mina'

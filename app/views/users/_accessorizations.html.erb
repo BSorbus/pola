@@ -17,3 +17,44 @@
     </tbody>
   </table>
 </div> <!--/col-sm-12 -->
+
+<div class="col-sm-12">
+  <hr>
+</div> <!--/col-sm-12 -->
+
+<div class="col-sm-12">
+  <h3 class="text-justify"><strong>Typ - wszystkie</strong></h3>
+  <%= pie_chart ( EventType.all.map {|event_type| 
+      [ event_type.name, 
+        Event.joins(:accessorizations).where( event_type_id: [event_type.id], accessorizations: {user_id: [@user.id]} ).size ]
+    } ) %>
+</div> <!--/col-sm-12 -->
+
+<div class="col-sm-12">
+  <h3 class="text-justify"><strong>Status - wszystkie</strong></h3>
+  <%= pie_chart ( EventStatus.all.map {|event_status| 
+      [ event_status.name, 
+        Event.joins(:accessorizations).where( event_status_id: [event_status.id], accessorizations: {user_id: [@user.id]} ).size ]
+    } ) %>
+</div> <!--/col-sm-12 -->
+
+<div class="col-sm-12">
+  <hr>
+</div> <!--/col-sm-12 -->
+
+<% 
+  EventStatus.all.each do |event_status|
+    data_array = [] 
+    EventType.all.each do |event_type|  
+      data_array << { name: "#{event_type.name}", 
+                       data: {"#{event_status.name}": Event.joins(:accessorizations).where( event_status_id: [event_status.id], event_type_id: [event_type.id], accessorizations: {user_id: [@user.id]} ).size }
+                      }
+       
+    end
+%>
+    <div class="col-sm-12">
+      <h3 class="text-justify"><strong>Status: <%= event_status.name %></strong></h3>
+      <%= column_chart data_array, min: 0 %>
+    </div> 
+<% end  %>
+
