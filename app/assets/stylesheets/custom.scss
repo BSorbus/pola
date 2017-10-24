@@ -92,7 +92,16 @@ footer {
         flex-direction: column;
         justify-content: space-between;
         height: 100%;
-      }
+      };
+      .img:hover {
+        -webkit-transform: scale(1.02);
+        -moz-transform: scale(1.02);
+        transform: scale(1.02);
+
+        -webkit-box-shadow: 9px 9px 5px 0px rgba(0,0,0,0.55);
+        -moz-box-shadow: 9px 9px 5px 0px rgba(0,0,0,0.55);
+        box-shadow: 9px 9px 5px 0px rgba(0,0,0,0.55);
+      };
     }
   }
 }
