@@ -56,3 +56,23 @@
 <% end  %>
 
 
+
+<div class="col-sm-12">
+  <hr>
+</div> <!--/col-sm-12 -->
+
+<% 
+  @data_array2 = [] 
+  EventType.all.each do |event_type|
+    EventStatus.all.each do |event_status|  
+      @data_array2 << { name: "#{event_status.name}", 
+                       data: {"#{event_type.name}": Event.joins(:accessorizations).where( event_status_id: [event_status.id], event_type_id: [event_type.id], accessorizations: {user_id: [@user.id]} ).size }
+                      }
+       
+    end
+
+ end  %>
+
+<div class="col-sm-12">
+  <%= bar_chart @data_array2, adapter: "highcharts", min: 0 %>
+</div> 

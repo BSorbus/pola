@@ -370,6 +370,8 @@ pl:
         title: 'Nowe Zlecenie'
       edit:
         title: 'Edycja -> Zlecenie'
+      show_statistics:
+        title: 'Zlecenie: Statystyki'
     event:
       index:
         title: 'Zadania'
@@ -514,7 +516,8 @@ pl:
       account_on: " Włącz konto"
       link_to_add_fields_accessorization: '[ + Dodaj Uprawnienie]'
       link_to_remove_fields_accessorization: '[ - Usuń Uprawnienie]'
-      new_point_file:  ' Ładuj Plik Punktów Adresowych'
+      new_point_file: ' Ładuj Plik Punktów Adresowych'
+      show_statistics: ' Statystyki'
   tooltip:
     show: 'Pokaż'
     edit: 'Edycja'

@@ -60,9 +60,16 @@ Rails.application.routes.draw do
   end
 
   resources :errands do
+    get 'show_statistics', on: :collection
     get 'select2_index', on: :collection
     get 'datatables_index', on: :collection
     resources :attachments, module: :errands, only: [:create]
+  end
+
+  resources :charts, only: [] do
+    get 'by_month_all_errands', on: :collection
+    get 'by_month_all_type_errands', on: :collection
+    get 'by_month_all_events', on: :collection
   end
 
 
