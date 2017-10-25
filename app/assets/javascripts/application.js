@@ -21,6 +21,6 @@
 //= require moment/pl
 //= require fullcalendar
 //= require bootstrap-datetimepicker
-//= require Chart.bundle
+//= require highcharts
 //= require chartkick
 //= require_tree .
