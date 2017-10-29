@@ -1,11 +1,11 @@
 class ErrandsController < ApplicationController
   before_action :authenticate_user!
-  after_action :verify_authorized, except: [:index, :datatables_index, :show_statistics]
+  after_action :verify_authorized, except: [:index, :datatables_index, :show_charts]
   before_action :set_errand, only: [:show, :edit, :update, :destroy]
 
-  def show_statistics
+  def show_charts
     respond_to do |format|
-      format.html{ render :show_statistics }
+      format.html{ render 'charts/show_charts' }
     end
   end
 

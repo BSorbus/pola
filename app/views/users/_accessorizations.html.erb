@@ -23,56 +23,21 @@
 </div> <!--/col-sm-12 -->
 
 <div class="col-sm-12">
-  <%= pie_chart ( EventType.all.map {|event_type| 
-      [ event_type.name, 
-        Event.joins(:accessorizations).where( event_type_id: [event_type.id], accessorizations: {user_id: [@user.id]} ).size ]
-    } ) %>
-</div> <!--/col-sm-12 -->
-
-<div class="col-sm-12">
-  <%= pie_chart ( EventStatus.all.map {|event_status| 
-      [ event_status.name, 
-        Event.joins(:accessorizations).where( event_status_id: [event_status.id], accessorizations: {user_id: [@user.id]} ).size ]
-    } ) %>
+  <%= chart_events_by_status_for_user(@user.id, @user.name) %>
 </div> <!--/col-sm-12 -->
 
 <div class="col-sm-12">
   <hr>
 </div> <!--/col-sm-12 -->
 
-<% 
-  EventStatus.all.each do |event_status|
-    data_array = [] 
-    EventType.all.each do |event_type|  
-      data_array << { name: "#{event_type.name}", 
-                       data: {"#{event_status.name}": Event.joins(:accessorizations).where( event_status_id: [event_status.id], event_type_id: [event_type.id], accessorizations: {user_id: [@user.id]} ).size }
-                      }
-       
-    end
-%>
-    <div class="col-sm-12">
-      <%= bar_chart data_array, adapter: "highcharts", min: 0 %>
-    </div> 
-<% end  %>
-
-
+<div class="col-sm-12">
+  <%= chart_events_by_status_type_for_user(@user.id, @user.name) %>
+</div> <!--/col-sm-12 -->
 
 <div class="col-sm-12">
   <hr>
 </div> <!--/col-sm-12 -->
 
-<% 
-  @data_array2 = [] 
-  EventType.all.each do |event_type|
-    EventStatus.all.each do |event_status|  
-      @data_array2 << { name: "#{event_status.name}", 
-                       data: {"#{event_type.name}": Event.joins(:accessorizations).where( event_status_id: [event_status.id], event_type_id: [event_type.id], accessorizations: {user_id: [@user.id]} ).size }
-                      }
-       
-    end
-
- end  %>
-
 <div class="col-sm-12">
-  <%= bar_chart @data_array2, adapter: "highcharts", min: 0 %>
-</div> 
+  <%= chart_events_by_type_status_for_user(@user.id, @user.name) %>
+</div> <!--/col-sm-12 -->

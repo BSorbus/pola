@@ -30,12 +30,6 @@
 
 
   <div class="col-sm-12">
-    <% if policy(:errand).index? %>
-      <%= link_to show_statistics_errands_path, class: "btn btn-info" do %>
-        <span class="glyphicon glyphicon-signal"></span>
-        <%= t("helpers.links.show_statistics") %>
-      <% end %>
-    <% end %>
     <% if policy(:errand).new? %>
       <%= link_to new_errand_path, class: "btn btn-primary pull-right" do %>
         <span class="glyphicon glyphicon-plus"></span>

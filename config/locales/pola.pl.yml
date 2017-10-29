@@ -264,6 +264,7 @@ pl:
   pages:
     home: 'Główna'
     help: 'Pomoc'
+    charts: 'Statystyki'
     footer:
       contact: 'kontakt:'
       links: 'zobacz też:'
@@ -370,8 +371,6 @@ pl:
         title: 'Nowe Zlecenie'
       edit:
         title: 'Edycja -> Zlecenie'
-      show_statistics:
-        title: 'Zlecenie: Statystyki'
     event:
       index:
         title: 'Zadania'
@@ -517,7 +516,6 @@ pl:
       link_to_add_fields_accessorization: '[ + Dodaj Uprawnienie]'
       link_to_remove_fields_accessorization: '[ - Usuń Uprawnienie]'
       new_point_file: ' Ładuj Plik Punktów Adresowych'
-      show_statistics: ' Statystyki'
   tooltip:
     show: 'Pokaż'
     edit: 'Edycja'
@@ -534,3 +532,28 @@ pl:
     select2user: 'Wybierz Użytkownika'
     select2customer: 'Wybierz Wnioskodawcę'
     select2errand: 'Wybierz Zlecenie'
+  charts:
+    errands_by_month:
+      title: 'Data przyjęcia, rozpoczęcia, zakończenia'
+      subtitle: 'podział miesięczny'
+    errands_by_month_status:
+      title: 'Status zlecenia'
+      subtitle: 'wg daty zlecenia, podział miesięczny'
+    errands_by_status:
+      title: 'Aktualny status zleceń'
+      subtitle: ''
+    events_by_status_for_xxx:
+      title: 'Aktualny status zadań'
+      subtitle: 'dla "%{data}"'
+    events_by_month:
+      title: 'Zadania'
+      subtitle: 'wg daty zlecenia, podział miesięczny'
+    events_by_month_type:
+      title: 'Zadania'
+      subtitle: 'wg daty zlecenia i typu, podział miesięczny'
+    events_by_status_type:
+      title: 'Zadania'
+      subtitle: 'wg statusu i typu'
+    events_by_type_status:
+      title: 'Zadania'
+      subtitle: 'wg typu i statusu'

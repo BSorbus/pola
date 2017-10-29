@@ -1,8 +1,14 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
-  after_action :verify_authorized, except: [:index, :datatables_index]
+  after_action :verify_authorized, except: [:index, :datatables_index, :show_charts]
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
+
+  def show_charts
+    respond_to do |format|
+      format.html{ render 'charts/show_charts' }
+    end
+  end
 
   def datatables_index
     respond_to do |format|

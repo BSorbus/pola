@@ -231,6 +231,14 @@ td:hover {
 
 
 
+.panel-charts {
+  border-color: #ddd;  
+  .panel-heading {
+    background: $brand-primary; //#1A3069;
+    color: white;
+  }
+}
+
 .panel-xml-data {
   border-color: #ddd;  
   .panel-heading {

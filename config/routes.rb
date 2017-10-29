@@ -50,6 +50,7 @@ Rails.application.routes.draw do
   end    
 
   resources :events do
+    get 'show_charts', on: :collection
     get 'send_status', on: :member 
     get 'datatables_index', on: :collection
     resources :attachments, module: :events, only: [:create]
@@ -60,16 +61,22 @@ Rails.application.routes.draw do
   end
 
   resources :errands do
-    get 'show_statistics', on: :collection
+    get 'show_charts', on: :collection
     get 'select2_index', on: :collection
     get 'datatables_index', on: :collection
     resources :attachments, module: :errands, only: [:create]
   end
 
   resources :charts, only: [] do
-    get 'by_month_all_errands', on: :collection
-    get 'by_month_all_type_errands', on: :collection
-    get 'by_month_all_events', on: :collection
+    get 'errands_by_month', on: :collection
+    get 'errands_by_month_status', on: :collection
+    get 'errands_by_status', on: :collection
+    get 'events_by_status_for_errand', on: :collection
+    get 'events_by_status_for_user', on: :collection
+    get 'events_by_status_type_for_user', on: :collection
+    get 'events_by_type_status_for_user', on: :collection
+    get 'events_by_month', on: :collection
+    get 'events_by_month_type', on: :collection
   end
 
 
