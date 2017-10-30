@@ -136,7 +136,7 @@ user = CreateAdminService.new.call_simple('mariusz.krupa@uke.gov.pl', 'Mariusz K
 puts 'CREATED SIMPLE USER: ' << user.email
 
 # Simple User 4
-user = CreateAdminService.new.call_simple('radoslaw.michalek@uke.gov.pl', 'Tadosław Michałek', '1qazXSW@', '')
+user = CreateAdminService.new.call_simple('radoslaw.michalek@uke.gov.pl', 'Radosław Michałek', '1qazXSW@', '')
 puts 'CREATED SIMPLE USER: ' << user.email
 
 # Simple User 5
@@ -154,16 +154,17 @@ puts 'CREATED SIMPLE USER: ' << user.email
 
 
 # project_statuses
-project_status1 = ProjectStatus.find_or_create_by!(name: "I.1. Rejestrowany")
-project_status2 = ProjectStatus.find_or_create_by!(name: "I.2. Opiniowany")
-project_status3 = ProjectStatus.find_or_create_by!(name: "I.3. Opiniowany - weryfikacja")
-ProjectStatus.find_or_create_by!(name: "I.4. Opiniowanie - zatwierdzone")
-ProjectStatus.find_or_create_by!(name: "I.5. Opiniowanie - podpisane")
-ProjectStatus.find_or_create_by!(name: "II.1. [Odwołanie] Rejestrowany")
-ProjectStatus.find_or_create_by!(name: "II.2. [Odwołanie] Opiniowany")
-ProjectStatus.find_or_create_by!(name: "II.3. [Odwołanie] Opiniowany - weryfikacja")
-ProjectStatus.find_or_create_by!(name: "II.4. [Odwołanie] Opiniowanie - zatwierdzone")
-ProjectStatus.find_or_create_by!(name: "II.5. [Odwołanie] Opiniowanie - podpisane")
+ project_status1 = ProjectStatus.find_or_create_by!(name: "Zarejestrowany")
+ project_status2 = ProjectStatus.find_or_create_by!(name: "Ocena")
+ project_status3 = ProjectStatus.find_or_create_by!(name: "Protest")
+ project_status4 = ProjectStatus.find_or_create_by!(name: "Skarga sądowa")
+ project_status5 = ProjectStatus.find_or_create_by!(name: "Odrzucony pozytywny")
+ project_status6 = ProjectStatus.find_or_create_by!(name: "Odrzucony negatywny formalna")
+ project_status7 = ProjectStatus.find_or_create_by!(name: "Odrzucony negatywny mer. I")
+ project_status8 = ProjectStatus.find_or_create_by!(name: "Odrzucony negatywny mer. II")
+ project_status9 = ProjectStatus.find_or_create_by!(name: "Realizowany")
+project_status10 = ProjectStatus.find_or_create_by!(name: "Trwałość")
+project_status11 = ProjectStatus.find_or_create_by!(name: "Zakończony")
 
 
 

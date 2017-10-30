@@ -1,5 +1,5 @@
 puts " "
-puts "#####  RUN - date_event.rb  #####"
+puts "#####  RUN - seed_all.rb  #####"
 puts " "
 
 Event.all.each do |event|
@@ -8,5 +8,5 @@ end
 
 
 puts " "
-puts "#####  END OF - date_event.rb  #####"
+puts "#####  END OF - seed_all.rb  #####"
 puts " "
