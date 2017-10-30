@@ -19,7 +19,6 @@ class Event < ApplicationRecord
   validates :title, presence: true,
                     length: { in: 1..100 },
                     :uniqueness => { scope: [:project_id], :message => " - takie zadanie jest już zdefiniowane w tym projekcie" }
-
   validates :start_date, presence: true
   validates :end_date, presence: true
   validates :project_id, presence: true

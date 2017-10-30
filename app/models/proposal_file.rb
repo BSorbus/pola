@@ -18,7 +18,6 @@ class ProposalFile < ApplicationRecord
   # validates
   validates :load_file, presence: true,
                         file_size: { less_than: 50.megabytes }
-
   validates :status, presence: true,
                     :uniqueness => { scope: [:project_id] }, if: :status_active?
 

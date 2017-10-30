@@ -172,6 +172,26 @@ p {
   background-color: inherit;
 }
 
+.form-group.required .control-label:before{
+  //color: red;
+  content: "*";
+  position: absolute;
+  margin-left: -7px;
+}
+
+.form-group.required .control-label:hover:after{
+  background: rgba(0,0,0,.75);
+  border-radius: 5px;
+  top: 23px;
+  color: #fff;
+  content: 'Wymagane';
+  left: 25px;
+  padding: 5px 10px;
+  position: absolute;
+  z-index: 98;
+}
+
+
 .well-accessorization {
   @extend .well;
   background-color: lighten(#BECC25, 48.5%);

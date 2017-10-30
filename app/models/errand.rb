@@ -13,6 +13,9 @@ class Errand < ApplicationRecord
   validates :number, presence: true,
                     length: { in: 1..100 },
                     :uniqueness => { :case_sensitive => false }
+  validates :principal, presence: true,
+                    length: { in: 1..100 }
+  validates :order_date, presence: true
 
   validate :all_date_correct, on: [:create, :update]
 

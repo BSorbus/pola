@@ -25,7 +25,6 @@ class Project < ApplicationRecord
   validates :number, presence: true,
                     length: { in: 1..100 },
                     :uniqueness => { :case_sensitive => false }
-
   validates :customer_id, presence: true
 
   # callbacks
