@@ -170,6 +170,7 @@ pl:
         event_type: 'Typ zadania'
         note: 'Uwagi'
         errand_id: 'Zlecenie'
+        errand: 'Zlecenie'
         flat_assigned_users: 'Użytkownicy realizujący'
       comment:
         project_id: 'Projekt'

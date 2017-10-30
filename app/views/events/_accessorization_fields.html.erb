@@ -1,6 +1,6 @@
 <div class="fields well-accessorization">
   <div class='row top-bottom-buffer' >
-    <div class="form-group col-sm-5">
+    <div class="form-group required col-sm-5">
       <%= f.label :user_id, class: "control-label" %>
       <%= f.hidden_field :user_id,
                         class: "form-control input-sm select2user", 
@@ -9,7 +9,7 @@
       <small class="help-block"><%= t('help_block_text.select2user') %></small>
     </div>
 
-    <div class="form-group col-sm-5">
+    <div class="form-group required col-sm-5">
       <%= f.label :role_id, class: 'control-label' %>
       <%= f.select :role_id, 
             Role.only_not_special.all.order(:name).collect {|v| [ "#{v[:name]}", v[:id] ] },

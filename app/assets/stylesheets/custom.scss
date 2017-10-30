@@ -173,7 +173,7 @@ p {
 }
 
 .form-group.required .control-label:before{
-  //color: red;
+  color: $brand-danger;
   content: "*";
   position: absolute;
   margin-left: -7px;

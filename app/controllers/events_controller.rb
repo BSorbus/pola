@@ -44,8 +44,6 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
     @event.all_day = true
-    @event.start_date = Time.zone.now
-    @event.end_date = Time.zone.now
 
     authorize @event, :new?
   end
