@@ -34,6 +34,13 @@
                   </li>
                 <% end %>
 
+                <% if policy(:project).index? %>
+                  <li><%= link_to show_charts_projects_path do %>
+                    <span class="glyphicon glyphicon-signal"></span>&nbsp;<%=t "pages.project.index.title" %>
+                    <% end %>
+                  </li>
+                <% end %>
+
               </ul>
             </li>
 

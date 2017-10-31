@@ -1,8 +1,14 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
-  after_action :verify_authorized, except: [:index, :datatables_index]
+  after_action :verify_authorized, except: [:index, :datatables_index, :show_charts]
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
+
+  def show_charts
+    respond_to do |format|
+      format.html{ render 'charts/show_charts' }
+    end
+  end
 
   def send_status
     project = Project.find(params[:id])

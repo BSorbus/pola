@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   end
 
   resources :projects do
+    get 'show_charts', on: :collection
     get 'send_status', on: :member 
     get 'select2_index', on: :collection
     get 'datatables_index', on: :collection
