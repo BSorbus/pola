@@ -1,4 +1,4 @@
-Highcharts.maps["countries/pl/pl-all"] = 
+Highcharts.maps["countries/pl/my-pl-all"] = 
   { "title": "Poland",
     "version":"1.1.2",
     "type":"FeatureCollection",
