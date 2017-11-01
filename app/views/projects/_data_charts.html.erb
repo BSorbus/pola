@@ -1,82 +1,12 @@
 <div class="col-sm-12">
-
   <div class="row">
-    <div class="col-sm-12">
-      <div class="row">
-        <div id="mapcontainer"></div> 
-      </div> <!--/row -->
-    </div> <!--/col-sm-12 -->
-  </div>  <!-- /row -->
-  
-</div> <!--/col-sm-11 col-sm-offset-1-->    
+    <%#= chart_events_by_month %>
+  </div> <!--/row-->    
+</div> <!--/col-sm-12-->    
 
-
-<script>
-
-
-// Prepare demo data
-// Data is joined to map using value of 'hc-key' property by default.
-// See API docs for 'joinBy' for more info on linking data and map.
-var data = [
-    ['pl-ld', 0],
-    ['pl-mz', 1],
-    ['pl-sk', 2],
-    ['pl-pd', 3],
-    ['pl-lu', 4],
-    ['pl-pk', 5],
-    ['pl-op', 6],
-    ['pl-ma', 7],
-    ['pl-wn', 8],
-    ['pl-pm', 9],
-    ['pl-ds', 10],
-    ['pl-zp', 11],
-    ['pl-lb', 12],
-    ['pl-wp', 13],
-    ['pl-kp', 14],
-    ['pl-sl', 15]
-];
-
-// Create the chart
-Highcharts.mapChart('mapcontainer', {
-    chart: {
-        map: 'countries/pl/my-pl-all'
-    },
-
-    title: {
-        text: 'Województwa - ilość wniosków'
-    },
-
-    subtitle: {
-        text: 'wg. adresu siedziby Wnioskodawcy'
-    },
-
-    mapNavigation: {
-        enabled: true,
-        buttonOptions: {
-            verticalAlign: 'topm'
-        }
-    },
-
-    colorAxis: {
-        min: 0
-    },
-
-    series: [{
-        data: data,
-        name: 'Ilość',
-        states: {
-            hover: {
-                color: '#BADA55'
-            }
-        },
-        dataLabels: {
-            enabled: true,
-            format: '{point.name}'
-        }
-    }]
-});
-
-
-</script>
-
+<div class="col-sm-12">
+  <div class="row">
+    <hr>
+  </div> <!--/row-->    
+</div> <!--/col-sm-12-->    
 

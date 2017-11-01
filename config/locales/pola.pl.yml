@@ -541,15 +541,15 @@ pl:
     select2customer: 'Wybierz Wnioskodawcę'
     select2errand: 'Wybierz Zlecenie'
   charts:
-    errands_by_month:
-      title: 'Data przyjęcia, rozpoczęcia, zakończenia'
-      subtitle: 'podział miesięczny'
-    errands_by_month_status:
-      title: 'Status zlecenia'
-      subtitle: 'wg daty zlecenia, podział miesięczny'
     errands_by_status:
       title: 'Aktualny status zleceń'
       subtitle: ''
+    errands_by_month:
+      title: 'Zlecenia według daty przyjęcia, rozpoczęcia, zakończenia'
+      subtitle: 'podział miesięczny'
+    errands_by_month_status:
+      title: 'Statusy zleceń według daty zlecenia'
+      subtitle: 'podział miesięczny'
     events_by_status_for_xxx:
       title: 'Aktualny status zadań'
       subtitle: 'dla "%{data}"'

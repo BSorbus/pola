@@ -5,5 +5,5 @@
 # Chartkick.configure({language: "de"});
 
 Chartkick.options = {
-  language: "pl"
+  'language': 'pl'
 }

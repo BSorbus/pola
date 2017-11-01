@@ -1,6 +1,15 @@
 class ChartsController < ApplicationController
   before_action :authenticate_user!
 
+  def errands_by_status
+    data_array = []
+    ErrandStatus.all.each do |errand_status|
+      data_array <<  ["#{errand_status.name}", 
+                      Errand.where(errand_status: errand_status).count ]
+    end
+    render json: data_array 
+  end
+
   def errands_by_month
     result1 = Errand.group_by_month(:adoption_date).count
     result2 = Errand.group_by_month(:start_date).count
@@ -18,15 +27,6 @@ class ChartsController < ApplicationController
                       data: Errand.where(errand_status: errand_status).group_by_month(:order_date, format: '%Y-%m-%d').count.map{|k,v| [k,v]} }
     end
     render json: data_array.to_json 
-  end
-
-  def errands_by_status
-    data_array = []
-    ErrandStatus.all.each do |errand_status|
-      data_array <<  ["#{errand_status.name}", 
-                      Errand.where(errand_status: errand_status).count ]
-    end
-    render json: data_array 
   end
 
   # Events
