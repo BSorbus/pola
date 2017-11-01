@@ -1,0 +1,21 @@
+#regions_div svg path[fill^='none'] {
+  stroke-width:0px;
+}
+
+#regions_div svg path[fill^='none']:hover {
+  fill:transparent;
+}
+
+
+#regions_div path {
+  stroke-width: 1; /* control the countries borders width */
+  stroke: gray; /* choose a color for the border */
+}
+
+#regions_div path:hover {
+  fill: #BECC25; 
+}
+
+#regions_div rect:hover {
+  fill:transparent;
+}
