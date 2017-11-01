@@ -32,9 +32,6 @@ module ChartsHelper
         },
         hAxis: {
           title: 'Miesiące'
-        },
-        tooltip: {
-          valueSuffix: ' zlecenie (-nia/-eń)'
         }
       }
   end
@@ -44,7 +41,7 @@ module ChartsHelper
   def chart_events_by_status_for_errand(id, sub)
     pie_chart events_by_status_for_errand_charts_path(errand_id: id),
       library: {
-        pieHole: 0.4,
+        is3D: true,
         title: t('charts.events_by_status_for_xxx.title')
       }
   end
