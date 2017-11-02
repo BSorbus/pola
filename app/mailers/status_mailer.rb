@@ -9,7 +9,7 @@ class StatusMailer < ActionMailer::Base
     @event = event
     attachments.inline['logo.jpg'] = File.read("app/assets/images/pola.png")
 
-#    mail(to: user.email, subject: "POLA - #{@event.try(:title)} (#{@event.project.try(:number)})" )
+    mail(to: user.email, subject: "POLA - #{@event.try(:title)} (#{@event.project.try(:number)})" )
   end
 
   def project_status_email(user, project)
@@ -18,21 +18,21 @@ class StatusMailer < ActionMailer::Base
     @project = project
     attachments.inline['logo.jpg'] = File.read("app/assets/images/pola.png")
 
-#    mail(to: user.email, subject: "POLA - projekt #{@project.try(:number)} (#{@project.customer.try(:name)})" )
+    mail(to: user.email, subject: "POLA - projekt #{@project.try(:number)} (#{@project.customer.try(:name)})" )
   end
 
   def new_comment_email(comment)
     @comment = comment
     emails = comment.event.accesses_users.order(:name).flat_map {|row| row.email }.join(',')
     attachments.inline['logo.jpg'] = File.read("app/assets/images/pola.png")
-#    mail(to: emails, subject: "POLA - dotyczy zadania: #{@comment.event.try(:title)}" )
+    mail(to: emails, subject: "POLA - dotyczy zadania: #{@comment.event.try(:title)}" )
   end
 
   def new_update_event_email(event)
     @event = event
     emails = event.accesses_users.order(:name).flat_map {|row| row.email }.join(',')
     attachments.inline['logo.jpg'] = File.read("app/assets/images/pola.png")
-#    mail(to: emails, subject: "POLA - dotyczy zadania: #{@event.try(:title)}" )
+    mail(to: emails, subject: "POLA - dotyczy zadania: #{@event.try(:title)}" )
   end
 
 end
