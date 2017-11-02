@@ -1,48 +1,104 @@
 module ChartsHelper
 
-  def chart_errands_by_status
-    pie_chart errands_by_status_charts_path,
-      library: {
-        is3D: true,
-        title: t('charts.errands_by_status.title'),
-      }
-  end
-
   def chart_errands_by_month
     line_chart errands_by_month_charts_path, 
-      discrete: true, #data jako yyyy-mm-dd
-      library: {
-        title: t('charts.errands_by_month.title'),
-        vAxis: {
-          title: 'Ilość'
-        },
-        hAxis: {
-          title: 'Miesiące'
+      {
+        discrete: true,
+        library: {
+          title: {text: t('charts.errands_by_month.title'), x: -20},
+          subtitle: {text: t('charts.errands_by_month.subtitle'), x: -20},
+          yAxis: {
+            title: {
+              text: 'Ilość'
+            }
+          },
+          tooltip: {
+            valueSuffix: ' zlecenie (-nia/-eń)'
+          },
+          plotOptions: {
+              series: {
+                  showInNavigator: true
+              }
+          },
+          credits: {
+            enabled: false
+          }
         }
       }
   end
 
   def chart_errands_by_month_status
     line_chart errands_by_month_status_charts_path, 
-      discrete: true,
-      library: {
-        title: t('charts.errands_by_month_status.title'),
-        vAxis: {
-          title: 'Ilość'
-        },
-        hAxis: {
-          title: 'Miesiące'
+      {
+        discrete: true,
+        library: {
+          title: {text: t('charts.errands_by_month_status.title'), x: -20},
+          subtitle: {text: t('charts.errands_by_month_status.subtitle'), x: -20},
+          yAxis: {
+            title: {
+              text: 'Ilość'
+            }
+          },
+          tooltip: {
+            valueSuffix: ' zlecenie (-nia/-eń)'
+          },
+          credits: {
+            enabled: false
+          }
         }
       }
   end
 
+  def chart_errands_by_status
+    pie_chart errands_by_status_charts_path,
+      {
+        library: {
+          title: {text: t('charts.errands_by_status.title')},
+          subtitle: {text: t('charts.errands_by_status.subtitle') + " #{Time.zone.now.strftime("%Y-%m-%d %H:%M")}"},
+          tooltip: {
+            pointFormat: 'Ilość: <b>{point.y} ({point.percentage:.1f}%)</b>'
+          },
+          plotOptions: {
+            pie: {
+              allowPointSelect: true,
+              cursor: 'pointer',
+              dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.y} ({point.percentage:.1f} %)',
+              }
+            }
+          },
+          credits: {
+            enabled: false
+          }
+        }
+      }
+  end
 
   # For showed Errand
   def chart_events_by_status_for_errand(id, sub)
     pie_chart events_by_status_for_errand_charts_path(errand_id: id),
-      library: {
-        is3D: true,
-        title: t('charts.events_by_status_for_xxx.title')
+      {
+        library: {
+          title: {text: t('charts.events_by_status_for_xxx.title')},
+          subtitle: {text: t('charts.events_by_status_for_xxx.subtitle', data: sub) + ", #{Time.zone.now.strftime("%Y-%m-%d %H:%M")}"},
+          tooltip: {
+            pointFormat: 'Ilość: <b>{point.y} ({point.percentage:.1f}%)</b>'
+          },
+          plotOptions: {
+            pie: {
+              allowPointSelect: true,
+              cursor: 'pointer',
+              dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.y} ({point.percentage:.1f} %)',
+              }
+            }
+          },
+          credits: {
+            enabled: false
+          }
+        }
       }
   end
 
@@ -74,14 +130,21 @@ module ChartsHelper
   end
 
   def chart_events_by_status_type_for_user(id, sub)
-    bar_chart events_by_status_type_for_user_charts_path(user_id: id),
-      {
+    bar_chart events_by_status_type_for_user_charts_path(user_id: id), 
+      { #adapter: "google",
         discrete: true,
         library: {
           title: {text: t('charts.events_by_status_type.title')},
           subtitle: {text: t('charts.events_by_status_type.subtitle', data: sub)},
           credits: {
             enabled: false
+          },
+          legend: {
+              align: 'right',
+              verticalAlign: 'top',
+              layout: 'vertical',
+              x: 0,
+              y: 20
           }
         }
       }
@@ -96,7 +159,15 @@ module ChartsHelper
           subtitle: {text: t('charts.events_by_type_status.subtitle', data: sub)},
           credits: {
             enabled: false
+          },
+          legend: {
+              align: 'right',
+              verticalAlign: 'top',
+              layout: 'vertical',
+              x: 0,
+              y: 20
           }
+
         }
       }
   end
