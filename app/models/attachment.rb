@@ -1,7 +1,7 @@
 class Attachment < ApplicationRecord
   belongs_to :attachmenable, polymorphic: true
 
-  validates :attached_file, presence: true, file_size: { in: 1.byte..10.megabyte,
+  validates :attached_file, presence: true, file_size: { in: 1.byte..50.megabyte,
                                          message: 'must be within %{min} and %{max}' }
 
   # validate :attached_file_size_validation

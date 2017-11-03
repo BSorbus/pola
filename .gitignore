@@ -26,3 +26,6 @@
 
 # Ignore uploaded files.
 /public/uploads/*
+
+/db/seed/files/*.csv
+/db/seed/files/log/*

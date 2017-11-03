@@ -1,6 +1,8 @@
 class ChartsController < ApplicationController
   before_action :authenticate_user!
 
+  helper :all
+
   def errands_by_status
     data_array = []
     ErrandStatus.all.each do |errand_status|
