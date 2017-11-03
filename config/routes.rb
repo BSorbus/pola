@@ -77,6 +77,10 @@ Rails.application.routes.draw do
     get 'events_by_status_type_for_user', on: :collection
     get 'events_by_type_status_for_user', on: :collection
     get 'events_by_month', on: :collection
+    get 'events_by_month_status', on: :collection
+    get 'events_by_status', on: :collection
+    get 'events_by_type', on: :collection
+    get 'events_by_type_for_status', on: :collection
     get 'events_by_month_type', on: :collection
   end
 

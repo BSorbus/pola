@@ -30,6 +30,33 @@ class ChartsController < ApplicationController
   end
 
   # Events
+  def events_by_status
+    data_array = []
+    EventStatus.all.each do |event_status|
+      data_array <<  ["#{event_status.name}", 
+                      Event.where(event_status: event_status).count ]
+    end
+    render json: data_array 
+  end
+
+  def events_by_type
+    data_array = []
+    EventType.all.each do |event_type|
+      data_array <<  ["#{event_type.name}", 
+                      Event.where(event_type: event_type).count ]
+    end
+    render json: data_array 
+  end
+
+  def events_by_type_for_status
+    data_array = []
+    EventType.all.each do |event_type|
+      data_array <<  ["#{event_type.name}", 
+                      Event.where(event_type: event_type, event_status: params[:status_id]).count ]
+    end
+    render json: data_array 
+  end
+
   def events_by_status_for_errand
     data_array = []
     EventStatus.all.each do |event_status|
