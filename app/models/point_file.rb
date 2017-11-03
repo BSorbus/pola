@@ -40,15 +40,18 @@ class PointFile < ApplicationRecord
     # Data wygenerowania: 2017-06-06 12:10:22
     # Wersja aplikacji: 1.2.0
 
-    required_line_1 = '# Wygenerowano przy użyciu "Formularz planowania zasięgów i sieci NGA"'
-    line_1 = File.open("#{self.load_file.file.path}", "r").each_line.take(1).last
-    line_1 = line_1.gsub(/[\n]/, '') if line_1.present?
+    # Wersja aplikacji: 1.1
 
-    required_line_3 = '# Wersja aplikacji: 1.2.0'
-    line_3 = File.open("#{self.load_file.file.path}", "r").each_line.take(3).last
-    line_3 = line_3.gsub(/[\n]/, '') if line_3.present?
+    required_line1 = '# Wygenerowano przy użyciu "Formularz planowania zasięgów i sieci NGA"'
+    line1 = File.open("#{self.load_file.file.path}", "r").each_line.take(1).last
+    line1 = line1.gsub(/[\n]/, '') if line1.present?
 
-    line_1 == required_line_1 && line_3 == required_line_3
+    required_line3_1_1_0 = '# Wersja aplikacji: 1.1'
+    required_line3_1_2_0 = '# Wersja aplikacji: 1.2.0'
+    line3 = File.open("#{self.load_file.file.path}", "r").each_line.take(3).last
+    line3 = line3.gsub(/[\n]/, '') if line3.present?
+
+    (line1 == required_line1) && ((line3 == required_line3_1_1_0) || (line3 == required_line3_1_2_0))
   end
 
   def load_data_from_csv_file
