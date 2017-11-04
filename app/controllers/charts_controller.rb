@@ -145,7 +145,7 @@ class ChartsController < ApplicationController
       data_array << [ province[0], PointFile.where(status: 1, oi_4: province[1].mb_chars.upcase.strip).count ]
     end
 
-    render json: data_array
+    render json: data_array.to_json
   end
 
   private

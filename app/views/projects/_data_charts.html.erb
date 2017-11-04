@@ -75,12 +75,22 @@ $.getJSON('/pl-all.geo.json', function (geojson) {
         colorAxis: {
             tickPixelInterval: 100
         },
+
+        tooltip: {
+            formatter: function () {
+                return '' + this.series.name + '<br>' +
+                    'Obszar: <b>' + this.point.properties.type + '</b><br>' +
+                    'Nazwa: <b>' + this.point.properties["alt-name"] + '</b><br>' +
+                    'Ilość: <b>' + this.point.value + '</b>';
+            }
+        },
+
         series: [{
             data: province_array,
             mapData: geojson,
             joinBy: ['hasc', 0],
             keys: ['hasc', 'value'],
-            name: 'Projekty',
+            name: 'Projekty wg plików CSV o statusie "aktualny"',
             states: {
                 hover: {
                     color: '#BECC25'
