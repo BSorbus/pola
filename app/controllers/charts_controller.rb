@@ -122,6 +122,33 @@ class ChartsController < ApplicationController
     render json: data_array.to_json 
   end
 
+  def point_files
+      province_array = [['PL.DS', 'dolnośląskie'],
+                        ['PL.KP', 'kujawsko-pomorskie'],
+                        ['PL.LB', 'lubuskie'],
+                        ['PL.LD', 'łódzkie'],
+                        ['PL.LU', 'lubelskie'],
+                        ['PL.MA', 'małopolskie'],
+                        ['PL.MZ', 'mazowieckie'],
+                        ['PL.OP', 'opolskie'],
+                        ['PL.PD', 'podlaskie'],
+                        ['PL.PK', 'podkarpackie'],
+                        ['PL.PM', 'pomorskie'],
+                        ['PL.SK', 'świętokrzyskie'],
+                        ['PL.SL', 'śląskie'],
+                        ['PL.WN', 'warmińsko-mazurskie'],
+                        ['PL.WP', 'wielkopolskie'],
+                        ['PL.ZP', 'zachodniopomorskie']]
 
+    data_array = []
+    province_array.each do |province|
+      data_array << [ province[0], PointFile.where(status: 1, oi_4: province[1].mb_chars.upcase.strip).count ]
+    end
+
+    render json: data_array
+  end
+
+  private
+    
 
 end
