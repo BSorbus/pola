@@ -144,21 +144,18 @@ class ChartsController < ApplicationController
   def point_files
     data_array = []
     PROVINCES.each do |province|
-      data_array << [ province[0], PointFile.where(status: 1, oi_4: province[1].mb_chars.upcase.strip).count ]
+      data_array << [ province[0], PointFile.where(status: [:active], oi_4: province[1].mb_chars.upcase).count ]
     end
     render json: data_array.to_json
   end
 
-  def xml_partner_tables
+  def xml_miejsce_realizacji_tables
     data_array = []
     PROVINCES.each do |province|
-      data_array << [ province[0], XmlPartnerTable.joins(:proposal_file).where(proposal_files: {status: 1}, wojewodztwo: province[1].mb_chars.upcase.strip).count ]
+      data_array << [ province[0], XmlMiejsceRealizacjiTable.joins(xml_partner_table: [:proposal_file]).where(wojewodztwo_opis: province[1].mb_chars.upcase, xml_partner_tables: {proposal_files: {status: [:active]}}).count ]
     end
     render json: data_array.to_json
   end
-
-
-
 
 
   private

@@ -83,7 +83,7 @@ Rails.application.routes.draw do
     get 'events_by_type_for_status', on: :collection
     get 'events_by_month_type', on: :collection
     get 'point_files', on: :collection
-    get 'xml_partner_tables', on: :collection
+    get 'xml_miejsce_realizacji_tables', on: :collection
   end
 
 

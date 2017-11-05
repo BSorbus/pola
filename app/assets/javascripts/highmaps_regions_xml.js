@@ -18,7 +18,7 @@ $(document).ready(function() {
 //                       ['PL.ZP', 16]]
 
   $.ajax( { 
-    url: "/charts/xml_partner_tables.json",
+    url: "/charts/xml_miejsce_realizacji_tables.json",
     type: "GET",
     dataType:"json",
     success: function(data) {
@@ -43,7 +43,7 @@ function paintRegionsXml (visualization_data) {
     // Initiate the chart
     Highcharts.mapChart('regions_xml_div', {
         title: {
-            text: 'Projekty'
+            text: 'Miejsca realizacji projektów'
         },
         subtitle: {
             text: 'wg zaimportowanych plików XML'
@@ -72,7 +72,7 @@ function paintRegionsXml (visualization_data) {
             mapData: geojson,
             joinBy: ['hasc', 0],
             keys: ['hasc', 'value'],
-            name: 'Projekty wg plików XML o statusie "aktualny"',
+            name: 'Miejsca realizacji wg plików XML o statusie "aktualny"',
             states: {
                 hover: {
                     color: '#BECC25'
