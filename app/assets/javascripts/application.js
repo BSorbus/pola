@@ -24,3 +24,5 @@
 //= require highcharts
 //= require chartkick
 //= require_tree .
+
+//= stub "highmaps_regions_csv"

@@ -24,6 +24,7 @@
     <script src="https://code.highcharts.com/maps/modules/data.js"></script>
     <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
 
+    <%= yield(:javascript) %> 
 
   </head>
 
@@ -32,7 +33,7 @@
     <%= yield(:upper_part_page) %>
     <main class="site-content">
       <%= render 'layouts/messages' %>
-      <%= yield :form_errors %>       
+      <%= yield(:form_errors) %>       
       <%= yield %>
     </main>
     <%= render 'layouts/footer' %>
