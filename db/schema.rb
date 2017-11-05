@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171023215756) do
+ActiveRecord::Schema.define(version: 20171105154139) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -368,6 +368,9 @@ ActiveRecord::Schema.define(version: 20171023215756) do
     t.decimal "mrp_maksymalna_intensywnosc_wsparcia", precision: 6, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "wojewodztwo"
+    t.string "powiat"
+    t.string "gmina"
     t.index ["proposal_file_id"], name: "index_xml_partner_tables_on_proposal_file_id"
   end
 
