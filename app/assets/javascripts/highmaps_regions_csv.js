@@ -43,7 +43,7 @@ function paintRegionsCsv (visualization_data) {
     // Initiate the chart
     Highcharts.mapChart('regions_csv_div', {
         title: {
-            text: 'Projekty'
+            text: 'Obszary inwestycyjne'
         },
         subtitle: {
             text: 'wg zaimportowanych plików CSV'
@@ -72,7 +72,7 @@ function paintRegionsCsv (visualization_data) {
             mapData: geojson,
             joinBy: ['hasc', 0],
             keys: ['hasc', 'value'],
-            name: 'Projekty wg plików CSV o statusie "aktualny"',
+            name: 'Obszary inwestycyjne wg plików CSV o statusie "aktualny"',
             states: {
                 hover: {
                     color: '#BECC25'
