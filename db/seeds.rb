@@ -6,8 +6,14 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+role = CreateRoleService.new.work_observer
+puts 'CREATED ROLE: ' << role.name
+
+
+
 user = CreateAdminService.new.call
 puts 'CREATED ADMIN USER: ' << user.email 
+
 
 role = CreateRoleService.new.role_admin
 puts 'CREATED ROLE: ' << role.name

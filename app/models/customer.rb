@@ -4,6 +4,10 @@ class Customer < ApplicationRecord
   # relations
   has_many :projects, dependent: :destroy
 
+
+  belongs_to :user
+  has_many :works, as: :trackable
+
   # validates
   validates :name, presence: true,
                     length: { in: 1..150 },
@@ -18,6 +22,8 @@ class Customer < ApplicationRecord
   # callbacks
   before_destroy :has_important_links, prepend: true
 
+  after_create_commit { self.log_work('create') }
+  after_update_commit { self.log_work('update') }
 
   def has_important_links
     analize_value = true
@@ -26,6 +32,12 @@ class Customer < ApplicationRecord
      analize_value = false
     end
     throw :abort unless analize_value 
+  end
+
+  def log_work(type)
+    return if previous_changes.empty?
+    self.works.create!(trackable_url: "#{url_helpers.customer_path(self)}", action: "#{type}", user: self.user, 
+      parameters: self.to_json(except: [:user_id], include: {user: {only: [:id, :name, :email]}}))
   end
 
   def flat_assigned_projects

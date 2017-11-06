@@ -53,7 +53,7 @@ body {
 
 main {
   @extend .container;
-  //width: 100%;
+  width: 100%;
   padding-bottom: 15px;
   margin-top: 52px; // accommodate the navbar 51, 52 if hover:border-bottom 
   a, a:hover {
@@ -240,15 +240,59 @@ table.dataTable thead .sorting_asc:after {
 //tr:hover{
 //  background-color: #779BE5
 //}
-td:hover {
-  background-color: lighten(#BECC25, 48.5%)
+//td:hover {
+//  background-color: lighten(#BECC25, 48.5%)
+//}
+
+.datatable-cell-sign_up {
+  background-color: #FFFFE0 !important; //LightYellow
 }
+
+.datatable-cell-sign_in {
+  background-color: #DFF0D8 !important;
+}
+
+.datatable-cell-sign_out {
+  background-color: #DFF0D8 !important;
+}
+
+.datatable-cell-sending_reset_password_instructions {
+  background-color: #FFFFE0 !important;
+}
+
+.datatable-cell-sending_unlock_instructions {
+  background-color: #FFFFE0 !important;
+}
+
+.datatable-cell-account_confirmation {
+  background-color: #FFFACD !important;
+}
+
+.datatable-cell-resetting_password_from_token {
+  background-color: #FFFACD !important;
+}
+
+.datatable-cell-unlocking_from_token {
+  background-color: #FFFACD !important;
+}
+
+.datatable-cell-account_off {
+  background-color: #FFC04D !important;
+}
+
+.datatable-cell-account_on {
+  background-color: #FFC04D !important;
+}
+
+.datatable-cell-unauthenticated {
+  background-color: #FF8C8C !important;
+}
+
 
 
 .accordion-toggle {
   text-decoration: none !important;
 }
-
 
 
 .panel-charts {
@@ -435,6 +479,25 @@ td:hover {
   } 
 }
 
+.panel-work {
+  border-color: #ddd;
+  .panel-heading {
+    background: #818FAB; 
+    color: white;
+  } 
+}
+
+pre {
+    display: block;
+    //font-family: monospace;
+    font-size: 6px;
+    letter-spacing: 0px;
+    white-space: pre;
+    margin: 0 0;
+    padding: 0;
+    border: none;
+    line-height: 1.0;
+}
 
 /*.panel {
   -webkit-box-shadow: 6px 6px 3px 0px rgba(0,0,0,0.55);

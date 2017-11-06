@@ -63,6 +63,11 @@ class CustomerPolicy < ApplicationPolicy
     (user_activities.include? 'customer:delete') || (event_activities(@model).include? 'customer:delete')
   end
 
+  def work?
+    (user_activities.include? 'customer:work') || (event_activities(@model).include? 'customer:work')
+  end
+
+
   class Scope < Struct.new(:user, :scope)
     def resolve
       scope

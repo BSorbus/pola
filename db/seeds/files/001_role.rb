@@ -1,8 +1,14 @@
 puts "##### #####  RUN - role.rb  ##### #####"
 puts " "
 
+role = CreateRoleService.new.work_observer
+puts 'CREATED ROLE: ' << role.name
+
+
 user = CreateAdminService.new.call
 puts 'CREATED ADMIN USER: ' << user.email 
+
+
 
 role = CreateRoleService.new.role_admin
 puts 'CREATED ROLE: ' << role.name

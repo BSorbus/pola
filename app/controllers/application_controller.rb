@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :restricted_area, if: :devise_controller?
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  helper_method :request_from_the_security_area?
 
   protected
 

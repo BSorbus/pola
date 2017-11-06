@@ -24,6 +24,11 @@
     </div> <!-- /col-sm-12-->
   </div> <!-- /row -->
 
+
+  <% if policy(:customer).work? %>
+    <%= render partial: "works/works_in_panel", locals: {trackable_type: 'Customer', trackable_id: @customer.id} %>
+  <% end %>
+
   <!-- Projects-->
   <% if policy(:project).index? %>
     <!-- Roles.whers(special: false)-->

@@ -34,6 +34,7 @@ pl:
   restricted_area: "Adres IP - Wywołanie z obszaru ograniczonego!"
   activerecord:
     models:
+      work: 'Dziennik operacji'
       user: 'Użytkownik'
       role: 'Rola'
       accessorization: 'Uprawnienia'
@@ -59,6 +60,13 @@ pl:
       xml_wybrana_technologia_table: 'Wybrana Technologia'
       xml_zadanie_table: 'Zadanie'
     attributes:
+      work:
+        created_at: 'Data'
+        created_by: 'Autor'
+        action: 'Operacja'
+        trackable_type: 'Obiekt'
+        trackable_id: 'Identyfikator'
+        parameters: 'Dane'
       user:
         name: 'Imię i Nazwisko'
         email: 'Email'
@@ -272,6 +280,8 @@ pl:
   pages:
     home: 'Główna'
     help: 'Pomoc'
+    management: 'Zarządzanie'
+    works: 'Dziennik operacji'
     charts: 'Statystyki'
     footer:
       contact: 'kontakt:'
@@ -284,6 +294,9 @@ pl:
       links_www3: 'https://twitter.com/uke2uke'
       links_www4_title: 'Polska Cyfrowa - PO PC'
       links_www4: 'https://mc.gov.pl/polska-cyfrowa-po-pc'
+    work:
+      index:
+        title: 'Dziennik operacji'
     accessorization:
       user_show: 'Zadania'
       event_show: 'Użytkownicy realizujący zadanie'

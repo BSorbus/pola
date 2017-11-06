@@ -86,6 +86,11 @@ Rails.application.routes.draw do
     get 'xml_miejsce_realizacji_tables', on: :collection
   end
 
+  resources :works, only: [:index] do
+    post 'datatables_index', on: :collection # for User
+    post 'datatables_index_trackable', on: :collection # for Trackable
+    post 'datatables_index_user', on: :collection # for User
+  end
 
   root 'static_pages#home'
   get 'static_pages/home'

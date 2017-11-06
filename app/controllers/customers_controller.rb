@@ -49,6 +49,7 @@ class CustomersController < ApplicationController
   # POST /customers.json
   def create
     @customer = Customer.new(customer_params)
+    @customer.user = current_user
     authorize @customer, :create?
     respond_to do |format|
       if @customer.save
@@ -65,10 +66,11 @@ class CustomersController < ApplicationController
   # PATCH/PUT /customers/1
   # PATCH/PUT /customers/1.json
   def update
+    @customer.user = current_user
     authorize @customer, :update?
     respond_to do |format|
       if @customer.update(customer_params)
-        flash[:success] = t('activerecord.successfull.messages.updated', data: @customer.fullname)
+        flash[:success] = t('activerecord.successfull.messages.updated', data: @customer.fullname) unless @customer.previous_changes.empty?
         format.html { redirect_to @customer }
         format.json { render :show, status: :ok, location: @customer }
       else
@@ -106,6 +108,6 @@ class CustomersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
-      params.require(:customer).permit(:name, :nip, :regon, :address_city, :address_street, :address_house, :address_number, :address_postal_code, :phone, :fax, :email, :epuap, :rpt, :note)
+      params.require(:customer).permit(:name, :nip, :regon, :address_city, :address_street, :address_house, :address_number, :address_postal_code, :phone, :fax, :email, :epuap, :rpt, :note, :user_id)
     end
 end

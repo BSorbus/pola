@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171105154139) do
+ActiveRecord::Schema.define(version: 20171106121204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,7 +67,9 @@ ActiveRecord::Schema.define(version: 20171105154139) do
     t.string "email"
     t.string "epuap"
     t.string "rpt"
+    t.bigint "user_id"
     t.index ["name"], name: "index_customers_on_name"
+    t.index ["user_id"], name: "index_customers_on_user_id"
   end
 
   create_table "errand_statuses", force: :cascade do |t|
@@ -283,6 +285,19 @@ ActiveRecord::Schema.define(version: 20171105154139) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  create_table "works", force: :cascade do |t|
+    t.string "trackable_type"
+    t.bigint "trackable_id"
+    t.string "trackable_url"
+    t.bigint "user_id"
+    t.string "action"
+    t.text "parameters"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["trackable_type", "trackable_id"], name: "index_works_on_trackable_type_and_trackable_id"
+    t.index ["user_id"], name: "index_works_on_user_id"
+  end
+
   create_table "ww_points", force: :cascade do |t|
     t.bigint "point_file_id"
     t.string "ww_2", limit: 10
@@ -368,9 +383,6 @@ ActiveRecord::Schema.define(version: 20171105154139) do
     t.decimal "mrp_maksymalna_intensywnosc_wsparcia", precision: 6, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "wojewodztwo"
-    t.string "powiat"
-    t.string "gmina"
     t.index ["proposal_file_id"], name: "index_xml_partner_tables_on_proposal_file_id"
   end
 
@@ -476,6 +488,7 @@ ActiveRecord::Schema.define(version: 20171105154139) do
 
   add_foreign_key "comments", "events"
   add_foreign_key "comments", "users"
+  add_foreign_key "customers", "users"
   add_foreign_key "errands", "errand_statuses"
   add_foreign_key "events", "errands"
   add_foreign_key "events", "event_statuses"
@@ -488,6 +501,7 @@ ActiveRecord::Schema.define(version: 20171105154139) do
   add_foreign_key "ratings", "users"
   add_foreign_key "roles_users", "roles"
   add_foreign_key "roles_users", "users"
+  add_foreign_key "works", "users"
   add_foreign_key "ww_points", "point_files"
   add_foreign_key "xml_kamien_milowy_tables", "xml_zadanie_tables"
   add_foreign_key "xml_miejsce_realizacji_tables", "xml_partner_tables"

@@ -1,9 +1,18 @@
 class CreateRoleService
   # roles
+  def work_observer
+    role = Role.find_or_create_by!(name: "Obserwator Działań") do |role|
+      role.special = true
+      role.activities += %w(all:work role:work user:work customer:work project:work event:work errand:work rating:work)
+      role.note = "Rola służy do obserwowania historii wpisów, działań. \r\n (Przypisz tylko Administratorom systemu oraz Koordynatorom POPC)"
+      role.save!
+    end
+  end
+
   def role_admin
     role = Role.find_or_create_by!(name: "Administrator Ról Systemowych") do |role|
       role.special = true
-      role.activities += %w(role:index role:show role:create role:update role:delete)
+      role.activities += %w(role:index role:show role:create role:update role:delete role:work)
       role.note = "Rola służy do tworzenia, modyfikowania Ról. \r\n (Przypisz tylko zaawansowanym Administratorom systemu)"
       role.save!
     end
@@ -21,7 +30,7 @@ class CreateRoleService
   def user_admin
     role = Role.find_or_create_by!(name: "Administrator Użytkowników") do |role|
       role.special = true
-      role.activities += %w(user:index user:show user:create user:update user:delete role:add_remove_role_user)
+      role.activities += %w(user:index user:show user:create user:update user:delete role:add_remove_role_user user:work)
       role.note = "Rola służy do zarządzania Użytkownikami i przypisywania im Ról Systemowych. \r\n (Przypisz tylko zaawansowanym Administratorom systemu)"
       role.save!
     end
@@ -58,7 +67,7 @@ class CreateRoleService
   def customer_admin
     role = Role.find_or_create_by!(name: "Administrator Wnioskodawców") do |role|
       role.special = true
-      role.activities += %w(customer:index customer:show customer:create customer:update customer:delete)
+      role.activities += %w(customer:index customer:show customer:create customer:update customer:delete customer:work)
       role.note = "Rola służy do zarządzania Wnioskodawcami.\r\n(Przypisz tylko Administratorom systemu oraz Koordynatorom POPC)"
       role.save!
     end
@@ -76,7 +85,7 @@ class CreateRoleService
   def project_admin
     role = Role.find_or_create_by!(name: "Administrator Projektów") do |role|
       role.special = true
-      role.activities += %w(project:index project:show project:create project:update project:delete)
+      role.activities += %w(project:index project:show project:create project:update project:delete project:work)
       role.note = "Rola służy do zarządzania Projektami.\r\n(Przypisz tylko Administratorom systemu oraz Koordynatorom POPC)"
       role.save!
     end
@@ -112,7 +121,7 @@ class CreateRoleService
   def project_point_file_admin
     role = Role.find_or_create_by!(name: "Administrator Plików Punktów Adresowych") do |role|
       role.special = true
-      role.activities += %w(point_file:index point_file:download point_file:show point_file:create point_file:update point_file:delete)
+      role.activities += %w(point_file:index point_file:download point_file:show point_file:create point_file:update point_file:delete point_file:work)
       role.note = "Rola służy do zarządzania plikami punktów adresowych przypisanymi do Projektów. \r\n (Przypisz tylko Administratorom systemu oraz Koordynatorom POPC)"
       role.save!
     end
@@ -130,7 +139,7 @@ class CreateRoleService
   def project_proposal_file_admin
     role = Role.find_or_create_by!(name: "Administrator Plików Projektowych XML") do |role|
       role.special = true
-      role.activities += %w(proposal_file:index proposal_file:download proposal_file:show proposal_file:create proposal_file:update proposal_file:delete)
+      role.activities += %w(proposal_file:index proposal_file:download proposal_file:show proposal_file:create proposal_file:update proposal_file:delete proposal_file:work)
       role.note = "Rola służy do zarządzania plikami projektowymi xml przypisanymi do Projektów. \r\n (Przypisz tylko Administratorom systemu oraz Koordynatorom POPC)"
       role.save!
     end
@@ -148,7 +157,7 @@ class CreateRoleService
   def errand_admin
     role = Role.find_or_create_by!(name: "Administrator Zleceń") do |role|
       role.special = true
-      role.activities += %w(errand:index errand:show errand:create errand:update errand:delete)
+      role.activities += %w(errand:index errand:show errand:create errand:update errand:delete errand:work)
       role.note = "Rola służy do zarządzania Zleceniami. \r\n(Przypisz Koordynatorom POPC)"
       role.save!
     end
@@ -184,7 +193,7 @@ class CreateRoleService
   def event_admin
     role = Role.find_or_create_by!(name: "Administrator Zadań") do |role|
       role.special = true
-      role.activities += %w(event:index event:show event:create event:update event:delete)
+      role.activities += %w(event:index event:show event:create event:update event:delete event:work)
       role.note = "Rola służy do zarządzania Zadaniami. \r\n(Przypisz Koordynatorom POPC)"
       role.save!
     end
@@ -239,7 +248,7 @@ class CreateRoleService
   def rating_admin
     role = Role.find_or_create_by!(name: "Administrator Ocen") do |role|
       role.special = true
-      role.activities += %w(rating:index rating:show rating:create rating:update rating:delete rating:export)
+      role.activities += %w(rating:index rating:show rating:create rating:update rating:delete rating:export rating:work)
       role.note = "Rola służy do zarządzania Ocenami w Zadaniach. \r\n(Przypisz Koordynatorom POPC)"
       role.save!
     end
