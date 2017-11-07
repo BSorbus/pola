@@ -65,6 +65,7 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(project_params)
+    @project.user = current_user
     authorize @project, :create?
     respond_to do |format|
       if @project.save
@@ -81,10 +82,11 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1
   # PATCH/PUT /projects/1.json
   def update
+    @project.user = current_user
     authorize @project, :update?
     respond_to do |format|
       if @project.update(project_params)
-        flash[:success] = t('activerecord.successfull.messages.updated', data: @project.fullname)
+        flash[:success] = t('activerecord.successfull.messages.updated', data: @project.fullname)  unless @project.previous_changes.empty?
         format.html { redirect_to @project }
         format.json { render :show, status: :ok, location: @project }
       else
@@ -123,7 +125,7 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:number, :registration, :note, :project_status_id, :customer_id)
+      params.require(:project).permit(:number, :registration, :note, :project_status_id, :customer_id, :users_id)
     end
 
 end

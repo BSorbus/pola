@@ -21,6 +21,9 @@ class Project < ApplicationRecord
   has_many :comments, through: :events, source: :comments
   has_many :ratings, through: :events, source: :ratings
 
+  belongs_to :user
+  has_many :works, as: :trackable
+
   # validates
   validates :number, presence: true,
                     length: { in: 1..100 },
@@ -30,6 +33,9 @@ class Project < ApplicationRecord
   # callbacks
   before_destroy :has_important_links, prepend: true
 
+  after_create_commit { self.log_work('create') }
+  after_update_commit { self.log_work('update') }
+
 
   def has_important_links
     analize_value = true
@@ -38,6 +44,12 @@ class Project < ApplicationRecord
      analize_value = false
     end
     throw :abort unless analize_value 
+  end
+
+  def log_work(type)
+    return if previous_changes.empty?
+    self.works.create!(trackable_url: "#{url_helpers.project_path(self)}", action: "#{type}", user: self.user, 
+      parameters: self.to_json(except: [:user_id], include: {customer: {only: [:id, :name]}, user: {only: [:id, :name, :email]}}))
   end
 
   def fullname

@@ -62,6 +62,10 @@ class ProjectPolicy < ApplicationPolicy
   def destroy?
     (user_activities.include? 'project:delete') || (event_activities(@model).include? 'project:delete')
   end
+
+  def work?
+    (user_activities.include? 'project:work') || (event_activities(@model).include? 'project:work')
+  end
  
   class Scope < Struct.new(:user, :scope)
     def resolve

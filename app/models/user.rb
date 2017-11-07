@@ -34,6 +34,10 @@ class User < ApplicationRecord
   has_many :comments, dependent: :nullify
   has_many :ratings, dependent: :nullify
 
+
+  has_many :customers, dependent: :nullify
+  has_many :projects, dependent: :nullify
+
   accepts_nested_attributes_for :accessorizations, reject_if: :all_blank, allow_destroy: true
 
   # callbacks
