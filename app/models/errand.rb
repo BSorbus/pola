@@ -9,6 +9,9 @@ class Errand < ApplicationRecord
   has_many :attachments, as: :attachmenable, dependent: :destroy
   has_many :events, dependent: :nullify, index_errors: true
 
+  belongs_to :user
+  has_many :works, as: :trackable
+
   # validates
   validates :number, presence: true,
                     length: { in: 1..100 },
@@ -22,6 +25,15 @@ class Errand < ApplicationRecord
   # callbacks
   before_destroy :has_important_links, prepend: true
 
+  after_create_commit { self.log_work('create') }
+  after_update_commit { self.log_work('update') }
+
+
+  def log_work(type)
+    return if previous_changes.empty?
+    self.works.create!(trackable_url: "#{url_helpers.errand_path(self)}", action: "#{type}", user: self.user, 
+      parameters: self.to_json(except: [:errand_status_id], include: {errand_status: {only: [:id, :name]}}))
+  end
 
   def all_date_correct
     analize_value = true

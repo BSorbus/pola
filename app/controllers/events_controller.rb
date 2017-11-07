@@ -57,6 +57,7 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
+    @event.user = current_user
     authorize @event, :create?
     respond_to do |format|
       if @event.save
@@ -73,10 +74,11 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
+    @event.user = current_user
     authorize @event, :update?
     respond_to do |format|
       if @event.update(event_params)
-        flash[:success] = t('activerecord.successfull.messages.updated', data: @event.fullname)
+        flash[:success] = t('activerecord.successfull.messages.updated', data: @event.fullname) #unless @event.previous_changes.empty? && (@event.accessorizations.map {|a| a.previous_changes}).empty? #if @event.saved_changes? 
         format.html { redirect_to @event }
         format.json { render :show, status: :ok, location: @event }
       else

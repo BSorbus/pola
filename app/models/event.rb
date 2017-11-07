@@ -9,11 +9,14 @@ class Event < ApplicationRecord
 
   has_many :attachments, as: :attachmenable, dependent: :destroy
 
-  has_many :accessorizations, dependent: :delete_all, index_errors: true
+  has_many :accessorizations, dependent: :destroy, index_errors: true
   has_many :accesses_users, through: :accessorizations, source: :user
 
   has_many :comments, dependent: :delete_all
   has_many :ratings, dependent: :destroy
+
+  belongs_to :user
+  has_many :works, as: :trackable
 
   # validates
   validates :title, presence: true,
@@ -29,9 +32,26 @@ class Event < ApplicationRecord
 
   # callbacks
   before_create { self.title = "#{title} - #{self.project.number}" }
-  after_commit :send_notification, on: [:create, :update]
+  #after_commit :send_notification, on: [:create, :update]
   before_destroy :has_important_links, prepend: true
   
+  after_create_commit { self.log_work('create') }
+  after_update_commit { self.log_work('update') }
+
+
+  def log_work(type)
+    #return if previous_changes.empty?
+    self.works.create!(trackable_url: "#{url_helpers.event_path(self)}", action: "#{type}", user: self.user, 
+      parameters: self.to_json(except: [:user_id, :project_id, :event_status_id, :event_type_id, :errand_id], 
+        include: {project: {only: [:id, :number]}, 
+                  event_status: {only: [:id, :name]}, 
+                  event_type: {only: [:id, :name]}, 
+                  errand: {only: [:id, :name]}, 
+                  accessorizations: {only: [:id, :event_id], include: {user: {only: [:id, :name, :email]}, role: {only: [:id, :name]}} }, 
+                  user: {only: [:id, :name, :email]}}
+      )
+    )
+  end
 
   def has_important_links
     analize_value = true

@@ -25,6 +25,10 @@
   </div> <!-- /row -->
 
 
+  <% if policy(:errand).work? %>
+    <%= render partial: "works/works_in_panel", locals: {trackable_type: 'Errand', trackable_id: @errand.id} %>
+  <% end %>
+
   <!-- Attachments for this errand-->
   <% if policy(:attachment).errand_index? %>
     <%= render 'attachments/attachments_in_panel', attachmenable: @errand %>

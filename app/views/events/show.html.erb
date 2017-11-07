@@ -24,6 +24,10 @@
     </div> <!-- /col-sm-12-->
   </div> <!-- /row -->
 
+  <% if policy(:event).work? %>
+    <%= render partial: "works/works_in_panel", locals: {trackable_type: 'Event', trackable_id: @event.id} %>
+  <% end %>
+
   <!-- Attachments for this project-->
   <% if policy(:attachment).event_index? %>
     <%= render 'attachments/attachments_in_panel', attachmenable: @event %>

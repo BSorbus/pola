@@ -33,6 +33,11 @@ class ErrandPolicy < ApplicationPolicy
   def destroy?
     user_activities.include? 'errand:delete'
   end
+
+  def work?
+    user_activities.include? 'errand:work'
+  end
+
  
   class Scope < Struct.new(:user, :scope)
     def resolve

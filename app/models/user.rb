@@ -37,6 +37,8 @@ class User < ApplicationRecord
 
   has_many :customers, dependent: :nullify
   has_many :projects, dependent: :nullify
+  has_many :errands, dependent: :nullify
+  has_many :events, dependent: :nullify
 
   accepts_nested_attributes_for :accessorizations, reject_if: :all_blank, allow_destroy: true
 

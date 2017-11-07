@@ -54,6 +54,7 @@ class ErrandsController < ApplicationController
   # POST /errands.json
   def create
     @errand = Errand.new(errand_params)
+    @errand.user = current_user
     authorize @errand, :create?
     respond_to do |format|
       if @errand.save
@@ -70,10 +71,11 @@ class ErrandsController < ApplicationController
   # PATCH/PUT /errands/1
   # PATCH/PUT /errands/1.json
   def update
+    @errand.user = current_user
     authorize @errand, :update?
     respond_to do |format|
       if @errand.update(errand_params)
-        flash[:success] = t('activerecord.successfull.messages.updated', data: @errand.fullname)
+        flash[:success] = t('activerecord.successfull.messages.updated', data: @errand.fullname) unless @errand.previous_changes.empty?
         format.html { redirect_to @errand }
         format.json { render :show, status: :ok, location: @errand }
       else
@@ -105,6 +107,6 @@ class ErrandsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def errand_params
-      params.require(:errand).permit(:number, :principal, :errand_status_id, :order_date, :adoption_date, :start_date, :end_date, :note)
+      params.require(:errand).permit(:number, :principal, :errand_status_id, :order_date, :adoption_date, :start_date, :end_date, :note, :user_id)
     end
 end

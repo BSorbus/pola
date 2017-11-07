@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171107002234) do
+ActiveRecord::Schema.define(version: 20171107083256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 20171107002234) do
     t.text "note", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.index ["adoption_date"], name: "index_errands_on_adoption_date"
     t.index ["end_date"], name: "index_errands_on_end_date"
     t.index ["errand_status_id"], name: "index_errands_on_errand_status_id"
@@ -96,6 +97,7 @@ ActiveRecord::Schema.define(version: 20171107002234) do
     t.index ["order_date"], name: "index_errands_on_order_date"
     t.index ["principal"], name: "index_errands_on_principal"
     t.index ["start_date"], name: "index_errands_on_start_date"
+    t.index ["user_id"], name: "index_errands_on_user_id"
   end
 
   create_table "event_statuses", force: :cascade do |t|
@@ -125,6 +127,7 @@ ActiveRecord::Schema.define(version: 20171107002234) do
     t.bigint "event_status_id", default: 1
     t.bigint "event_type_id"
     t.bigint "errand_id"
+    t.bigint "user_id"
     t.index ["end_date"], name: "index_events_on_end_date"
     t.index ["errand_id"], name: "index_events_on_errand_id"
     t.index ["event_status_id"], name: "index_events_on_event_status_id"
@@ -132,6 +135,7 @@ ActiveRecord::Schema.define(version: 20171107002234) do
     t.index ["project_id"], name: "index_events_on_project_id"
     t.index ["start_date"], name: "index_events_on_start_date"
     t.index ["title"], name: "index_events_on_title"
+    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "point_files", force: :cascade do |t|
@@ -492,9 +496,11 @@ ActiveRecord::Schema.define(version: 20171107002234) do
   add_foreign_key "comments", "users"
   add_foreign_key "customers", "users"
   add_foreign_key "errands", "errand_statuses"
+  add_foreign_key "errands", "users"
   add_foreign_key "events", "errands"
   add_foreign_key "events", "event_statuses"
   add_foreign_key "events", "event_types"
+  add_foreign_key "events", "users"
   add_foreign_key "point_files", "projects"
   add_foreign_key "projects", "customers"
   add_foreign_key "projects", "project_statuses"

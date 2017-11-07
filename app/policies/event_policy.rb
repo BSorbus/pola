@@ -9,9 +9,9 @@ class EventPolicy < ApplicationPolicy
   def permitted_attributes
     # if policy(:accessorization).create_update_delete?
     if AccessorizationPolicy.new(@user, :accessorization).create_update_delete?
-      [:title, :all_day, :start_date, :end_date, :note, :project_id, :event_status_id, :event_type_id, :errand_id, accessorizations_attributes: [:id, :event_id, :user_id, :role_id, :_destroy]]
+      [:title, :all_day, :start_date, :end_date, :note, :project_id, :event_status_id, :event_type_id, :errand_id, :user_id, accessorizations_attributes: [:id, :event_id, :user_id, :role_id, :_destroy]]
     else
-      [:title, :all_day, :start_date, :end_date, :note, :project_id, :event_status_id, :event_type_id, :errand_id]
+      [:title, :all_day, :start_date, :end_date, :note, :project_id, :event_status_id, :event_type_id, :errand_id, :user_id]
     end
   end
 
@@ -75,6 +75,10 @@ class EventPolicy < ApplicationPolicy
   def destroy?
     # user_activities.include? 'event:delete'
     (user_activities.include? 'event:delete') || (event_activities(@model).include? 'event:delete')
+  end
+ 
+  def work?
+    (user_activities.include? 'event:work') || (event_activities(@model).include? 'event:work')
   end
  
   class Scope < Struct.new(:user, :scope)

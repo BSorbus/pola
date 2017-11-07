@@ -86,7 +86,7 @@ class ProjectsController < ApplicationController
     authorize @project, :update?
     respond_to do |format|
       if @project.update(project_params)
-        flash[:success] = t('activerecord.successfull.messages.updated', data: @project.fullname)  unless @project.previous_changes.empty?
+        flash[:success] = t('activerecord.successfull.messages.updated', data: @project.fullname) unless @project.previous_changes.empty?
         format.html { redirect_to @project }
         format.json { render :show, status: :ok, location: @project }
       else
