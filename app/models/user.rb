@@ -125,4 +125,73 @@ class User < ApplicationRecord
     !deleted_at ? super : :deleted_account  
   end  
 
+
+
+
+
+
+
+
+
+
+  # Integration with ActiveJob
+  def send_devise_notification(notification, *args)
+    devise_mailer.send(notification, self, *args).deliver_later
+  end
+
+  # Override Devise::Confirmable#after_confirmation
+  def after_confirmation
+    super
+    Work.create( trackable_id: self.id, trackable_type: 'User', trackable_url: "#{Rails.application.routes.url_helpers.user_path(self)}", action: 'account_confirmation', user_id: self.id, 
+      parameters: {id: self.id, name: self.name, email: self.email}.to_json )
+  end
+
+  # this gets called every time a request fails due to lacking authentication
+  Warden::Manager.before_failure do |env, opts|
+    # parse params
+    # Rack::Request.new(env).params
+
+    # authentication failed:
+    # opts == {:scope=>:user, :recall=>"devise/sessions#new", :action=>"unauthenticated", :attempted_path=>"/users/sign_in"}
+
+    # redirect as a user is required
+    # opts == {:scope=>:user, :action=>"unauthenticated", :attempted_path=>"/"}
+    # 'trigger sign in failed' if opts.has_key?(:recall)
+
+      my_hash = opts
+      my_hash[:REMOTE_ADDR] = env["REMOTE_ADDR"]
+      my_hash[:REQUEST_URI] = env["REQUEST_URI"]
+      #my_hash["rack.session"] = env["rack.session"] # za dużo danych
+
+      # usuwa "password" z hasha
+      my_hash["rack.request.form_hash"] = Hash[env["rack.request.form_hash"].map {|k,v| [k,(v.respond_to?(:except)?v.except("password"):v)] }] if env["rack.request.form_hash"].present?
+      # get a flash notice! 
+      my_hash["flash"] = deep_find(:flash, env["rack.session"], found=nil) 
+
+      Work.create( action: 'unauthenticated', user_id: nil, parameters: my_hash.to_json ) if opts.has_key?(:recall)
+  end
+
+
+  #Warden::Manager.after_failed_fetch do |user, auth, opts|
+  #  #your custom code
+  #    puts "##########################################################"
+  #    puts "# Warden::Manager.after_failed_fetch "
+  #    puts user
+  #    puts auth
+  #    puts opts
+  #    puts "##########################################################"
+  #  #'trigger user request'
+  #end
+
+
+  def self.deep_find(key, object=self, found=nil)
+    if object.respond_to?(:key?) && object.key?(key)
+      return object[key]
+    elsif object.is_a? Enumerable
+      object.find { |*a| found = deep_find(key, a.last) }
+      return found
+    end
+  end
+
+
 end

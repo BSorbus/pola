@@ -510,7 +510,6 @@ ActiveRecord::Schema.define(version: 20171107083256) do
   add_foreign_key "ratings", "users"
   add_foreign_key "roles_users", "roles"
   add_foreign_key "roles_users", "users"
-  add_foreign_key "works", "users"
   add_foreign_key "ww_points", "point_files"
   add_foreign_key "xml_kamien_milowy_tables", "xml_zadanie_tables"
   add_foreign_key "xml_miejsce_realizacji_tables", "xml_partner_tables"
