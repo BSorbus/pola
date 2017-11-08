@@ -75,7 +75,7 @@ class ErrandsController < ApplicationController
     authorize @errand, :update?
     respond_to do |format|
       if @errand.update(errand_params)
-        flash[:success] = t('activerecord.successfull.messages.updated', data: @errand.fullname) unless @errand.previous_changes.empty?
+        flash[:success] = t('activerecord.successfull.messages.updated', data: @errand.fullname) if @errand.saved_changes?
         format.html { redirect_to @errand }
         format.json { render :show, status: :ok, location: @errand }
       else

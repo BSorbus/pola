@@ -1,7 +1,7 @@
 class Accessorization < ApplicationRecord
 
   # relations
-  belongs_to :event
+  belongs_to :event, touch: true
   belongs_to :user
   belongs_to :role #, -> { only_not_special }
 

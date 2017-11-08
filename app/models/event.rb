@@ -32,15 +32,13 @@ class Event < ApplicationRecord
 
   # callbacks
   before_create { self.title = "#{title} - #{self.project.number}" }
-  #after_commit :send_notification, on: [:create, :update]
+  after_commit :send_notification, on: [:create, :update]
   before_destroy :has_important_links, prepend: true
   
-  after_create_commit { self.log_work('create') }
-  after_update_commit { self.log_work('update') }
+  after_create_commit { self.log_work_without_check_changed('create') }
 
 
-  def log_work(type)
-    #return if previous_changes.empty?
+  def log_work_without_check_changed(type)
     self.works.create!(trackable_url: "#{url_helpers.event_path(self)}", action: "#{type}", user: self.user, 
       parameters: self.to_json(except: [:user_id, :project_id, :event_status_id, :event_type_id, :errand_id], 
         include: {project: {only: [:id, :number]}, 
@@ -63,7 +61,7 @@ class Event < ApplicationRecord
   end
 
   def send_notification
-    StatusMailer.new_update_event_email(self).deliver_later if self.accesses_users.any?
+    #StatusMailer.new_update_event_email(self).deliver_later if self.accesses_users.any?
   end
 
 

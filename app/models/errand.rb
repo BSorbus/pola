@@ -30,7 +30,7 @@ class Errand < ApplicationRecord
 
 
   def log_work(type)
-    return if previous_changes.empty?
+    return unless saved_changes?
     self.works.create!(trackable_url: "#{url_helpers.errand_path(self)}", action: "#{type}", user: self.user, 
       parameters: self.to_json(except: [:errand_status_id], include: {errand_status: {only: [:id, :name]}}))
   end

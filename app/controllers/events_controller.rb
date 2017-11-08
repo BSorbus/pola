@@ -75,10 +75,14 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1.json
   def update
     @event.user = current_user
+    accessorizations_marked_any = is_any_accessorizations_marked_destroy?(params[:event][:accessorizations_attributes])
     authorize @event, :update?
     respond_to do |format|
       if @event.update(event_params)
-        flash[:success] = t('activerecord.successfull.messages.updated', data: @event.fullname) #unless @event.previous_changes.empty? && (@event.accessorizations.map {|a| a.previous_changes}).empty? #if @event.saved_changes? 
+        if @event.saved_changes? || @event.accessorizations.map {|a| a.saved_changes?}.flatten.include?(true) || accessorizations_marked_any
+          flash[:success] = t('activerecord.successfull.messages.updated', data: @event.fullname)
+          @event.log_work_without_check_changed('update')
+        end
         format.html { redirect_to @event }
         format.json { render :show, status: :ok, location: @event }
       else
@@ -113,6 +117,14 @@ class EventsController < ApplicationController
     def event_params
       # params.require(:event).permit(:title, :all_day, :start_date, :end_date, :note, :project_id, :event_status_id, :event_type_id, accessorizations_attributes: [:id, :event_id, :user_id, :role_id, :_destroy])
       params.require(:event).permit(policy(:event).permitted_attributes)
+    end
+
+    def is_any_accessorizations_marked_destroy?(accessorizations_params)
+      is_marked = false
+      accessorizations_params.keys.each do |k|
+        is_marked = true if accessorizations_params["#{k}"][:"_destroy"] == "1" || accessorizations_params["#{k}"][:"_destroy"] == "true"
+      end if accessorizations_params.present?
+      is_marked
     end
 
 end
