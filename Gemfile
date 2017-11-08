@@ -82,4 +82,5 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.14.30'
 gem 'chartkick'
 gem 'groupdate'
 
+gem 'rack-cors', :require => 'rack/cors'
 gem 'mina'
