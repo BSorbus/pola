@@ -75,11 +75,10 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1.json
   def update
     @event.user = current_user
-    accessorizations_marked_any = is_any_accessorizations_marked_destroy?(params[:event][:accessorizations_attributes])
     authorize @event, :update?
     respond_to do |format|
       if @event.update(event_params)
-        if @event.saved_changes? || @event.accessorizations.map {|a| a.saved_changes?}.flatten.include?(true) || accessorizations_marked_any
+        if event_or_any_accessorization_changed? 
           flash[:success] = t('activerecord.successfull.messages.updated', data: @event.fullname)
           @event.log_work_without_check_changed('update')
         end
@@ -119,12 +118,16 @@ class EventsController < ApplicationController
       params.require(:event).permit(policy(:event).permitted_attributes)
     end
 
-    def is_any_accessorizations_marked_destroy?(accessorizations_params)
-      is_marked = false
-      accessorizations_params.keys.each do |k|
-        is_marked = true if accessorizations_params["#{k}"][:"_destroy"] == "1" || accessorizations_params["#{k}"][:"_destroy"] == "true"
-      end if accessorizations_params.present?
-      is_marked
+    def accessorization_changed_any?
+      @event.accessorizations.map {|a| a.saved_changes?}.flatten.include?(true)
+    end
+
+    def accessorization_marked_destroy_any?
+      event_params.to_h[:accessorizations_attributes].map {|a| a[1][:_destroy] }.include?("1")
+    end
+
+    def event_or_any_accessorization_changed?
+      @event.saved_changes? || accessorization_changed_any? || accessorization_marked_destroy_any?
     end
 
 end
