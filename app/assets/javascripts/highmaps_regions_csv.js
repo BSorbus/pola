@@ -5,15 +5,15 @@ $(document).ready(function() {
 //                       ['PL.LB', 3],
 //                       ['PL.LD', 4],
 //                       ['PL.LU', 5],
-//                       ['PL.MA', 6],
-//                       ['PL.MZ', 7],
+//                       ['PL.MA', 6],  "kod_TERYT":"12"
+//                       ['PL.MZ', 7], 
 //                       ['PL.OP', 8],
 //                       ['PL.PD', 9],
 //                       ['PL.PK', 10],
 //                       ['PL.PM', 11],
 //                       ['PL.SK', 12],
 //                       ['PL.SL', 13],
-//                       ['PL.WN', 14],
+//                       ['PL.WN', 14], "kod_TERYT":"28"
 //                       ['PL.WP', 15],
 //                       ['PL.ZP', 16]]
 
@@ -38,7 +38,8 @@ $(document).ready(function() {
 });
 
 function paintRegionsCsv (visualization_data) {
-  $.getJSON('/pl-all.geo.json', function (geojson) {
+  //$.getJSON('/pl-all.geo.json', function (geojson) {
+  $.getJSON('/wojewodztwa.geo.json', function (geojson) {
 
     // Initiate the chart
     Highcharts.mapChart('regions_csv_div', {

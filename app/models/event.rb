@@ -35,10 +35,11 @@ class Event < ApplicationRecord
   after_commit :send_notification, on: [:create, :update]
   before_destroy :has_important_links, prepend: true
   
-  after_create_commit { self.log_work_without_check_changed('create') }
+  after_create_commit { self.log_work('create') }
+  after_update_commit { self.log_work('update') }
 
 
-  def log_work_without_check_changed(type)
+  def log_work(type)
     self.works.create!(trackable_url: "#{url_helpers.event_path(self)}", action: "#{type}", user: self.user, 
       parameters: self.to_json(except: [:user_id, :project_id, :event_status_id, :event_type_id, :errand_id], 
         include: {project: {only: [:id, :number]}, 

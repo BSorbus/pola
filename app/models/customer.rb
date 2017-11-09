@@ -35,7 +35,6 @@ class Customer < ApplicationRecord
   end
 
   def log_work(type)
-    return unless saved_changes?
     self.works.create!(trackable_url: "#{url_helpers.customer_path(self)}", action: "#{type}", user: self.user, 
       parameters: self.to_json(except: [:user_id], include: {user: {only: [:id, :name, :email]}}))
   end

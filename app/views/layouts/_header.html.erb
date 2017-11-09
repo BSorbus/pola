@@ -16,33 +16,35 @@
 
         <ul class="nav navbar-nav navbar-left">
           <% if user_signed_in? %>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%=t "pages.charts" %> <span class="caret"></span></a>
+            <% if policy(:errand).index? || policy(:event).index? || policy(:project).index? %>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%=t "pages.charts" %> <span class="caret"></span></a>
 
-              <ul class="dropdown-menu">
-                <% if policy(:errand).index? %>
-                  <li><%= link_to show_charts_errands_path do %>
-                    <span class="glyphicon glyphicon-signal"></span>&nbsp;<%=t "pages.errand.index.title" %>
-                    <% end %>
-                  </li>
-                <% end %>
+                <ul class="dropdown-menu">
+                  <% if policy(:errand).index? %>
+                    <li><%= link_to show_charts_errands_path do %>
+                      <span class="glyphicon glyphicon-signal"></span>&nbsp;<%=t "pages.errand.index.title" %>
+                      <% end %>
+                    </li>
+                  <% end %>
 
-                <% if policy(:event).index? %>
-                  <li><%= link_to show_charts_events_path do %>
-                    <span class="glyphicon glyphicon-signal"></span>&nbsp;<%=t "pages.event.index.title" %>
-                    <% end %>
-                  </li>
-                <% end %>
+                  <% if policy(:event).index? %>
+                    <li><%= link_to show_charts_events_path do %>
+                      <span class="glyphicon glyphicon-signal"></span>&nbsp;<%=t "pages.event.index.title" %>
+                      <% end %>
+                    </li>
+                  <% end %>
 
-                <% if policy(:project).index? %>
-                  <li><%= link_to show_charts_projects_path do %>
-                    <span class="glyphicon glyphicon-signal"></span>&nbsp;<%=t "pages.project.index.title" %>
-                    <% end %>
-                  </li>
-                <% end %>
+                  <% if policy(:project).index? %>
+                    <li><%= link_to show_charts_projects_path do %>
+                      <span class="glyphicon glyphicon-signal"></span>&nbsp;<%=t "pages.project.index.title" %>
+                      <% end %>
+                    </li>
+                  <% end %>
 
-              </ul>
-            </li>
+                </ul>
+              </li>
+            <% end %>
 
             <% if policy(:errand).index? %>
               <li><%= link_to errands_path do %>

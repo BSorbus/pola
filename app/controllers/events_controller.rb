@@ -78,10 +78,7 @@ class EventsController < ApplicationController
     authorize @event, :update?
     respond_to do |format|
       if @event.update(event_params)
-        if event_or_any_accessorization_changed? 
-          flash[:success] = t('activerecord.successfull.messages.updated', data: @event.fullname)
-          @event.log_work_without_check_changed('update')
-        end
+        flash[:success] = t('activerecord.successfull.messages.updated', data: @event.fullname)
         format.html { redirect_to @event }
         format.json { render :show, status: :ok, location: @event }
       else
@@ -116,18 +113,6 @@ class EventsController < ApplicationController
     def event_params
       # params.require(:event).permit(:title, :all_day, :start_date, :end_date, :note, :project_id, :event_status_id, :event_type_id, accessorizations_attributes: [:id, :event_id, :user_id, :role_id, :_destroy])
       params.require(:event).permit(policy(:event).permitted_attributes)
-    end
-
-    def accessorization_changed_any?
-      @event.accessorizations.map {|a| a.saved_changes?}.flatten.include?(true)
-    end
-
-    def accessorization_marked_destroy_any?
-      event_params.to_h[:accessorizations_attributes].map {|a| a[1][:_destroy] }.include?("1")
-    end
-
-    def event_or_any_accessorization_changed?
-      @event.saved_changes? || accessorization_changed_any? || accessorization_marked_destroy_any?
     end
 
 end

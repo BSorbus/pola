@@ -47,7 +47,6 @@ class Project < ApplicationRecord
   end
 
   def log_work(type)
-    return unless saved_changes?
     self.works.create!(trackable_url: "#{url_helpers.project_path(self)}", action: "#{type}", user: self.user, 
       parameters: self.to_json(except: [:user_id, :customer_id, :project_status_id], include: {project_status: {only: [:id, :name]}, customer: {only: [:id, :name]}, user: {only: [:id, :name, :email]}}))
   end
