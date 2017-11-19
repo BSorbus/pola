@@ -46,8 +46,10 @@ class Project < ApplicationRecord
     throw :abort unless analize_value 
   end
 
-  def log_work(type)
-    self.works.create!(trackable_url: "#{url_helpers.project_path(self)}", action: "#{type}", user: self.user, 
+  def log_work(action = '', action_user_id = nil)
+    trackable_url = (action == 'destroy') ? nil : "#{url_helpers.project_path(self)}"
+    worker_id = action_user_id || self.user_id
+    Work.create!(trackable_type: 'Project', trackable_id: self.id, trackable_url: trackable_url, action: "#{action}", user_id: worker_id, 
       parameters: self.to_json(except: [:user_id, :customer_id, :project_status_id], include: {project_status: {only: [:id, :name]}, customer: {only: [:id, :name]}, user: {only: [:id, :name, :email]}}))
   end
 

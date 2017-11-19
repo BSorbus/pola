@@ -109,6 +109,7 @@ class ProjectsController < ApplicationController
     authorize @project, :destroy?
     if @project.destroy
       flash[:success] = t('activerecord.successfull.messages.destroyed', data: @project.fullname)
+      @project.log_work('destroy', current_user.id)
       redirect_to projects_url
     else 
       flash.now[:error] = t('activerecord.errors.messages.destroyed', data: @project.fullname)

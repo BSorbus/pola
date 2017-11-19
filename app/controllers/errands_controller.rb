@@ -91,6 +91,7 @@ class ErrandsController < ApplicationController
     authorize @errand, :destroy?
     if @errand.destroy
       flash[:success] = t('activerecord.successfull.messages.destroyed', data: @errand.fullname)
+      @errand.log_work('destroy', current_user.id)
       redirect_to errands_url
     else 
       flash.now[:error] = t('activerecord.errors.messages.destroyed', data: @errand.fullname)

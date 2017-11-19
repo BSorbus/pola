@@ -39,7 +39,7 @@ $(document).ready(function() {
 
 function paintRegionsCsv (visualization_data) {
   //$.getJSON('/pl-all.geo.json', function (geojson) {
-  $.getJSON('/wojewodztwa.geo.json', function (geojson) {
+  $.getJSON('/gminy.geo.json', function (geojson) {
 
     // Initiate the chart
     Highcharts.mapChart('regions_csv_div', {

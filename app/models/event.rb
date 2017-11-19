@@ -39,8 +39,10 @@ class Event < ApplicationRecord
   after_update_commit { self.log_work('update') }
 
 
-  def log_work(type)
-    self.works.create!(trackable_url: "#{url_helpers.event_path(self)}", action: "#{type}", user: self.user, 
+  def log_work(action = '', action_user_id = nil)
+    trackable_url = (action == 'destroy') ? nil : "#{url_helpers.event_path(self)}"
+    worker_id = action_user_id || self.user_id
+    Work.create!(trackable_type: 'Event', trackable_id: self.id, trackable_url: trackable_url, action: "#{action}", user_id: worker_id, 
       parameters: self.to_json(except: [:user_id, :project_id, :event_status_id, :event_type_id, :errand_id], 
         include: {project: {only: [:id, :number]}, 
                   event_status: {only: [:id, :name]}, 

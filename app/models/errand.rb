@@ -29,9 +29,11 @@ class Errand < ApplicationRecord
   after_update_commit { self.log_work('update') }
 
 
-  def log_work(type)
-    self.works.create!(trackable_url: "#{url_helpers.errand_path(self)}", action: "#{type}", user: self.user, 
-      parameters: self.to_json(except: [:errand_status_id], include: {errand_status: {only: [:id, :name]}}))
+  def log_work(action = '', action_user_id = nil)
+    trackable_url = (action == 'destroy') ? nil : "#{url_helpers.errand_path(self)}"
+    worker_id = action_user_id || self.user_id
+    Work.create!(trackable_type: 'Errand', trackable_id: self.id, trackable_url: trackable_url, action: "#{action}", user_id: worker_id, 
+      parameters: self.to_json(except: [:errand_status_id, :user_id], include: {errand_status: {only: [:id, :name]}, user: {only: [:id, :name, :email]}}))
   end
 
   def all_date_correct

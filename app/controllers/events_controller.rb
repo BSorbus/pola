@@ -94,6 +94,7 @@ class EventsController < ApplicationController
     authorize @event, :destroy?
     if @event.destroy
       flash[:success] = t('activerecord.successfull.messages.destroyed', data: @event.fullname)
+      @event.log_work('destroy', current_user.id)
       redirect_to events_url
     else 
       flash.now[:error] = t('activerecord.errors.messages.destroyed', data: @event.fullname)

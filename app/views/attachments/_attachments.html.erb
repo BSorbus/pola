@@ -10,7 +10,7 @@
     </thead>
 
     <tbody>
-      <% attachmenable.attachments.each do |attachment| %>
+      <% attachmenable.attachments.order(id: :desc).each do |attachment| %>
         <tr>
           <td>
             <!--"Show" as download-->
