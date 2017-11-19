@@ -51,7 +51,7 @@ class AttachmentsController < ApplicationController
     attachment_authorize(@attachment, "destroy", @attachment.attachmenable_type.singularize.downcase)    
     if @attachment.destroy
       flash[:success] = t('activerecord.successfull.messages.destroyed', data: @attachment.fullname)
-      #@attachment.log_work('destroy', current_user.id)
+      @attachment.log_work('destroy_attachment', current_user.id)
       redirect_to @attachment.attachmenable
     else 
       flash.now[:error] = t('activerecord.errors.messages.destroyed', data: @attachment.fullname)

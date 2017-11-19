@@ -17,13 +17,13 @@ class Comment < ApplicationRecord
   # callbacks
   after_commit :send_notification, on: :create
 
-  after_create_commit { self.log_work('create') }
+  after_create_commit { self.log_work('create_comment') }
 
 
   def log_work(action = '', action_user_id = nil)
-    trackable_url = (action == 'destroy') ? nil : "#{url_helpers.event_path(self.event)}"
+    trackable_url = "#{url_helpers.event_path(self.event)}"
     worker_id = action_user_id || self.user_id
-    Work.create!(trackable_type: 'Comment', trackable_id: self.id, trackable_url: trackable_url, action: "#{action}", user_id: worker_id, 
+    Work.create!(trackable_type: 'Event', trackable_id: self.event.id, trackable_url: trackable_url, action: "#{action}", user_id: worker_id, 
       parameters: self.to_json(except: [:event_id, :user_id], include: {event: {only: [:id, :title]}, user: {only: [:id, :name, :email]}}))
   end
 

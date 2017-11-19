@@ -62,7 +62,7 @@ class Events::CommentsController < ApplicationController
     if @comment.destroy
       flash[:success] = t('activerecord.successfull.messages.destroyed', data: @comment.fullname)
       #redirect_to event_path(@event)
-      @comment.log_work('destroy', current_user.id)
+      @comment.log_work('destroy_comment', current_user.id)
       redirect_to request.referer
     else 
       flash.now[:error] = t('activerecord.errors.messages.destroyed', data: @comment.fullname)

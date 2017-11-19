@@ -74,7 +74,7 @@ class Events::RatingsController < ApplicationController
     authorize @rating, :destroy?
     if @rating.destroy
       flash[:success] = t('activerecord.successfull.messages.destroyed', data: @rating.fullname)
-      @rating.log_work('destroy', current_user.id)
+      @rating.log_work('destroy_rating', current_user.id)
       redirect_to event_path(@event)
     else 
       flash.now[:error] = t('activerecord.errors.messages.destroyed', data: @rating.fullname)

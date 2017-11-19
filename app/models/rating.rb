@@ -13,6 +13,16 @@ class Rating < ApplicationRecord
   validates :sec33_rate, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 200 } 
                       
 
+  after_create_commit { self.log_work('create_rating') }
+  after_update_commit { self.log_work('update_rating') }
+
+  def log_work(action = '', action_user_id = nil)
+    trackable_url = "#{url_helpers.event_path(self.event)}"
+    worker_id = action_user_id || self.user_id
+    Work.create!(trackable_type: 'Event', trackable_id: self.event.id, trackable_url: trackable_url, action: "#{action}", user_id: worker_id, 
+      parameters: self.to_json(except: [:event_id, :user_id], include: {event: {only: [:id, :title]}, user: {only: [:id, :name, :email]}}))
+  end
+
   def fullname
     "[dotyczy zadania: #{self.event.fullname}, projekt: #{self.event.project.fullname}]"
   end
