@@ -86,7 +86,7 @@ class ProjectsController < ApplicationController
     authorize @project, :update?
     respond_to do |format|
       if @project.update(project_params)
-        flash[:success] = t('activerecord.successfull.messages.updated', data: @project.fullname) if @project.saved_changes?
+        flash[:success] = t('activerecord.successfull.messages.updated', data: @project.fullname)
         format.html { redirect_to @project }
         format.json { render :show, status: :ok, location: @project }
       else
@@ -126,7 +126,7 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:number, :registration, :note, :project_status_id, :customer_id, :users_id)
+      params.require(:project).permit(:number, :registration, :note, :project_status_id, :enrollment_id, :customer_id, :users_id)
     end
 
 end

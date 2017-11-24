@@ -38,6 +38,7 @@ pl:
       user: 'Użytkownik'
       role: 'Rola'
       accessorization: 'Uprawnienia'
+      enrollment: 'Nabór'
       project: 'Projekt'
       project_status: 'Status Projektu'
       customer: 'Wnioskodawca'
@@ -93,6 +94,11 @@ pl:
         event_id: 'Zadanie'
         user_id: 'Użytkownik'
         role_id: 'Rola'
+      enrollment:
+        name: 'Nazwa'
+        note: 'Uwagi'
+        user_id: 'Użytkownik'
+        user: 'Użytkownik'
       project:
         number: 'Numer'
         registration: 'Rejestracja'
@@ -100,6 +106,8 @@ pl:
         project_status_id: 'Status'
         customer_id: 'Wnioskodawca'
         customer: 'Wnioskodawca'
+        enrollment_id: 'Nabór'
+        enrollment: 'Nabór'
         flat_assigned_events: 'Zadania'
       project_status:
         name: 'Nazwa'
@@ -315,6 +323,15 @@ pl:
         title: 'Nowa Rola'
       edit:
         title: 'Edycja -> Rola'
+    enrollment:
+      index:
+        title: 'Nabory'
+      show:
+        title: 'Nabór'
+      new:
+        title: 'Nowy Nabór'
+      edit:
+        title: 'Edycja -> Nabór'
     project:
       index:
         title: 'Projekty'
@@ -489,6 +506,10 @@ pl:
       event_show?: ' BRAK UPRAWNIEŃ: Nie możesz pobierać załączników do zadania!'
       event_create?: ' BRAK UPRAWNIEŃ: Nie możesz zapisywać załączników do zadania!'
       event_destroy?: ' BRAK UPRAWNIEŃ: Nie możesz usuwać załączników do zadania!'
+      enrollment_index?: ' BRAK UPRAWNIEŃ: Nie możesz wyświetlać listy załączników do naboru!'
+      enrollment_show?: ' BRAK UPRAWNIEŃ: Nie możesz pobierać załączników do naboru!'
+      enrollment_create?: ' BRAK UPRAWNIEŃ: Nie możesz zapisywać załączników do naboru!'
+      enrollment_destroy?: ' BRAK UPRAWNIEŃ: Nie możesz usuwać załączników do naboru!'
     errand_policy:
       index?: ' BRAK UPRAWNIEŃ: Nie możesz wyświetlać listy zleceń!'
       show?: ' BRAK UPRAWNIEŃ: Nie możesz wyświetlać zlecenia!'

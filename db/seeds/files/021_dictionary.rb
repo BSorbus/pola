@@ -2,6 +2,14 @@ puts "##### #####  RUN - dictionary.rb  ##### #####"
 puts " "
 
 
+enrollment = Enrollment.find_or_create_by!(name: "I Nabór-2016", note: "", user_id: 1)
+puts 'find_or_create ENROLLMENT: ' << enrollment.name
+
+enrollment = Enrollment.find_or_create_by!(name: "II Nabór-2017", note: "", user_id: 1)
+puts 'find_or_create ENROLLMENT: ' << enrollment.name
+
+puts " "
+
 
 project_status = ProjectStatus.find_or_create_by!(name: "Zarejestrowany")
 puts 'find_or_create PROJECT_STATUS: ' << project_status.name

@@ -1,10 +1,10 @@
 class Customer < ApplicationRecord
   delegate :url_helpers, to: 'Rails.application.routes'
 
+  include ActionView::Helpers::TextHelper
+
   # relations
   has_many :projects, dependent: :destroy
-
-
   belongs_to :user
   has_many :works, as: :trackable
 
@@ -34,6 +34,13 @@ class Customer < ApplicationRecord
     throw :abort unless analize_value 
   end
 
+  ##
+  # Method for save data into log (works table)
+  # * parameters   :
+  #   * +action+ -> action name. 
+  #   Ex.: "upload", "create"
+  #   * +action_user_id+ -> if null then method get self.user_id. 
+  #
   def log_work(action = '', action_user_id = nil)
     trackable_url = (action == 'destroy') ? nil : "#{url_helpers.customer_path(self)}"
     worker_id = action_user_id || self.user_id
@@ -54,7 +61,12 @@ class Customer < ApplicationRecord
     "<a href=#{url_helpers.customer_path(self)}>#{self.name}</a>".html_safe
   end
 
+  def name_as_link_truncate
+    "<a href=#{url_helpers.customer_path(self)}>#{truncate(self.name, length: 100)}</a>".html_safe
+  end
 
+
+  ##
   # Scope for select2: "customer_select"
   # * parameters   :
   #   * +query_str+ -> string for search. 
@@ -64,6 +76,7 @@ class Customer < ApplicationRecord
   #
   scope :finder_customer, ->(q) { where( create_sql_string("#{q}") ) }
 
+  ##
   # Method create SQL query string for finder select2: "customer_select"
   # * parameters   :
   #   * +query_str+ -> string for search. 
@@ -76,6 +89,7 @@ class Customer < ApplicationRecord
     query_str.split.map { |par| one_param_sql(par) }.join(" AND ")
   end
 
+  ##
   # Method for glue parameters in create_sql_string
   # * parameters   :
   #   * +one_query_word+ -> word for search. 

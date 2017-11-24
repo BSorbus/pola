@@ -46,6 +46,13 @@
               </li>
             <% end %>
 
+            <% if policy(:enrollment).index? %>
+              <li><%= link_to enrollments_path do %>
+                <span class="glyphicon glyphicon-briefcase"></span>&nbsp;<%=t "pages.enrollment.index.title" %>
+                <% end %>
+              </li>
+            <% end %>
+
             <% if policy(:errand).index? %>
               <li><%= link_to errands_path do %>
                 <span class="glyphicon glyphicon-tasks"></span>&nbsp;<%=t "pages.errand.index.title" %>

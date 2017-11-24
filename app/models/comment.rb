@@ -6,9 +6,7 @@ class Comment < ApplicationRecord
   # relations
   belongs_to :event
   belongs_to :user
-
   has_many :works, as: :trackable
-
 
   # validates
   validates :body, presence: true,
@@ -16,7 +14,6 @@ class Comment < ApplicationRecord
 
   # callbacks
   after_commit :send_notification, on: :create
-
   after_create_commit { self.log_work('create_comment') }
 
 

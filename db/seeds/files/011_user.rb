@@ -1,34 +1,41 @@
 puts "##### #####  RUN - user.rb  ##### #####"
 puts " "
 
-# # Simple User 1
-# user = CreateAdminService.new.call_simple('klaudia.markwat@uke.gov.pl', 'Klaudia Markwat', '1qazXSW@', '')
-# puts 'CREATED SIMPLE USER: ' << user.email
+require 'csv'
 
-# # Simple User 2
-# user = CreateAdminService.new.call_simple('pawel.dabrowski@uke.gov.pl', 'Paweł Dąbrowski', '1qazXSW@', '')
-# puts 'CREATED SIMPLE USER: ' << user.email
+File.open(File.join("db/seeds/files/log", 'user.log'), 'a+') do |f|
+  f.puts "##### #####  011_user.rb  ##### #####"
+  f.puts "User.all: #{User.all.size}"
+  f.puts "... load from db/seeds/files/user.csv... start..."
+end 
+puts "Users all: #{User.all.size}"
 
-# # Simple User 3
-# user = CreateAdminService.new.call_simple('mariusz.krupa@uke.gov.pl', 'Mariusz Krupa', '1qazXSW@', '')
-# puts 'CREATED SIMPLE USER: ' << user.email
 
-# # Simple User 4
-# user = CreateAdminService.new.call_simple('radoslaw.michalek@uke.gov.pl', 'Radosław Michałek', '1qazXSW@', '')
-# puts 'CREATED SIMPLE USER: ' << user.email
+#######################################################################
 
-# # Simple User 5
-# user = CreateAdminService.new.call_simple('piotr.majewski@uke.gov.pl', 'Piotr Majewski', '1qazXSW@', '')
-# puts 'CREATED SIMPLE USER: ' << user.email
+CSV.foreach("db/seeds/files/users.csv", {encoding: "WINDOWS-1250:UTF-8", 
+                                            headers: true, 
+                                            header_converters: :symbol, 
+                                            col_sep: ';'}) do |row|
 
-# # Simple User 6
-# user = CreateAdminService.new.call_simple('bogdan.jarzab@uke.gov.pl', 'Bogdan Jarząb', '1qazXSW@', 'Tel. 601-333-456')
-# puts 'CREATED SIMPLE USER: ' << user.email
+  user = CreateAdminService.new.call_simple(row[:email].downcase, row[:imie] + ' ' + row[:nazwisko], '1qazXSW@', '')
+  puts 'find_or_create USER: ' << user.email
 
-# # Simple User 7
-# user = CreateAdminService.new.call_simple('andrzej.kaczor@uke.gov.pl', 'Andrzej Kaczor', '1qazXSW@', 'Tel. 668 470 833')
-# puts 'CREATED SIMPLE USER: ' << user.email
+  #zapisz info do pliku
+  File.open(File.join("db/seeds/files/log", 'user.log'), 'a+') do |f|
+    f.puts "USER_ID: #{user.id} - #{user.email} ...load OK"
+    f.puts ""
+  end 
 
+
+end
+#######################################################################
+
+puts "Users all: #{User.all.size}"
+File.open(File.join("db/seeds/files/log", 'user.log'), 'a+') do |f|
+  f.puts "User.all: #{User.all.size}"
+  f.puts "##### #####  END ...load from 011_user.rb  ##### #####"
+end 
 
 puts " "
 puts "##### #####  END - user.rb  ##### #####"

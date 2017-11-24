@@ -99,6 +99,28 @@ class AttachmentPolicy < ApplicationPolicy
   end
  
 
+  # Attachments for showed enrollment 
+  def enrollment_index?
+    # user_activities.include? 'attachment:index'
+    user_activities.include? 'attachment:enrollment_index'
+  end
+
+  def enrollment_show?
+    # user_activities.include? 'attachment:show'
+    user_activities.include? 'attachment:enrollment_show'
+  end
+ 
+  def enrollment_create?
+    # user_activities.include? 'attachment:create'
+    user_activities.include? 'attachment:enrollment_create'
+  end
+
+  def enrollment_destroy?
+    # user_activities.include? 'attachment:delete'
+    user_activities.include? 'attachment:enrollment_delete'
+  end
+ 
+
   # Attachments for showed errand 
   def errand_index?
     # user_activities.include? 'attachment:index'

@@ -22,7 +22,7 @@ class ChartsController < ApplicationController
 
   helper :all
 
-  def errands_by_status
+  def errands_by_statuM
     data_array = []
     ErrandStatus.all.each do |errand_status|
       data_array <<  ["#{errand_status.name}", 

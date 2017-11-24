@@ -38,7 +38,8 @@ $(document).ready(function() {
 });
 
 function paintRegionsXml (visualization_data) {
-  $.getJSON('/pl-all.geo.json', function (geojson) {
+  //$.getJSON('/pl-all.geo.json', function (geojson) {
+  $.getJSON('/wojewodztwa.geo.json', function (geojson) {
 
     // Initiate the chart
     Highcharts.mapChart('regions_xml_div', {

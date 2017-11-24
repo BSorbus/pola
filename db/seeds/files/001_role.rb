@@ -45,6 +45,21 @@ puts 'CREATED ROLE: ' << role.name
 role = CreateRoleService.new.customer_observer
 puts 'CREATED ROLE: ' << role.name
 
+
+role = CreateRoleService.new.enrollment_admin
+puts 'CREATED ROLE: ' << role.name
+
+role = CreateRoleService.new.enrollment_observer
+puts 'CREATED ROLE: ' << role.name
+
+
+role = CreateRoleService.new.enrollment_attachment_admin
+puts 'CREATED ROLE: ' << role.name
+
+role = CreateRoleService.new.enrollment_attachment_observer
+puts 'CREATED ROLE: ' << role.name
+
+
 role = CreateRoleService.new.project_admin
 puts 'CREATED ROLE: ' << role.name
 

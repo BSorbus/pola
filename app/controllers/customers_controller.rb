@@ -70,7 +70,7 @@ class CustomersController < ApplicationController
     authorize @customer, :update?
     respond_to do |format|
       if @customer.update(customer_params)
-        flash[:success] = t('activerecord.successfull.messages.updated', data: @customer.fullname) if @customer.saved_changes?
+        flash[:success] = t('activerecord.successfull.messages.updated', data: @customer.fullname)
         format.html { redirect_to @customer }
         format.json { render :show, status: :ok, location: @customer }
       else

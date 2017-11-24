@@ -38,6 +38,10 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :enrollments do
+    resources :attachments, module: :enrollments, only: [:create]
+  end
+
   resources :roles do
     get 'datatables_index', on: :collection
     get 'datatables_index_user', on: :collection # Displays roles for showed user

@@ -81,6 +81,42 @@ class CreateRoleService
     end
   end
 
+  # enrollments
+  def enrollment_admin
+    role = Role.find_or_create_by!(name: "Administrator Naborów") do |role|
+      role.special = true
+      role.activities += %w(enrollment:index enrollment:show enrollment:create enrollment:update enrollment:delete enrollment:work)
+      role.note = "Rola służy do zarządzania Naborami.\r\n(Przypisz tylko Administratorom systemu oraz Koordynatorom POPC)"
+      role.save!
+    end
+  end
+  def enrollment_observer
+    role = Role.find_or_create_by!(name: "Obserwator Naborów") do |role|
+      role.special = true
+      role.activities += %w(enrollment:index enrollment:show)
+      role.note = "Rola służy do wyświetlania informacji o Naborach.\r\n(Przypisz wszystkim, którzy mogą przeglądać Nabory)"
+      role.save!
+    end
+  end
+
+  # enrollment_attachments
+  def enrollment_attachment_admin
+    role = Role.find_or_create_by!(name: "Administrator Załączników Naboru") do |role|
+      role.special = true
+      role.activities += %w(attachment:enrollment_index attachment:enrollment_show attachment:enrollment_create attachment:enrollment_delete)
+      role.note = "Rola służy do zarządzania załącznikami przypisanymi do Naborów. \r\n (Przypisz tylko Administratorom systemu oraz Koordynatorom POPC)"
+      role.save!
+    end
+  end
+  def enrollment_attachment_observer
+    role = Role.find_or_create_by!(name: "Obserwator Załączników Naboru") do |role|
+      role.special = true
+      role.activities += %w(attachment:enrollment_index attachment:enrollment_show)
+      role.note = "Rola służy do wyświetlania i pobierania załączników przypisanych do Naborów. \r\n (Przypisz wszystkim, którzy mogą przeglądać załączniki do Naborów)"
+      role.save!
+    end
+  end
+
   # projects
   def project_admin
     role = Role.find_or_create_by!(name: "Administrator Projektów") do |role|

@@ -14,10 +14,11 @@
         <tr>
           <th>id</th>
           <th class='col-sm-2'><%= Project.human_attribute_name(:number) %></th>
-          <th class='col-sm-2'><%= Project.human_attribute_name(:project_status_id) %></th>
-          <th class='col-sm-2'><%= Project.human_attribute_name(:note) %></th>
-          <th class='col-sm-2'><%= Project.human_attribute_name(:customer_id) %></th>
-          <th class='col-sm-4'><%= Project.human_attribute_name(:flat_assigned_events) %></th>
+          <th class='col-sm-1'><%= Project.human_attribute_name(:enrollment_id) %></th>
+          <th class='col-sm-1'><%= Project.human_attribute_name(:project_status_id) %></th>
+          <th><%= Project.human_attribute_name(:note) %></th>
+          <th><%= Project.human_attribute_name(:customer_id) %></th>
+          <th><%= Project.human_attribute_name(:flat_assigned_events) %></th>
         </tr>
       </thead>
       <tbody>

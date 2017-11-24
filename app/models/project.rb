@@ -5,6 +5,7 @@ class Project < ApplicationRecord
   include  ActionView::Helpers::SanitizeHelper
 
   # relations
+  belongs_to :enrollment
   belongs_to :project_status
   belongs_to :customer
 
@@ -29,6 +30,7 @@ class Project < ApplicationRecord
                     length: { in: 1..100 },
                     :uniqueness => { :case_sensitive => false }
   validates :customer_id, presence: true
+  validates :enrollment_id, presence: true
 
   # callbacks
   before_destroy :has_important_links, prepend: true
@@ -50,7 +52,11 @@ class Project < ApplicationRecord
     trackable_url = (action == 'destroy') ? nil : "#{url_helpers.project_path(self)}"
     worker_id = action_user_id || self.user_id
     Work.create!(trackable_type: 'Project', trackable_id: self.id, trackable_url: trackable_url, action: "#{action}", user_id: worker_id, 
-      parameters: self.to_json(except: [:user_id, :customer_id, :project_status_id], include: {project_status: {only: [:id, :name]}, customer: {only: [:id, :name]}, user: {only: [:id, :name, :email]}}))
+      parameters: self.to_json(except: [:user_id, :enrollment_id, :customer_id, :project_status_id], 
+        include: {project_status: {only: [:id, :name]}, 
+                  enrollment: {only: [:id, :name]}, 
+                  customer: {only: [:id, :name]}, 
+                  user: {only: [:id, :name, :email]}}))
   end
 
   def fullname

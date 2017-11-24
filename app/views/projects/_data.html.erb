@@ -16,13 +16,18 @@
         </div>
 
         <div class="form-group col-sm-6">
-          <p><strong><%= Project.human_attribute_name(:project_status_id) %></strong></p>
-          <%= @project.project_status.try(:name) %>
+          <p><strong><%= Project.human_attribute_name(:enrollment_id) %></strong></p>
+          <%= @project.enrollment.try(:name) %>
         </div>
 
         <div class="form-group col-sm-6">
           <p><strong><%= Project.human_attribute_name(:registration) %></strong></p>
           <%= @project.try(:registration) %>
+        </div>
+
+        <div class="form-group col-sm-6">
+          <p><strong><%= Project.human_attribute_name(:project_status_id) %></strong></p>
+          <%= @project.project_status.try(:name) %>
         </div>
 
         <div class="form-group col-sm-12">

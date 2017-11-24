@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171117234918) do
+ActiveRecord::Schema.define(version: 20171124090404) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,15 @@ ActiveRecord::Schema.define(version: 20171117234918) do
     t.bigint "user_id"
     t.index ["name"], name: "index_customers_on_name"
     t.index ["user_id"], name: "index_customers_on_user_id"
+  end
+
+  create_table "enrollments", force: :cascade do |t|
+    t.string "name"
+    t.text "note", default: ""
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_enrollments_on_user_id"
   end
 
   create_table "errand_statuses", force: :cascade do |t|
@@ -191,7 +200,9 @@ ActiveRecord::Schema.define(version: 20171117234918) do
     t.bigint "project_status_id", default: 1
     t.bigint "customer_id"
     t.bigint "user_id"
+    t.bigint "enrollment_id"
     t.index ["customer_id"], name: "index_projects_on_customer_id"
+    t.index ["enrollment_id"], name: "index_projects_on_enrollment_id"
     t.index ["number"], name: "index_projects_on_number"
     t.index ["project_status_id"], name: "index_projects_on_project_status_id"
     t.index ["user_id"], name: "index_projects_on_user_id"
@@ -498,6 +509,7 @@ ActiveRecord::Schema.define(version: 20171117234918) do
   add_foreign_key "comments", "events"
   add_foreign_key "comments", "users"
   add_foreign_key "customers", "users"
+  add_foreign_key "enrollments", "users"
   add_foreign_key "errands", "errand_statuses"
   add_foreign_key "errands", "users"
   add_foreign_key "events", "errands"
@@ -506,6 +518,7 @@ ActiveRecord::Schema.define(version: 20171117234918) do
   add_foreign_key "events", "users"
   add_foreign_key "point_files", "projects"
   add_foreign_key "projects", "customers"
+  add_foreign_key "projects", "enrollments"
   add_foreign_key "projects", "project_statuses"
   add_foreign_key "projects", "users"
   add_foreign_key "proposal_files", "projects"

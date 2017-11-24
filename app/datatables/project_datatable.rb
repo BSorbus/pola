@@ -4,24 +4,26 @@ class ProjectDatatable < AjaxDatatablesRails::Base
 
   def view_columns
     @view_columns ||= {
-      id:        { source: "Project.id", cond: :eq, searchable: false, orderable: false },
-      number:    { source: "Project.number", cond: :like, searchable: true, orderable: true },
-      status:    { source: "ProjectStatus.name", cond: :like, searchable: true, orderable: true },
-      note:      { source: "Project.note",  cond: :like, searchable: true, orderable: true },
-      customer:  { source: "Customer.name", cond: :like, searchable: true, orderable: true },
-      flat:      { source: "Project.id", cond: filter_custom_column_condition }
+      id:         { source: "Project.id", cond: :eq, searchable: false, orderable: false },
+      number:     { source: "Project.number", cond: :like, searchable: true, orderable: true },
+      enrollment: { source: "Enrollment.name", cond: :like, searchable: true, orderable: true },
+      status:     { source: "ProjectStatus.name", cond: :like, searchable: true, orderable: true },
+      note:       { source: "Project.note",  cond: :like, searchable: true, orderable: true },
+      customer:   { source: "Customer.name", cond: :like, searchable: true, orderable: true },
+      flat:       { source: "Project.id", cond: filter_custom_column_condition }
     }
   end
 
   def data
     records.map do |record|
       {
-        id:       record.id,
-        number:   link_to(record.number, project_path(record.id)),
-        status:   record.project_status.try(:name),
-        note:     truncate(record.note, length: 50),
-        customer: record.customer.try(:name_as_link),
-        flat:     record.flat_assigned_events_with_status
+        id:         record.id,
+        number:     link_to(record.number, project_path(record.id)),
+        enrollment: record.enrollment.try(:name_as_link),
+        status:     record.project_status.try(:name),
+        note:       truncate(record.note, length: 50),
+        customer:   record.customer.try(:name_as_link_truncate),
+        flat:       record.flat_assigned_events_with_status
       }
     end
   end
@@ -30,7 +32,7 @@ class ProjectDatatable < AjaxDatatablesRails::Base
 
   def get_raw_records
     #Project.joins(:project_status, :customer).all
-    Project.joins(:project_status, :customer).includes(:events).references(:project_status, :customer, :events).all
+    Project.joins(:enrollment, :project_status, :customer).includes(:events).references(:enrollment, :project_status, :customer, :events).all
   end
 
 

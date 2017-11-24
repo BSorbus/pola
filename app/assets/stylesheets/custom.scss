@@ -447,6 +447,23 @@ table.dataTable thead .sorting_asc:after {
   } 
 }
 
+.panel-enrollment {
+  border-color: #ddd;
+  .panel-heading {
+    background: $brand-primary; //#2F4471;
+    color: white;
+  } 
+}
+
+#enrollments-table {
+  thead {
+    background-color: transparent !important;
+  };
+  tbody {
+    background-color: white !important;
+  }
+}
+
 .panel-project {
   border-color: #ddd;
   .panel-heading {
