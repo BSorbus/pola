@@ -80,6 +80,24 @@ puts 'find_or_create EVENT_STATUS: ' << event_status.name
 puts " "
 
 
+event_effect = EventEffect.create!(name: "Bez wyniku")
+puts 'find_or_create EVENT_EFFECT: ' << event_effect.name
+
+event_effect = EventEffect.create!(name: "Negatywny")
+puts 'find_or_create EVENT_EFFECT: ' << event_effect.name
+
+event_effect = EventEffect.create!(name: "Pozytywny")
+puts 'find_or_create EVENT_EFFECT: ' << event_effect.name
+
+event_effect = EventEffect.create!(name: "Pozytywny z uwagami")
+puts 'find_or_create EVENT_EFFECT: ' << event_effect.name
+
+event_effect = EventEffect.create!(name: "Pozytywny&Negatywny")
+puts 'find_or_create EVENT_EFFECT: ' << event_effect.name
+
+puts " "
+
+
 event_type = EventType.find_or_create_by!(name: "Ocena") do |role|
   role.activities += %w(rating:* event:index event:show accessorization:index comment:index comment:show project:index project:show customer:index customer:show attachment:project_index attachment:project_show attachment:event_index attachment:event_show point_file:index point_file:download point_file:show proposal_file:index proposal_file:download proposal_file:show)
   role.save!

@@ -9,9 +9,9 @@ class EventPolicy < ApplicationPolicy
   def permitted_attributes
     # if policy(:accessorization).create_update_delete?
     if AccessorizationPolicy.new(@user, :accessorization).create_update_delete?
-      [:title, :all_day, :start_date, :end_date, :note, :project_id, :event_status_id, :event_type_id, :errand_id, :user_id, accessorizations_attributes: [:id, :event_id, :user_id, :role_id, :_destroy]]
+      [:title, :all_day, :start_date, :end_date, :note, :project_id, :event_status_id, :event_type_id, :event_effect_id, :errand_id, :user_id, accessorizations_attributes: [:id, :event_id, :user_id, :role_id, :_destroy]]
     else
-      [:title, :all_day, :start_date, :end_date, :note, :project_id, :event_status_id, :event_type_id, :errand_id, :user_id]
+      [:title, :all_day, :start_date, :end_date, :note, :project_id, :event_status_id, :event_type_id, :event_effect_id, :errand_id, :user_id]
     end
   end
 

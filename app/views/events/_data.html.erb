@@ -91,6 +91,11 @@
           <%= @event.errand.try(:number_as_link) %>
         </div>
 
+        <div class="form-group col-sm-6">
+          <p><strong><%= Event.human_attribute_name(:event_effect_id) %></strong></p>
+          <%= @event.event_effect.try(:name) %>
+        </div>
+
 
       </div>
 

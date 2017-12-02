@@ -5,6 +5,7 @@ class Event < ApplicationRecord
   belongs_to :project
   belongs_to :event_status
   belongs_to :event_type
+  belongs_to :event_effect, optional: true
   belongs_to :errand
 
   has_many :attachments, as: :attachmenable, dependent: :destroy

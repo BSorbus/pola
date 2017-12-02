@@ -11,6 +11,7 @@ class EventDatatable < AjaxDatatablesRails::Base
       project:   { source: "Project.number",  cond: :like, searchable: true, orderable: true },
       end_date:  { source: "Event.end_date", cond: :like, searchable: true, orderable: true },
       status:    { source: "EventStatus.name", cond: :like, searchable: true, orderable: true },
+      effect:    { source: "EventEffect.name", cond: :like, searchable: true, orderable: true },
       flat:      { source: "Event.id", cond: filter_custom_column_condition }
     }
   end
@@ -25,6 +26,7 @@ class EventDatatable < AjaxDatatablesRails::Base
         project:  record.project.try(:number_as_link),
         end_date: record.end_date.present? ? record.end_date.strftime("%Y-%m-%d %H:%M") : '' ,
         status:   record.event_status.try(:name),
+        effect:   record.event_effect.try(:name),
         flat:     record.flat_assigned_users
       }
     end
@@ -33,7 +35,7 @@ class EventDatatable < AjaxDatatablesRails::Base
   private
 
   def get_raw_records
-    Event.joins(:event_type, :errand, :project, :event_status).references(:event_type, :errand, :project, :event_status).all
+    Event.joins(:event_type, :errand, :project, :event_status).includes(:event_effect).references(:event_type, :errand, :project, :event_status, :event_effect).all
   end
 
 

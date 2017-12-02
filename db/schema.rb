@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171124090404) do
+ActiveRecord::Schema.define(version: 20171202173046) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -111,6 +111,13 @@ ActiveRecord::Schema.define(version: 20171124090404) do
     t.index ["user_id"], name: "index_errands_on_user_id"
   end
 
+  create_table "event_effects", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_event_effects_on_name"
+  end
+
   create_table "event_statuses", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -139,8 +146,10 @@ ActiveRecord::Schema.define(version: 20171124090404) do
     t.bigint "event_type_id"
     t.bigint "errand_id"
     t.bigint "user_id"
+    t.bigint "event_effect_id"
     t.index ["end_date"], name: "index_events_on_end_date"
     t.index ["errand_id"], name: "index_events_on_errand_id"
+    t.index ["event_effect_id"], name: "index_events_on_event_effect_id"
     t.index ["event_status_id"], name: "index_events_on_event_status_id"
     t.index ["event_type_id"], name: "index_events_on_event_type_id"
     t.index ["project_id"], name: "index_events_on_project_id"
