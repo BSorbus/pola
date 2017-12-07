@@ -20,7 +20,6 @@ class Errand < ApplicationRecord
                     length: { in: 1..100 }
   validates :order_date, presence: true
 
-  validate :all_date_correct, on: [:create, :update]
 
   # callbacks
   before_destroy :has_important_links, prepend: true
@@ -35,58 +34,6 @@ class Errand < ApplicationRecord
     Work.create!(trackable_type: 'Errand', trackable_id: self.id, trackable_url: trackable_url, action: "#{action}", user_id: worker_id, 
       parameters: self.to_json(except: [:errand_status_id, :user_id], include: {errand_status: {only: [:id, :name]}, user: {only: [:id, :name, :email]}}))
   end
-
-  def all_date_correct
-    analize_value = true
-    if self.order_date.present? && self.order_date > Time.zone.now.to_date
-     errors.add(:order_date, '- błędna data')
-     analize_value = false
-    end
-
-    if self.adoption_date.present? && self.adoption_date > Time.zone.now.to_date
-     errors.add(:adoption_date, '- błędna data')
-     analize_value = false
-    end
-
-    if self.order_date.present? && self.adoption_date.present? && self.order_date > self.adoption_date
-     errors.add(:adoption_date, '- błędna data. Data przyjęcia zlecenia wcześniejsza od Daty zlecenia')
-     analize_value = false
-    end
-
-    if self.start_date.present? && self.start_date > Time.zone.now.to_date
-     errors.add(:start_date, '- błędna data')
-     analize_value = false
-    end
-
-    if self.start_date.present? && self.end_date.present? && self.start_date > self.end_date
-     errors.add(:end_date, '- błędna data. Data zakończenia wcześniejsza od Daty rozpoczęcia')
-     analize_value = false
-    end
-
-    if self.order_date.present? && self.start_date.present? && self.order_date > self.start_date
-     errors.add(:start_date, '- błędna data. Data rozpoczęcia wcześniejsza od Daty zlecenia')
-     analize_value = false
-    end
-
-    if self.adoption_date.present? && self.start_date.present? && self.adoption_date > self.start_date
-     errors.add(:start_date, '- błędna data. Data rozpoczęcia wcześniejsza od Daty przyjęcia zlecenia')
-     analize_value = false
-    end
-
-    if self.order_date.present? && self.end_date.present? && self.order_date > self.end_date
-     errors.add(:end_date, '- błędna data. Data zakończenia wcześniejsza od Daty zlecenia')
-     analize_value = false
-    end
-
-    if self.adoption_date.present? && self.end_date.present? && self.adoption_date > self.end_date
-     errors.add(:end_date, '- błędna data. Data zakończenia wcześniejsza od Daty przyjęcia zlecenia')
-     analize_value = false
-    end
-
-
-    throw :abort unless analize_value 
-  end
-
 
   def has_important_links
     analize_value = true
