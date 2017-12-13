@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171202173046) do
+ActiveRecord::Schema.define(version: 20171207210303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "postgis"
 
   create_table "accessorizations", force: :cascade do |t|
     t.integer "event_id"
@@ -158,6 +159,23 @@ ActiveRecord::Schema.define(version: 20171202173046) do
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
+  create_table "gmi_tables", force: :cascade do |t|
+    t.integer "year", null: false
+    t.string "teryt", default: "", null: false
+    t.string "name", default: "", null: false
+    t.string "woj", default: "", null: false
+    t.string "pow", default: "", null: false
+    t.geometry "geom", limit: {:srid=>2180, :type=>"multi_polygon"}, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["geom"], name: "index_gmi_tables_on_geom", using: :gist
+    t.index ["name"], name: "index_gmi_tables_on_name"
+    t.index ["pow"], name: "index_gmi_tables_on_pow"
+    t.index ["teryt"], name: "index_gmi_tables_on_teryt"
+    t.index ["woj"], name: "index_gmi_tables_on_woj"
+    t.index ["year"], name: "index_gmi_tables_on_year"
+  end
+
   create_table "point_files", force: :cascade do |t|
     t.bigint "project_id"
     t.datetime "load_date"
@@ -191,6 +209,21 @@ ActiveRecord::Schema.define(version: 20171202173046) do
     t.index ["load_date"], name: "index_point_files_on_load_date"
     t.index ["project_id"], name: "index_point_files_on_project_id"
     t.index ["status"], name: "index_point_files_on_status"
+  end
+
+  create_table "pow_tables", force: :cascade do |t|
+    t.integer "year", null: false
+    t.string "teryt", default: "", null: false
+    t.string "name", default: "", null: false
+    t.string "woj", default: "", null: false
+    t.geometry "geom", limit: {:srid=>2180, :type=>"multi_polygon"}, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["geom"], name: "index_pow_tables_on_geom", using: :gist
+    t.index ["name"], name: "index_pow_tables_on_name"
+    t.index ["teryt"], name: "index_pow_tables_on_teryt"
+    t.index ["woj"], name: "index_pow_tables_on_woj"
+    t.index ["year"], name: "index_pow_tables_on_year"
   end
 
   create_table "project_statuses", force: :cascade do |t|
@@ -311,6 +344,19 @@ ActiveRecord::Schema.define(version: 20171202173046) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
+  end
+
+  create_table "woj_tables", force: :cascade do |t|
+    t.integer "year", null: false
+    t.string "teryt", default: "", null: false
+    t.string "name", default: "", null: false
+    t.geometry "geom", limit: {:srid=>2180, :type=>"multi_polygon"}, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["geom"], name: "index_woj_tables_on_geom", using: :gist
+    t.index ["name"], name: "index_woj_tables_on_name"
+    t.index ["teryt"], name: "index_woj_tables_on_teryt"
+    t.index ["year"], name: "index_woj_tables_on_year"
   end
 
   create_table "works", force: :cascade do |t|
