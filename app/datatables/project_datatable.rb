@@ -31,8 +31,12 @@ class ProjectDatatable < AjaxDatatablesRails::Base
   private
 
   def get_raw_records
-    #Project.joins(:project_status, :customer).all
-    Project.joins(:enrollment, :project_status, :customer).includes(:events).references(:enrollment, :project_status, :customer, :events).all
+    if options[:only_for_current_customer_id].present?
+      Project.joins(:enrollment, :project_status, :customer).includes(:events).references(:enrollment, :project_status, :customer, :events)
+      .where(customer_id: options[:only_for_current_customer_id]).all
+    else 
+      Project.joins(:enrollment, :project_status, :customer).includes(:events).references(:enrollment, :project_status, :customer, :events).all
+    end
   end
 
 

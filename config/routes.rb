@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     get 'send_status', on: :member 
     get 'select2_index', on: :collection
     get 'datatables_index', on: :collection
+    get 'datatables_index_customer', on: :collection # Displays projects for showed customer
     resources :attachments, module: :projects, only: [:create]
     resources :point_files, module: :projects, except: [:index] do
       get 'download', on: :member

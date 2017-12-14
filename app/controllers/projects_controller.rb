@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
-  after_action :verify_authorized, except: [:index, :datatables_index, :show_charts]
+  after_action :verify_authorized, except: [:index, :datatables_index, :datatables_index_customer, :show_charts]
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
 
@@ -18,6 +18,12 @@ class ProjectsController < ApplicationController
     end
     #flash[:success] = t('activerecord.successfull.messages.created', data: @project.fullname)
     redirect_to project, notice: "Email status about \"#{project.number}\" was successfully sent."
+  end
+
+  def datatables_index_customer
+    respond_to do |format|
+      format.json{ render json: ProjectDatatable.new(view_context, { only_for_current_customer_id: params[:customer_id] }) }
+    end
   end
 
   def datatables_index
