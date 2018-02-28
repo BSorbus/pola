@@ -39,12 +39,12 @@ $(document).ready(function() {
       { "data": "ww_15", "width": "40" },
       { "data": "ww_16", "width": "120" }
     ],
-   preDrawCallback: function( settings ) {
-     // jezeli panel nie jest widoczny, to przerwij ładowanie danych
-     if ( $( "#collapse_point_file_ww_points" ).is( ":hidden" ) ) {
-       return false;
-     }
-   },
+    preDrawCallback: function( settings ) {
+      // jezeli panel nie jest widoczny, to przerwij ładowanie danych
+      if ( $( "#collapse_point_file_ww_points" ).is( ":hidden" ) ) {
+        return false;
+      }
+    },
     order: [[ 1, "asc" ]],
     language: {
       url: '<%= asset_path("pl.json.erb") %>'

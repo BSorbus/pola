@@ -68,12 +68,12 @@ $(document).ready(function() {
         "searchable": false,
         "sortable": false }
     ],
-   preDrawCallback: function( settings ) {
-     // jezeli panel nie jest widoczny, to przerwij ładowanie danych
-     if ( $( "#collapse_role_users" ).is( ":hidden" ) ) {
-       return false;
-     }
-   },
+    preDrawCallback: function( settings ) {
+      // jezeli panel nie jest widoczny, to przerwij ładowanie danych
+      if ( $( "#collapse_role_users" ).is( ":hidden" ) ) {
+        return false;
+      }
+    },
     order: [[ 1, "asc" ]],
     language: {
       url: '<%= asset_path("pl.json.erb") %>'

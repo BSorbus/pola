@@ -44,12 +44,12 @@ $(document).ready(function() {
       { "data": "zs_20", "width": "40" },
       { "data": "zs_21", "width": "40" }
     ],
-   preDrawCallback: function( settings ) {
-     // jezeli panel nie jest widoczny, to przerwij ładowanie danych
-     if ( $( "#collapse_point_file_zs_points" ).is( ":hidden" ) ) {
-       return false;
-     }
-   },
+    preDrawCallback: function( settings ) {
+      // jezeli panel nie jest widoczny, to przerwij ładowanie danych
+      if ( $( "#collapse_point_file_zs_points" ).is( ":hidden" ) ) {
+        return false;
+      }
+    },
     order: [[ 1, "asc" ]],
     language: {
       url: '<%= asset_path("pl.json.erb") %>'

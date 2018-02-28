@@ -83,6 +83,7 @@ gem 'chartkick'
 gem 'groupdate'
 
 gem 'activerecord-postgis-adapter'
+gem 'rgeo-geojson'
 
 gem 'rack-cors', :require => 'rack/cors'
 gem 'mina'
