@@ -6,6 +6,9 @@ pl:
       password_format: "musi zawierać wielką i małą literę oraz cyfrę i znak specjalny"
   devise:
     invalid_captcha: "The captcha input is not valid!"
+    invalid_security_question: "The security question answer was invalid."
+    paranoid_verify:
+      code_required: "Please enter the code our support team provided"
     password_expired:
       updated: "Twoje nowe hasło zostało zapisane."
       change_required: "Twoje hasło wygasło. Proszę odnowić hasło!"

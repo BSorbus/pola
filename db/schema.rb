@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171207210303) do
+ActiveRecord::Schema.define(version: 20180313133235) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -176,6 +176,45 @@ ActiveRecord::Schema.define(version: 20171207210303) do
     t.index ["year"], name: "index_gmi_tables_on_year"
   end
 
+  create_table "gminy", primary_key: "gmi_id", id: :serial, force: :cascade do |t|
+    t.integer "gmi_rok", limit: 2, null: false
+    t.text "gmi_teryt", null: false
+    t.text "gmi_nazwa", null: false
+    t.text "gmi_kod_pow", null: false
+    t.text "gmi_kod_woj", null: false
+    t.geometry "geom", limit: {:srid=>2180, :type=>"multi_polygon"}, null: false
+    t.index "lower(gmi_nazwa)", name: "idx_gmi_nazwa"
+    t.index ["geom"], name: "idx_gmi_geo", using: :gist
+    t.index ["gmi_rok", "gmi_teryt"], name: "idx_gmi_rok_teryt"
+  end
+
+  create_table "obszary_popc", primary_key: "obsz_id", id: :serial, force: :cascade do |t|
+    t.text "obsz_konkurs", null: false
+    t.text "obsz_identyfikator_obszaru", null: false
+    t.text "obsz_nazwa_obszaru"
+    t.text "obsz_kod_woj"
+    t.integer "obsz_lb_gd_do_objecia"
+    t.integer "obsz_lb_gd_w_pa_podst"
+    t.integer "obsz_lb_min_lb_gd_do_obj"
+    t.integer "obsz_lb_placowek", limit: 2
+    t.integer "obsz_lb_placowek_a", limit: 2
+    t.integer "obsz_max_dofinansowanie"
+    t.float "obsz_max_intensywnosc"
+    t.text "obsz_zalacznik_http"
+    t.geometry "geom", limit: {:srid=>2180, :type=>"multi_polygon"}, null: false
+    t.index ["geom"], name: "idx_obsz_geo", using: :gist
+    t.index ["obsz_konkurs", "obsz_identyfikator_obszaru"], name: "idx_obsz_konkurs_id_obszaru", unique: true
+  end
+
+  create_table "old_passwords", force: :cascade do |t|
+    t.string "encrypted_password", null: false
+    t.string "password_salt"
+    t.string "password_archivable_type", null: false
+    t.integer "password_archivable_id", null: false
+    t.datetime "created_at"
+    t.index ["password_archivable_type", "password_archivable_id"], name: "index_password_archivable"
+  end
+
   create_table "point_files", force: :cascade do |t|
     t.bigint "project_id"
     t.datetime "load_date"
@@ -224,6 +263,17 @@ ActiveRecord::Schema.define(version: 20171207210303) do
     t.index ["teryt"], name: "index_pow_tables_on_teryt"
     t.index ["woj"], name: "index_pow_tables_on_woj"
     t.index ["year"], name: "index_pow_tables_on_year"
+  end
+
+  create_table "powiaty", primary_key: "pow_id", id: :serial, force: :cascade do |t|
+    t.integer "pow_rok", limit: 2, null: false
+    t.text "pow_teryt", null: false
+    t.text "pow_nazwa", null: false
+    t.text "pow_kod_woj", null: false
+    t.geometry "geom", limit: {:srid=>2180, :type=>"multi_polygon"}, null: false
+    t.index "lower(pow_nazwa)", name: "idx_pow_nazwa"
+    t.index ["geom"], name: "idx_pow_geo", using: :gist
+    t.index ["pow_rok", "pow_teryt"], name: "idx_pow_rok_teryt", unique: true
   end
 
   create_table "project_statuses", force: :cascade do |t|
@@ -340,6 +390,9 @@ ActiveRecord::Schema.define(version: 20171207210303) do
     t.datetime "deleted_at"
     t.string "legitimation"
     t.string "position"
+    t.datetime "last_activity_at"
+    t.datetime "expired_at"
+    t.datetime "password_changed_at"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -357,6 +410,16 @@ ActiveRecord::Schema.define(version: 20171207210303) do
     t.index ["name"], name: "index_woj_tables_on_name"
     t.index ["teryt"], name: "index_woj_tables_on_teryt"
     t.index ["year"], name: "index_woj_tables_on_year"
+  end
+
+  create_table "wojewodztwa", primary_key: "woj_id", id: :serial, force: :cascade do |t|
+    t.integer "woj_rok", limit: 2, null: false
+    t.text "woj_teryt", null: false
+    t.text "woj_nazwa", null: false
+    t.geometry "geom", limit: {:srid=>2180, :type=>"multi_polygon"}, null: false
+    t.index "lower(woj_nazwa)", name: "idx_woj_nazwa"
+    t.index ["geom"], name: "idx_woj_geo", using: :gist
+    t.index ["woj_rok", "woj_teryt"], name: "idx_woj_rok_teryt", unique: true
   end
 
   create_table "works", force: :cascade do |t|

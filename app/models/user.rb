@@ -10,15 +10,19 @@ class User < ApplicationRecord
          :timeoutable, 
          :trackable, 
          :validatable,
-         :lockable
+         :lockable,
+         :password_expirable,
+         :secure_validatable, 
+         :password_archivable, 
+         :expirable
 
   # devise  :database_authenticatable, 
-  #         :lockable,
   #         :recoverable, 
   #         :registerable, 
   #         :timeoutable, 
   #         :trackable, 
   #         :validatable,
+  #         :lockable,
   #           :password_expirable,
   #           :secure_validatable, 
   #           :password_archivable, 

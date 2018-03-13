@@ -4,28 +4,28 @@ class UserDatatable < AjaxDatatablesRails::Base
 
   def view_columns
     @view_columns ||= {
-      id:                 { source: "User.id", cond: :eq, searchable: false, orderable: false },
-      name:               { source: "User.name", cond: :like, searchable: true, orderable: true },
-      last_sign_in_ip:    { source: "User.last_sign_in_ip",  cond: :like, searchable: true, orderable: true },
-      last_sign_in_at:    { source: "User.last_sign_in_at",  cond: :like, searchable: true, orderable: true },
-      current_sign_in_ip: { source: "User.current_sign_in_ip",  cond: :like, searchable: true, orderable: true },
-      current_sign_in_at: { source: "User.current_sign_in_at",  cond: :like, searchable: true, orderable: true },
-      flat:               { source: "User.id", cond: filter_custom_column_condition },
-      deleted_at:         { source: "User.deleted_at",  cond: :like, searchable: true, orderable: true }
+      id:                   { source: "User.id", cond: :eq, searchable: false, orderable: false },
+      name:                 { source: "User.name", cond: :like, searchable: true, orderable: true },
+      current_sign_in_ip:   { source: "User.current_sign_in_ip",  cond: :like, searchable: true, orderable: true },
+      current_sign_in_at:   { source: "User.current_sign_in_at",  cond: :like, searchable: true, orderable: true },
+      last_activity_at:     { source: "User.last_activity_at",  cond: :like, searchable: true, orderable: true },
+      password_changed_at:  { source: "User.password_changed_at",  cond: :like, searchable: true, orderable: true },
+      flat:                 { source: "User.id", cond: filter_custom_column_condition },
+      deleted_at:           { source: "User.deleted_at",  cond: :like, searchable: true, orderable: true }
     }
   end
 
   def data
     records.map do |record|
       {
-        id:                 record.id,
-        name:               link_to(record.name, user_path(record.id)),
-        last_sign_in_ip:    record.last_sign_in_ip,
-        last_sign_in_at:    record.last_sign_in_at.present? ? record.last_sign_in_at.strftime("%Y-%m-%d %H:%M:%S") : '' ,
-        current_sign_in_ip: record.current_sign_in_ip,
-        current_sign_in_at: record.current_sign_in_at.present? ? record.current_sign_in_at.strftime("%Y-%m-%d %H:%M:%S") : '' ,
-        flat:               record.try(:flat_assigned_events_with_status),
-        deleted_at:         record.deleted_at.present? ? record.deleted_at.strftime("%Y-%m-%d %H:%M:%S") : '' 
+        id:                   record.id,
+        name:                 link_to(record.name, user_path(record.id)),
+        current_sign_in_ip:   record.current_sign_in_ip,
+        current_sign_in_at:   record.current_sign_in_at.present? ? record.current_sign_in_at.strftime("%Y-%m-%d %H:%M:%S") : '' ,
+        last_activity_at:     record.last_activity_at.present? ? record.last_activity_at.strftime("%Y-%m-%d %H:%M:%S") : '' ,
+        password_changed_at:  record.password_changed_at.present? ? record.password_changed_at.strftime("%Y-%m-%d %H:%M:%S") : '' ,
+        flat:                 record.try(:flat_assigned_events_with_status),
+        deleted_at:           record.deleted_at.present? ? record.deleted_at.strftime("%Y-%m-%d %H:%M:%S") : '' 
       }
     end
   end
