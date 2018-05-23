@@ -28,6 +28,7 @@ class Event < ApplicationRecord
   validates :project_id, presence: true
   validates :errand_id, presence: true
 
+  validate :dates_is_correct#, unless: :end_date.empty?
 
   accepts_nested_attributes_for :accessorizations, reject_if: :all_blank, allow_destroy: true
 
@@ -38,6 +39,14 @@ class Event < ApplicationRecord
   
   after_create_commit { self.log_work('create') }
   after_update_commit { self.log_work('update') }
+
+
+  def dates_is_correct
+    if end_date.present? && start_date.present? && (end_date < start_date)
+      errors.add(:end_date, 'nie może być wcześniejszy niż Początek')
+      throw :abort 
+    end
+  end
 
 
   def log_work(action = '', action_user_id = nil)

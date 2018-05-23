@@ -20,7 +20,7 @@ $(document).ready(function() {
 	    day:      	'dzień',
 	    list:     	'lista-dzień'
 		},
-		defaultView: 'listYear',
+		defaultView: 'month',
 		locale: 'pl',
 		timezone: 'local',
 		allDayText: 'Cały dzień',

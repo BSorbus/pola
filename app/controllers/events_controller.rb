@@ -46,6 +46,9 @@ class EventsController < ApplicationController
     @event.all_day = true
 
     authorize @event, :new?
+
+    @errand = load_errand
+    @event.errand = @errand
   end
 
   # GET /events/1/edit
@@ -108,6 +111,10 @@ class EventsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])
+    end
+
+    def load_errand
+      Errand.find(params[:errand_id]) if (params[:errand_id]).present?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
