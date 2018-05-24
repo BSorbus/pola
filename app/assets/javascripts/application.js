@@ -12,8 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require dataTables/jquery.dataTables
-//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+//= require datatables
 //= require select2
 //= require select2_locale_pl
 //= require bootstrap-sprockets

@@ -1,5 +1,7 @@
 {
   "name": "pola",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "jszip": "^3.1.5"
+  }
 }

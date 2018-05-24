@@ -47,6 +47,10 @@ $(document).ready(function() {
 
 
   var oProjecttable = $('#projects-table').DataTable({
+    dom: 'lBfrtip',
+    buttons: [
+        'copy', 'csv', 'pdf', 'colvis'
+    ],
     responsive: true,
     processing: true,
     serverSide: true,
@@ -78,12 +82,19 @@ $(document).ready(function() {
     ],
     order: [[ 1, "asc" ]],
     language: {
+      buttons: {
+            colvis: 'Kolumny'
+      },
       url: '<%= asset_path("pl.json.erb") %>'
     }
   });
  
 
   var oCustomerProjectstable = $('#customer-projects-table').DataTable({
+    dom: 'lBfrtip',
+    buttons: [
+        'copy', 'csv', 'pdf', 'colvis'
+    ],
     responsive: true,
     processing: true,
     serverSide: true,
@@ -121,6 +132,9 @@ $(document).ready(function() {
     },
     order: [[ 1, "asc" ]],
     language: {
+      buttons: {
+        colvis: 'Kolumny'
+      },
       url: '<%= asset_path("pl.json.erb") %>'
     }
   });

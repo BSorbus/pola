@@ -48,6 +48,10 @@ $(document).ready(function() {
 
 
   var oErrandtable = $('#errands-table').DataTable({
+    dom: 'lBfrtip',
+    buttons: [
+        'copy', 'csv', 'pdf', 'colvis'
+    ],
     responsive: true,
     processing: true,
     serverSide: true,
@@ -79,6 +83,9 @@ $(document).ready(function() {
     ],
     order: [[ 1, "asc" ]],
     language: {
+      buttons: {
+        colvis: 'Kolumny'
+      },
       url: '<%= asset_path("pl.json.erb") %>'
     }
   });

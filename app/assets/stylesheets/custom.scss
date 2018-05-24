@@ -234,6 +234,11 @@ table.dataTable thead .sorting_asc:after {
     content: "";
 }
 
+div.dt-buttons {
+  margin-left:10px;
+  float: right;
+}
+
 //tr {
 //  background-color: lighten(#BECC25, 5%)
 //}
