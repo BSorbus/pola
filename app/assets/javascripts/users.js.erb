@@ -1,5 +1,10 @@
 $(document).ready(function() {
   var oUsertable = $('#users-table').DataTable({
+    colReorder: true,
+    dom: 'lBfrtip',
+    buttons: [
+      'copy', 'csv', 'pdf', 'colvis'
+    ],
     responsive: true,
     processing: true,
     serverSide: true,
@@ -32,6 +37,10 @@ $(document).ready(function() {
     ],
     order: [[ 1, "asc" ]],
     language: {
+      buttons: {
+        copy: 'Kopiuj',
+        colvis: 'Kolumny'
+      },
       url: '<%= asset_path("pl.json.erb") %>'
     }
   });
@@ -39,6 +48,11 @@ $(document).ready(function() {
 
 
   var oUserRolestable = $('#user-roles-table').DataTable({
+    colReorder: true,
+    dom: 'lBfrtip',
+    buttons: [
+      'copy', 'csv', 'pdf', 'colvis'
+    ],
     responsive: true,
     processing: true,
     serverSide: true,
@@ -78,6 +92,10 @@ $(document).ready(function() {
     },
     order: [[ 1, "asc" ]],
     language: {
+      buttons: {
+        copy: 'Kopiuj',
+        colvis: 'Kolumny'
+      },
       url: '<%= asset_path("pl.json.erb") %>'
     }
   });
