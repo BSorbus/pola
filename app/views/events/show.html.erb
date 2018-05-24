@@ -86,31 +86,4 @@
     </div> <!-- /row -->
   <% end %>
 
-  <!-- Ratings-->
-  <% if ( @event.event_type.activities.include?('rating:*') || 
-          @event.event_type.activities.include?('rating:index') ) && ( policy(:rating).index? ) %>
-    <div class="row">
-      <div class="col-sm-11 col-sm-offset-1">
-        <div class="panel panel-rating">
-          <div class="panel-heading">
-            <div class="panel-title">
-              <a class="accordion-toggle" data-toggle="collapse" data-parent="#myaccordion" href="#collapse_ratings" >
-                <span class="glyphicon glyphicon-list-alt">&nbsp;</span>
-                <span><%= t "pages.rating.index.title" %></span>
-                <i class="indicator glyphicon glyphicon-chevron-right pull-right"></i>
-              </a>
-            </div>
-          </div>
-          <div id="collapse_ratings" class="panel-collapse collapse">
-            <div class="panel-body">
-
-              <%= render 'ratings' %>
-
-            </div> <!-- /panel-body -->
-          </div> <!-- /id="collapse_ratings" -->
-        </div> <!-- /panel -->
-      </div> <!-- /col-sm-11 col-sm-offset-1 -->
-    </div> <!-- /row -->
-  <% end %>
-
 </div> <!-- /class="panel-group" id="myaccordion" -->

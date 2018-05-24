@@ -36,7 +36,6 @@ class User < ApplicationRecord
 
   has_many :attachments, as: :attachmenable, dependent: :destroy
   has_many :comments, dependent: :nullify
-  has_many :ratings, dependent: :nullify
 
 
   has_many :customers, dependent: :nullify
@@ -54,10 +53,6 @@ class User < ApplicationRecord
     analize_value = true
     if self.accessorizations.any? 
      errors.add(:base, 'Nie można usunąć konta "' + self.try(:fullname) + '" które jest powiązane z Zadaniami.')
-     analize_value = false
-    end
-    if self.ratings.any? 
-     errors.add(:base, 'Nie można usunąć konta "' + self.try(:fullname) + '" które jest powiązane z Ocenami.')
      analize_value = false
     end
     throw :abort unless analize_value 

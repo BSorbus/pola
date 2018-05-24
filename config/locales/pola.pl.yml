@@ -54,7 +54,6 @@ pl:
       errand_type: 'Typ Zlecenia'
       errand: 'Zlecenie'
       comment: 'Komentarz'
-      rating: 'Ocena'
       proposal_file: 'Plik Projektu (XML)'
       xml_partner_table: 'Partner'
       xml_miejsce_realizacji_table: 'Miejsce Realizacji'
@@ -196,30 +195,6 @@ pl:
         project_id: 'Projekt'
         user_id: 'Autor'
         body: 'Treść'
-      rating:
-        fullname: 'Ocena'
-        note: 'Uwagi'
-        event_id: 'Zadanie'
-        user_id: 'Autor'
-        updated_at: 'Aktualizacja'
-        sec22_rate: 'Ocena'
-        sec22: 'Uzasadnienie'
-        sec23_rate: 'Ocena'
-        sec23: 'Uzasadnienie'
-        sec24_rate: 'Ocena'
-        sec24: 'Uzasadnienie'
-        sec25_rate: 'Ocena'
-        sec25: 'Uzasadnienie'
-        sec28_rate: 'Ocena'
-        sec28: 'Uzasadnienie'
-        sec33_rate: 'Punktacja'
-        sec41: '1. Zgłoszona uwaga'
-        sec42: '2. Zgłoszona uwaga'
-        sec43: '3. Zgłoszona uwaga'
-        sec51_rate: 'Tak/Nie'
-        sec51: 'Uwagi'
-        sec61_rate: 'Ocena końcowa'
-        sec61: 'Podsumowanie'
       proposal_file:
         load_date: 'Data pobrania'
         load_file: 'Plik'
@@ -429,15 +404,6 @@ pl:
         title: 'Komentarz'
       new:
         title: 'Nowy Komentarz'
-    rating:
-      index:
-        title: 'Oceny'
-      show:
-        title: 'Ocena'
-      new:
-        title: 'Nowa Ocena'
-      edit:
-        title: 'Edycja -> Ocena'
     proposal_file:
       index:
         title: 'Pliki Projektu (XML)'
@@ -531,12 +497,6 @@ pl:
       update?: ' BRAK UPRAWNIEŃ: Nie możesz edytować komentarza!'
       create?: ' BRAK UPRAWNIEŃ: Nie możesz tworzyć komentarzy!'
       destroy?: ' BRAK UPRAWNIEŃ: Nie możesz usuwać komentarzy!'
-    rating_policy:
-      index?: ' BRAK UPRAWNIEŃ: Nie możesz wyświetlać listy ocen!'
-      show?: ' BRAK UPRAWNIEŃ: Nie możesz wyświetlać oceny!'
-      update?: ' BRAK UPRAWNIEŃ: Nie możesz edytować oceny!'
-      create?: ' BRAK UPRAWNIEŃ: Nie możesz tworzyć oceny!'
-      destroy?: ' BRAK UPRAWNIEŃ: Nie możesz usuwać ocen!'
   helpers:
     actions: "Akcje"
     links:

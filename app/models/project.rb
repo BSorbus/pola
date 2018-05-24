@@ -20,7 +20,6 @@ class Project < ApplicationRecord
 
   has_many :events, dependent: :nullify, index_errors: true
   has_many :comments, through: :events, source: :comments
-  has_many :ratings, through: :events, source: :ratings
 
   belongs_to :user
   has_many :works, as: :trackable
