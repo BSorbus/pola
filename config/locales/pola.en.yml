@@ -189,6 +189,8 @@ en:
     attachment:
       index:
         title: 'Attachments'
+      edit:
+        title: 'Edit -> Attachment'
     point_file:
       index:
         title: 'Point Files'
@@ -309,6 +311,7 @@ en:
       download: " Download"
       download_xls: " Download XLS"
       print: " Print"
+      filter: " Filter"
       account_off: " Account Off"
       account_on: " Account On"
       link_to_add_fields_accessorization: '[ + Add Accessorization]'

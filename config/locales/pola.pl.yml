@@ -340,6 +340,8 @@ pl:
     attachment:
       index:
         title: 'Załączniki'
+      edit:
+        title: 'Edycja -> Załącznik'
     point_file:
       index:
         title: 'Pliki Punktów Adresowych'
@@ -517,6 +519,7 @@ pl:
       download: " Pobierz"
       download_xls: " Pobierz XLS"
       print: " Wydruk"
+      filter: " Filtruj dane"
       account_off: " Wyłącz konto"
       account_on: " Włącz konto"
       link_to_add_fields_accessorization: '[ + Dodaj Uprawnienie]'

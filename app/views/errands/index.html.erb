@@ -9,6 +9,10 @@
   </div> <!--/col-sm-12 -->
 
   <div class="col-sm-12">
+    <%= render partial: "filtr" %>
+  </div> <!--/col-sm-12 -->
+
+  <div class="col-sm-12">
     <table id="errands-table" class="hover cell-border" cellspacing="0" width="100%", data-source="<%= datatables_index_errands_path(format: :json) %>">
       <thead>
         <tr>

@@ -11,6 +11,7 @@ class Attachment < ApplicationRecord
 
   # callbacks
   after_create_commit { self.log_work('upload_attachment') }
+  after_update_commit { self.log_work('update') }
 
   mount_uploader :attached_file, AttachmentUploader
 

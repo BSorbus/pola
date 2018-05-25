@@ -1,7 +1,6 @@
 class AttachmentsController < ApplicationController
   before_action :authenticate_user!
-  after_action :verify_authorized, only: [:show, :create, :destroy]
-
+  after_action :verify_authorized, only: [:show, :edit, :update, :create, :destroy]
 
   # GET /attachments/1
   # GET /attachments/1.json
@@ -26,6 +25,12 @@ class AttachmentsController < ApplicationController
       x_sendfile: true
   end
 
+  # GET /attachments/1/edit
+  def edit
+    @attachment = Attachment.find(params[:id])
+    attachment_authorize(@attachment, "edit", @attachment.attachmenable_type.singularize.downcase) 
+  end
+
   # POST /attachments
   # POST /attachments.json
   def create
@@ -44,6 +49,24 @@ class AttachmentsController < ApplicationController
     end
   end
 
+
+  # PATCH/PUT /attachments/1
+  # PATCH/PUT /attachments/1.json
+  def update
+    @attachment = Attachment.find(params[:id])
+    @attachment.user = current_user
+    attachment_authorize(@attachment, "update", @attachment.attachmenable_type.singularize.downcase) 
+    respond_to do |format|
+      if @attachment.update(attachment_update_params)
+        flash[:success] = t('activerecord.successfull.messages.updated', data: @attachment.fullname)
+        format.html { redirect_to url_for(only_path: true, controller: @attachment.attachmenable_type.pluralize.downcase, action: 'show', id: @attachment.attachmenable.id) }
+      else
+        format.html { render :edit }
+      end
+    end
+  end
+
+
   # DELETE /attachments/1
   # DELETE /attachments/1.json
   def destroy
@@ -61,7 +84,7 @@ class AttachmentsController < ApplicationController
 
   private
     def attachment_authorize(model_class, action, sub_controller)
-      unless ['index', 'show', 'create', 'destroy'].include?(action)
+      unless ['index', 'show', 'edit', 'create', 'update', 'destroy'].include?(action)
          raise "Ruby injection"
       end
       authorize model_class,"#{sub_controller}_#{action}?"      
@@ -71,5 +94,8 @@ class AttachmentsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def attachment_params
       params.require(:attachment).permit(:attachmenable_id, :attachmenable_type, :attached_file, :note, :user_id)
+    end
+    def attachment_update_params
+      params.require(:attachment).permit(:note, :user_id)
     end
 end

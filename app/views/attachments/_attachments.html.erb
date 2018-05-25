@@ -17,7 +17,15 @@
             <!--"Show" as download-->
             <%= link_to attachment.attached_file_identifier, attachment_path(attachment), title: t('tooltip.download'), rel: 'tooltip' %>
           </td>
-          <td><%= text_with_break_line(attachment.note) %></td>
+          <td>
+            <%= text_with_break_line(attachment.note) %>
+            <span>&nbsp;&nbsp;&nbsp;</span>
+            <%= link_to edit_attachment_path(attachment),
+                                title: t('tooltip.edit'), 
+                                rel: 'tooltip' do %>
+              <span class="glyphicon glyphicon-edit text-primary"></span>
+            <% end %>
+          </td>
           <td><%= attachment.file_size %></td>
           <td><%= attachment.created_at.strftime("%Y-%m-%d %H:%M") %></td>
           <td>

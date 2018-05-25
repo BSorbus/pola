@@ -64,6 +64,14 @@ class AttachmentPolicy < ApplicationPolicy
     (user_activities.include? 'attachment:project_show') || (event_activities(@model).include? 'attachment:project_show')
   end
  
+  def project_edit?
+    project_update?
+  end
+
+  def project_update?
+    project_create?
+  end
+
   def project_create?
     # user_activities.include? 'attachment:create'
     # user_activities.include? 'attachment:project_create'
@@ -88,6 +96,14 @@ class AttachmentPolicy < ApplicationPolicy
     user_activities.include? 'attachment:user_show'
   end
  
+  def user_edit?
+    user_update?
+  end
+
+  def user_update?
+    user_create?
+  end
+
   def user_create?
     # user_activities.include? 'attachment:create'
     user_activities.include? 'attachment:user_create'
@@ -110,6 +126,14 @@ class AttachmentPolicy < ApplicationPolicy
     user_activities.include? 'attachment:enrollment_show'
   end
  
+  def enrollment_edit?
+    enrollment_update?
+  end
+
+  def enrollment_update?
+    enrollment_create?
+  end
+
   def enrollment_create?
     # user_activities.include? 'attachment:create'
     user_activities.include? 'attachment:enrollment_create'
@@ -132,6 +156,14 @@ class AttachmentPolicy < ApplicationPolicy
     user_activities.include? 'attachment:errand_show'
   end
  
+  def errand_edit?
+    errand_update?
+  end
+
+  def errand_update?
+    errand_create?
+  end
+
   def errand_create?
     # user_activities.include? 'attachment:create'
     user_activities.include? 'attachment:errand_create'
@@ -156,6 +188,14 @@ class AttachmentPolicy < ApplicationPolicy
     (user_activities.include? 'attachment:event_show') || (event_activities(@model).include? 'attachment:event_show')
   end
  
+  def event_edit?
+    event_update?
+  end
+
+  def event_update?
+    event_create?
+  end
+
   def event_create?
     # user_activities.include? 'attachment:create'
     # user_activities.include? 'attachment:event_create'
