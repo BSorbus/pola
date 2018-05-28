@@ -1,4 +1,19 @@
 //document.addEventListener('turbolinks:load', function() {
+
+//function filterGlobalParams () {
+//    $('#events-table').DataTable().search(
+//        $('#global_filter').val(),
+//        false,
+//        $('#global_smart').prop('checked')
+//    ).draw();
+//}
+
+function filterColumnParams ( i ) {
+  $('#events-table').DataTable().column( i ).search(
+    $('#col'+i+'filter').val(), false, true, true
+  ).draw();
+}
+
 $(document).ready(function() {
   var oEventtable = $('#events-table').DataTable({
     colReorder: true,
@@ -10,6 +25,7 @@ $(document).ready(function() {
     processing: true,
     serverSide: true,
     deferRender: true,
+    autoWidth: false,
     ajax: { 
       url: $('#events-table').data('source'),
       type: "GET",
@@ -44,8 +60,21 @@ $(document).ready(function() {
         colvis: 'Kolumny'
       },
       url: '<%= asset_path("pl.json.erb") %>'
-    }
+    },
+
+
   });
 
+  //$('input.global_filter').on( 'keyup click', function () {
+  //  filterGlobalParams();
+  //});
+
+  $('input.column_filter').on( 'keyup click', function () {
+    filterColumnParams( $(this).attr('data-column') );
+  });
+
+  $('select.column_filter').on( 'keyup click', function () {
+    filterColumnParams( $(this).attr('data-column') );
+  });
 
 });
