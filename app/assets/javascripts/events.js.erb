@@ -25,7 +25,6 @@ $(document).ready(function() {
     processing: true,
     serverSide: true,
     deferRender: true,
-    autoWidth: false,
     ajax: { 
       url: $('#events-table').data('source'),
       type: "GET",
@@ -64,6 +63,7 @@ $(document).ready(function() {
 
 
   });
+
 
   //$('input.global_filter').on( 'keyup click', function () {
   //  filterGlobalParams();
