@@ -17,64 +17,78 @@
 
 
       <div class="col-sm-12">
+        <div class="panel-group" id="myaccordion">
 
-        <div class="panel panel-info">
-          <div class="panel-heading">
-            Filtrowanie po kolumnach
-          </div>
-          <div class="panel-body">
-<!-- 
-            <div class="form-group col-sm-3">
-              <%= label_tag :global_filter, 'Szukaj:', class: 'control-label' %>
-              <%= text_field_tag :global_filter, params[:global_filter], id: 'global_filter', class: 'global_filter form-control input-sm' %>
-            </div>
+              <div class="panel panel-info">
+                <div class="panel-heading">
+                  <div class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#myaccordion" href="#collapse_project_accessorizations" >
+                      <span class="glyphicon glyphicon-search">&nbsp;</span>
+                      <span><%= t "helpers.links.filter" %></span>
+                      <i class="indicator glyphicon glyphicon-chevron-right pull-right"></i>
+                    </a>
+                  </div>
+                </div>
+                <div id="collapse_project_accessorizations" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <div class="col-sm-12">
 
- -->
-<!-- 
-            <div class="form-group col-sm-3">
-              <%= label_tag :col2filter, 'Typ zadania:', class: 'control-label' %>
-              <%= text_field_tag :col2filter, params[:col2filter], id: 'col2filter', 'data-column' => "2", class: 'column_filter form-control input-sm' %>
-            </div>
+          <!-- 
+                      <div class="form-group col-sm-3">
+                        <%= label_tag :global_filter, 'Szukaj:', class: 'control-label' %>
+                        <%= text_field_tag :global_filter, params[:global_filter], id: 'global_filter', class: 'global_filter form-control input-sm' %>
+                      </div>
 
- -->
+           -->
+          <!-- 
+                      <div class="form-group col-sm-3">
+                        <%= label_tag :col2filter, 'Typ zadania:', class: 'control-label' %>
+                        <%= text_field_tag :col2filter, params[:col2filter], id: 'col2filter', 'data-column' => "2", class: 'column_filter form-control input-sm' %>
+                      </div>
 
-            <div class="form-group col-sm-3">
-              <%= label_tag :col2filter, 'Typ zadania:', class: 'control-label' %>
-              <%= select( nil, "col2filter",
-                    EventType.all.order(:name).collect {|v| [ "#{v[:name]}", "#{v[:name]}" ] },
-                    { include_blank: true }, 
-                    { autofocus: false, class: 'column_filter form-control input-sm', 'data-column' => "2" }) %>
-            </div>
+           -->
 
-            <div class="form-group col-sm-3">
-              <%= label_tag :col6filter, 'Status zadania:', class: 'control-label' %>
-              <%= select( nil, "col6filter",
-                    EventStatus.all.order(:name).collect {|v| [ "#{v[:name]}", "#{v[:name]}" ] },
-                    { include_blank: true }, 
-                    { autofocus: false, class: 'column_filter form-control input-sm', 'data-column' => "6" }) %>
-            </div>
+                      <div class="form-group col-sm-3">
+                        <%= label_tag :col2filter, 'Typ zadania:', class: 'control-label' %>
+                        <%= select( nil, "col2filter",
+                              EventType.all.order(:name).collect {|v| [ "#{v[:name]}", "#{v[:name]}" ] },
+                              { include_blank: true }, 
+                              { autofocus: false, class: 'column_filter form-control input-sm', 'data-column' => "2" }) %>
+                      </div>
 
-            <div class="form-group col-sm-3">
-              <%= label_tag :col7filter, 'Wynik zadania:', class: 'control-label' %>
-              <%= select( nil, "col7filter",
-                    EventEffect.all.order(:name).collect {|v| [ "#{v[:name]}", "#{v[:name]}" ] },
-                    { include_blank: true }, 
-                    { autofocus: false, class: 'column_filter form-control input-sm', 'data-column' => "7" }) %>
-            </div>
-            <div class="col-sm-3">
-              <blockquote>
-                <p class="text-info small">
-                Wprowadzenie wartości w polu <strong>"Szukaj"</strong> (poniżej) powoduje ignorowanie parametrów kolumn
-                </p>
-              </blockquote>
-            </div> <!-- /.col-sm-6 -->
+                      <div class="form-group col-sm-3">
+                        <%= label_tag :col6filter, 'Status zadania:', class: 'control-label' %>
+                        <%= select( nil, "col6filter",
+                              EventStatus.all.order(:name).collect {|v| [ "#{v[:name]}", "#{v[:name]}" ] },
+                              { include_blank: true }, 
+                              { autofocus: false, class: 'column_filter form-control input-sm', 'data-column' => "6" }) %>
+                      </div>
+
+                      <div class="form-group col-sm-3">
+                        <%= label_tag :col7filter, 'Wynik zadania:', class: 'control-label' %>
+                        <%= select( nil, "col7filter",
+                              EventEffect.all.order(:name).collect {|v| [ "#{v[:name]}", "#{v[:name]}" ] },
+                              { include_blank: true }, 
+                              { autofocus: false, class: 'column_filter form-control input-sm', 'data-column' => "7" }) %>
+                      </div>
+                      <div class="col-sm-3">
+                        <blockquote>
+                          <p class="text-info small">
+                          Wprowadzenie wartości w polu <strong>"Szukaj"</strong> (poniżej) powoduje ignorowanie parametrów kolumn
+                          </p>
+                        </blockquote>
+                      </div> <!-- /.col-sm-6 -->
 
 
-          </div> <!--/panel-body -->
-        </div> <!--/panel panel-default -->
 
+
+                    </div> <!--/class="col-sm-12" -->
+                  </div> <!-- /panel-body -->
+                </div> <!-- /id="collapse_project_accessorizations" -->
+              </div> <!-- /panel -->
+
+        </div> <!-- /class="panel-group" id="myaccordion" -->
       </div> <!--/col-sm-12 -->
-
 
       <div class="col-sm-12">
         <table id="events-table" class="hover cell-border" cellspacing="0" width="100%", data-source="<%= datatables_index_events_path(format: :json) %>">
