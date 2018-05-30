@@ -88,4 +88,3 @@ gem 'rgeo-geojson'
 
 gem 'rack-cors', :require => 'rack/cors'
 gem 'mina'
-gem 'jszip-rails'

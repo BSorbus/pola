@@ -22,6 +22,7 @@ class Errand < ApplicationRecord
 
 
   # callbacks
+  before_save :has_opened_events
   before_destroy :has_important_links, prepend: true
 
   after_create_commit { self.log_work('create') }
@@ -33,6 +34,15 @@ class Errand < ApplicationRecord
     worker_id = action_user_id || self.user_id
     Work.create!(trackable_type: 'Errand', trackable_id: self.id, trackable_url: trackable_url, action: "#{action}", user_id: worker_id, 
       parameters: self.to_json(except: [:errand_status_id, :user_id], include: {errand_status: {only: [:id, :name]}, user: {only: [:id, :name, :email]}}))
+  end
+
+  def has_opened_events
+    analize_value = true
+    if self.errand_status_id === ErrandStatus::ERRAND_STATUS_CLOSED && self.events.where.not(id: EventStatus::EVENT_STATUS_CLOSED).any? 
+     errors.add(:base, 'Nie można "zamknąć" zlecenia "' + self.try(:fullname) + '" do którego są przypisane Zadania o statusie innym niż "zamknięte".')
+     analize_value = false
+    end
+    throw :abort unless analize_value 
   end
 
   def has_important_links
