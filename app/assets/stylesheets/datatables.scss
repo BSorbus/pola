@@ -32,6 +32,16 @@ tfoot {
   display: table-row-group;
 }
 
+input.column_filter {
+  margin-top: -5px;
+  margin-left: -5px;
+}
+
+select.column_filter {
+  margin-top: -5px;
+  margin-left: -5px;
+}
+
 //tr {
 //  background-color: lighten(#BECC25, 5%)
 //}

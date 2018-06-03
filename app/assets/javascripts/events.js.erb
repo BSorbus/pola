@@ -12,14 +12,21 @@ function filterColumnParams ( i ) {
   $('#events-table').DataTable().column( i ).search(
     $('#col'+i+'filter').val(), false, true, true
   ).draw();
-}
+};
+
+$.fn.dataTable.ext.buttons.reload = {
+    text: 'Odśwież',
+    action: function ( e, dt, node, config ) {
+        dt.ajax.reload();
+    }
+};
 
 $(document).ready(function() {
   var oEventtable = $('#events-table').DataTable({
     colReorder: true,
     dom: 'lBfrtip',
     buttons: [
-      'copy', 'csv', 'pdf', 'colvis'
+      'copy', 'csv', 'pdf', 'colvis', 'reload'
     ],
     responsive: true,
     processing: true,
