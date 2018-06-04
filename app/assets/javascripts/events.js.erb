@@ -14,19 +14,32 @@ function filterColumnParams ( i ) {
   ).draw();
 };
 
-$.fn.dataTable.ext.buttons.reload = {
-    text: 'Odśwież',
-    action: function ( e, dt, node, config ) {
-        dt.ajax.reload();
-    }
+
+$.fn.dataTable.ext.buttons.filter_show_hide = {
+  text: 'Filtruj',
+  action: function ( e, dt, node, config ) {
+  var list = document.getElementsByClassName("column_filter");
+    for (var i = 0; i < list.length; i++) {
+      if (list[i].style.display === "none") {
+        list[i].style.display = "block";
+        filterColumnParams( $(list[i]).attr('data-column') );
+      } else {
+        $(list[i]).val('');
+        list[i].style.display = "none";
+        filterColumnParams( $(list[i]).attr('data-column') );
+      };
+    };
+    //dt.ajax.reload();
+  }
 };
+
 
 $(document).ready(function() {
   var oEventtable = $('#events-table').DataTable({
     colReorder: true,
     dom: 'lBfrtip',
     buttons: [
-      'copy', 'csv', 'pdf', 'colvis', 'reload'
+      'copy', 'csv', 'pdf', 'colvis', 'filter_show_hide'
     ],
     responsive: true,
     processing: true,
