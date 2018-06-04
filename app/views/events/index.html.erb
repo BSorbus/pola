@@ -33,40 +33,40 @@
           <tfoot>
             <tr>
               <th></th>
-              <th class='col-sm-2'>
+              <th>
                 <%= text_field_tag :col2filter, params[:col1filter], id: 'col1filter', 'data-column' => "1", 
                       class: 'column_filter form-control input-sm' %>
               </th>
-              <th class='col-sm-2'>
+              <th>
                 <%= select( nil, "col2filter",
                       EventType.all.order(:name).collect {|v| [ "#{v[:name]}", "#{v[:name]}" ] },
                       { include_blank: true }, 
                       { autofocus: false, class: 'column_filter form-control input-sm', 'data-column' => "2" }) %>                
               </th>
-              <th class='col-sm-1'>
+              <th>
                 <%= text_field_tag :col3filter, params[:col3filter], id: 'col3filter', 'data-column' => "3", 
                       class: 'column_filter form-control input-sm' %>                
               </th>
-              <th class='col-sm-1'>
+              <th>
                 <%= text_field_tag :col4filter, params[:col4filter], id: 'col4filter', 'data-column' => "4", 
                       class: 'column_filter form-control input-sm' %>
               </th>
-              <th class='col-sm-1'></th>
-              <th class='col-sm-1'>
+              <th></th>
+              <th>
                 <%= select( nil, "col6filter",
                       EventStatus.all.order(:name).collect {|v| [ "#{v[:name]}", "#{v[:name]}" ] },
                       { include_blank: true }, 
                       { autofocus: false, class: 'column_filter form-control input-sm', 'data-column' => "6" }) %>
                 
               </th>
-              <th class='col-sm-1'>
+              <th>
                 <%= select( nil, "col7filter",
                       EventEffect.all.order(:name).collect {|v| [ "#{v[:name]}", "#{v[:name]}" ] },
                       { include_blank: true }, 
                       { autofocus: false, class: 'column_filter form-control input-sm', 'data-column' => "7" }) %>
                 
               </th>
-              <th class='col-sm-3'>
+              <th>
                 <%= text_field_tag :col8filter, params[:col8filter], id: 'col8filter', 'data-column' => "8", 
                       class: 'column_filter form-control input-sm' %>
                 
