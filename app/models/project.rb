@@ -5,6 +5,7 @@ class Project < ApplicationRecord
   include  ActionView::Helpers::SanitizeHelper
 
   # relations
+  belongs_to :user
   belongs_to :enrollment
   belongs_to :project_status
   belongs_to :customer
@@ -16,12 +17,10 @@ class Project < ApplicationRecord
   has_one :last_active_proposal_file, -> { where(status: :active).order(load_date: :desc) },
     class_name: 'ProposalFile', foreign_key: :project_id
 
-  has_many :attachments, as: :attachmenable, dependent: :destroy
-
   has_many :events, dependent: :nullify, index_errors: true
   has_many :comments, through: :events, source: :comments
 
-  belongs_to :user
+  has_many :attachments, as: :attachmenable, dependent: :destroy
   has_many :works, as: :trackable
 
   # validates

@@ -81,6 +81,24 @@ class CreateRoleService
     end
   end
 
+  # customer_attachments
+  def customer_attachment_admin
+    role = Role.find_or_create_by!(name: "Administrator Załączników Wnioskodawcy") do |role|
+      role.special = true
+      role.activities += %w(attachment:customer_index attachment:customer_show attachment:customer_create attachment:customer_delete)
+      role.note = "Rola służy do zarządzania załącznikami przypisanymi do Wnioskodawców. \r\n (Przypisz tylko Administratorom systemu oraz Koordynatorom POPC)"
+      role.save!
+    end
+  end
+  def customer_attachment_observer
+    role = Role.find_or_create_by!(name: "Obserwator Załączników Wnioskodawcy") do |role|
+      role.special = true
+      role.activities += %w(attachment:customer_index attachment:customer_show)
+      role.note = "Rola służy do wyświetlania i pobierania załączników przypisanych do Wnioskodawców. \r\n (Przypisz Administratorom systemu oraz Koordynatorom POPC)"
+      role.save!
+    end
+  end
+
   # enrollments
   def enrollment_admin
     role = Role.find_or_create_by!(name: "Administrator Naborów") do |role|

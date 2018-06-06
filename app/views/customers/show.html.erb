@@ -24,9 +24,13 @@
     </div> <!-- /col-sm-12-->
   </div> <!-- /row -->
 
-
   <% if policy(:customer).work? %>
     <%= render partial: "works/works_in_panel", locals: {trackable_type: 'Customer', trackable_id: @customer.id} %>
+  <% end %>
+
+  <!-- Attachments for this project-->
+  <% if policy(:attachment).customer_index? %>
+    <%= render 'attachments/attachments_in_panel', attachmenable: @customer %>
   <% end %>
 
   <!-- Projects-->

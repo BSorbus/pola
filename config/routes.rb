@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :customers do
     get 'select2_index', on: :collection
     get 'datatables_index', on: :collection
+    resources :attachments, module: :customers, only: [:create]
   end
 
   resources :projects do

@@ -4,9 +4,12 @@ class Customer < ApplicationRecord
   include ActionView::Helpers::TextHelper
 
   # relations
-  has_many :projects, dependent: :destroy
   belongs_to :user
+ 
+  has_many :projects, dependent: :destroy
+
   has_many :works, as: :trackable
+  has_many :attachments, as: :attachmenable, dependent: :destroy
 
   # validates
   validates :name, presence: true,

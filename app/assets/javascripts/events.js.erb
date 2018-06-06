@@ -8,6 +8,7 @@
 //    ).draw();
 //}
 
+
 function filterColumnParams ( i ) {
   $('#events-table').DataTable().column( i ).search(
     $('#col'+i+'filter').val(), false, true, true
@@ -16,19 +17,29 @@ function filterColumnParams ( i ) {
 
 
 $.fn.dataTable.ext.buttons.filter_show_hide = {
-  text: 'Filtruj',
+  text: 'Filtr',
   action: function ( e, dt, node, config ) {
   var list = document.getElementsByClassName("column_filter");
-    for (var i = 0; i < list.length; i++) {
-      if (list[i].style.display === "none") {
-        list[i].style.display = "block";
-        filterColumnParams( $(list[i]).attr('data-column') );
-      } else {
-        $(list[i]).val('');
-        list[i].style.display = "none";
-        filterColumnParams( $(list[i]).attr('data-column') );
-      };
-    };
+    // for (var i = 0; i < list.length; i++) {
+    //   if (list[i].style.display === "none") {
+    //     list[i].style.display = "block";
+    //     filterColumnParams( $(list[i]).attr('data-column') );
+    //   } else {
+    //     $(list[i]).val('');
+    //     list[i].style.display = "none";
+    //     filterColumnParams( $(list[i]).attr('data-column') );
+    //   };
+    // };
+
+    if ($('#events-table').DataTable().tables().footer().to$().css('display') === 'none') {
+      $('#events-table').DataTable().tables().footer().to$().css('display', 'table-row-group');
+    } else {
+      $('#events-table').DataTable().tables().footer().to$().css('display', 'none');
+    }
+
+    $($.fn.dataTable.tables(true)).DataTable()
+      .columns.adjust()
+      .responsive.recalc();
     //dt.ajax.reload();
   }
 };

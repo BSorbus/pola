@@ -2,20 +2,19 @@ class Event < ApplicationRecord
   delegate :url_helpers, to: 'Rails.application.routes'
 
   # relations
+  belongs_to :user
   belongs_to :project
   belongs_to :event_status
   belongs_to :event_type
   belongs_to :event_effect, optional: true
   belongs_to :errand
 
-  has_many :attachments, as: :attachmenable, dependent: :destroy
-
   has_many :accessorizations, dependent: :destroy, index_errors: true
   has_many :accesses_users, through: :accessorizations, source: :user
 
   has_many :comments, dependent: :delete_all
 
-  belongs_to :user
+  has_many :attachments, as: :attachmenable, dependent: :destroy
   has_many :works, as: :trackable
 
   # validates

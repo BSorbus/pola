@@ -21,6 +21,7 @@ class ProposalFile < ApplicationRecord
   validates :status, presence: true,
                     :uniqueness => { scope: [:project_id] }, if: :status_active?
 
+  # callbacks
   before_save :loading_file_is_valid?, on: :create
 
   accepts_nested_attributes_for :xml_partner_tables, reject_if: :all_blank, allow_destroy: true

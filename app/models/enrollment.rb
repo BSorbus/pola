@@ -2,8 +2,10 @@ class Enrollment < ApplicationRecord
   delegate :url_helpers, to: 'Rails.application.routes'
 
   # relations
-  has_many :projects, dependent: :destroy
   belongs_to :user
+
+  has_many :projects, dependent: :destroy
+
   has_many :attachments, as: :attachmenable, dependent: :destroy
   has_many :works, as: :trackable
 

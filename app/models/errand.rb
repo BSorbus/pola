@@ -5,11 +5,11 @@ class Errand < ApplicationRecord
 
   # relations
   belongs_to :errand_status
+  belongs_to :user
 
-  has_many :attachments, as: :attachmenable, dependent: :destroy
   has_many :events, dependent: :nullify, index_errors: true
 
-  belongs_to :user
+  has_many :attachments, as: :attachmenable, dependent: :destroy
   has_many :works, as: :trackable
 
   # validates
