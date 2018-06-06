@@ -17,7 +17,7 @@
           <td><%= event.event_type.try(:name) %></td>
           <td><%= event.end_date.present? ? event.end_date.strftime("%Y-%m-%d %H:%M") : '' %></td>
           <td><%= event.event_status.try(:name) %></td>
-          <td><%= event.event_effect_id.try(:name) %></td>
+          <td><%= event.event_effect.try(:name) %></td>
           <td><%= event.try(:flat_assigned_users) %></td>
         </tr>
       <% end %>

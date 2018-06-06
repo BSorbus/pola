@@ -1,7 +1,7 @@
 $(document).ready(function() {
   function toggleChevron(e) {
       $(e.target)
-          .prev('.panel-heading')
+          .parent()
           .find("i.indicator")
           .toggleClass('glyphicon-chevron-down glyphicon-chevron-right');
   }
