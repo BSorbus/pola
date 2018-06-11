@@ -99,7 +99,9 @@ Rails.application.routes.draw do
   get 'static_pages/home'
   get 'static_pages/help'
 
-  resources :attachments, only: [:show, :edit, :update, :destroy]
+  resources :attachments, only: [:show, :edit, :update, :destroy] do
+    get 'datatables_index', on: :collection # for Trackable
+  end
 
   resources :zs_points
   resources :ww_points

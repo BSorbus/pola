@@ -2,6 +2,13 @@ class AttachmentsController < ApplicationController
   before_action :authenticate_user!
   after_action :verify_authorized, only: [:show, :edit, :update, :create, :destroy]
 
+  def datatables_index
+    respond_to do |format|
+      format.json{ render json: AttachmentDatatable.new(view_context, { attachmenable_id: params[:attachmenable_id], attachmenable_type: params[:attachmenable_type] }) }
+    end
+  end
+
+
   # GET /attachments/1
   # GET /attachments/1.json
   def show
@@ -49,7 +56,6 @@ class AttachmentsController < ApplicationController
     end
   end
 
-
   # PATCH/PUT /attachments/1
   # PATCH/PUT /attachments/1.json
   def update
@@ -65,7 +71,6 @@ class AttachmentsController < ApplicationController
       end
     end
   end
-
 
   # DELETE /attachments/1
   # DELETE /attachments/1.json

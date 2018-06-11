@@ -105,7 +105,15 @@ $(document).ready(function() {
       $.ajax({
         url: $(this).attr('ajax-path'),
         type: $(this).attr('ajax-method'),
-        async: false
+        async: false,
+        error: function (jqXHR, exception) {
+          console.log(jqXHR);
+          if (jqXHR.status == 401) {
+            window.location.reload();
+          } else {
+            getErrorMessage(jqXHR, exception);
+          }
+        }
       });
       oUserRolestable.draw();
     });

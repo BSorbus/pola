@@ -1,11 +1,12 @@
 $(document).ready(function() {
-  var oRoletable = $('#roles-table').DataTable({
+  var oAttachmentableAttachmentsTable = $('#attachmenable-attachments').DataTable({
+    colReorder: true,
     responsive: true,
     processing: true,
     serverSide: true,
     deferRender: true,
     ajax: { 
-      url: $('#roles-table').data('source'),
+      url: $('#attachmenable-attachments').data('source'),
       type: "GET",
       error: function (jqXHR, exception) {
         console.log(jqXHR);
@@ -22,46 +23,10 @@ $(document).ready(function() {
     columns: [
       { "data": "id",
         "visible": false }, 
-      { "data": "name" }, 
-      { "data": "special",
-        "searchable": false },
-      { "data": "note" },
-      { "data": "activities" }
-    ],
-    order: [[ 1, "asc" ]],
-    language: {
-      url: '<%= asset_path("pl.json.erb") %>'
-    }
-  });
-
-
-
-  var oRoleUserstable = $('#role-users-table').DataTable({
-    responsive: true,
-    processing: true,
-    serverSide: true,
-    deferRender: true,
-    ajax: { 
-      url: $('#role-users-table').data('source'),
-      type: "GET",
-      error: function (jqXHR, exception) {
-        console.log(jqXHR);
-        if (jqXHR.status == 401) {
-          window.location.reload();
-        } else {
-          getErrorMessage(jqXHR, exception);
-        }
-      }
-    },
-    pagingType: "full_numbers",
-    lengthMenu: [[10, 15, 25, 50, 100, -1], [10, 15, 25, 50, 100, "Wszystkie"]],
-    iDisplayLength: -1,
-    columns: [
-      { "data": "id",
-        "visible": false }, 
-      { "data": "name" }, 
+      { "data": "attached_file" }, 
       { "data": "note" }, 
-      { "data": "has_role",
+      { "data": "created_at" },
+      { "data": "file_size",
         "searchable": false,
         "sortable": false },
       { "data": "action",
@@ -70,18 +35,35 @@ $(document).ready(function() {
     ],
     preDrawCallback: function( settings ) {
       // jezeli panel nie jest widoczny, to przerwij ładowanie danych
-      if ( $( "#collapse_role_users" ).is( ":hidden" ) ) {
+      if ( $( "#collapse_attachments" ).is( ":hidden" ) ) {
         return false;
       }
     },
-    order: [[ 1, "asc" ]],
+    order: [[ 3, "desc" ]],
     language: {
       url: '<%= asset_path("pl.json.erb") %>'
     }
   });
 
-
-  $('#role-users-table tbody').on( 'click', 'button', function () {
+  $('#attachmenable-attachments tbody').on( 'click', 'button-as-link', function () {
+    if ($(this).attr('ajax-method') == 'DELETE') {
+      if (confirm('Czy na pewno chcesz usunać plik?')) {
+        $.ajax({
+          url: $(this).attr('ajax-path'),
+          type: $(this).attr('ajax-method'),
+          async: false,
+          error: function (jqXHR, exception) {
+            console.log(jqXHR);
+            if (jqXHR.status == 401) {
+              window.location.reload();
+            } else {
+              getErrorMessage(jqXHR, exception);
+            }
+          }
+        });
+        oAttachmentableAttachmentsTable.draw();
+      };
+    } else {
       $.ajax({
         url: $(this).attr('ajax-path'),
         type: $(this).attr('ajax-method'),
@@ -95,17 +77,21 @@ $(document).ready(function() {
           }
         }
       });
-      oRoleUserstable.draw();
-    });
+      oAttachmentableAttachmentsTable.draw();
+    }
+
+  });
+
 
 
   // jezeli nastepuje wyswietlenie panelu, to zaladuj dane
-  $('#collapse_role_users').on('shown.bs.collapse', function (){
+  $('#collapse_attachments').on('shown.bs.collapse', function (){
   //  Wykomentowalem wiersz ponizej poniewaz powoduje podwojne pobieranie danych    
-  //  oRoleUserstable.ajax.reload();
-    oRoleUserstable.draw();
+  //  oAttachmentableAttachmentsTable.ajax.reload();
+    oAttachmentableAttachmentsTable.draw();
   });
 
+ 
   
 });
 

@@ -1,5 +1,5 @@
 class Attachment < ApplicationRecord
-  delegate :url_for, to: 'Rails.application.routes'
+  delegate :url_helpers, to: 'Rails.application.routes'
 
   # relations
   belongs_to :user
@@ -17,7 +17,7 @@ class Attachment < ApplicationRecord
 
 
   def log_work(action = '', action_user_id = nil)
-    trackable_url = url_for(only_path: true, controller: self.attachmenable.class.to_s.pluralize.downcase, action: 'show', id: self.attachmenable.id)
+    trackable_url = url_helpers(only_path: true, controller: self.attachmenable.class.to_s.pluralize.downcase, action: 'show', id: self.attachmenable.id)
     worker_id = action_user_id || self.user_id
     Work.create!(trackable_type: "#{self.attachmenable.class.to_s}", trackable_id: self.attachmenable.id, trackable_url: trackable_url, action: "#{action}", user_id: worker_id, 
       parameters: self.to_json(except: [:user_id], include: {user: {only: [:id, :name, :email]}}))

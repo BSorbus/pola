@@ -1,48 +1,21 @@
 <div class="col-sm-12">
-  <table class="table table-hover">
+  <table id="attachmenable-attachments" width="100%" class="hover cell-border compact" width="100%" data-source="<%= datatables_index_attachments_path(attachmenable_type: attachmenable.class.to_s, attachmenable_id: attachmenable.id.to_s, format: :json) %>">
     <thead>
       <tr>
-        <th><%= Attachment.human_attribute_name(:attached_file_identifier) %></th>
+        <th>0 ID </th>
+        <th><%= Attachment.human_attribute_name(:attached_file) %></th>
         <th><%= Attachment.human_attribute_name(:note) %></th>
-        <th class="col-sm-1"><%= Attachment.human_attribute_name(:file_size) %></th>
-        <th class="col-sm-2"><%= Attachment.human_attribute_name(:created_at) %></th>
-        <th class="col-sm-1"></th>
+        <th><%= Attachment.human_attribute_name(:created_at) %></th>
+        <th><%= Attachment.human_attribute_name(:file_size) %></th>
+        <th class="col-sm-1" ></th>
       </tr>
     </thead>
-
-    <tbody>
-      <% attachmenable.attachments.order(id: :desc).each do |attachment| %>
-        <tr>
-          <td>
-            <!--"Show" as download-->
-            <%= link_to attachment.attached_file_identifier, attachment_path(attachment), title: t('tooltip.download'), rel: 'tooltip' %>
-          </td>
-          <td>
-            <%= text_with_break_line(attachment.note) %>
-            <span>&nbsp;&nbsp;&nbsp;</span>
-            <%= link_to edit_attachment_path(attachment),
-                                title: t('tooltip.edit'), 
-                                rel: 'tooltip' do %>
-              <span class="glyphicon glyphicon-edit text-primary"></span>
-            <% end %>
-          </td>
-          <td><%= attachment.file_size %></td>
-          <td><%= attachment.created_at.strftime("%Y-%m-%d %H:%M") %></td>
-          <td>
-            <%= link_to attachment_path(attachment),
-                                method: :delete,
-                                data: { confirm: t('helpers.links.confirm_destroy', data: attachment.attached_file_identifier) }, 
-                                title: t('tooltip.destroy'), 
-                                rel: 'tooltip' do %>
-              <span class="glyphicon glyphicon-trash text-danger"></span>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
+    <tbody>                    
+      <!--data from JSON -->
     </tbody>
-
   </table>
-</div> <!-- /col-sm-12 -->
+</div> <!--/col-sm-12 -->
+
 
 <div class="col-sm-12">
   <hr>
