@@ -72,7 +72,9 @@ $(document).ready(function() {
     lengthMenu: [[10, 15, 25, 50, 100, -1], [10, 15, 25, 50, 100, "Wszystkie"]],
     columns: [
       { "data": "id",
-        "visible": false }, 
+        "visible": false, 
+        "searchable": false,
+        "sortable": false },
       { "data": "title" }, 
       { "data": "type" },
       { "data": "errand"},
@@ -80,6 +82,9 @@ $(document).ready(function() {
       { "data": "end_date"},
       { "data": "status"},
       { "data": "effect"},
+      { "data": "attachments_count",
+        "searchable": false,
+        "sortable": false },
       { "data": "flat", 
         "sortable": false }
     ],

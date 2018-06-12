@@ -183,6 +183,7 @@ pl:
         project: 'Projekt'
         event_status_id: 'Status zadania'
         event_status: 'Status zadania'
+        attachments_count: 'Załączniki'
         event_type_id: 'Typ zadania'
         event_type: 'Typ zadania'
         event_effect_id: 'Wynik zadania'

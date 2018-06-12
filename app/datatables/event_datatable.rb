@@ -4,30 +4,32 @@ class EventDatatable < AjaxDatatablesRails::Base
 
   def view_columns
     @view_columns ||= {
-      id:        { source: "Event.id", cond: :eq, searchable: false, orderable: false },
-      title:     { source: "Event.title", cond: :like, searchable: true, orderable: true },
-      type:      { source: "EventType.name", cond: :like, searchable: true, orderable: true },
-      errand:    { source: "Errand.number",  cond: :like, searchable: true, orderable: true },
-      project:   { source: "Project.number",  cond: :like, searchable: true, orderable: true },
-      end_date:  { source: "Event.end_date", cond: :like, searchable: true, orderable: true },
-      status:    { source: "EventStatus.name", cond: :like, searchable: true, orderable: true },
-      effect:    { source: "EventEffect.name", cond: :like, searchable: true, orderable: true },
-      flat:      { source: "Event.id", cond: filter_custom_column_condition }
+      id:                { source: "Event.id", cond: :eq, searchable: false, orderable: false },
+      title:             { source: "Event.title", cond: :like, searchable: true, orderable: true },
+      type:              { source: "EventType.name", cond: :like, searchable: true, orderable: true },
+      errand:            { source: "Errand.number",  cond: :like, searchable: true, orderable: true },
+      project:           { source: "Project.number",  cond: :like, searchable: true, orderable: true },
+      end_date:          { source: "Event.end_date", cond: :like, searchable: true, orderable: true },
+      status:            { source: "EventStatus.name", cond: :like, searchable: true, orderable: true },
+      effect:            { source: "EventEffect.name", cond: :like, searchable: true, orderable: true },
+      attachments_count: { source: "Event.id", cond: :like, searchable: false, orderable: false },
+      flat:              { source: "Event.id", cond: filter_custom_column_condition }
     }
   end
 
   def data
     records.map do |record|
       {
-        id:       record.id,
-        title:    record.try(:title_as_link),
-        type:     record.event_type.try(:name),
-        errand:   record.errand.try(:number_as_link),
-        project:  record.project.try(:number_as_link),
-        end_date: record.end_date.present? ? record.end_date.strftime("%Y-%m-%d %H:%M") : '' ,
-        status:   record.event_status.try(:name),
-        effect:   record.event_effect.try(:name),
-        flat:     record.flat_assigned_users
+        id:                record.id,
+        title:             record.try(:title_as_link),
+        type:              record.event_type.try(:name),
+        errand:            record.errand.try(:number_as_link),
+        project:           record.project.try(:number_as_link),
+        end_date:          record.end_date.present? ? record.end_date.strftime("%Y-%m-%d %H:%M") : '' ,
+        status:            record.event_status.try(:name),
+        effect:            record.event_effect.try(:name),
+        attachments_count: badge(record).html_safe,
+        flat:              record.flat_assigned_users
       }
     end
   end
@@ -37,7 +39,6 @@ class EventDatatable < AjaxDatatablesRails::Base
   def get_raw_records
     Event.joins(:event_type, :errand, :project, :event_status).includes(:event_effect).references(:event_type, :errand, :project, :event_status, :event_effect).all
   end
-
 
   def filter_custom_column_condition
     #->(column) { ::Arel::Nodes::SqlLiteral.new(column.field.to_s).matches("#{ column.search.value }%") }
@@ -56,6 +57,9 @@ class EventDatatable < AjaxDatatablesRails::Base
         }
   end
 
+  def badge(rec)
+    "<div style='text-align: center'><span class='badge alert-success'>" + "#{rec.attachments.try(:size)}" + "</span></div>"
+  end
 
   # ==== These methods represent the basic operations to perform on records
   # and feel free to override them

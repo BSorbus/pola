@@ -17,8 +17,8 @@ class AttachmentDatatable < AjaxDatatablesRails::Base
     records.map do |record|
       {
         id:            record.id,
-        attached_file: link_to(record.attached_file_identifier, attachment_path(record.id), title: t('tooltip.download'), rel: 'tooltip'),
-        note:          truncate(record.note, length: 150) + '  ' +  link_to(' ', @view.edit_attachment_path(record.id), class: 'glyphicon glyphicon-edit', title: "Edycja", rel: 'tooltip'),
+        attached_file: link_to(truncate(record.attached_file_identifier, length: 150), attachment_path(record.id), title: t('tooltip.download'), rel: 'tooltip'),
+        note:          truncate(record.note, length: 50) + '  ' +  link_to(' ', @view.edit_attachment_path(record.id), class: 'glyphicon glyphicon-edit', title: "Edycja", rel: 'tooltip'),
         file_size:     record.try(:file_size),
         created_at:    record.created_at.strftime("%Y-%m-%d %H:%M:%S"),
         action:        action_links(record).html_safe

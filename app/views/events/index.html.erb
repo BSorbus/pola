@@ -21,13 +21,14 @@
             <tr>
               <th>id</th>
               <th class='col-sm-2'><%= Event.human_attribute_name(:title) %></th>
-              <th class='col-sm-2'><%= Event.human_attribute_name(:event_type_id) %></th>
+              <th class='col-sm-1'><%= Event.human_attribute_name(:event_type_id) %></th>
               <th class='col-sm-1'><%= Event.human_attribute_name(:errand_id) %></th>
               <th class='col-sm-1'><%= Event.human_attribute_name(:project_id) %></th>
               <th class='col-sm-1'><%= Event.human_attribute_name(:end_date) %></th>
               <th class='col-sm-1'><%= Event.human_attribute_name(:event_status_id) %></th>
               <th class='col-sm-1'><%= Event.human_attribute_name(:event_effect_id) %></th>
-              <th class='col-sm-3'><%= Event.human_attribute_name(:flat_assigned_users) %></th>
+              <th class='col-sm-1'><%= Event.human_attribute_name(:attachments_count) %></th>
+              <th class='col-sm-2'><%= Event.human_attribute_name(:flat_assigned_users) %></th>
             </tr>
           </thead>
           <tfoot>
@@ -66,6 +67,7 @@
                       { autofocus: false, class: 'column_filter form-control input-sm', 'data-column' => "7" }) %>
                 
               </th>
+              <th></th>
               <th>
                 <%= text_field_tag :col8filter, params[:col8filter], id: 'col8filter', 'data-column' => "8", 
                       class: 'column_filter form-control input-sm' %>

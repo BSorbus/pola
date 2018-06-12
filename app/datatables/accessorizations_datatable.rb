@@ -5,30 +5,32 @@ class AccessorizationsDatatable < AjaxDatatablesRails::Base
 
   def view_columns
     @view_columns ||= {
-      id:           { source: "Event.id", cond: :eq, searchable: false, orderable: false },
-      title:        { source: "Event.title", cond: :like, searchable: true, orderable: true },
-      event_type:   { source: "EventType.name", cond: :like, searchable: true, orderable: true },
-      end_date:     { source: "Event.end_date", cond: :like, searchable: true, orderable: true },
-      event_status: { source: "EventStatus.name", cond: :like, searchable: true, orderable: true },
-      project:      { source: "Project.number", cond: :like, searchable: true, orderable: true },
-      status:       { source: "ProjectStatus.name", cond: :like, searchable: true, orderable: true },
-      event_effect: { source: "EventEffect.name", cond: :like, searchable: true, orderable: true },
-      flat:         { source: "Event.id", cond: filter_custom_column_condition }
+      id:                { source: "Event.id", cond: :eq, searchable: false, orderable: false },
+      title:             { source: "Event.title", cond: :like, searchable: true, orderable: true },
+      event_type:        { source: "EventType.name", cond: :like, searchable: true, orderable: true },
+      end_date:          { source: "Event.end_date", cond: :like, searchable: true, orderable: true },
+      event_status:      { source: "EventStatus.name", cond: :like, searchable: true, orderable: true },
+      project:           { source: "Project.number", cond: :like, searchable: true, orderable: true },
+      status:            { source: "ProjectStatus.name", cond: :like, searchable: true, orderable: true },
+      event_effect:      { source: "EventEffect.name", cond: :like, searchable: true, orderable: true },
+      attachments_count: { source: "Event.id", cond: :like, searchable: false, orderable: false },
+      flat:              { source: "Event.id", cond: filter_custom_column_condition }
     }
   end
 
   def data
     records.map do |record|
       {
-        id:           record.id,
-        title:        link_to(truncate(record.title, length: 50), event_path(record.id)),
-        event_type:   record.event_type.try(:name),
-        end_date:     record.end_date.present? ? record.end_date.strftime("%Y-%m-%d %H:%M") : '' ,
-        event_status: record.event_status.try(:name),
-        project:      link_to(record.project.number, project_path(record.project.id)),
-        status:       record.project.project_status.try(:name),
-        event_effect: record.event_effect.try(:name),
-        flat:         record.flat_assigned_users
+        id:                record.id,
+        title:             link_to(truncate(record.title, length: 50), event_path(record.id)),
+        event_type:        record.event_type.try(:name),
+        end_date:          record.end_date.present? ? record.end_date.strftime("%Y-%m-%d %H:%M") : '' ,
+        event_status:      record.event_status.try(:name),
+        project:           link_to(record.project.number, project_path(record.project.id)),
+        status:            record.project.project_status.try(:name),
+        event_effect:      record.event_effect.try(:name),
+        attachments_count: badge(record).html_safe,
+        flat:              record.flat_assigned_users
       }
     end
   end
@@ -71,6 +73,10 @@ class AccessorizationsDatatable < AjaxDatatablesRails::Base
         }
   end
 
+
+  def badge(rec)
+    "<div style='text-align: center'><span class='badge alert-success'>" + "#{rec.attachments.try(:size)}" + "</span></div>"
+  end
 
   # ==== These methods represent the basic operations to perform on records
   # and feel free to override them
