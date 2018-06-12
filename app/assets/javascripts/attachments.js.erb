@@ -48,42 +48,25 @@ $(document).ready(function() {
   });
 
   $('#attachmenable-attachments tbody').on( 'click', 'button-as-link', function () {
-    if ($(this).attr('ajax-method') == 'DELETE') {
-      if (confirm('Czy na pewno chcesz usunać plik?')) {
-        $.ajax({
-          url: $(this).attr('ajax-path'),
-          type: $(this).attr('ajax-method'),
-          async: false,
-          error: function (jqXHR, exception) {
-            console.log(jqXHR);
-            if (jqXHR.status == 401) {
-              window.location.reload();
-            } else {
-              getErrorMessage(jqXHR, exception);
-            }
-          }
-        });
-        oAttachmentableAttachmentsTable.draw();
-      };
-    } else {
+    if (confirm('Czy na pewno chcesz usunać plik?')) {
       $.ajax({
         url: $(this).attr('ajax-path'),
         type: $(this).attr('ajax-method'),
-        async: false,
-        error: function (jqXHR, exception) {
-          console.log(jqXHR);
-          if (jqXHR.status == 401) {
+        async: true,
+        success: function (response) {
+          oAttachmentableAttachmentsTable.draw();
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+          console.log(xhr);
+          if (xhr.status == 401) {
             window.location.reload();
           } else {
-            getErrorMessage(jqXHR, exception);
+            getErrorMessage(xhr, thrownError);
           }
         }
       });
-      oAttachmentableAttachmentsTable.draw();
-    }
-
+    };
   });
-
 
 
   // jezeli nastepuje wyswietlenie panelu, to zaladuj dane

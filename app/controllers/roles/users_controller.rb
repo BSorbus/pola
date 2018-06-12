@@ -17,7 +17,7 @@ class Roles::UsersController < ApplicationController
 
 #    authorize r, :add_remove_role_user?
     user.roles.delete(role) if role.present? && user.present?
-    head :ok
+    head :no_content
   end
 
 end

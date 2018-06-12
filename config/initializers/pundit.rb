@@ -15,11 +15,13 @@ module PunditHelper
   def user_not_authorized(exception)
     policy_name = exception.policy.class.to_s.underscore
     mess = t "#{policy_name}.#{exception.query}", scope: "pundit", default: :default
-    flash[:error] = "#{mess}"
     if request.format == 'application/json'
       render status: 403, json: {error: "#{mess}" }
-    else
+    elsif request.format == 'html'
+      flash[:error] = "#{mess}"
       redirect_to(request.referrer || root_path)
+    else
+      head 403
     end
   end  
 

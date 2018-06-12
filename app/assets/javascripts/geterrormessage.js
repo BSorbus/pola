@@ -7,6 +7,8 @@ function getErrorMessage(jqXHR, exception) {
   } else if (jqXHR.status == 401) {
     //window.location.reload();
     msg = '[401] - Sesja wygasła. Odśwież stronę' + jqXHR.responseText;
+  } else if (jqXHR.status == 403) {
+    msg = '[403] - Dostęp zabroniony' + jqXHR.responseText;
   } else if (jqXHR.status == 404) {
     //msg = 'Requested page not found. [404]';
     msg = '[404] - Nie znalazłem takiej strony.';
