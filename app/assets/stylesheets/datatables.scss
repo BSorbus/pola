@@ -24,24 +24,23 @@ table.dataTable thead .sorting_asc:after {
 }
 
 div.dt-buttons {
-  margin-left:10px;
+  margin-left: 10px;
   float: right;
 }
 
 tfoot {
   display: table-row-group;
-  border-top-width: 0px; 
 }
 
-input.column_filter {
-  margin-top: -5px;
-  margin-left: -5px;
-}
+  input.column_filter {
+    margin-top: -7px;
+    margin-left: -5px;
+  };
+  select.column_filter {
+    margin-top: -7px;
+    margin-left: -5px;
+  }
 
-select.column_filter {
-  margin-top: -5px;
-  margin-left: -5px;
-}
 
 //tr {
 //  background-color: lighten(#BECC25, 5%)
