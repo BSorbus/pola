@@ -13,7 +13,7 @@ class AccessorizationsDatatable < AjaxDatatablesRails::Base
       project:           { source: "Project.number", cond: :like, searchable: true, orderable: true },
       status:            { source: "ProjectStatus.name", cond: :like, searchable: true, orderable: true },
       event_effect:      { source: "EventEffect.name", cond: :like, searchable: true, orderable: true },
-      attachments_count: { source: "Event.id", cond: :like, searchable: false, orderable: false },
+      attachments_count: { source: "Event.id", searchable: false, orderable: false },
       flat:              { source: "Event.id", cond: filter_custom_column_condition }
     }
   end
@@ -41,11 +41,11 @@ class AccessorizationsDatatable < AjaxDatatablesRails::Base
     if options[:only_for_current_user_id].present? 
       Event.joins(:errand, :event_type, :event_status, :accessorizations, project: [:project_status]).includes(:event_effect)
            .references(:errand, :event_type, :event_status, :event_effect, :accessorizations, :project, :project_status)
-           .where(accessorizations: {user_id: options[:only_for_current_user_id]}).distinct
+           .where(accessorizations: {user_id: options[:only_for_current_user_id]}).all
     elsif options[:only_for_current_role_id].present?
       Event.joins(:errand, :event_type, :event_status, :accessorizations, project: [:project_status]).includes(:event_effect)
            .references(:errand, :event_type, :event_status, :event_effect, :accessorizations, :project, :project_status)
-           .where(accessorizations: {role_id: options[:only_for_current_role_id]}).distinct   # .group('events.id')
+           .where(accessorizations: {role_id: options[:only_for_current_role_id]}).all #distinct   # .group('events.id')
     elsif options[:only_for_current_errand_id].present?
       Event.joins(:errand, :event_type, :event_status, project: [:project_status]).includes(:event_effect)
            .references(:errand, :event_type, :event_status, :event_effect, :accessorizations, :project, :project_status)
