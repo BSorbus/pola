@@ -38,6 +38,7 @@ class Projects::PointFilesController < ApplicationController
     @point_file = PointFile.new
     @point_file.project = @project
     @point_file.load_date = Time.zone.now 
+    @point_file.status = :active 
     authorize @point_file, :new?
   end
 
