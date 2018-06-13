@@ -22,7 +22,7 @@ class PointFile < ApplicationRecord
 
   def loading_file_is_valid?
     unless check_csv_file
-      errors.add(:load_file, '"' + load_file.file.original_filename + '" nie jest prawidłowym plikiem wygenerowanym przy użyciu "Formularz planowania zasięgów i sieci NGA ver. 1.1/1.2.0/1.19.2".')
+      errors.add(:load_file, '"' + load_file.file.original_filename + '" nie jest prawidłowym plikiem wygenerowanym przy użyciu "Formularz planowania zasięgów i sieci NGA ver. 1.1/1.2.0/1.19.x".')
       throw :abort 
     end
   end
@@ -51,13 +51,13 @@ class PointFile < ApplicationRecord
     required_line3_1_1 = '# Wersja aplikacji: 1.1'
     required_line3_1_2_0 = '# Wersja aplikacji: 1.2.0'
 
-    required_line1_ver_1_19_2 = '# Wygenerowano przez FPZiS (1.19.2),'
+    required_line1_ver_1_19_x = '# Wygenerowano przez FPZiS (1.19.'
 
 
     line1 = File.open("#{self.load_file.file.path}", "r").each_line.take(1).last
     line1 = line1.strip.gsub(/[\n]/, '') if line1.present?
 
-    line1sub = line1[0..35] if line1.present?
+    line1sub = line1[0..32] if line1.present?
 
     line3 = File.open("#{self.load_file.file.path}", "r").each_line.take(3).last
     line3 = line3.strip.gsub(/[\n]/, '') if line3.present?
@@ -65,7 +65,7 @@ class PointFile < ApplicationRecord
     ( 
       (line1 == required_line1_ver_1_1_or_1_2_0) && ((line3 == required_line3_1_1) || (line3 == required_line3_1_2_0))
     ) ||
-    ( line1sub == required_line1_ver_1_19_2 )
+    ( line1sub == required_line1_ver_1_19_x )
 
   end
 
