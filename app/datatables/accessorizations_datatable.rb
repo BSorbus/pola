@@ -13,7 +13,7 @@ class AccessorizationsDatatable < AjaxDatatablesRails::Base
       customer:          { source: "Customer.name", cond: :like, searchable: true, orderable: true },
       status:            { source: "ProjectStatus.name", cond: :like, searchable: true, orderable: true },
       event_effect:      { source: "EventEffect.name", cond: :like, searchable: true, orderable: true },
-      attachments_count: { source: "Event.attachments_count", cond: :eq, searchable: true, orderable: true },
+      attachments_count: { source: "Event.attachments_count", cond: :like, searchable: true, orderable: true },
       flat:              { source: "Event.id", cond: filter_custom_column_condition }
     }
   end

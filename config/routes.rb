@@ -59,7 +59,7 @@ Rails.application.routes.draw do
   resources :events do
     get 'show_charts', on: :collection
     get 'send_status', on: :member 
-    get 'datatables_index', on: :collection
+    post 'datatables_index', on: :collection
     resources :attachments, module: :events, only: [:create]
     resources :comments, module: :events, only: [:create, :destroy]
   end

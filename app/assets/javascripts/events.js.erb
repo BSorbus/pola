@@ -57,7 +57,7 @@ $(document).ready(function() {
     deferRender: true,
     ajax: { 
       url: $('#events-table').data('source'),
-      type: "GET",
+      type: "POST",
       error: function (jqXHR, exception) {
         console.log(jqXHR);
         if (jqXHR.status == 401) {
@@ -71,17 +71,15 @@ $(document).ready(function() {
     lengthMenu: [[10, 15, 25, 50, 100, -1], [10, 15, 25, 50, 100, "Wszystkie"]],
     columns: [
       { "data": "id",
-        "visible": false, 
-        "searchable": false,
-        "sortable": false },
+        "visible": false },
       { "data": "title" }, 
       { "data": "type" },
-      { "data": "errand"},
-      { "data": "project"},
-      { "data": "customer"},
-      { "data": "end_date"},
-      { "data": "status"},
-      { "data": "effect"},
+      { "data": "errand" },
+      { "data": "project" },
+      { "data": "customer" },
+      { "data": "end_date" },
+      { "data": "status" },
+      { "data": "effect" },
       { "data": "attachments_count" },
       { "data": "flat", 
         "sortable": false }

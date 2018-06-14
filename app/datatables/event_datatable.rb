@@ -13,7 +13,7 @@ class EventDatatable < AjaxDatatablesRails::Base
       end_date:          { source: "Event.end_date", cond: :like, searchable: true, orderable: true },
       status:            { source: "EventStatus.name", cond: :like, searchable: true, orderable: true },
       effect:            { source: "EventEffect.name", cond: :like, searchable: true, orderable: true },
-      attachments_count: { source: "Event.attachments_count", cond: :eq, searchable: true, orderable: true },
+      attachments_count: { source: "Event.attachments_count", cond: :like, searchable: true, orderable: true },
       flat:              { source: "Event.id", cond: filter_custom_column_condition }
     }
   end
@@ -39,7 +39,9 @@ class EventDatatable < AjaxDatatablesRails::Base
   private
 
   def get_raw_records
-    Event.joins(:event_type, :errand, :event_status, project: [:customer]).includes(:event_effect).references(:event_type, :errand, :event_status, :project, :customer, :event_effect).all
+    Event.joins(:event_type, :errand, :event_status, [project: :customer])
+      .includes(:event_effect)
+      .references(:event_type, :errand, :event_status, :project, :customer, :event_effect).distinct
   end
 
   def filter_custom_column_condition
