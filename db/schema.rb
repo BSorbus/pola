@@ -10,11 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180524154033) do
+ActiveRecord::Schema.define(version: 20180614152956) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "postgis"
 
   create_table "accessorizations", force: :cascade do |t|
     t.integer "event_id"
@@ -27,27 +26,6 @@ ActiveRecord::Schema.define(version: 20180524154033) do
     t.index ["role_id"], name: "index_accessorizations_on_role_id"
     t.index ["user_id", "event_id"], name: "index_accessorizations_on_user_id_and_event_id", unique: true
     t.index ["user_id"], name: "index_accessorizations_on_user_id"
-  end
-
-  create_table "active_storage_attachments", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "record_type", null: false
-    t.bigint "record_id", null: false
-    t.bigint "blob_id", null: false
-    t.datetime "created_at", null: false
-    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
-    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
-  end
-
-  create_table "active_storage_blobs", force: :cascade do |t|
-    t.string "key", null: false
-    t.string "filename", null: false
-    t.string "content_type"
-    t.text "metadata"
-    t.bigint "byte_size", null: false
-    t.string "checksum", null: false
-    t.datetime "created_at", null: false
-    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
   create_table "attachments", force: :cascade do |t|
@@ -92,6 +70,7 @@ ActiveRecord::Schema.define(version: 20180524154033) do
     t.string "epuap"
     t.string "rpt"
     t.bigint "user_id"
+    t.integer "attachments_count", default: 0, null: false
     t.index ["name"], name: "index_customers_on_name"
     t.index ["user_id"], name: "index_customers_on_user_id"
   end
@@ -102,6 +81,7 @@ ActiveRecord::Schema.define(version: 20180524154033) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "attachments_count", default: 0, null: false
     t.index ["user_id"], name: "index_enrollments_on_user_id"
   end
 
@@ -123,6 +103,7 @@ ActiveRecord::Schema.define(version: 20180524154033) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.integer "attachments_count", default: 0, null: false
     t.index ["adoption_date"], name: "index_errands_on_adoption_date"
     t.index ["end_date"], name: "index_errands_on_end_date"
     t.index ["errand_status_id"], name: "index_errands_on_errand_status_id"
@@ -169,6 +150,7 @@ ActiveRecord::Schema.define(version: 20180524154033) do
     t.bigint "errand_id"
     t.bigint "user_id"
     t.bigint "event_effect_id"
+    t.integer "attachments_count", default: 0, null: false
     t.index ["end_date"], name: "index_events_on_end_date"
     t.index ["errand_id"], name: "index_events_on_errand_id"
     t.index ["event_effect_id"], name: "index_events_on_event_effect_id"
@@ -178,53 +160,6 @@ ActiveRecord::Schema.define(version: 20180524154033) do
     t.index ["start_date"], name: "index_events_on_start_date"
     t.index ["title"], name: "index_events_on_title"
     t.index ["user_id"], name: "index_events_on_user_id"
-  end
-
-  create_table "gmi_tables", force: :cascade do |t|
-    t.integer "year", null: false
-    t.string "teryt", default: "", null: false
-    t.string "name", default: "", null: false
-    t.string "woj", default: "", null: false
-    t.string "pow", default: "", null: false
-    t.geometry "geom", limit: {:srid=>2180, :type=>"multi_polygon"}, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["geom"], name: "index_gmi_tables_on_geom", using: :gist
-    t.index ["name"], name: "index_gmi_tables_on_name"
-    t.index ["pow"], name: "index_gmi_tables_on_pow"
-    t.index ["teryt"], name: "index_gmi_tables_on_teryt"
-    t.index ["woj"], name: "index_gmi_tables_on_woj"
-    t.index ["year"], name: "index_gmi_tables_on_year"
-  end
-
-  create_table "gminy", primary_key: "gmi_id", id: :serial, force: :cascade do |t|
-    t.integer "gmi_rok", limit: 2, null: false
-    t.text "gmi_teryt", null: false
-    t.text "gmi_nazwa", null: false
-    t.text "gmi_kod_pow", null: false
-    t.text "gmi_kod_woj", null: false
-    t.geometry "geom", limit: {:srid=>2180, :type=>"multi_polygon"}, null: false
-    t.index "lower(gmi_nazwa)", name: "idx_gmi_nazwa"
-    t.index ["geom"], name: "idx_gmi_geo", using: :gist
-    t.index ["gmi_rok", "gmi_teryt"], name: "idx_gmi_rok_teryt"
-  end
-
-  create_table "obszary_popc", primary_key: "obsz_id", id: :serial, force: :cascade do |t|
-    t.text "obsz_konkurs", null: false
-    t.text "obsz_identyfikator_obszaru", null: false
-    t.text "obsz_nazwa_obszaru"
-    t.text "obsz_kod_woj"
-    t.integer "obsz_lb_gd_do_objecia"
-    t.integer "obsz_lb_gd_w_pa_podst"
-    t.integer "obsz_lb_min_lb_gd_do_obj"
-    t.integer "obsz_lb_placowek", limit: 2
-    t.integer "obsz_lb_placowek_a", limit: 2
-    t.integer "obsz_max_dofinansowanie"
-    t.float "obsz_max_intensywnosc"
-    t.text "obsz_zalacznik_http"
-    t.geometry "geom", limit: {:srid=>2180, :type=>"multi_polygon"}, null: false
-    t.index ["geom"], name: "idx_obsz_geo", using: :gist
-    t.index ["obsz_konkurs", "obsz_identyfikator_obszaru"], name: "idx_obsz_konkurs_id_obszaru", unique: true
   end
 
   create_table "old_passwords", force: :cascade do |t|
@@ -271,32 +206,6 @@ ActiveRecord::Schema.define(version: 20180524154033) do
     t.index ["status"], name: "index_point_files_on_status"
   end
 
-  create_table "pow_tables", force: :cascade do |t|
-    t.integer "year", null: false
-    t.string "teryt", default: "", null: false
-    t.string "name", default: "", null: false
-    t.string "woj", default: "", null: false
-    t.geometry "geom", limit: {:srid=>2180, :type=>"multi_polygon"}, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["geom"], name: "index_pow_tables_on_geom", using: :gist
-    t.index ["name"], name: "index_pow_tables_on_name"
-    t.index ["teryt"], name: "index_pow_tables_on_teryt"
-    t.index ["woj"], name: "index_pow_tables_on_woj"
-    t.index ["year"], name: "index_pow_tables_on_year"
-  end
-
-  create_table "powiaty", primary_key: "pow_id", id: :serial, force: :cascade do |t|
-    t.integer "pow_rok", limit: 2, null: false
-    t.text "pow_teryt", null: false
-    t.text "pow_nazwa", null: false
-    t.text "pow_kod_woj", null: false
-    t.geometry "geom", limit: {:srid=>2180, :type=>"multi_polygon"}, null: false
-    t.index "lower(pow_nazwa)", name: "idx_pow_nazwa"
-    t.index ["geom"], name: "idx_pow_geo", using: :gist
-    t.index ["pow_rok", "pow_teryt"], name: "idx_pow_rok_teryt", unique: true
-  end
-
   create_table "project_statuses", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -314,6 +223,7 @@ ActiveRecord::Schema.define(version: 20180524154033) do
     t.bigint "customer_id"
     t.bigint "user_id"
     t.bigint "enrollment_id"
+    t.integer "attachments_count", default: 0, null: false
     t.index ["customer_id"], name: "index_projects_on_customer_id"
     t.index ["enrollment_id"], name: "index_projects_on_enrollment_id"
     t.index ["number"], name: "index_projects_on_number"
@@ -386,33 +296,11 @@ ActiveRecord::Schema.define(version: 20180524154033) do
     t.datetime "last_activity_at"
     t.datetime "expired_at"
     t.datetime "password_changed_at"
+    t.integer "attachments_count", default: 0, null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
-  end
-
-  create_table "woj_tables", force: :cascade do |t|
-    t.integer "year", null: false
-    t.string "teryt", default: "", null: false
-    t.string "name", default: "", null: false
-    t.geometry "geom", limit: {:srid=>2180, :type=>"multi_polygon"}, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["geom"], name: "index_woj_tables_on_geom", using: :gist
-    t.index ["name"], name: "index_woj_tables_on_name"
-    t.index ["teryt"], name: "index_woj_tables_on_teryt"
-    t.index ["year"], name: "index_woj_tables_on_year"
-  end
-
-  create_table "wojewodztwa", primary_key: "woj_id", id: :serial, force: :cascade do |t|
-    t.integer "woj_rok", limit: 2, null: false
-    t.text "woj_teryt", null: false
-    t.text "woj_nazwa", null: false
-    t.geometry "geom", limit: {:srid=>2180, :type=>"multi_polygon"}, null: false
-    t.index "lower(woj_nazwa)", name: "idx_woj_nazwa"
-    t.index ["geom"], name: "idx_woj_geo", using: :gist
-    t.index ["woj_rok", "woj_teryt"], name: "idx_woj_rok_teryt", unique: true
   end
 
   create_table "works", force: :cascade do |t|

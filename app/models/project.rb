@@ -58,7 +58,7 @@ class Project < ApplicationRecord
   end
 
   def fullname
-    "#{self.number} [#{truncate(self.customer.name, length: 30)}] [#{self.project_status.name}]"
+    "#{self.number} [#{self.project_status.name}]"
   end
 
   def number_as_link

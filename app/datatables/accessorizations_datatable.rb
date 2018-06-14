@@ -1,7 +1,6 @@
 class AccessorizationsDatatable < AjaxDatatablesRails::Base
 
-  def_delegators :@view, :link_to, :truncate, :event_path, :project_path
-
+  def_delegators :@view, :link_to, :truncate, :event_path, :project_path, :customer_path
 
   def view_columns
     @view_columns ||= {
@@ -11,9 +10,10 @@ class AccessorizationsDatatable < AjaxDatatablesRails::Base
       end_date:          { source: "Event.end_date", cond: :like, searchable: true, orderable: true },
       event_status:      { source: "EventStatus.name", cond: :like, searchable: true, orderable: true },
       project:           { source: "Project.number", cond: :like, searchable: true, orderable: true },
+      customer:          { source: "Customer.name", cond: :like, searchable: true, orderable: true },
       status:            { source: "ProjectStatus.name", cond: :like, searchable: true, orderable: true },
       event_effect:      { source: "EventEffect.name", cond: :like, searchable: true, orderable: true },
-      attachments_count: { source: "Event.id", searchable: false, orderable: false },
+      attachments_count: { source: "Event.attachments_count", cond: :eq, searchable: true, orderable: true },
       flat:              { source: "Event.id", cond: filter_custom_column_condition }
     }
   end
@@ -27,6 +27,7 @@ class AccessorizationsDatatable < AjaxDatatablesRails::Base
         end_date:          record.end_date.present? ? record.end_date.strftime("%Y-%m-%d %H:%M") : '' ,
         event_status:      record.event_status.try(:name),
         project:           link_to(record.project.number, project_path(record.project.id)),
+        customer:          link_to(record.project.customer.fullname, customer_path(record.project.customer.id)),
         status:            record.project.project_status.try(:name),
         event_effect:      record.event_effect.try(:name),
         attachments_count: badge(record).html_safe,
@@ -39,20 +40,20 @@ class AccessorizationsDatatable < AjaxDatatablesRails::Base
 
   def get_raw_records
     if options[:only_for_current_user_id].present? 
-      Event.joins(:errand, :event_type, :event_status, :accessorizations, project: [:project_status]).includes(:event_effect)
-           .references(:errand, :event_type, :event_status, :event_effect, :accessorizations, :project, :project_status)
+      Event.joins(:errand, :event_type, :event_status, :accessorizations, project: [:project_status, :customer]).includes(:event_effect)
+           .references(:errand, :event_type, :event_status, :event_effect, :accessorizations, :project, :project_status, :customer)
            .where(accessorizations: {user_id: options[:only_for_current_user_id]}).all
     elsif options[:only_for_current_role_id].present?
-      Event.joins(:errand, :event_type, :event_status, :accessorizations, project: [:project_status]).includes(:event_effect)
-           .references(:errand, :event_type, :event_status, :event_effect, :accessorizations, :project, :project_status)
+      Event.joins(:errand, :event_type, :event_status, :accessorizations, project: [:project_status, :customer]).includes(:event_effect)
+           .references(:errand, :event_type, :event_status, :event_effect, :accessorizations, :project, :project_status, :customer)
            .where(accessorizations: {role_id: options[:only_for_current_role_id]}).all #distinct   # .group('events.id')
     elsif options[:only_for_current_errand_id].present?
-      Event.joins(:errand, :event_type, :event_status, project: [:project_status]).includes(:event_effect)
-           .references(:errand, :event_type, :event_status, :event_effect, :accessorizations, :project, :project_status)
+      Event.joins(:errand, :event_type, :event_status, project: [:project_status, :customer]).includes(:event_effect)
+           .references(:errand, :event_type, :event_status, :event_effect, :accessorizations, :project, :project_status, :customer)
            .where(errand_id: options[:only_for_current_errand_id]).all
     else
-      Event.joins(:errand, :event_type, :event_status, :accessorizations, project: [:project_status]).includes(:event_effect)
-           .references(:errand, :event_type, :event_status, :event_effect, :accessorizations, :project, :project_status).distinct
+      Event.joins(:errand, :event_type, :event_status, :accessorizations, project: [:project_status, :customer]).includes(:event_effect)
+           .references(:errand, :event_type, :event_status, :event_effect, :accessorizations, :project, :project_status, :customer).distinct
     end
   end
 
@@ -75,7 +76,12 @@ class AccessorizationsDatatable < AjaxDatatablesRails::Base
 
 
   def badge(rec)
-    "<div style='text-align: center'><span class='badge alert-success'>" + "#{rec.attachments.try(:size)}" + "</span></div>"
+    count = rec.try(:attachments_count)
+    if count > 0
+      "<div style='text-align: center'><span class='badge alert-info'>" + "#{count}" + "</span></div>"
+    else
+      "<div style='text-align: center'><span class='badge'>" + "#{count}" + "</span></div>"
+    end
   end
 
   # ==== These methods represent the basic operations to perform on records
