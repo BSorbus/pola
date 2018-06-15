@@ -24,6 +24,7 @@ class Projects::ProposalFilesController < ApplicationController
     @proposal_file = ProposalFile.new
     @proposal_file.project = @project
     @proposal_file.load_date = Time.zone.now 
+    @proposal_file.status = :active 
     authorize @proposal_file, :new?
   end
 

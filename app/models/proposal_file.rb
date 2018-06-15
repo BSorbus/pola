@@ -47,7 +47,7 @@ class ProposalFile < ApplicationRecord
       config.strict.nonet
     end
 
-    required_1 = '2'
+    required_1 = '2' #10
     required_2 = 'POPC'
     line_1 = ''
     line_2 = ''
@@ -64,7 +64,8 @@ class ProposalFile < ApplicationRecord
       end #/tresc_dokumentu
     end #/dokument
 
-    line_1 == required_1 && line_2 == required_2
+    #line_1 == required_1 && line_2 == required_2
+    line_2 == required_2
   end
 
   def load_data_from_xml_file
