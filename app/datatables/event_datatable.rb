@@ -41,7 +41,7 @@ class EventDatatable < AjaxDatatablesRails::Base
   def get_raw_records
     Event.joins(:event_type, :errand, :event_status, [project: :customer])
       .includes(:event_effect)
-      .references(:event_type, :errand, :event_status, :project, :customer, :event_effect).distinct
+      .references(:event_type, :errand, :event_status, :project, :customer, :event_effect).all
   end
 
   def filter_custom_column_condition
