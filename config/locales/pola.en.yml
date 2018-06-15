@@ -122,8 +122,8 @@ en:
         project_id: 'Project'
         event_status_id: 'Event status'
         event_type_id: 'Event type'
-        attachments_count: 'Attachments'
         note: 'Note'
+        attachments_count: 'Załączniki'
         flat_assigned_users: 'Assigned users'
       comment:
         project_id: 'Project'
