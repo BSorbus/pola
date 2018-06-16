@@ -538,6 +538,7 @@ pl:
     select2user: 'Szukanie po: Nazwa, Email. Warunki oddzielaj spacją'
     select2customer: 'Szukanie po: Nazwa, Adres-Miejscowość, Nip, Regon, Rpt. Warunki oddzielaj spacją'
     select2errand: 'Szukanie po: Numer, Data zlecenia, Data przyjęcia. Warunki oddzielaj spacją'
+    fileuploaddragdrop: 'Wybierz plik(-i) lub przeciągnij i upuść'
   placeholder:
     select2project: 'Wybierz Projekt'
     select2user: 'Wybierz Użytkownika'
