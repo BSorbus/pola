@@ -1,0 +1,20 @@
+jQuery ->
+  $('#new_attachment').fileupload
+    dataType: "script"
+    add: (e, data) ->
+      data.context = $(tmpl("template-upload", data.files[0]))
+      $('#new_attachment').append(data.context)
+      $('#new_attachment').append("<img class='spinner' src='<%= asset_path('spinner.gif') %>'>")
+      data.submit()
+    progress: (e, data) ->
+      if data.context
+        percentComplete = Math.round(data.loaded / data.total * 100)
+        data.context.find('.progress-bar').css("width", percentComplete+'%').attr('aria-valuenow', percentComplete) 
+        data.context.find('.progress-bar').text("Pobrano #{percentComplete}%")
+        if percentComplete == 100
+          data.context.find('.progress-bar').text("Czekaj, trwa zapisywanie danych")
+    stop: (e, data) ->
+      $('#new_attachment').find('.spinner').hide()
+      $('#end_messaage').fadeOut("slow")
+    done: (e, data) ->
+      data.context.fadeOut("slow")

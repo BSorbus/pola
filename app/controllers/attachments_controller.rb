@@ -1,6 +1,7 @@
 class AttachmentsController < ApplicationController
   before_action :authenticate_user!
-  after_action :verify_authorized, only: [:show, :edit, :update, :create, :destroy]
+  #after_action :verify_authorized, only: [:show, :edit, :update, :create, :destroy]
+  after_action :verify_authorized, only: [:show, :edit, :update, :destroy]
 
   def datatables_index
     respond_to do |format|
@@ -41,19 +42,21 @@ class AttachmentsController < ApplicationController
   # POST /attachments
   # POST /attachments.json
   def create
-    @attachment = params[:attachment].present? ? @attachmenable.attachments.new(attachment_params) : @attachmenable.attachments.new()
-    @attachment.user = current_user
-    attachment_authorize(@attachment, "create", params[:controller].classify.deconstantize.singularize.downcase)    
+    # @attachment = params[:attachment].present? ? @attachmenable.attachments.new(attachment_params) : @attachmenable.attachments.new()
+    # @attachment.user = current_user
+    # attachment_authorize(@attachment, "create", params[:controller].classify.deconstantize.singularize.downcase)    
+    # respond_to do |format|
+    #   if @attachment.save
+    #     flash[:success] = t('activerecord.successfull.messages.created', data: @attachment.fullname)
+    #     format.html { redirect_to @attachmenable }
+    #   else
+    #     flash[:error] = t('activerecord.errors.messages.created', data: '')
+    #     format.html { redirect_to @attachmenable }
+    #   end
+    # end
 
-    respond_to do |format|
-      if @attachment.save
-        flash[:success] = t('activerecord.successfull.messages.created', data: @attachment.fullname)
-        format.html { redirect_to @attachmenable }
-      else
-        flash[:error] = t('activerecord.errors.messages.created', data: '')
-        format.html { redirect_to @attachmenable }
-      end
-    end
+    @attachment = @attachmenable.attachments.create(attachment_params)
+    #head :ok
   end
 
   # PATCH/PUT /attachments/1
@@ -103,7 +106,8 @@ class AttachmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def attachment_params
-      params.require(:attachment).permit(:attachmenable_id, :attachmenable_type, :attached_file, :note, :user_id)
+      defaults = { user_id: "#{current_user.id}" }
+      params.require(:attachment).permit(:attachmenable_id, :attachmenable_type, :attached_file, :note, :user_id ).reverse_merge(defaults)
     end
     def attachment_update_params
       params.require(:attachment).permit(:note, :user_id)

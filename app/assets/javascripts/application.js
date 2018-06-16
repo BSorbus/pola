@@ -20,6 +20,8 @@
 //= require moment/pl
 //= require fullcalendar
 //= require bootstrap-datetimepicker
+//= require jquery-fileupload/basic
+//= require jquery-fileupload/vendor/tmpl
 //= require highcharts
 //= require chartkick
 //= require_tree .

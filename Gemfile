@@ -74,6 +74,7 @@ gem 'pundit'
 gem 'carrierwave', '~> 1.0'
 gem 'file_validators'
 gem 'activerecord-import'
+gem 'jquery-fileupload-rails'
 
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
