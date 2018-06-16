@@ -18,3 +18,10 @@ jQuery ->
       $('#end_messaage').fadeOut("slow")
     done: (e, data) ->
       data.context.fadeOut("slow")
+    fail: (e, data) ->
+      if data.jqXHR.status == 401
+        window.location.reload()
+      else
+        getErrorMessage(data.jqXHR, data.errorThrown)
+        data.context.fadeOut("slow")
+        

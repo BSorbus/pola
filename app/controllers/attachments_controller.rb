@@ -1,7 +1,7 @@
 class AttachmentsController < ApplicationController
   before_action :authenticate_user!
-  #after_action :verify_authorized, only: [:show, :edit, :update, :create, :destroy]
-  after_action :verify_authorized, only: [:show, :edit, :update, :destroy]
+  after_action :verify_authorized, only: [:show, :edit, :update, :create, :destroy]
+  #after_action :verify_authorized, only: [:show, :edit, :update, :destroy]
 
   def datatables_index
     respond_to do |format|
@@ -54,6 +54,9 @@ class AttachmentsController < ApplicationController
     #     format.html { redirect_to @attachmenable }
     #   end
     # end
+
+    @attachment = params[:attachment].present? ? @attachmenable.attachments.new(attachment_params) : @attachmenable.attachments.new()
+    attachment_authorize(@attachment, "create", params[:controller].classify.deconstantize.singularize.downcase)
 
     @attachment = @attachmenable.attachments.create(attachment_params)
     #head :ok
