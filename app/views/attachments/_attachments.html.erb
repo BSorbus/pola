@@ -23,9 +23,8 @@
 
     <div class="row">
       <div class="form-group col-sm-12">
-        <%= f.label :attached_file, class: 'control-label' %><br>
+        <%= f.label :attached_file, class: 'control-label' %><small>&nbsp;&nbsp;(<%= t('help_block_text.fileuploaddragdrop') %>)</small><br>
         <%= f.file_field :attached_file, multiple: true, name: "attachment[attached_file]", class: 'form-control input input-file-field' %>
-        <small class="help-block"><%= t('help_block_text.fileuploaddragdrop') %></small>
       </div>
 
     </div>

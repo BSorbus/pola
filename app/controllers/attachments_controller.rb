@@ -1,7 +1,6 @@
 class AttachmentsController < ApplicationController
   before_action :authenticate_user!
   after_action :verify_authorized, only: [:show, :edit, :update, :create, :destroy]
-  #after_action :verify_authorized, only: [:show, :edit, :update, :destroy]
 
   def datatables_index
     respond_to do |format|
@@ -14,23 +13,19 @@ class AttachmentsController < ApplicationController
   # GET /attachments/1.json
   def show
     @attachment = Attachment.find(params[:id])
-    # saved_file = @attachment.attached_file.file
-    # data = open(saved_file.file)
-
-    # send_data data, 
-    #   filename: @attachment.attached_file_identifier,
-    #   type: @attachment.file_content_type, 
-    #   disposition: "attachment"              
-
-    # to działa
     attachment_authorize(@attachment, "show", @attachment.attachmenable_type.singularize.downcase)
+
     # to działa
     # send_file "#{@attachment.attached_file.file.file}"
 
-    # to też działa
     send_file "#{@attachment.attached_file.path}", 
       type: "#{@attachment.file_content_type}",
-      x_sendfile: true
+      filename: @attachment.attached_file.file.filename, 
+      dispostion: "inline", 
+      status: 200, 
+      stream: true, 
+      x_sendfile: true    
+
   end
 
   # GET /attachments/1/edit

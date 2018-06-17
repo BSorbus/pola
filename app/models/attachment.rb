@@ -6,8 +6,7 @@ class Attachment < ApplicationRecord
   belongs_to :attachmenable, polymorphic: true, counter_cache: true
 
   # validates
-  validates :attached_file, presence: true, file_size: { in: 1.byte..150.megabyte,
-                                         message: 'must be within %{min} and %{max}' }
+  validates :attached_file, presence: true, file_size: { in: 1.byte..150.megabyte }
 
   # callbacks
   after_create_commit { self.log_work('upload_attachment') }
