@@ -32,6 +32,9 @@
 pl:
   hello: "Hello world"
   restricted_area: "Adres IP - Wywołanie z obszaru ograniczonego!"
+  file_upload:
+    in_progress: 'Pobrano:'
+    wait_to_save: 'Trwa zapisywanie danych...'
   activerecord:
     models:
       work: 'Dziennik operacji'
