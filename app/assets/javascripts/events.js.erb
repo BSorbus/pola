@@ -16,10 +16,11 @@ function filterColumnParams ( i ) {
 };
 
 
-$.fn.dataTable.ext.buttons.filter_show_hide = {
+$.fn.dataTable.ext.buttons.event_button_filter_show_hide = {
   text: 'Filtr',
+  className: 'btn btn-info',
   action: function ( e, dt, node, config ) {
-  var list = document.getElementsByClassName("column_filter");
+  //var list = document.getElementsByClassName("column_filter");
     // for (var i = 0; i < list.length; i++) {
     //   if (list[i].style.display === "none") {
     //     list[i].style.display = "block";
@@ -33,13 +34,33 @@ $.fn.dataTable.ext.buttons.filter_show_hide = {
 
     if ($('#events-table').DataTable().tables().footer().to$().css('display') === 'none') {
       $('#events-table').DataTable().tables().footer().to$().css('display', 'table-row-group');
+      dt.button( 3 ).text('Filtrowanie...');
+      dt.button( 3 ).active( true );
     } else {
       $('#events-table').DataTable().tables().footer().to$().css('display', 'none');
+      dt.button( 3 ).text('Filtr');
+      dt.button( 3 ).active( false );
     }
 
     $($.fn.dataTable.tables(true)).DataTable()
       .columns.adjust()
       .responsive.recalc();
+  }
+};
+
+$.fn.dataTable.ext.buttons.event_button_only_my_data = {
+  text: 'Wszystko',
+  className: 'btn btn-info',
+  action: function ( e, dt, node, config ) {
+    if (dt.button( 4 ).active() == false) {
+      dt.button( 4 ).text('Tylko moje');
+      dt.button( 4 ).active( true );
+    } else {
+      dt.button( 4 ).text('Wszystko');
+      dt.button( 4 ).active( false );
+    };
+    //oEventtable.ajax.reload();
+    $('#events-table').DataTable().draw();
   }
 };
 
@@ -49,7 +70,7 @@ $(document).ready(function() {
     colReorder: true,
     dom: 'lBfrtip',
     buttons: [
-      'copy', 'csv', 'pdf', 'colvis', 'filter_show_hide'
+      'copy', 'csv', 'pdf', 'colvis', 'event_button_filter_show_hide', 'event_button_only_my_data'
     ],
     responsive: true,
     processing: true,
@@ -58,6 +79,9 @@ $(document).ready(function() {
     ajax: { 
       url: $('#events-table').data('source'),
       type: "POST",
+      data: function(d){
+        d.eager_filter_for_current_user = $('#events-table').DataTable().button(4).active();
+      },
       error: function (jqXHR, exception) {
         console.log(jqXHR);
         if (jqXHR.status == 401) {

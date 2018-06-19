@@ -12,7 +12,8 @@ class EventsController < ApplicationController
 
   def datatables_index
     respond_to do |format|
-      format.json{ render json: EventDatatable.new(view_context) }
+      user_filter = (params[:eager_filter_for_current_user].blank? || params[:eager_filter_for_current_user] == 'false' ) ? nil : current_user.id
+      format.json{ render json: EventDatatable.new(view_context, eager_filter: user_filter ) }
     end
   end
 

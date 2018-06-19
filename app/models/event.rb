@@ -38,6 +38,10 @@ class Event < ApplicationRecord
   after_update_commit { self.log_work('update') }
 
 
+  def self.for_user_in_accessorizations(u)
+    eager_load(:accessorizations).where(accessorizations: {user_id: [u]})
+  end
+
   def dates_is_correct
     if end_date.present? && start_date.present? && (end_date < start_date)
       errors.add(:end_date, 'nie może być wcześniejszy niż Początek')
