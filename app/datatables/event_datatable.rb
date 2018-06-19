@@ -66,9 +66,9 @@ class EventDatatable < AjaxDatatablesRails::Base
   def badge(rec)
     count = rec.try(:attachments_count)
     if count > 0
-      "<div style='text-align: center'><span class='badge alert-info'>" + "#{count}" + "</span></div>"
+      "<div style='text-align: center;'><span class='badge alert-info'>" + "#{count}" + "</span></div>"
     else
-      "<div style='text-align: center'><span class='badge'>" + "#{count}" + "</span></div>"
+      "<div style='text-align: center;'><span class='badge'>" + "#{count}" + "</span></div>"
     end
   end
 

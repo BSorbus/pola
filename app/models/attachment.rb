@@ -3,7 +3,7 @@ class Attachment < ApplicationRecord
 
   # relations
   belongs_to :user
-  belongs_to :attachmenable, polymorphic: true, counter_cache: true
+  belongs_to :attachmenable, polymorphic: true, counter_cache: true, touch: true
 
   # validates
   validates :attached_file, presence: true, file_size: { in: 1.byte..150.megabyte }

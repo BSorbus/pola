@@ -62,49 +62,49 @@
                 <th></th> <!-- id -->
                 <th> <!-- title -->
                   <%= text_field_tag :col1filter, params[:col1filter], id: 'col1filter', 'data-column' => "1", 
-                        class: 'column_filter form-control input-sm' %>
+                        class: 'column_filter form-control input-sm', style: "width: 85%;" %>
                 </th>
                 <th> <!-- type -->
                   <%= select( nil, "col2filter",
                         EventType.all.order(:name).collect {|v| [ "#{v[:name]}", "#{v[:name]}" ] },
                         { include_blank: true }, 
-                        { autofocus: false, class: 'column_filter form-control input-sm', 'data-column' => "2" }) %>                
+                        { autofocus: false, class: 'column_filter form-control input-sm', 'data-column' => "2", style: "width: 65px;" }) %>
                 </th>
                 <th> <!-- erraind -->
                   <%= text_field_tag :col3filter, params[:col3filter], id: 'col3filter', 'data-column' => "3", 
-                        class: 'column_filter form-control input-sm' %>                
+                        class: 'column_filter form-control input-sm', style: "width: 85%;" %>                
                 </th>
                 <th> <!-- project -->
                   <%= text_field_tag :col4filter, params[:col4filter], id: 'col4filter', 'data-column' => "4", 
-                        class: 'column_filter form-control input-sm' %>
+                        class: 'column_filter form-control input-sm', style: "width: 85%;" %>
                 </th>
                 <th> <!-- customer -->
                   <%= text_field_tag :col5filter, params[:col5filter], id: 'col5filter', 'data-column' => "5", 
-                        class: 'column_filter form-control input-sm' %>
+                        class: 'column_filter form-control input-sm', style: "width: 85%;" %>
                 </th>
                 <th></th>  <!-- end_date -->
                 <th>  <!-- status -->
                   <%= select( nil, "col7filter",
                         EventStatus.all.order(:name).collect {|v| [ "#{v[:name]}", "#{v[:name]}" ] },
                         { include_blank: true }, 
-                        { autofocus: false, class: 'column_filter form-control input-sm', 'data-column' => "7" }) %>
+                        { autofocus: false, class: 'column_filter form-control input-sm', 'data-column' => "7", style: "width: 65px;" }) %>
                   
                 </th>
                 <th> <!-- effect -->
                   <%= select( nil, "col8filter",
                         EventEffect.all.order(:name).collect {|v| [ "#{v[:name]}", "#{v[:name]}" ] },
                         { include_blank: true }, 
-                        { autofocus: false, class: 'column_filter form-control input-sm', 'data-column' => "8" }) %>
+                        { autofocus: false, class: 'column_filter form-control input-sm', 'data-column' => "8", style: "width: 65px;" }) %>
                   
                 </th>
                 <th></th>  <!-- updated_at -->
                 <th>  <!-- attachment_count -->
                   <%= text_field_tag :col10filter, params[:col10filter], id: 'col10filter', 'data-column' => "10", 
-                        class: 'column_filter form-control input-sm' %>                  
+                        class: 'column_filter form-control input-sm', style: "width: 75px;" %>                  
                 </th>
                 <th>  <!-- flat -->
                   <%= text_field_tag :col11filter, params[:col11filter], id: 'col11filter', 'data-column' => "11", 
-                        class: 'column_filter form-control input-sm' %>                  
+                        class: 'column_filter form-control input-sm', style: "width: 85%;" %>                  
                 </th>
               </tr>
             </tfoot>
