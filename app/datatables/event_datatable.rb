@@ -13,6 +13,7 @@ class EventDatatable < AjaxDatatablesRails::Base
       end_date:          { source: "Event.end_date", cond: :like, searchable: true, orderable: true },
       status:            { source: "EventStatus.name", cond: :like, searchable: true, orderable: true },
       effect:            { source: "EventEffect.name", cond: :like, searchable: true, orderable: true },
+      updated_at:        { source: "Event.updated_at", cond: :like, searchable: true, orderable: true },
       attachments_count: { source: "Event.attachments_count", cond: :like, searchable: true, orderable: true },
       flat:              { source: "Event.id", cond: filter_custom_column_condition }
     }
@@ -30,6 +31,7 @@ class EventDatatable < AjaxDatatablesRails::Base
         end_date:          record.end_date.present? ? record.end_date.strftime("%Y-%m-%d %H:%M") : '' ,
         status:            record.event_status.try(:name),
         effect:            record.event_effect.try(:name),
+        updated_at:        record.updated_at.strftime("%Y-%m-%d %H:%M"),
         attachments_count: badge(record).html_safe,
         flat:              record.flat_assigned_users
       }

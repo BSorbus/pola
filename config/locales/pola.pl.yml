@@ -196,6 +196,7 @@ pl:
         errand: 'Zlecenie'
         attachments_count: 'Załączniki'
         flat_assigned_users: 'Użytkownicy realizujący'
+        updated_at: 'Aktualizacja'
       comment:
         project_id: 'Projekt'
         user_id: 'Autor'

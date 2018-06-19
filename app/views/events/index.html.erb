@@ -52,6 +52,7 @@
                 <th><%= Event.human_attribute_name(:end_date) %></th>
                 <th><%= Event.human_attribute_name(:event_status_id) %></th>
                 <th><%= Event.human_attribute_name(:event_effect_id) %></th>
+                <th><%= Event.human_attribute_name(:updated_at) %></th>
                 <th><%= Event.human_attribute_name(:attachments_count) %></th>
                 <th><%= Event.human_attribute_name(:flat_assigned_users) %></th>
               </tr>
@@ -96,12 +97,13 @@
                         { autofocus: false, class: 'column_filter form-control input-sm', 'data-column' => "8" }) %>
                   
                 </th>
+                <th></th>  <!-- updated_at -->
                 <th>  <!-- attachment_count -->
-                  <%= text_field_tag :col9filter, params[:col9filter], id: 'col9filter', 'data-column' => "9", 
+                  <%= text_field_tag :col10filter, params[:col10filter], id: 'col10filter', 'data-column' => "10", 
                         class: 'column_filter form-control input-sm' %>                  
                 </th>
                 <th>  <!-- flat -->
-                  <%= text_field_tag :col10filter, params[:col10filter], id: 'col10filter', 'data-column' => "10", 
+                  <%= text_field_tag :col11filter, params[:col11filter], id: 'col11filter', 'data-column' => "11", 
                         class: 'column_filter form-control input-sm' %>                  
                 </th>
               </tr>

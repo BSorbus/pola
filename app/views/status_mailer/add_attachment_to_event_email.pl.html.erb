@@ -20,16 +20,16 @@
 </table>
 
 <table class="email-table">
-  <thead>
-    <tr>
-     <th>Lista załączników:</th>
-    </tr>
-  </thead>
   <tbody>
     <% @event.attachments.each_with_index do |row, index| %>
       <tr class="body-row">
+        <td style="width: 130px;">
+          <% if index == 0 %>
+            <p><strong>Lista załączników</strong>:</p>
+          <% end %>
+        </td>
         <td>
-          <%= "#{row.try(:fullname)}" %>
+          <p><%= "#{row.try(:fullname)}" %></p>
         </td>
       </tr>
     <% end %>
