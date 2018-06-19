@@ -59,6 +59,15 @@
 
     <tr class="body-row">
       <td>
+        <p><strong>Wynik zadania</strong>:</p>
+      </td>
+      <td>
+        <p><%= @event.event_status.try(:fullname) %></p>
+      </td>
+    </tr>
+
+    <tr class="body-row">
+      <td>
         <p><strong>Uwagi</strong>:</p>
       </td>
       <td>

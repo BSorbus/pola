@@ -9,6 +9,8 @@ class Attachment < ApplicationRecord
   validates :attached_file, presence: true, file_size: { in: 1.byte..150.megabyte }
 
   # callbacks
+  after_commit :send_notification, on: [:create, :update], if: "attachmenable_type === 'Event'"
+
   after_create_commit { self.log_work('upload_attachment') }
   after_update_commit { self.log_work('update') }
 
@@ -31,6 +33,11 @@ class Attachment < ApplicationRecord
   #     throw :abort 
   #   end
   # end
+
+  def send_notification
+    #StatusMailer.new_update_event_email(self).deliver_later if self.accesses_users.any?
+    StatusMailer.add_attachment_to_event_email(self.attachmenable).deliver_later if self.attachmenable.accesses_users.any?
+  end
 
   def fullname
     "#{self.attached_file_identifier}"

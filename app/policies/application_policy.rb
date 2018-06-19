@@ -44,8 +44,4 @@ class ApplicationPolicy
     end
   end
 
-
-  def scope
-    Pundit.policy_scope!(user, record.class)
-  end
 end

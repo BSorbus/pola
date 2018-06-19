@@ -13,7 +13,7 @@ class CustomerDatatable < AjaxDatatablesRails::Base
       address_street: { source: "Customer.address_street",  cond: :like, searchable: true, orderable: true },
       address_house:  { source: "Customer.address_house",  cond: :like, searchable: true, orderable: true },
       address_number: { source: "Customer.address_number",  cond: :like, searchable: true, orderable: true },
-      flat:      { source: "Customer.id", cond: filter_custom_column_condition }
+      flat:           { source: "Customer.id", cond: filter_custom_column_condition }
     }
   end
 

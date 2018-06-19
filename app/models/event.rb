@@ -61,7 +61,7 @@ class Event < ApplicationRecord
   end
 
   def send_notification
-    #StatusMailer.new_update_event_email(self).deliver_later if self.accesses_users.any?
+    StatusMailer.new_update_event_email(self).deliver_later if self.accesses_users.any?
   end
 
   def fullname
