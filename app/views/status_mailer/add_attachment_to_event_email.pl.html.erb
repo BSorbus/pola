@@ -11,7 +11,7 @@
     <tr class="body-row">
       <td>
         <p>
-  W programie <strong>POLA</strong>w zadaniu <strong><%= link_to @event.try(:title), event_url(@event), target: "_blank" %></strong>, dotyczącym projektu <strong><%= link_to @event.project.try(:number), project_url(@event.project), target: "_blank" %></strong> dodano załącznik.
+  W programie <strong>POLA</strong> w zadaniu <strong><%= link_to @event.try(:title), event_url(@event), target: "_blank" %></strong>, dotyczącym projektu <strong><%= link_to @event.project.try(:number), project_url(@event.project), target: "_blank" %></strong> dodano załącznik.
         </p>
       </td>
     </tr>
@@ -20,17 +20,16 @@
 </table>
 
 <table class="email-table">
+  <thead>
+    <tr>
+     <th>Lista załączników:</th>
+    </tr>
+  </thead>
   <tbody>
-
-
     <% @event.attachments.each_with_index do |row, index| %>
       <tr class="body-row">
         <td>
-          <% if index == 0 %>
-            <p><strong>Lista załączników</strong>:</p>
-          <% else %>
-            <%= "#{row.try(:fullname)}" %>
-          <% end %>
+          <%= "#{row.try(:fullname)}" %>
         </td>
       </tr>
     <% end %>
