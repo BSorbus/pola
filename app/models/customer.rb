@@ -28,6 +28,10 @@ class Customer < ApplicationRecord
   after_create_commit { self.log_work('create') }
   after_update_commit { self.log_work('update') }
 
+  def self.for_user_in_accessorizations(u)
+    eager_load(projects: {events: [:accessorizations]}).where(accessorizations: {user_id: [u]})
+  end
+
   def has_important_links
     analize_value = true
     if self.projects.any? 
