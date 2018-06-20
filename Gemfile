@@ -60,7 +60,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'bootstrap-sass', '3.3.7'
 gem 'devise'
-
 gem 'devise-security'
 gem 'rails_email_validator'
 
@@ -88,3 +87,6 @@ gem 'rgeo-geojson'
 
 gem 'rack-cors', :require => 'rack/cors'
 gem 'mina'
+
+gem 'inky-rb', require: 'inky'
+gem 'premailer-rails'
