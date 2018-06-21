@@ -108,7 +108,9 @@
       <row>
         <columns large="6">
           <spacer size="8"></spacer>
-          <%= image_tag( attachments['logo_uke.jpg'].url, class: "logo_footer" ) %>
+      <center>
+          <%= image_tag( attachments['logo_uke.jpg'].url ) %>
+      </center>
           <spacer size="16"></spacer>
           <p class="text-left"><small>&copy; 2018 UKE-BI-WUR<small></small></p>
         </columns>

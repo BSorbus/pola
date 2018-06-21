@@ -3,8 +3,8 @@ jQuery ->
     dataType: "script"
     add: (e, data) ->
       data.context = $(tmpl("template-upload", data.files[0]))
-      $('#new_attachment').append(data.context)
       $('#new_attachment').append("<img class='spinner' src='<%= asset_path('spinner.gif') %>'>")
+      $('#new_attachment').append(data.context)
       data.submit()
     progress: (e, data) ->
       if data.context
