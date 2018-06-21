@@ -24,10 +24,4 @@ class StatusMailerPreview < ActionMailer::Preview
     StatusMailer.new_update_event_email(@event)
   end
 
-  # add_attachment_to_event_email(@event)
-  def add_attachment_to_event_email
-    @event = Event.last
-      StatusMailer.add_attachment_to_event_email(@event)
-  end
- 
 end

@@ -31,14 +31,8 @@ class StatusMailer < ActionMailer::Base
   def new_update_event_email(event)
     @event = event
     emails = event.accesses_users.order(:name).flat_map {|row| row.email }.join(',')
-    attachments.inline['logo.jpg'] = File.read("app/assets/images/pola.png")
-    mail(to: emails, subject: "POLA - dotyczy zadania: #{@event.try(:title)}" )
-  end
-
-  def add_attachment_to_event_email(event)
-    @event = event
-    emails = event.accesses_users.order(:name).flat_map {|row| row.email }.join(',')
-    attachments.inline['logo.jpg'] = File.read("app/assets/images/pola.png")
+    attachments.inline['picture_pola'] = File.read("app/assets/images/pola.png")
+    attachments.inline['logo_uke'] = File.read("app/assets/images/logo_uke_pl_do_lewej.png")
     mail(to: emails, subject: "POLA - dotyczy zadania: #{@event.try(:title)}" )
   end
 

@@ -46,6 +46,7 @@ class ApplicationController < ActionController::Base
             '10.100.0.0/16',    # Centrala proxy
             '172.16.1.0/24',
             '10.250.125.0/24',  # Połączenia VPN BYBI
+            '10.250.118.0/24',  # Galach VPN
             '10.250.119.0/24',  # Piotr Majewski VPN
             '10.250.105.0/24'   # Radek Michałek, Andrzej Kaczor VPN
           ] 
