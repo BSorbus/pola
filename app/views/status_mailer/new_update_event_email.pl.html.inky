@@ -1,6 +1,5 @@
 <spacer size="16"></spacer>
 <container>
-  <spacer size="8"></spacer>
   <row>
     <columns large="4">
       <center>
@@ -8,7 +7,7 @@
       </center>
     </columns>
     <columns large="8">
-      <hr class="hr-brand"/>
+      
     </columns>
   </row>
 
@@ -23,7 +22,7 @@
 
   <row>
     <columns>
-      <hr class="hr-brand2"/>
+      <hr class="hr-brand2">
     </columns>
   </row>
 
@@ -53,7 +52,7 @@
 
   <row>
     <columns>
-      <hr class="hr-brand2"/>
+      <hr class="hr-brand2">
     </columns>
   </row>
 
@@ -85,7 +84,7 @@
 
   <row>
     <columns>
-      <hr class="hr-brand2"/>
+      <hr class="hr-brand2">
     </columns>
   </row>
 
@@ -105,7 +104,7 @@
 
   <row class="collapsed footer">
     <columns>
-      <hr class="hr-brand"/>
+      <hr class="hr-brand">
       <row>
         <columns large="6">
           <spacer size="8"></spacer>

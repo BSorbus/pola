@@ -32,7 +32,7 @@ class StatusMailer < ActionMailer::Base
     @event = event
     emails = event.accesses_users.order(:name).flat_map {|row| row.email }.join(',')
     attachments.inline['picture_pola'] = File.read("app/assets/images/pola.png")
-    attachments.inline['logo_uke'] = File.read("app/assets/images/logo_uke_pl_do_lewej.png")
+    attachments.inline['logo_uke'] = File.read("app/assets/images/logo_uke_napis_small.png")
     mail(to: emails, subject: "POLA - dotyczy zadania: #{@event.try(:title)}" )
   end
 
