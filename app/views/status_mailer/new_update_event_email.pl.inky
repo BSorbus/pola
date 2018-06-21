@@ -3,7 +3,7 @@
   <row>
     <columns large="4">
       <center>
-        <%=link_to( image_tag( attachments['picture_pola'].url ), root_url, target: "_blank" ) %>
+        <%=link_to( image_tag( attachments['logo.jpg'].url ), root_url, target: "_blank" ) %>
       </center>
     </columns>
     <columns large="8">
@@ -108,7 +108,7 @@
       <row>
         <columns large="6">
           <spacer size="8"></spacer>
-          <%= image_tag( attachments['logo_uke'].url ) %>
+          <%= image_tag( attachments['logo_uke.jpg'].url, class: "logo_footer" ) %>
           <spacer size="16"></spacer>
           <p class="text-left"><small>&copy; 2018 UKE-BI-WUR<small></small></p>
         </columns>
