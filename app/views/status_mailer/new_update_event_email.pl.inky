@@ -2,12 +2,16 @@
 <container>
   <row>
     <columns large="4">
+      <spacer size="16"></spacer>
       <center>
-        <%=link_to( image_tag( attachments['logo.jpg'].url ), root_url, target: "_blank" ) %>
+        <%=link_to( image_tag( attachments['logo.jpg'].url, alt: "POLA" ), root_url, target: "_blank" ) %>
       </center>
     </columns>
     <columns large="8">
-      
+      <spacer size="16"></spacer>
+      <% Accessorization.includes(:user, :role).where(event_id: @event.id).order("users.name").each_with_index do |row, index| %>
+        <h6 class="h6-small text-right"><%= "#{row.user.try(:name)} - #{row.role.try(:fullname)}" %></h6>
+      <% end %>      
     </columns>
   </row>
 
@@ -82,39 +86,22 @@
     </columns>
   </row>
 
-  <row>
-    <columns>
-      <hr class="hr-brand2">
-    </columns>
-  </row>
-
-  <row>
-    <columns>
-      <h5 class="text-center">Użytkownicy realizujący zadanie:</h5>
-        <% Accessorization.includes(:user, :role).where(event_id: @event.id).order("users.name").each_with_index do |row, index| %>
-          <h6 class="h6-small text-left"><%= "#{row.user.try(:fullname)} - #{row.role.try(:fullname)}" %></h6>
-        <% end %>
-    </columns>
-  </row>
 
   <spacer size="16"></spacer>
-
-
-
 
   <row class="collapsed footer">
     <columns>
       <hr class="hr-brand">
       <row>
-        <columns large="6">
+        <columns large="4">
           <spacer size="8"></spacer>
-      <center>
-          <%= image_tag( attachments['logo_uke.jpg'].url ) %>
-      </center>
+          <center>
+              <%= image_tag( attachments['logo_uke.jpg'].url, alt: "UKE" ) %>
+          </center>
           <spacer size="16"></spacer>
           <p class="text-left"><small>&copy; 2018 UKE-BI-WUR<small></small></p>
         </columns>
-        <columns large="6">
+        <columns large="8">
           <spacer size="8"></spacer>
           <h6 class="text-right h6-small"><%= mail_to "pawel.dabrowski@uke.gov.pl" %></h6>
           <h6 class="text-right h6-small"><%= mail_to "piotr.jankowski@uke.gov.pl" %></h6>
