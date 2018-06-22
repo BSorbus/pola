@@ -9,6 +9,7 @@ $(document).ready(function() {
     processing: true,
     serverSide: true,
     deferRender: true,
+    searchDelay: 500,
     ajax: { 
       url: $('#users-table').data('source'),
       type: "GET",
@@ -57,6 +58,7 @@ $(document).ready(function() {
     processing: true,
     serverSide: true,
     deferRender: true,
+    searchDelay: 500,
     ajax: { 
       url: $('#user-roles-table').data('source'),
       type: "GET",
