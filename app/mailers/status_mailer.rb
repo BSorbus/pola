@@ -23,17 +23,22 @@ class StatusMailer < ActionMailer::Base
 
   def new_comment_email(comment)
     @comment = comment
-    emails = comment.event.accesses_users.order(:name).flat_map {|row| row.email }.join(',')
+
+    admins_emails = User.joins(:roles).where("'event:create' = ANY (roles.activities)").flat_map {|row| row.email}
+    users_emails = comment.event.accesses_users.order(:name).flat_map {|row| row.email }
+    emails = admins_emails + users_emails
     attachments.inline['logo.jpg'] = File.read("app/assets/images/pola.png")
-    mail(to: emails, subject: "POLA - dotyczy zadania: #{@comment.event.try(:title)}" )
+    mail(to: emails.join(','), subject: "POLA - dotyczy zadania: #{@comment.event.try(:title)}" )
   end
 
   def new_update_event_email(event)
     @event = event
-    emails = event.accesses_users.order(:name).flat_map {|row| row.email }.join(',')
+    admins_emails = User.joins(:roles).where("'event:create' = ANY (roles.activities)").flat_map {|row| row.email}
+    users_emails = event.accesses_users.order(:name).flat_map {|row| row.email }
+    emails = admins_emails + users_emails
     attachments.inline['logo.jpg'] = File.read("app/assets/images/pola.png")
     attachments.inline['logo_uke.jpg'] = File.read("app/assets/images/logo_uke_pl_do_lewej_small.png")
-    mail(to: emails, subject: "POLA - dotyczy zadania: #{@event.try(:title)}" )
+    mail(to: emails.join(','), subject: "POLA - dotyczy zadania: #{@event.try(:title)}" )
   end
 
 end

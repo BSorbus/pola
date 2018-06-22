@@ -36,6 +36,7 @@
       <row>
         <columns large="2">
           <h6 class="h6-small text-left"><small>Numer:</small></h6>
+          <h6 class="h6-small text-left"><small>Nabór:</small></h6>
           <h6 class="h6-small text-left"><small>Status:</small></h6>
           <h6 class="h6-small text-left"><small>Wnioskodawca:</small></h6>
           <spacer size="16"></spacer>
@@ -44,6 +45,7 @@
         <columns large="10">
           <h6 class="h6-small text-left"><%= @event.project.try(:number) %></h6>
           <h6 class="h6-small text-left"><%= @event.project.enrollment.try(:name) %></h6>
+          <h6 class="h6-small text-left"><%= @event.project.project_status.try(:name) %></h6>
           <h6 class="h6-small text-left"><%= @event.project.customer.try(:name) %></h6>
           <spacer size="16"></spacer>
           <% @event.project.attachments.each do |attachment| %>

@@ -37,9 +37,6 @@ class CustomerDatatable < AjaxDatatablesRails::Base
   private
 
   def get_raw_records
-    puts "=================================================="
-    puts options[:eager_filter]
-    puts "=================================================="
     options[:eager_filter].present? ? Customer.for_user_in_accessorizations(options[:eager_filter]).all : Customer.all
   end
 
