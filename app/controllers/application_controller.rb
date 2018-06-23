@@ -9,7 +9,12 @@ class ApplicationController < ActionController::Base
   protected
 
   def devise_controller_registrations_new
-    :devise_controller? && "#{controller_name}" == 'registrations' && "#{params[:action]}" == 'new'
+    puts '--------------------------------------------------------------------------------'
+    puts devise_controller?
+    puts "#{action_name}"
+    puts "#{controller_name}"
+    puts '--------------------------------------------------------------------------------'
+    :devise_controller? && "#{controller_name}" == 'registrations' && "#{action_name}" == 'new'
   end
 
   def restricted_area
