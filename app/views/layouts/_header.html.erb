@@ -127,12 +127,12 @@
               <% end %>
             </li>
           <% else %>
-            <% if request_from_the_security_area? %>
+            <%# if request_from_the_security_area? %>
               <li><%= link_to new_user_session_path do %>
                 <span class="glyphicon glyphicon-log-in"></span>&nbsp;<%=t "devise.link_to.sign_in" %>
                 <% end %>
               </li>
-            <% end %>
+            <%# end %>
           <% end %>
         </ul>
 

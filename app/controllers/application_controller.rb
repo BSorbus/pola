@@ -1,12 +1,16 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  before_action :restricted_area, if: :devise_controller?
+  before_action :restricted_area, if: :devise_controller_registrations_new
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   helper_method :request_from_the_security_area?
 
   protected
+
+  def devise_controller_registrations_new
+    :devise_controller? && "#{controller_name}" == 'registrations' && "#{params[:action]}" == 'new'
+  end
 
   def restricted_area
     unless request_from_the_security_area?
