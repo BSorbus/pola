@@ -34,6 +34,7 @@ body {
 
 .carousel {
   height: 65%; 
+  max-height: 65%; 
 }
 
 .carousel, .slide {
