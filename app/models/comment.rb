@@ -29,7 +29,7 @@ class Comment < ApplicationRecord
   end
 
   def send_notification
-    StatusMailer.new_comment_email(self).deliver_later if self.event.accesses_users.any?
+    StatusMailer.new_comment_email(self).deliver_later if self.event.accesses_users.where(notification_by_email: true).any? || User.joins(:roles).where(users: {notification_by_email: true}).where("'event:create' = ANY (roles.activities)").any?
   end
 
 end

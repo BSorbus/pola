@@ -62,6 +62,9 @@ en:
         last_activity_at: 'Last activity at'
         password_changed_at: 'Password changed at'
         note: 'Note'
+        legitimation: 'Legitimation'
+        position: 'Position'
+        notification_by_email: 'Notification by e-mail'
         flat_assigned_events: 'Related events'
       role:
         name: 'Name'

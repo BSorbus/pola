@@ -24,8 +24,8 @@ class StatusMailer < ActionMailer::Base
   def new_comment_email(comment)
     @comment = comment
 
-    admins_emails = User.joins(:roles).where("'event:create' = ANY (roles.activities)").flat_map {|row| row.email}
-    users_emails = comment.event.accesses_users.order(:name).flat_map {|row| row.email }
+    admins_emails = User.joins(:roles).where(users: {notification_by_email: true}).where("'event:create' = ANY (roles.activities)").flat_map {|row| row.email}
+    users_emails = comment.event.accesses_users.where(notification_by_email: true).order(:name).flat_map {|row| row.email }
     emails = admins_emails + users_emails
     attachments.inline['logo.jpg'] = File.read("app/assets/images/pola.png")
     mail(to: emails.join(','), subject: "POLA - dotyczy zadania: #{@comment.event.try(:title)}" )
@@ -33,8 +33,9 @@ class StatusMailer < ActionMailer::Base
 
   def new_update_event_email(event)
     @event = event
-    admins_emails = User.joins(:roles).where("'event:create' = ANY (roles.activities)").flat_map {|row| row.email}
-    users_emails = event.accesses_users.order(:name).flat_map {|row| row.email }
+
+    admins_emails = User.joins(:roles).where(users: {notification_by_email: true}).where("'event:create' = ANY (roles.activities)").flat_map {|row| row.email}
+    users_emails = event.accesses_users.where(notification_by_email: true).order(:name).flat_map {|row| row.email }
     emails = admins_emails + users_emails
     attachments.inline['logo.jpg'] = File.read("app/assets/images/pola.png")
     attachments.inline['logo_uke.jpg'] = File.read("app/assets/images/logo_uke_pl_do_lewej_small.png")

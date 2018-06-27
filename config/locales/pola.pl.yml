@@ -87,6 +87,7 @@ pl:
         note: 'Uwagi'
         legitimation: 'Legitymacja'
         position: 'Stanowisko'
+        notification_by_email: 'Powiadamianie e-mail'
         flat_assigned_events: 'Powiązane zadania'
       role:
         name: 'Nazwa'
