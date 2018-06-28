@@ -13,6 +13,7 @@ class Comment < ApplicationRecord
                     length: { minimum: 3 }
 
   # callbacks
+  #before_save { self.body = Loofah.fragment(body).text }
   after_commit :send_notification, on: :create
   after_create_commit { self.log_work('create_comment') }
 

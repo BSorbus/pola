@@ -32,7 +32,6 @@ class Event < ApplicationRecord
 
   # callbacks
   before_create { self.title = "#{title} - #{self.project.number}" }
-  after_commit :send_notification, on: [:create, :update]
   
   after_create_commit { self.log_work('create') }
   after_update_commit { self.log_work('update') }
@@ -64,8 +63,9 @@ class Event < ApplicationRecord
     )
   end
 
-  def send_notification
-    StatusMailer.new_update_event_email(self).deliver_later if self.accesses_users.where(notification_by_email: true).any? || User.joins(:roles).where(users: {notification_by_email: true}).where("'event:create' = ANY (roles.activities)").any?
+  def send_notification_to_pool
+    NotificationPoolJob.set(wait: 15.seconds).perform_later(self.class.to_s, self.id)
+    #StatusMailer.new_update_event_email(self).deliver_later if self.accesses_users.where(notification_by_email: true).any? || User.joins(:roles).where(users: {notification_by_email: true}).where("'event:create' = ANY (roles.activities)").any?
   end
 
   def fullname

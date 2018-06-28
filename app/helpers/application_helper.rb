@@ -18,7 +18,7 @@ module ApplicationHelper
   end
 
   def text_with_break_line(text_data)
-    text_data.gsub("\r\n", "<br>").html_safe
+    Loofah.fragment(text_data.gsub("\r\n", "<br>")).scrub!(:strip).to_s.html_safe
   end
 
   # for nested_attribute

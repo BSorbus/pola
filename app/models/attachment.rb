@@ -3,7 +3,7 @@ class Attachment < ApplicationRecord
 
   # relations
   belongs_to :user
-  belongs_to :attachmenable, polymorphic: true, counter_cache: true, touch: true
+  belongs_to :attachmenable, polymorphic: true, counter_cache: true
 
   # validates
   validates :attached_file, presence: true, file_size: { in: 1.byte..500.megabyte }
@@ -11,6 +11,8 @@ class Attachment < ApplicationRecord
   # callbacks
   after_create_commit { self.log_work('upload_attachment') }
   after_update_commit { self.log_work('update') }
+  after_commit :send_notification_to_model
+
 
   mount_uploader :attached_file, AttachmentUploader
 
@@ -22,6 +24,9 @@ class Attachment < ApplicationRecord
       parameters: self.to_json(except: [:user_id], include: {user: {only: [:id, :name, :email]}}))
   end
 
+  def send_notification_to_model
+    attachmenable.send_notification_to_pool if (['Event']).include? self.attachmenable.class.to_s     
+  end
 
   # validate :attached_file_size_validation
 
