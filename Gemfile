@@ -90,3 +90,4 @@ gem 'mina'
 
 gem 'inky-rb', require: 'inky'
 gem 'premailer-rails'
+gem 'activerecord-session_store'
