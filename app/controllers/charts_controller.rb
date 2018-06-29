@@ -41,15 +41,6 @@ class ChartsController < ApplicationController
                   {name: 'Ilość (wg daty zakończenia)', data: result3}]
   end
 
-  def errands_by_month_status
-    data_array = []
-    ErrandStatus.all.each do |errand_status|
-      data_array << { name: "#{errand_status.name}", 
-                      data: Errand.where(errand_status: errand_status).group_by_month(:order_date, format: '%Y-%m-%d').count.map{|k,v| [k,v]} }
-    end
-    render json: data_array.to_json 
-  end
-
   # Events
   def events_by_status
     data_array = []

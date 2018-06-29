@@ -73,7 +73,6 @@ Rails.application.routes.draw do
 
   resources :charts, only: [] do
     get 'errands_by_month', on: :collection
-    get 'errands_by_month_status', on: :collection
     get 'errands_by_status', on: :collection
     get 'events_by_status_for_errand', on: :collection
     get 'events_by_status_for_user', on: :collection

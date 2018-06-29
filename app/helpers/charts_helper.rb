@@ -53,27 +53,6 @@ module ChartsHelper
       }
   end
 
-  def chart_errands_by_month_status
-    line_chart errands_by_month_status_charts_path, 
-      {
-        discrete: true,
-        library: {
-          title: {text: t('charts.errands_by_month_status.title'), x: -20},
-          subtitle: {text: t('charts.errands_by_month_status.subtitle'), x: -20},
-          yAxis: {
-            title: {
-              text: 'Ilość'
-            }
-          },
-          tooltip: {
-            valueSuffix: ' zlecenie (-nia/-eń)'
-          },
-          credits: {
-            enabled: false
-          }
-        }
-      }
-  end
 
   # For showed Errand
   def chart_events_by_status_for_errand(id, sub)
