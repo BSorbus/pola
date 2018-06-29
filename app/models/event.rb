@@ -65,7 +65,7 @@ class Event < ApplicationRecord
 
   def send_notification_to_pool
     #NotificationPoolJob.set(wait: 10.minutes).perform_later(self)
-    NotificationPoolJob.set(wait: 10.seconds).perform_later(self)
+    #NotificationPoolJob.set(wait: 10.seconds).perform_later(self)
     #StatusMailer.new_update_event_email(self).deliver_later if self.accesses_users.where(notification_by_email: true).any? || User.joins(:roles).where(users: {notification_by_email: true}).where("'event:create' = ANY (roles.activities)").any?
   end
 
