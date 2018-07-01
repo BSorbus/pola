@@ -556,9 +556,6 @@ pl:
     errands_by_month:
       title: 'Zlecenia według daty przyjęcia, rozpoczęcia, zakończenia'
       subtitle: 'podział miesięczny'
-    errands_by_month_status:
-      title: 'Statusy zleceń według daty zlecenia'
-      subtitle: 'podział miesięczny'
     events_by_status:
       title: 'Aktualna liczba zadań'
       subtitle: 'podział wg statusu'

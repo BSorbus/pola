@@ -1,70 +1,24 @@
 class NotificationPoolJob < ApplicationJob
-	self.queue_adapter = :async
-  self.queue_as :low_priority
+  self.queue_as :notification
 
-	before_enqueue :puts_before_enqueue
+	attr_reader :notification_owner, :notification_owner_id
 
-	before_perform :puts_before_perform
+  after_enqueue do 
+		owner = self.arguments[0].class.to_s
+		owner_id = self.arguments[0].id
 
-	def enqueue(options = {})
-    puts '////////////////////////////////////////////////////////////////////////////////////////'
-    puts 'enqueue super'
-    puts "puts self.arguments: #{self.arguments}"
-    puts "puts self.serialize_arguments(arguments): #{serialize_arguments(self.arguments)}"
-   	puts "puts self.class.name: #{self.class.name}"
-    puts "puts self.class.queue_name: #{self.class.queue_name}"
-   	puts "puts self.job_id: #{self.job_id}"
-   	puts "puts self.provider_job_id: #{self.provider_job_id}"
-   	puts "puts sef.inspect: #{self.inspect}"
-   	#puts "puts GlobalID.find('gid://pola/Event/500'): #{GlobalID.find('gid://pola/Event/500')}"
-   	puts "puts sef.inspect: #{GlobalID.find( 'gid://pola/Event/500' )}"
-    puts '////////////////////////////////////////////////////////////////////////////////////////'
-		super
-	end
-
-  queue_as do
-    puts '****************************************************************************************'
-    puts "QUEUE_AS"
-    puts "puts self.arguments: #{self.arguments}"
-    puts "puts self.serialize_arguments(arguments): #{serialize_arguments(self.arguments)}"
-   	puts "puts self.class.name: #{self.class.name}"
-    puts "puts self.class.queue_name: #{self.class.queue_name}"
-   	puts "puts self.job_id: #{self.job_id}"
-   	puts "puts self.provider_job_id: #{self.provider_job_id}"
-   	puts "puts sef.inspect: #{self.inspect}"
-    puts '****************************************************************************************'
-    # send_model = self.arguments[0].class.to_s
-    # send_model_id = self.arguments[0].id
-    # "#{send_model}-#{send_model_id}"
+    delayed_job = Delayed::Job.find(self.provider_job_id)
+    delayed_job.update(reference_id: owner_id, reference_type: owner)
   end
 
-  def puts_before_enqueue
-    puts '-----------------------------------------------------------------------------------------'
-    puts "BEFORE_ENQUEUE"
-    puts "puts self.serialize_arguments(arguments): #{serialize_arguments(self.arguments)}"
-   	puts "puts self.class.name: #{self.class.name}"
-    puts "puts self.class.queue_name: #{self.class.queue_name}"
-   	puts "puts self.job_id: #{self.job_id}"
-   	puts "puts self.provider_job_id: #{self.provider_job_id}"
-   	puts "puts sef.inspect: #{self.inspect}"
-    puts '-----------------------------------------------------------------------------------------'
-  end
-
-  def puts_before_perform
-    puts '-----------------------------------------------------------------------------------------'
-    puts "BEFORE_PERFORM"
-    puts "puts self.serialize_arguments(arguments): #{serialize_arguments(self.arguments)}"
-   	puts "puts self.class.name: #{self.class.name}"
-    puts "puts self.class.queue_name: #{self.class.queue_name}"
-   	puts "puts self.job_id: #{self.job_id}"
-   	puts "puts self.provider_job_id: #{self.provider_job_id}"
-   	puts "puts sef.inspect: #{self.inspect}"
-    puts '-----------------------------------------------------------------------------------------'  	
-  end
 
   def perform(rec)
-    puts '========================================================================================='
-    puts "From send_notification_to_pool model:#{rec.class.to_s} id:#{rec.id} "
-    puts '========================================================================================='    
+		owner = self.arguments[0].class.to_s
+		owner_id = self.arguments[0].id
+
+		# remove previous same jobs 
+		Delayed::Job.where(queue: "notification", reference_id: owner_id, reference_type: owner).delete_all
+
+    StatusMailer.new_update_event_email(rec).deliver_later if rec.accesses_users.where(notification_by_email: true).any? || User.joins(:roles).where(users: {notification_by_email: true}).where("'event:create' = ANY (roles.activities)").any?
   end
 end

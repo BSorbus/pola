@@ -22,20 +22,6 @@ module ChartsHelper
       }
   end
 
-  def chart_errands_by_month_status
-    line_chart errands_by_month_status_charts_path, 
-      discrete: true,
-      library: {
-        title: t('charts.errands_by_month_status.title'),
-        vAxis: {
-          title: 'Ilość'
-        },
-        hAxis: {
-          title: 'Miesiące'
-        }
-      }
-  end
-
 
   # For showed Errand
   def chart_events_by_status_for_errand(id, sub)
