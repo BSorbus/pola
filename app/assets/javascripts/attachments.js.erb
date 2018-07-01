@@ -4,7 +4,8 @@ $(document).ready(function() {
     responsive: true,
     processing: true,
     serverSide: true,
-    //deferRender: true,
+    deferRender: true,
+    searchDelay: 500,
     ajax: { 
       url: $('#attachmenable-attachments').data('source'),
       type: "GET",
