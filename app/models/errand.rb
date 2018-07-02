@@ -36,6 +36,10 @@ class Errand < ApplicationRecord
       parameters: self.to_json(except: [:errand_status_id, :user_id], include: {errand_status: {only: [:id, :name]}, user: {only: [:id, :name, :email]}}))
   end
 
+  def send_notification_to_pool
+    NotificationPoolJob.set(wait: 300.seconds).perform_later(self) if self.errand_status_id != ErrandStatus::ERRAND_STATUS_CLOSED
+  end
+
   def has_opened_events
     analize_value = true
     if self.errand_status_id === ErrandStatus::ERRAND_STATUS_CLOSED && self.events.where.not(event_status_id: EventStatus::EVENT_STATUS_CLOSED).any? 

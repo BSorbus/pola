@@ -19,6 +19,16 @@ class NotificationPoolJob < ApplicationJob
 		# remove previous same jobs 
 		Delayed::Job.where(queue: "notification", reference_id: owner_id, reference_type: owner).delete_all
 
-    StatusMailer.new_update_event_email(rec).deliver_later if rec.accesses_users.where(notification_by_email: true).any? || User.joins(:roles).where(users: {notification_by_email: true}).where("'event:create' = ANY (roles.activities)").any?
+    case owner
+    when 'Event' then 
+    	StatusMailer.new_update_event_email(rec).deliver_later if rec.accesses_users.where(notification_by_email: true).any? || User.joins(:roles).where(users: {notification_by_email: true}).where("'event:create' = ANY (roles.activities)").any?
+    when 'Errand'  then
+    	nil
+    when 'Project'  then
+    	nil
+    else 
+    	nil
+    end
+
   end
 end

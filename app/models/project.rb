@@ -62,6 +62,10 @@ class Project < ApplicationRecord
                   user: {only: [:id, :name, :email]}}))
   end
 
+  def send_notification_to_pool
+    NotificationPoolJob.set(wait: 300.seconds).perform_later(self) if self.project_status_id != ProjectStatus::PROJECT_STATUS_CLOSED
+  end
+
   def fullname
     "#{self.number} [#{self.project_status.name}]"
   end
