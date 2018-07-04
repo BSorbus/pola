@@ -24,4 +24,10 @@ class StatusMailerPreview < ActionMailer::Preview
     StatusMailer.new_update_event_email(@event)
   end
 
+  # def new_update_project_email(project)
+  def new_update_project_email
+    @project = Project.last
+    StatusMailer.new_update_project_email(@project)
+  end
+
 end

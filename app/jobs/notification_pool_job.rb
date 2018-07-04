@@ -21,11 +21,11 @@ class NotificationPoolJob < ApplicationJob
 
     case owner
     when 'Event' then 
-    	StatusMailer.new_update_event_email(rec).deliver_later if rec.accesses_users.where(notification_by_email: true).any? || User.joins(:roles).where(users: {notification_by_email: true}).where("'event:create' = ANY (roles.activities)").any?
+    	StatusMailer.new_update_event_email(rec).deliver_later if rec.accesses_users.has_notification_by_email.any? || User.joins(:roles).where("'event:create' = ANY (roles.activities)").any?
     when 'Errand'  then
     	nil
     when 'Project'  then
-    	nil
+      StatusMailer.new_update_project_email(rec).deliver_later if rec.accesses_users.has_notification_by_email.any? || User.joins(:roles).where("'project:create' = ANY (roles.activities)").any?
     else 
     	nil
     end

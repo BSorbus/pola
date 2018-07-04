@@ -10,6 +10,7 @@ class Role < ApplicationRecord
                     length: { in: 1..100 },
                     :uniqueness => { :case_sensitive => false }
 
+  # scope
   scope :only_not_special, -> { where(special: false) }  
 
   def fullname

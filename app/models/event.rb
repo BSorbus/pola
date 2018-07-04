@@ -37,6 +37,10 @@ class Event < ApplicationRecord
   after_update_commit { self.log_work('update') }
 
 
+  def is_closed
+    event_status_id == EventStatus::EVENT_STATUS_CLOSED ? true : false 
+  end
+
   def self.for_user_in_accessorizations(u)
     eager_load(:accessorizations).where(accessorizations: {user_id: [u]})
   end
@@ -64,7 +68,7 @@ class Event < ApplicationRecord
   end
 
   def send_notification_to_pool
-    NotificationPoolJob.set(wait: 300.seconds).perform_later(self) if self.event_status_id != EventStatus::EVENT_STATUS_CLOSED
+    NotificationPoolJob.set(wait: 300.seconds).perform_later(self) unless self.is_closed
   end
 
   def fullname

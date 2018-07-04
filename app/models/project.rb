@@ -18,6 +18,7 @@ class Project < ApplicationRecord
     class_name: 'ProposalFile', foreign_key: :project_id
 
   has_many :events, dependent: :nullify, index_errors: true
+  has_many :accesses_users, through: :events
   has_many :comments, through: :events, source: :comments
 
   has_many :attachments, as: :attachmenable, dependent: :destroy

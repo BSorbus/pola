@@ -47,6 +47,8 @@ class User < ApplicationRecord
   # callbacks
   before_destroy :has_important_links, prepend: true
 
+  # scope
+  scope :has_notification_by_email, -> { where(notification_by_email: true) }
 
   def has_important_links
     analize_value = true
