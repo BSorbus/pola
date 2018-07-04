@@ -38,6 +38,10 @@ class Project < ApplicationRecord
   after_update_commit { self.log_work('update') }
 
 
+  def is_closed
+    project_status_id == ProjectStatus::PROJECT_STATUS_CLOSED ? true : false
+  end
+
   def self.for_user_in_accessorizations(u)
     eager_load(events: [:accessorizations]).where(accessorizations: {user_id: [u]})
   end
@@ -64,7 +68,7 @@ class Project < ApplicationRecord
   end
 
   def send_notification_to_pool
-    NotificationPoolJob.set(wait: 300.seconds).perform_later(self) if self.project_status_id != ProjectStatus::PROJECT_STATUS_CLOSED
+    NotificationPoolJob.set(wait: 300.seconds).perform_later(self) unless self.is_closed
   end
 
   def fullname
