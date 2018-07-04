@@ -9,6 +9,7 @@ class MyMailer < Devise::Mailer
   def confirmation_instructions(record, token, opts={})
     @url  = Rails.application.secrets.domain_name
     attachments.inline['logo.jpg'] = File.read("app/assets/images/pola.png")
+    attachments.inline['logo_uke.jpg'] = File.read("app/assets/images/logo_uke_pl_do_lewej_small.png")
     # !!!!!!!!!!!!!!!!!!!!!!
     # opts[:to] = 'BSorbus@gmail.com'   
     # opts[:subject] = "POLA - Instrukcja aktywowania konta"
@@ -26,6 +27,7 @@ class MyMailer < Devise::Mailer
   def reset_password_instructions(record, token, opts={})
     @url  = Rails.application.secrets.domain_name
     attachments.inline['logo.jpg'] = File.read("app/assets/images/pola.png")
+    attachments.inline['logo_uke.jpg'] = File.read("app/assets/images/logo_uke_pl_do_lewej_small.png")
     super
   end
 
@@ -33,6 +35,7 @@ class MyMailer < Devise::Mailer
   def unlock_instructions(record, token, opts={})
     @url  = Rails.application.secrets.domain_name
     attachments.inline['logo.jpg'] = File.read("app/assets/images/pola.png")
+    attachments.inline['logo_uke.jpg'] = File.read("app/assets/images/logo_uke_pl_do_lewej_small.png")
     super
   end
 

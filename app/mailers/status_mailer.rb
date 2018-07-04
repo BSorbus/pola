@@ -27,6 +27,7 @@ class StatusMailer < ActionMailer::Base
     users_emails = comment.event.accesses_users.has_notification_by_email.order(:name).flat_map {|row| row.email}
     emails = admins_emails + users_emails
     attachments.inline['logo.jpg'] = File.read("app/assets/images/pola.png")
+    attachments.inline['logo_uke.jpg'] = File.read("app/assets/images/logo_uke_pl_do_lewej_small.png")
     mail(to: emails.join(','), subject: "POLA - dotyczy zadania: #{@comment.event.try(:title)}" )
   end
 
@@ -47,7 +48,7 @@ class StatusMailer < ActionMailer::Base
     emails = admins_emails + users_emails
     attachments.inline['logo.jpg'] = File.read("app/assets/images/pola.png")
     attachments.inline['logo_uke.jpg'] = File.read("app/assets/images/logo_uke_pl_do_lewej_small.png")
-    mail(to: emails.join(','), subject: "POLA - dotyczy projektu: #{@project.try(:title)}" )
+    mail(to: emails.join(','), subject: "POLA - dotyczy projektu: #{@project.try(:number)}" )
   end
 
 end
