@@ -1,10 +1,13 @@
 @import 'datatables/jquery.dataTables';
-@import 'datatables/extensions/Responsive/responsive.dataTables';
-@import 'datatables/extensions/Buttons/buttons.dataTables';
-
 @import 'datatables/dataTables.bootstrap';
+
+@import 'datatables/extensions/Responsive/responsive.dataTables';
 @import 'datatables/extensions/Responsive/responsive.bootstrap';
+
+@import 'datatables/extensions/Buttons/buttons.dataTables';
 @import 'datatables/extensions/Buttons/buttons.bootstrap';
+
+
 
 //blokuje wyswietlanie icon "drzewko"
 //.DataTable > thead > tr > th[class*="sort"]:after{

@@ -19,7 +19,6 @@ pl:
           title: 'Nie otrzymałeś instrukcji aktywacji konta?' 
           header_text: 'Wyślemy na Twój email instrukcję aktywacji konta'
           button_submit: 'Wyślij instrukcję'
-          footer_text: 'Twój email musi być zarejestrowany'
     failure:
       already_authenticated: "Jesteś aktualnie zalogowany."
       inactive: "Twoje konto nie zostało jeszcze aktywowane."
@@ -53,7 +52,6 @@ pl:
           title: 'Nie znasz lub zapomniałeś hasło?' 
           header_text: 'Wyślemy na Twój email instrukcję resetowania hasła'
           button_submit: 'Wyślij instrukcję'
-          footer_text: 'Twój email musi być zarejestrowany'
         edit: 
           title: 'Zmiana hasła' 
           header_text: 'Podaj teraz nowe hasło, powtórz je i zapisz aby zmiana hasła została dokonana'
@@ -101,7 +99,6 @@ pl:
           title: 'Nie dostałeś instrukcji odblokowania konta?' 
           header_text: 'Wyślemy na Twój email instrukcję odblokowania konta'
           button_submit: 'Wyślij instrukcję'
-          footer_text: 'Twój email musi być zarejestrowany'
   errors:
     messages:
       already_confirmed: "już został aktywowany, proszę spróbować się zalogować."

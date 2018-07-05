@@ -12,6 +12,3 @@
 //= require datatables/extensions/Buttons/buttons.html5
 //= require datatables/extensions/Buttons/buttons.print
 //= require datatables/extensions/Buttons/buttons.colVis
-//= require datatables/extensions/ColReorder/dataTables.colReorder
-
-

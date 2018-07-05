@@ -10,7 +10,7 @@ class UserDatatable < AjaxDatatablesRails::Base
       current_sign_in_at:   { source: "User.current_sign_in_at",  cond: :like, searchable: true, orderable: true },
       last_activity_at:     { source: "User.last_activity_at",  cond: :like, searchable: true, orderable: true },
       password_changed_at:  { source: "User.password_changed_at",  cond: :like, searchable: true, orderable: true },
-      flat:                 { source: "User.id", cond: filter_custom_column_condition },
+      flat:                 { source: "User.id", cond: filter_custom_column_condition, orderable: false },
       deleted_at:           { source: "User.deleted_at",  cond: :like, searchable: true, orderable: true }
     }
   end
