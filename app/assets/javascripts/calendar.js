@@ -37,14 +37,22 @@ $(document).ready(function() {
 		axisFormat: 'HH:mm',
 		slotLabelFormat: 'HH:mm', 
 		timezone: "local",
-	    events: {
-			  url: '/events.json',
-			  type: 'GET',
-			  error: function() {
-			      alert('there was an error while fetching events!');
-			  },
-			  //textColor: 'white'
-		}
-
+	  events: {
+			url: '/events.json',
+			type: 'GET',
+      error: function (jqXHR, exception) {
+        console.log(jqXHR);
+        if (jqXHR.status == 401) {
+          window.location.reload();
+        } else {
+          getErrorMessage(jqXHR, exception);
+        }
+      }
+		},
+    eventAfterRender: function(event, element) { 
+    	if (event.attachments_size > 0) {
+        element.find('.fc-title').append("&nbsp;&nbsp;<span class='badge alert-info'>" + event.attachments_size.toString() + "</span>");     		
+    	}
+     }
 	});
 });
