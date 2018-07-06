@@ -1,13 +1,15 @@
 @import 'datatables/jquery.dataTables';
-@import 'datatables/dataTables.bootstrap';
-
 @import 'datatables/extensions/Responsive/responsive.dataTables';
-@import 'datatables/extensions/Responsive/responsive.bootstrap';
-
 @import 'datatables/extensions/Buttons/buttons.dataTables';
+
+@import 'datatables/dataTables.bootstrap';
+@import 'datatables/extensions/Responsive/responsive.bootstrap';
 @import 'datatables/extensions/Buttons/buttons.bootstrap';
 
-
+//blokuje wyswietlanie icon "drzewko"
+//.DataTable > thead > tr > th[class*="sort"]:after{
+//    color: "red" !important;
+//}
 
 table.dataTable thead .sorting:after {
     content: "";
@@ -18,7 +20,6 @@ table.dataTable thead .sorting_desc:after {
 table.dataTable thead .sorting_asc:after {
     content: "";
 }
-
 
 table.dataTable thead .sorting {
   background-image: url("sort_both.png");
@@ -35,7 +36,6 @@ table.dataTable thead .sorting_asc_disabled {
 table.dataTable thead .sorting_desc_disabled {
   background-image: url("sort_desc_disabled.png");
 }
-
 
 div.dt-buttons {
   margin-left: 10px;

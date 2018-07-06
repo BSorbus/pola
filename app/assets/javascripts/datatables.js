@@ -1,5 +1,4 @@
 //Core component
-//= require bootstrap
 //= require datatables
 //= require datatables/jquery.dataTables
 //Bootstrap4 theme
