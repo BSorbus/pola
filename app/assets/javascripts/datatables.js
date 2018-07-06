@@ -1,4 +1,5 @@
 //Core component
+//= require bootstrap
 //= require datatables
 //= require datatables/jquery.dataTables
 //Bootstrap4 theme
@@ -12,3 +13,4 @@
 //= require datatables/extensions/Buttons/buttons.html5
 //= require datatables/extensions/Buttons/buttons.print
 //= require datatables/extensions/Buttons/buttons.colVis
+

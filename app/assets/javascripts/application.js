@@ -28,3 +28,4 @@
 
 //= stub "highmaps_regions_csv"
 //= stub "highmaps_regions_xml"
+
