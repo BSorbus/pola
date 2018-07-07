@@ -67,7 +67,7 @@ gem 'rails_email_validator'
 gem 'jquery-rails'
 gem 'select2-rails', '3.5.9.3'
 gem 'kaminari'
-gem 'jquery-datatables', '>= 1.10.16'
+gem 'jquery-datatables', '= 1.10.16' #1.10.19 jakis problem z wyswietlaniem strzalek sortowania
 gem 'ajax-datatables-rails', '= 0.4.0' #0.4.3 wywala się na custom_filter
 gem 'pundit'
 gem 'carrierwave', '~> 1.0'

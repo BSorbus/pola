@@ -7,7 +7,8 @@ class AttachmentDatatable < AjaxDatatablesRails::Base
       id:            { source: "Attachment.id", cond: :eq, searchable: false, orderable: false },
       attached_file: { source: "Attachment.attached_file", cond: :like, searchable: true, orderable: true },
       note:          { source: "Attachment.note",  cond: :like, searchable: true, orderable: true },
-      created_at:    { source: "Attachment.created_at",  cond: :like, searchable: true, orderable: true },
+      user:          { source: "User.name",  cond: :like, searchable: true, orderable: true },
+      updated_at:    { source: "Attachment.updated_at",  cond: :like, searchable: true, orderable: true },
       file_size:     { source: "Attachment.file_size",  cond: :like, searchable: false, orderable: false },
       action:        { source: "Attachment.id",  cond: :like, searchable: false, orderable: false }
     }
@@ -20,7 +21,8 @@ class AttachmentDatatable < AjaxDatatablesRails::Base
         attached_file: link_to(truncate(record.attached_file_identifier, length: 150), attachment_path(record.id), title: t('tooltip.download'), rel: 'tooltip'),
         note:          truncate(record.note, length: 50) + '  ' +  link_to(' ', @view.edit_attachment_path(record.id), class: 'glyphicon glyphicon-edit', title: "Edycja", rel: 'tooltip'),
         file_size:     record.try(:file_size),
-        created_at:    record.created_at.strftime("%Y-%m-%d %H:%M:%S"),
+        user:          record.user.try(:name),
+        updated_at:    record.updated_at.strftime("%Y-%m-%d %H:%M:%S"),
         action:        action_links(record).html_safe
         #action:        link_to(record.attached_file.file.identifier, attachment_path(record.id))
         #action:        link_to(' ', @view.attachment_path(record.id), 
@@ -34,9 +36,9 @@ class AttachmentDatatable < AjaxDatatablesRails::Base
 
   def get_raw_records
     if (options[:attachmenable_id]).present? && (options[:attachmenable_type]).present?
-      Attachment.where(attachmenable_id: options[:attachmenable_id], attachmenable_type: options[:attachmenable_type]).all
+      Attachment.joins(:user).where(attachmenable_id: options[:attachmenable_id], attachmenable_type: options[:attachmenable_type]).all
     else
-      Attachment.all
+      Attachment.joins(:user).all
     end
   end
 

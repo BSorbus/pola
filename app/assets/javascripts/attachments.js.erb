@@ -27,7 +27,8 @@ $(document).ready(function() {
         "sortable": false }, 
       { "data": "attached_file" }, 
       { "data": "note" }, 
-      { "data": "created_at" },
+      { "data": "user" },
+      { "data": "updated_at" },
       { "data": "file_size",
         "searchable": false,
         "sortable": false },
@@ -41,7 +42,7 @@ $(document).ready(function() {
         return false;
       }
     },
-    order: [[ 3, "desc" ]],
+    order: [[ 4, "desc" ]],
     language: {
       url: '<%= asset_path("pl.json.erb") %>'
     }

@@ -139,6 +139,8 @@ pl:
         file_content_type: 'Typ'
         file_size: 'Rozmiar'
         created_at: 'Utworzony'
+        updated_at: 'Aktualizacja'
+        user_id: 'Autor'
         note: 'Uwagi'
       point_file:
         load_date: 'Data pobrania'

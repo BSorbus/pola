@@ -33,7 +33,7 @@ class UserDatatable < AjaxDatatablesRails::Base
   private
 
   def get_raw_records
-    User.all
+    User.distinct
   end
 
   def filter_custom_column_condition

@@ -356,7 +356,7 @@ DEPENDENCIES
   groupdate
   inky-rb
   jbuilder (~> 2.5)
-  jquery-datatables (>= 1.10.16)
+  jquery-datatables (= 1.10.16)
   jquery-fileupload-rails
   jquery-rails
   kaminari
