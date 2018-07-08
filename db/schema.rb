@@ -168,8 +168,8 @@ ActiveRecord::Schema.define(version: 20180630002414) do
     t.bigint "event_type_id"
     t.bigint "errand_id"
     t.bigint "user_id"
-    t.bigint "event_effect_id"
     t.integer "attachments_count", default: 0, null: false
+    t.bigint "event_effect_id"
     t.index ["end_date"], name: "index_events_on_end_date"
     t.index ["errand_id"], name: "index_events_on_errand_id"
     t.index ["event_effect_id"], name: "index_events_on_event_effect_id"

@@ -90,6 +90,7 @@ gem 'mina'
 
 gem 'inky-rb', require: 'inky'
 gem 'premailer-rails'
+gem 'redis-rails'
 gem 'activerecord-session_store'
 gem 'delayed_job_active_record'
 gem 'daemons'
