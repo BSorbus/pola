@@ -5,7 +5,14 @@ pipeline {
 	stages {
 		stage('Test'){
 			steps {
-				sh 'echo $0'
+				withRvm('ruby-2.4.2') {
+					sh 'export PATH=$PATH:~/.rvm/bin'
+					sh 'export RAILS_ENV=production'
+					sh 'pwd'
+					sh 'ruby -v'
+					sh 'rails -v'
+					sh 'brakeman'
+				}
 			}
 		}
 	}
