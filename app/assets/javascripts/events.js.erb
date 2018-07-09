@@ -12,7 +12,8 @@
 function filterColumnParams ( i ) {
   $('#events-table').DataTable().column( i ).search(
     $('#col'+i+'filter').val(), false, true, true
-  ).draw();
+  );
+  $('#events-table').DataTable().draw();
 };
 
 

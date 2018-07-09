@@ -10,7 +10,7 @@ class UserDatatable < AjaxDatatablesRails::Base
       current_sign_in_at:   { source: "User.current_sign_in_at",  cond: :like, searchable: true, orderable: true },
       last_activity_at:     { source: "User.last_activity_at",  cond: :like, searchable: true, orderable: true },
       password_changed_at:  { source: "User.password_changed_at",  cond: :like, searchable: true, orderable: true },
-      flat:                 { source: "User.id", cond: filter_custom_column_condition, orderable: false },
+      flat:                 { source: "User.id", cond: filter_custom_column_condition },
       deleted_at:           { source: "User.deleted_at",  cond: :like, searchable: true, orderable: true }
     }
   end
@@ -44,10 +44,6 @@ class UserDatatable < AjaxDatatablesRails::Base
           "SELECT accessorizations.user_id FROM accessorizations, events WHERE " + 
           "accessorizations.event_id = events.id AND " + 
           "events.title ilike '%#{sanitize_search_text}%' " +
-          "UNION " +
-          "SELECT accessorizations.user_id FROM accessorizations, events, event_statuses WHERE " + 
-          "accessorizations.event_id = events.id AND events.event_status_id = event_statuses.id AND " + 
-          "event_statuses.name ilike '%#{sanitize_search_text}%' " +
           "UNION " +
           "SELECT accessorizations.user_id FROM accessorizations, roles WHERE " + 
           "accessorizations.role_id = roles.id AND " + 
