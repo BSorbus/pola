@@ -9,7 +9,7 @@ class Event < ApplicationRecord
   belongs_to :event_effect, optional: true
   belongs_to :errand
 
-  has_many :accessorizations, dependent: :destroy, index_errors: true
+  has_many :accessorizations, dependent: :destroy
   has_many :accesses_users, through: :accessorizations, source: :user
 
   has_many :comments, dependent: :delete_all
@@ -20,7 +20,7 @@ class Event < ApplicationRecord
   # validates
   validates :title, presence: true,
                     length: { in: 1..100 },
-                    :uniqueness => { scope: [:project_id], :message => " - takie zadanie jest już zdefiniowane w tym projekcie" }
+                    uniqueness: { scope: [:project_id], message: " - takie zadanie jest już zdefiniowane w tym projekcie" }
   validates :start_date, presence: true
   validates :end_date, presence: true
   validates :project_id, presence: true

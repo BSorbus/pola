@@ -14,7 +14,7 @@ class Customer < ApplicationRecord
   # validates
   validates :name, presence: true,
                     length: { in: 1..150 },
-                    :uniqueness => { case_sensitive: false }
+                    uniqueness: { case_sensitive: false }
   validates :nip, length: { is: 10 }, numericality: true, 
                     uniqueness: { case_sensitive: false }, allow_blank: true
   validates :regon, length: { is: 9 }, numericality: true, 

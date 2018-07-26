@@ -12,7 +12,7 @@ class Enrollment < ApplicationRecord
   # validates
   validates :name, presence: true,
                     length: { in: 1..20 },
-                    :uniqueness => { :case_sensitive => false }
+                    uniqueness: { case_sensitive: false }
 
   # callbacks
   before_destroy :has_important_links, prepend: true

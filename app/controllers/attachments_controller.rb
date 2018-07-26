@@ -25,7 +25,6 @@ class AttachmentsController < ApplicationController
       status: 200, 
       stream: true, 
       x_sendfile: true    
-
   end
 
   # GET /attachments/1/edit

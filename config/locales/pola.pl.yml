@@ -200,6 +200,13 @@ pl:
         attachments_count: 'Załączniki'
         flat_assigned_users: 'Użytkownicy realizujący'
         updated_at: 'Aktualizacja'
+      event/accessorizations:
+        event_id: 'Zadanie'
+        role_id: 'Rola'
+        user_id: 'Użytkownik'
+        event: 'Zadanie'
+        role: 'Rola'
+        user: 'Użytkownik'
       comment:
         project_id: 'Projekt'
         user_id: 'Autor'

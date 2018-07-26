@@ -27,7 +27,7 @@ class Project < ApplicationRecord
   # validates
   validates :number, presence: true,
                     length: { in: 1..100 },
-                    :uniqueness => { :case_sensitive => false }
+                    uniqueness: { case_sensitive: false }
   validates :customer_id, presence: true
   validates :enrollment_id, presence: true
 

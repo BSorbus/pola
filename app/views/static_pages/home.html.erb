@@ -12,41 +12,40 @@
     <!-- Wrapper for Slides -->
     <div class="carousel-inner">
         <div class="item active">
-
-          <div class="view">
-            <video class="video-full fillvideo" autoplay loop muted>
+          <!-- show video -->
+          <div class="view hidden-xs">
+            <video class="video-full fill" autoplay loop muted>
               <source src="<%= asset_path('1.mp4') %>" type="video/mp4" />
             </video>
           </div>
+          <!-- show jpg -->
+          <div class="visible-xs-* fill" style="background-image:url(<%= asset_path '1.jpg' %>)"></div>
           <div class="carousel-caption">
             <h3>UKE</h3>
             <p>Urząd Komunikacji Elektronicznej</p>
           </div>
-
         </div>
         <div class="item">
-          <!-- Set the second background image using inline CSS below.
-          <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Wszędzie');"></div> -->
-
-          <div class="view">
-            <video class="video-full fillvideo" autoplay loop muted>
+          <div class="view hidden-xs">
+            <video class="video-full fill" autoplay loop muted>
               <source src="<%= asset_path('2.mp4') %>" type="video/mp4" />
             </video>
           </div>
+          <!-- show jpg -->
+          <div class="visible-xs-* fill" style="background-image:url(<%= asset_path '2.jpg' %>)"></div>
           <div class="carousel-caption">
             <h3>POLA</h3>
             <p><strong>P</strong>rogram <strong>O</strong>peracyjny Po<strong>L</strong>ska Cyfrow<strong>A</strong></p>
           </div>
-
         </div>
         <div class="item">
-          <!-- Set the next background image using inline CSS below. -->
-
-          <div class="view">
-            <video class="video-full fillvideo" autoplay loop muted>
+          <div class="view hidden-xs">
+            <video class="video-full fill" autoplay loop muted>
               <source src="<%= asset_path('3.mp4') %>" type="video/mp4" />
             </video>
           </div>
+          <!-- show jpg -->
+          <div class="visible-xs-* fill" style="background-image:url(<%= asset_path '3.jpg' %>)"></div>
           <div class="carousel-caption">
             <h3>Czas na wykorzystanie nowoczesnych technologii</h3>
             <p>Dostęp do danych przez przeglądarkę bez konieczności instalowania programu i kłopotliwych aktualizacji</p>

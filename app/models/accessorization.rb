@@ -7,7 +7,7 @@ class Accessorization < ApplicationRecord
 
   # validates
   validates :user_id, presence: true,  
-                      uniqueness: { scope: [:event_id], :message => "jest już przypisany do tego zadania" }  
+                      uniqueness: { scope: [:event_id], message: "jest już przypisany do tego zadania" }  
   #validates_presence_of :project
   #validates_presence_of :user
   #validates_presence_of :role

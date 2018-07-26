@@ -11,5 +11,5 @@ class ErrandStatus < ApplicationRecord
   # validates
   validates :name, presence: true,
                     length: { in: 1..100 },
-                    :uniqueness => { :case_sensitive => false }
+                    uniqueness: { case_sensitive: false }
 end
