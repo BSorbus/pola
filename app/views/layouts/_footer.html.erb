@@ -5,7 +5,11 @@
       <h5>ul. Giełdowa 7/9</h5>
       <h5>01-211 Warszawa</h5>
       <br>
-      <h6><a href="#authors" data-toggle="collapse">&copy; 2018 UKE-BI-WUR</a></h6>
+      <% if user_signed_in? %>
+        <h6><a href="#authors" data-toggle="collapse">&copy; 2018 UKE-BI-WUR</a></h6>
+      <% else %>
+        <h6><a href="" data-toggle="collapse">&copy; 2018 UKE-BI-WUR</a></h6>
+      <% end %>      
     </div>
 
     <div class="col-sm-4 col-sm-offset-1">
