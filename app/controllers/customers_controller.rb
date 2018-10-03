@@ -92,7 +92,7 @@ class CustomersController < ApplicationController
     # end
     authorize @customer, :destroy?
     if @customer.destroy
-      flash[:success] = t('activerecord.successfull.messages.destroyed', data: @customer.fullname)
+      flash[:success].new = t('activerecord.successfull.messages.destroyed', data: @customer.fullname)
       @customer.log_work('destroy', current_user.id)
       redirect_to customers_url
     else 

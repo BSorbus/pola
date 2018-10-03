@@ -218,6 +218,8 @@ GEM
     pundit (1.1.0)
       activesupport (>= 3.0.0)
     rack (2.0.3)
+    rack-attack (5.4.1)
+      rack (>= 1.0, < 3)
     rack-cors (1.0.2)
     rack-test (0.8.2)
       rack (>= 1.0, < 3)
@@ -378,6 +380,7 @@ DEPENDENCIES
   premailer-rails
   puma (~> 3.7)
   pundit
+  rack-attack
   rack-cors
   rails (~> 5.1.4)
   rails_email_validator

@@ -86,6 +86,7 @@ gem 'activerecord-postgis-adapter'
 gem 'rgeo-geojson'
 
 gem 'rack-cors', :require => 'rack/cors'
+gem 'rack-attack'
 gem 'mina'
 
 gem 'inky-rb', require: 'inky'
