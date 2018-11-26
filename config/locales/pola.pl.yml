@@ -112,6 +112,8 @@ pl:
         customer: 'Wnioskodawca'
         enrollment_id: 'Nabór'
         enrollment: 'Nabór'
+        area_id: 'ID obszaru'
+        area_name: 'Nazwa obszaru'
         flat_assigned_events: 'Zadania'
       project_status:
         name: 'Nazwa'

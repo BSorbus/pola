@@ -28,6 +28,12 @@ class Project < ApplicationRecord
   validates :number, presence: true,
                     length: { in: 1..100 },
                     uniqueness: { case_sensitive: false }
+  validates :area_id, presence: true,
+                    length: { in: 1..30 },
+                    uniqueness: { case_sensitive: false }
+  validates :area_name, presence: true, unless: "enrollment_id == 1"
+  validates :area_name, length: { in: 1..30 }, 
+                    uniqueness: { case_sensitive: false }, allow_blank: true
   validates :customer_id, presence: true
   validates :enrollment_id, presence: true
 

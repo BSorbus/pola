@@ -25,6 +25,16 @@
                   { autofocus: false, class: 'form-control input-sm', disabled: input_disabled } %>
           </div>
 
+          <div class="form-group required col-sm-6">
+            <%= f.label :area_id, class: 'control-label' %>
+            <%= f.text_field :area_id, class: 'form-control input-sm', disabled: input_disabled %>
+          </div>
+
+          <div class="form-group col-sm-6">
+            <%= f.label :area_name, class: 'control-label' %>
+            <%= f.text_field :area_name, class: 'form-control input-sm', disabled: input_disabled %>
+          </div>
+
           <div class="form-group col-sm-6">
             <%= f.label :registration, class: 'control-label' %>
             <%= f.text_field :registration, class: 'form-control input-sm datepicker', 

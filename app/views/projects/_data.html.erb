@@ -21,6 +21,16 @@
         </div>
 
         <div class="form-group col-sm-6">
+          <p><strong><%= Project.human_attribute_name(:area_id) %></strong></p>
+          <%= @project.try(:area_id) %>
+        </div>
+
+        <div class="form-group col-sm-6">
+          <p><strong><%= Project.human_attribute_name(:area_name) %></strong></p>
+          <%= @project.project_status.try(:area_name) %>
+        </div>
+
+        <div class="form-group col-sm-6">
           <p><strong><%= Project.human_attribute_name(:registration) %></strong></p>
           <%= @project.try(:registration) %>
         </div>

@@ -133,7 +133,7 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:number, :registration, :note, :project_status_id, :enrollment_id, :customer_id, :users_id)
+      params.require(:project).permit(:number, :registration, :note, :project_status_id, :enrollment_id, :area_id, :area_name, :customer_id, :users_id)
     end
 
 end

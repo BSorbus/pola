@@ -7,8 +7,9 @@ class ProjectDatatable < AjaxDatatablesRails::Base
       id:         { source: "Project.id", cond: :eq, searchable: false, orderable: false },
       number:     { source: "Project.number", cond: :like, searchable: true, orderable: true },
       enrollment: { source: "Enrollment.name", cond: :like, searchable: true, orderable: true },
+      area_id:    { source: "Project.area_id", cond: :like, searchable: true, orderable: true },
+      area_name:  { source: "Project.area_name", cond: :like, searchable: true, orderable: true },
       status:     { source: "ProjectStatus.name", cond: :like, searchable: true, orderable: true },
-      note:       { source: "Project.note",  cond: :like, searchable: true, orderable: true },
       customer:   { source: "Customer.name", cond: :like, searchable: true, orderable: true },
       flat:       { source: "Project.id", cond: filter_custom_column_condition }
     }
@@ -20,8 +21,9 @@ class ProjectDatatable < AjaxDatatablesRails::Base
         id:         record.id,
         number:     link_to(record.number, project_path(record.id)),
         enrollment: record.enrollment.try(:name_as_link),
+        area_id:    record.try(:area_id),
+        area_name:  record.try(:area_name),
         status:     record.project_status.try(:name),
-        note:       truncate(record.note, length: 50),
         customer:   record.customer.try(:name_as_link_truncate),
         flat:       record.flat_assigned_events_with_status
       }

@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180709125107) do
+ActiveRecord::Schema.define(version: 20181126080048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "postgis"
+  enable_extension "fuzzystrmatch"
 
   create_table "accessorizations", force: :cascade do |t|
     t.integer "event_id"
@@ -180,23 +180,6 @@ ActiveRecord::Schema.define(version: 20180709125107) do
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
-  create_table "gmi_tables", force: :cascade do |t|
-    t.integer "year", null: false
-    t.string "teryt", default: "", null: false
-    t.string "name", default: "", null: false
-    t.string "woj", default: "", null: false
-    t.string "pow", default: "", null: false
-    t.geometry "geom", limit: {:srid=>2180, :type=>"multi_polygon"}, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["geom"], name: "index_gmi_tables_on_geom", using: :gist
-    t.index ["name"], name: "index_gmi_tables_on_name"
-    t.index ["pow"], name: "index_gmi_tables_on_pow"
-    t.index ["teryt"], name: "index_gmi_tables_on_teryt"
-    t.index ["woj"], name: "index_gmi_tables_on_woj"
-    t.index ["year"], name: "index_gmi_tables_on_year"
-  end
-
   create_table "old_passwords", force: :cascade do |t|
     t.string "encrypted_password", null: false
     t.string "password_salt"
@@ -241,21 +224,6 @@ ActiveRecord::Schema.define(version: 20180709125107) do
     t.index ["status"], name: "index_point_files_on_status"
   end
 
-  create_table "pow_tables", force: :cascade do |t|
-    t.integer "year", null: false
-    t.string "teryt", default: "", null: false
-    t.string "name", default: "", null: false
-    t.string "woj", default: "", null: false
-    t.geometry "geom", limit: {:srid=>2180, :type=>"multi_polygon"}, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["geom"], name: "index_pow_tables_on_geom", using: :gist
-    t.index ["name"], name: "index_pow_tables_on_name"
-    t.index ["teryt"], name: "index_pow_tables_on_teryt"
-    t.index ["woj"], name: "index_pow_tables_on_woj"
-    t.index ["year"], name: "index_pow_tables_on_year"
-  end
-
   create_table "project_statuses", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -274,6 +242,8 @@ ActiveRecord::Schema.define(version: 20180709125107) do
     t.bigint "user_id"
     t.bigint "enrollment_id"
     t.integer "attachments_count", default: 0, null: false
+    t.string "area_id"
+    t.string "area_name"
     t.index ["customer_id"], name: "index_projects_on_customer_id"
     t.index ["enrollment_id"], name: "index_projects_on_enrollment_id"
     t.index ["number"], name: "index_projects_on_number"
@@ -352,19 +322,6 @@ ActiveRecord::Schema.define(version: 20180709125107) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
-  end
-
-  create_table "woj_tables", force: :cascade do |t|
-    t.integer "year", null: false
-    t.string "teryt", default: "", null: false
-    t.string "name", default: "", null: false
-    t.geometry "geom", limit: {:srid=>2180, :type=>"multi_polygon"}, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["geom"], name: "index_woj_tables_on_geom", using: :gist
-    t.index ["name"], name: "index_woj_tables_on_name"
-    t.index ["teryt"], name: "index_woj_tables_on_teryt"
-    t.index ["year"], name: "index_woj_tables_on_year"
   end
 
   create_table "works", force: :cascade do |t|
