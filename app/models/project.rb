@@ -31,7 +31,7 @@ class Project < ApplicationRecord
   validates :area_id, presence: true,
                     length: { in: 1..30 }
   validates :area_name, presence: true, unless: "enrollment_id == 1"
-  validates :area_name, length: { in: 1..30 }, allow_blank: true
+  validates :area_name, length: { in: 1..40 }, allow_blank: true
   validates :customer_id, presence: true
   validates :enrollment_id, presence: true
 
