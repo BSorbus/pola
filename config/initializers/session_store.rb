@@ -3,7 +3,7 @@
 
 Rails.application.config.session_store :redis_store, {
   servers: [
-    { host: Rails.application.secrets.redis_host, port: 6379, db: 0 },
+    { host: Rails.application.secrets.redis_host, port: 6379, db: 1 },
   ],
   expire_after: 60.minutes,
   key: '_pola_session'
