@@ -1,21 +1,21 @@
 class ChartsController < ApplicationController
 
-  PROVINCES = [['PL.DS', 'dolnośląskie'],
-               ['PL.KP', 'kujawsko-pomorskie'],
-               ['PL.LB', 'lubuskie'],
-               ['PL.LD', 'łódzkie'],
-               ['PL.LU', 'lubelskie'],
-               ['PL.MA', 'małopolskie'],
-               ['PL.MZ', 'mazowieckie'],
-               ['PL.OP', 'opolskie'],
-               ['PL.PD', 'podlaskie'],
-               ['PL.PK', 'podkarpackie'],
-               ['PL.PM', 'pomorskie'],
-               ['PL.SK', 'świętokrzyskie'],
-               ['PL.SL', 'śląskie'],
-               ['PL.WN', 'warmińsko-mazurskie'],
-               ['PL.WP', 'wielkopolskie'],
-               ['PL.ZP', 'zachodniopomorskie']]
+  PROVINCES = [['02', 'dolnośląskie'],
+               ['04', 'kujawsko-pomorskie'],
+               ['06', 'lubelskie'],
+               ['08', 'lubuskie'],
+               ['10', 'łódzkie'],
+               ['12', 'małopolskie'],
+               ['14', 'mazowieckie'],
+               ['16', 'opolskie'],
+               ['18', 'podkarpackie'],
+               ['20', 'podlaskie'],
+               ['22', 'pomorskie'],
+               ['24', 'śląskie'],
+               ['26', 'świętokrzyskie'],
+               ['28', 'warmińsko-mazurskie'],
+               ['30', 'wielkopolskie'],
+               ['32', 'zachodniopomorskie']]
 
 
   before_action :authenticate_user!

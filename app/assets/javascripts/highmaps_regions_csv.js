@@ -1,21 +1,4 @@
 $(document).ready(function() {
-// Prepare random data
-// var province_array = [['PL.DS', 1],
-//                       ['PL.KP', 2],
-//                       ['PL.LB', 3],
-//                       ['PL.LD', 4],
-//                       ['PL.LU', 5],
-//                       ['PL.MA', 6],  "kod_TERYT":"12"
-//                       ['PL.MZ', 7], 
-//                       ['PL.OP', 8],
-//                       ['PL.PD', 9],
-//                       ['PL.PK', 10],
-//                       ['PL.PM', 11],
-//                       ['PL.SK', 12],
-//                       ['PL.SL', 13],
-//                       ['PL.WN', 14], "kod_TERYT":"28"
-//                       ['PL.WP', 15],
-//                       ['PL.ZP', 16]]
 
   $.ajax( { 
     url: "/charts/point_files.json",
@@ -58,21 +41,20 @@ function paintRegionsCsv (visualization_data) {
         colorAxis: {
             tickPixelInterval: 100
         },
-
         tooltip: {
             formatter: function () {
                 return '' + this.series.name + '<br>' +
+                    'Teryt: <b>' + this.point.properties.teryt + '</b><br>' +
                     'Obszar: <b>' + this.point.properties.type + '</b><br>' +
                     'Nazwa: <b>' + this.point.properties["alt-name"] + '</b><br>' +
                     'Ilość: <b>' + this.point.value + '</b>';
             }
         },
-
         series: [{
             data: visualization_data,
             mapData: geojson,
-            joinBy: ['hasc', 0],
-            keys: ['hasc', 'value'],
+            joinBy: ['teryt', 0],
+            keys: ['teryt', 'value'],
             name: 'Obszary inwestycyjne wg plików CSV o statusie "aktualny"',
             states: {
                 hover: {

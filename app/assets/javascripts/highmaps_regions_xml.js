@@ -1,21 +1,4 @@
 $(document).ready(function() {
-// Prepare random data
-// var province_array = [['PL.DS', 1],
-//                       ['PL.KP', 2],
-//                       ['PL.LB', 3],
-//                       ['PL.LD', 4],
-//                       ['PL.LU', 5],
-//                       ['PL.MA', 6],
-//                       ['PL.MZ', 7],
-//                       ['PL.OP', 8],
-//                       ['PL.PD', 9],
-//                       ['PL.PK', 10],
-//                       ['PL.PM', 11],
-//                       ['PL.SK', 12],
-//                       ['PL.SL', 13],
-//                       ['PL.WN', 14],
-//                       ['PL.WP', 15],
-//                       ['PL.ZP', 16]]
 
   $.ajax( { 
     url: "/charts/xml_miejsce_realizacji_tables.json",
@@ -62,17 +45,18 @@ function paintRegionsXml (visualization_data) {
         tooltip: {
             formatter: function () {
                 return '' + this.series.name + '<br>' +
+                    'Teryt:  <b>' + this.point.properties.teryt + '</b><br>' +
                     'Obszar: <b>' + this.point.properties.type + '</b><br>' +
-                    'Nazwa: <b>' + this.point.properties["alt-name"] + '</b><br>' +
-                    'Ilość: <b>' + this.point.value + '</b>';
+                    'Nazwa:  <b>' + this.point.properties["alt-name"] + '</b><br>' +
+                    'Ilość:  <b>' + this.point.value + '</b>';
             }
         },
 
         series: [{
             data: visualization_data,
             mapData: geojson,
-            joinBy: ['hasc', 0],
-            keys: ['hasc', 'value'],
+            joinBy: ['teryt', 0],
+            keys: ['teryt', 'value'],
             name: 'Miejsca realizacji wg plików XML o statusie "aktualny"',
             states: {
                 hover: {
