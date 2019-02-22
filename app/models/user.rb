@@ -43,6 +43,14 @@ class User < ApplicationRecord
   has_many :errands, dependent: :nullify
   has_many :events, dependent: :nullify
 
+  validate :password_complexity
+
+  def password_complexity
+    #if password.present? and not password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[\W])/)
+    if password.present? and not password.match(/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*(_|[\W]))/)
+      errors.add :password, "Hasło musi zawierać małą literę, wielką literę and one symbol"
+    end
+  end
 
   # callbacks
   before_destroy :has_important_links, prepend: true

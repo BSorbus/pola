@@ -7,7 +7,7 @@ Devise.setup do |config|
 
   # Need 1 char of A-Z, a-z and 0-9
   # config.password_regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/
-  config.password_regex =  /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*(_|[\W]))/
+  # config.password_regex =  /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*(_|[\W]))/
   
   #                        (?=.*[a-z])        // use positive look ahead to see if at least one lower case letter exists
   #                        (?=.*[A-Z])        // use positive look ahead to see if at least one upper case letter exists
