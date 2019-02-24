@@ -15,7 +15,7 @@
             <%= link_to point_file.fullname, project_point_file_path(@project, point_file)  %>
           </td>
           <td class="<%='success' if point_file.active? %>" >
-            <%= truncate(point_file.note, length: 50) %>
+            <%= truncate(Loofah.fragment(point_file.note).text, length: 50) %>
           </td>
           <td class="<%='success' if point_file.active? %>" >
             <%= enum_l(point_file, :status) %>

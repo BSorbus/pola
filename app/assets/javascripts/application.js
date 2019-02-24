@@ -24,6 +24,7 @@
 //= require jquery-fileupload/vendor/tmpl
 //= require highcharts
 //= require chartkick
+//= require trix
 //= require_tree .
 
 //= stub "highmaps_regions_csv"

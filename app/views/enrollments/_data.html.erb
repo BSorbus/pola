@@ -25,7 +25,7 @@
 
         <div class="form-group col-sm-12">
           <p><strong><%= Enrollment.human_attribute_name(:note) %></strong></p>
-          <%= text_with_break_line(@enrollment.note) %> 
+          <%= @enrollment.note.html_safe %> 
         </div>
 
       </div>

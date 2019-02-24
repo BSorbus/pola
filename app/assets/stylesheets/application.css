@@ -15,6 +15,7 @@
  *= require datatables
  *= require fullcalendar
  *= require bootstrap-datetimepicker
+ *= require trix
  *= require_tree .
  *= require_self
  */

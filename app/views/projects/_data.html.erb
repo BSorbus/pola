@@ -52,7 +52,7 @@
       <div class="row">
         <div class="form-group col-sm-12">
           <p><strong><%= Project.human_attribute_name(:note) %></strong></p>
-          <%= text_with_break_line(@project.note) %>
+          <%= @project.note.html_safe %>
         </div>
       </div>
     </div> <!--/col-sm-6 -->

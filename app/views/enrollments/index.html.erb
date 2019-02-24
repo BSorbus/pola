@@ -21,7 +21,7 @@
         <% @enrollments.each do |enrollment| %>
           <tr>
             <td><%= enrollment.try(:name_as_link) %></td>
-            <td><%= enrollment.note %></td>
+            <td><%= enrollment.note.html_safe %></td>
           </tr>
         <% end %>
       </tbody>

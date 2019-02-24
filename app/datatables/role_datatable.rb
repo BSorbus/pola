@@ -18,7 +18,7 @@ class RoleDatatable < AjaxDatatablesRails::Base
         id:         record.id,
         name:       record.try(:name_as_link),
         special:    record.is_special? ? '<div style="text-align: center"><div class="glyphicon glyphicon-ok"></div></div>'.html_safe : '',
-        note:       truncate(record.note, length: 50),
+        note:       truncate(Loofah.fragment(record.note).text, length: 50),
         activities: record.try(:activities)
       }
     end
