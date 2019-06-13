@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  business_trip: one
+  from: MyString
+  start_date_time: 2019-03-03 21:18:50
+  to: MyString
+  end_date_time: 2019-03-03 21:18:50
+  cost: 9.99
+
+two:
+  business_trip: two
+  from: MyString
+  start_date_time: 2019-03-03 21:18:50
+  to: MyString
+  end_date_time: 2019-03-03 21:18:50
+  cost: 9.99

@@ -37,11 +37,17 @@ class User < ApplicationRecord
   has_many :attachments, as: :attachmenable, dependent: :destroy
   has_many :comments, dependent: :nullify
 
-
   has_many :customers, dependent: :nullify
   has_many :projects, dependent: :nullify
   has_many :errands, dependent: :nullify
   has_many :events, dependent: :nullify
+
+  has_many :business_trips, dependent: :nullify
+
+  has_many :business_trip_employees, class_name: 'BusinessTrip', foreign_key: 'employee_id'
+  has_many :business_trip_approved_users, class_name: 'BusinessTrip', foreign_key: 'payment_on_account_approved_id'
+  has_many :business_trip_status_updated_users, class_name: 'BusinessTrip', foreign_key: 'business_trip_status_updated_user_id'
+
 
   validate :password_complexity
 

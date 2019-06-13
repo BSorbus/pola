@@ -33,32 +33,6 @@
     <%= render 'attachments/attachments_in_panel', attachmenable: @event %>
   <% end %>
 
-  <!-- Accessorizations-->
-  <% if policy(:accessorization).index? %>
-    <div class="row">
-      <div class="col-sm-11 col-sm-offset-1">
-        <div class="panel panel-accessorization">
-          <a class="accordion-toggle" data-toggle="collapse" data-parent="#myaccordion" href="#collapse_accessorizations" >
-            <div class="panel-heading">
-              <div class="panel-title">
-                <span class="glyphicon glyphicon-user">&nbsp;</span>
-                <span><%= t "pages.accessorization.event_show" %></span>
-                <i class="indicator glyphicon glyphicon-chevron-right pull-right"></i>
-              </div>
-            </div>
-          </a>
-          <div id="collapse_accessorizations" class="panel-collapse collapse">
-            <div class="panel-body">
-
-              <%= render 'accessorizations' %>
-
-            </div> <!-- /panel-body -->
-          </div> <!-- /id="collapse_accessorizations" -->
-        </div> <!-- /panel -->
-      </div> <!-- /col-sm-11 col-sm-offset-1 -->
-    </div> <!-- /row -->
-  <% end %>
-
   <!-- Comments-->
   <% if policy(:comment).index? %>
     <!-- Roles.whers(special: false)-->

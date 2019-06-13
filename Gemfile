@@ -8,7 +8,7 @@ end
 ruby '2.5.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.4'
+gem 'rails', '~> 5.1.7'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
 # Use Puma as the app server
@@ -59,12 +59,13 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'bootstrap-sass', '3.3.7'
-gem 'devise', '4.4.0'
+gem 'devise', '4.6.0'
 gem 'devise-security'
 gem 'rails_email_validator'
 
 # Use jquery as the JavaScript library 2017.06.19
 gem 'jquery-rails'
+gem 'font_awesome5_rails'
 gem 'select2-rails', '3.5.9.3'
 gem 'kaminari'
 gem 'jquery-datatables', '= 1.10.16' #1.10.19 jakis problem z wyswietlaniem strzalek sortowania

@@ -1,31 +1,26 @@
-<div class="fields well-accessorization">
-  <div class='row top-bottom-buffer' >
-    <div class="form-group required col-sm-5">
-      <%= f.label :user_id, class: "control-label" %>
+<div class="fields">
+  <div class='row' >
+    <div class="form-group required col-sm-8">
       <%= f.hidden_field :user_id,
                         class: "form-control input-sm select2user", 
                         placeholder: t('placeholder.select2user'),
                         style: "width:100%" %>
-      <small class="help-block"><%= t('help_block_text.select2user') %></small>
     </div>
-
-    <div class="form-group required col-sm-5">
-      <%= f.label :role_id, class: 'control-label' %>
+    <div class="form-group required col-sm-3">
       <%= f.select :role_id, 
             Role.only_not_special.all.order(:name).collect {|v| [ "#{v[:name]}", v[:id] ] },
             { include_blank: true }, 
             { autofocus: false, class: 'form-control input-sm', disabled: false } %>
     </div>
 
-    <div class="form-group">
-      <br>
+    <div class="form-group col-sm-1">
       <%= f.hidden_field :_destroy %>
-      <%= link_to t("helpers.links.link_to_remove_fields_accessorization"), '#',
-        onClick: "removeField(this); return false;", class: 'remove-link-button btn btn-md btn-danger' %>
+      <%= link_to t("helpers.links.link_to_remove_fields_nested_small"), '#',
+        onClick: "removeNestedFields(this); return false;", class: 'remove-link-button btn btn-sm btn-danger' %>
     </div>
   </div>
-</div>
 
+</div>
 <script>
   $(document).ready(function() {
     $('.select2user').select2({
@@ -74,3 +69,5 @@
     });
   });
 </script>
+
+

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  number: MyString
+  purpose: MyString
+  start: 2019-02-25
+  end: 2019-02-25
+  destination: MyText
+  note: MyText
+  user: one
+
+two:
+  number: MyString
+  purpose: MyString
+  start: 2019-02-25
+  end: 2019-02-25
+  destination: MyText
+  note: MyText
+  user: two

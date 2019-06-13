@@ -1,0 +1,131 @@
+<div class="col-sm-11">
+  <%#= form_with scope: :post, url: post_path(@post), method: :patch do |form| %>	
+  <%#= form_with scope: :post, url: post_path(@post), method: :patch do |form| %>	
+  <%#= form_with(model: business_trip, url: local: true) do |f| %>
+
+  <%= form_with(model: business_trip, url: costs_update_business_trip_path(business_trip), method: :patch, local: true) do |f| %> 
+
+    <% input_disabled ||= false  
+       #if input_disabled is not passed to the partial it doesn't crash. 
+       # We default it to false 
+    %>
+
+    <%= form_errors_for business_trip %>
+
+    <div class="row">
+      <div class="col-sm-12">
+
+        <fieldset class="my-fieldset">
+          <legend class="my-fieldset"><%= t('pages.business_trip.fieldset.roads_title') %></legend>
+
+          <div class="row">
+            <div class="form-group col-sm-12">
+
+              <div class='roads clearfix'>
+                <div class="row">
+                  <div class="form-group required col-sm-2">
+                    <%= f.label Road.human_attribute_name(:from), class: 'control-label' %>
+                  </div>
+                  <div class="form-group required col-sm-2">
+                    <%= f.label Road.human_attribute_name(:start_date_time), class: 'control-label' %>
+                  </div>
+                  <div class="form-group required col-sm-2">
+                    <%= f.label Road.human_attribute_name(:to), class: 'control-label' %>
+                  </div>
+                  <div class="form-group required col-sm-2">
+                    <%= f.label Road.human_attribute_name(:end_date_time), class: 'control-label' %>
+                  </div>
+                  <div class="form-group required col-sm-2">
+                    <%= f.label Road.human_attribute_name(:transport_type_id), class: 'control-label' %>
+                  </div>
+                  <div class="form-group required col-sm-1">
+                    <%= f.label Road.human_attribute_name(:cost), class: 'control-label' %>
+                  </div>
+                </div>  <!-- /row -->
+
+                <div class='roads-sub-form'>
+                  <%= f.fields_for :roads do |road_form|  %>
+                    <%= render 'road_fields', f: road_form, business_trip: business_trip %> 
+                  <% end %>
+                </div>
+                <%= link_to_add_fields( t("helpers.links.link_to_add_fields_nested"), f, :roads) %>
+              </div>
+
+            </div>
+          </div> <!--/row -->
+        </fieldset>
+
+        <fieldset class="my-fieldset">
+          <legend class="my-fieldset"><%= t('pages.business_trip.fieldset.other_costs_title') %></legend>
+
+            <p>1. Nie zapewniono żadnego posiłku</p>
+            <p>2. Zapewniono posiłki zgodnie z poniższą tabelą</p>
+            <br>
+            <p>3. Korzystałem z przejazdów komunikacją miejscową w miejscu delegowania w dniach ………………………………………….</p>
+            <p>4. Nie korzystałem z przejazdów komunikacją miejscową w miejscu delegowania</p>
+            <p>5. Koszty noclegu  zgodnie z załączoną fakturą</p>
+            <p>6. Nocleg zapewniony przez organizatora</p>
+            <p>7. Nocleg we własnym zakresie</p>
+            <p>8. Nie korzystałem z noclegu</p>
+            <p>9. Uwagi ……………..</p>
+            <br>
+
+  <%#= f.collection_radio_buttons :hotel, TransportType.all, :id, :name %>
+
+  <%#= f.collection_radio_buttons :hotel, [[true, 'Yes'] ,[false, 'No']], :first, :last %>
+
+
+  <div class="form-group col-sm-12">
+    <%= f.label :hotel, class: "control-label" %><br>
+
+    <%= f.radio_button :hotel, 5 %>
+    <%= f.label :hotel_5, "5. Koszty noclegu  zgodnie z załączoną fakturą" %><br>
+
+    <%#= f.radio_button :hotel, 6, :checked => true %>
+    <%= f.radio_button :hotel, 6 %>
+    <%= f.label :hotel_6, "6. Nocleg zapewniony przez organizatora" %><br>
+
+    <%= f.radio_button :hotel, 7 %>
+    <%= f.label :hotel_7, "7. Nocleg we własnym zakresie" %><br>
+
+    <%= f.radio_button :hotel, 8 %>
+    <%= f.label :hotel_8, "8. Nie korzystałem z noclegu" %><br>
+
+
+  </div>
+
+
+
+
+        </fieldset>
+
+      </div> <!--/col-sm-12 -->
+    </div>  <!-- /row -->
+
+
+    <hr class="hr-without-top-margin">
+
+
+    <% if input_disabled %>
+      <!-- for "Show" -->
+    <% else %>
+      <!-- form "New"/"Edit" -->
+      <div class="row">
+
+        <%= link_to business_trips_path, class: "btn btn-default" do %>
+          <span class="glyphicon glyphicon-th-list"></span>
+          <%= t("helpers.links.index") %>
+        <% end %>
+        <%= link_to business_trip_path(business_trip), class: "btn btn-default" do %>
+          <span class="glyphicon glyphicon-arrow-left"></span>
+          <%= t("helpers.links.back") %>
+        <% end %>
+
+        <%= f.submit nil, class: 'btn btn-success' %>
+      </div> <!-- /row -->
+    <% end %>
+    
+  <% end %>
+
+</div> <!--/col-sm-11-->
+

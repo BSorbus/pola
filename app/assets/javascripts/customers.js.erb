@@ -1,18 +1,75 @@
+function filterCustomerColumnParams ( i ) {
+  $('#customers-table').DataTable().column( i ).search(
+    $('#col'+i+'filter').val(), false, true, true
+  );
+  $('#customers-table').DataTable().draw();
+};
+
+
 $.fn.dataTable.ext.buttons.customer_button_only_my_data = {
-  text: 'Wszystko',
-  //className: 'btn btn-info',
+  //text: 'Wszystko',
+  text: '<span class="fa fa-user-friends"></span>',
+  titleAttr: 'Wszystkie/tylko moje',
   action: function ( e, dt, node, config ) {
     if (dt.button( 3 ).active() == false) {
-      dt.button( 3 ).text('Tylko moje');
+      //dt.button( 3 ).text('Tylko moje');
+      dt.button( 3 ).text('<span class="fa fa-user"></span> Tylko moje');
       dt.button( 3 ).active( true );
     } else {
-      dt.button( 3 ).text('Wszystko');
+      //dt.button( 3 ).text('Wszystko');
+      dt.button( 3 ).text('<span class="fa fa-user-friends"></span>');
       dt.button( 3 ).active( false );
     };
     //oEventtable.ajax.reload();
     $('#customers-table').DataTable().draw();
   }
 };
+
+
+$.fn.dataTable.ext.buttons.customer_button_filter_show_hide = {
+  //text: 'Filtr',
+  text: '<span class="fa fa-filter"></span>',
+  titleAttr: 'Filtrowanie po kolumnach',
+  //className: 'btn btn-info',
+  action: function ( e, dt, node, config ) {
+  //var list = document.getElementsByClassName("column_filter");
+    // for (var i = 0; i < list.length; i++) {
+    //   if (list[i].style.display === "none") {
+    //     list[i].style.display = "block";
+    //     filterEventColumnParams( $(list[i]).attr('data-column') );
+    //   } else {
+    //     $(list[i]).val('');
+    //     list[i].style.display = "none";
+    //     filterEventColumnParams( $(list[i]).attr('data-column') );
+    //   };
+    // };
+    if ($('#customers-table').DataTable().tables().footer().to$().css('display') === 'none') {
+      $('#customers-table').DataTable().tables().footer().to$().css('display', 'table-row-group');
+      //dt.button( 4 ).text('Filtrowanie...');
+      dt.button( 4 ).text('<span class="fa fa-filter"></span> Filtrowanie...');
+      dt.button( 4 ).active( true );
+        // Redraw table (and reset main search filter)
+        // OK - działa też $('#aus_tables-datatable').DataTable().search("").draw();
+        $($.fn.dataTable.tables(true)).DataTable().search("").draw();
+        $(".dataTables_filter").hide();
+    } else {
+      $('#customers-table').DataTable().tables().footer().to$().css('display', 'none');
+      //dt.button( 4 ).text('Filtr');
+      dt.button( 4 ).text('<span class="fa fa-filter"></span>');
+      dt.button( 4 ).active( false );
+        // Reset Column filtering
+        $('#customers-table tfoot input').val('').keyup();
+        $('#customers-table tfoot select').val('').keyup();
+
+        $(".dataTables_filter").show();
+    }
+
+    $($.fn.dataTable.tables(true)).DataTable()
+      .columns.adjust()
+      .responsive.recalc();
+  }
+};
+
 
 //document.addEventListener('turbolinks:load', function() {
 $(document).ready(function() {
@@ -66,7 +123,23 @@ $(document).ready(function() {
   var oCustomertable = $('#customers-table').DataTable({
     dom: 'lBfrtip',
     buttons: [
-      'copy', 'csv', 'pdf', 'colvis', 'customer_button_only_my_data'
+      {
+        extend:    'copy',
+        text:      '<span class="fa fa-clipboard"></span>',
+        titleAttr: 'Kopiuj do schowka'
+      },
+      {
+        extend:    'csv',
+        text:      '<span class="fa fa-file-csv"></span>',
+        titleAttr: 'Kopiuj do CSV'
+      },
+      {
+        extend:    'colvis',
+        text:      '<span class="fa fa-columns"></span>',
+        titleAttr: 'Pokaż/ukryj kolumny',
+        columns:   ':gt(0)' //exclude first col from list
+      },
+      'customer_button_only_my_data', 'customer_button_filter_show_hide'
     ],
     responsive: true,
     processing: true,
@@ -106,13 +179,22 @@ $(document).ready(function() {
     ],
     order: [[ 1, "asc" ]],
     language: {
-      buttons: {
-        copy: 'Kopiuj',
-        colvis: 'Kolumny'
-      },
+      // buttons: {
+      //   copy: 'Kopiuj',
+      //   colvis: 'Kolumny'
+      // },
       url: '<%= asset_path("pl.json.erb") %>'
     }
   });
  
+
+  $('input.column_filter').on( 'keyup click', function () {
+    filterCustomerColumnParams( $(this).attr('data-column') );
+  });
+
+  $('select.column_filter').on( 'keyup click', function () {
+    filterCustomerColumnParams( $(this).attr('data-column') );
+  });
+
 
 });

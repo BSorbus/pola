@@ -17,12 +17,62 @@
               <%= f.label :title, class: 'control-label' %>
               <%= f.text_field :title, autofocus: true, class: 'form-control input-sm', disabled: input_disabled %>
             </div>
-
             <div class="form-group required col-sm-12">
               <%= f.label :event_status_id, class: 'control-label' %>
               <%= f.select :event_status_id, 
                     EventStatus.all.order(:name).collect {|v| [ "#{v[:name]}", v[:id] ] },
                     { include_blank: false }, 
+                    { autofocus: false, class: 'form-control input-sm', disabled: input_disabled } %>
+            </div>
+
+            <div class="form-group required col-sm-3">
+              <%= f.label :start_date, class: 'control-label' %>
+              <%= f.text_field :start_date, class: 'form-control input-sm datetimepicker', 
+                                disabled: input_disabled %>
+            </div>
+            <div class="form-group required col-sm-3">
+              <%= f.label :end_date, class: 'control-label' %>
+              <%= f.text_field :end_date, class: 'form-control input-sm datetimepicker', 
+                                disabled: input_disabled %>
+            </div>
+            <div class="form-group col-sm-6">
+              <%= f.label :all_day, class: 'control-label' %><br>
+              <%= f.radio_button(:all_day, false, disabled: input_disabled) %>
+              <%= f.label(:all_day_false, t("false") ) %>
+              <%= f.radio_button(:all_day, true, disabled: input_disabled) %>
+              <%= f.label(:all_day_true, t("true") ) %>
+            </div>
+            <div class="form-group required col-sm-12">
+              <%= f.label :event_type_id, class: 'control-label' %>
+              <%= f.select :event_type_id, 
+                    EventType.all.order(:name).collect {|v| [ "#{v[:name]}", v[:id] ] },
+                    { include_blank: false }, 
+                    { autofocus: false, class: 'form-control input-sm', disabled: input_disabled } %>
+            </div>
+            <div class="form-group required col-sm-12">
+              <%= f.label :project_id, class: "control-label" %>
+              <%= f.hidden_field :project_id,
+                                class: "form-control input-sm select2project", 
+                                placeholder: t('placeholder.select2project'),
+                                style: "width:100%",
+                                disabled: input_disabled %>
+              <small class="help-block"><%= t('help_block_text.select2project') %></small>
+            </div>
+            <div class="form-group required col-sm-12">
+              <%= f.label :errand_id, class: "control-label" %>
+              <%= f.hidden_field :errand_id,
+                                class: "form-control input-sm select2errand", 
+                                placeholder: t('placeholder.select2errand'),
+                                style: "width:100%",
+                                disabled: input_disabled %>
+              <small class="help-block"><%= t('help_block_text.select2errand') %></small>
+            </div>
+
+            <div class="form-group col-sm-12">
+              <%= f.label :event_effect_id, class: 'control-label' %>
+              <%= f.select :event_effect_id, 
+                    EventEffect.all.order(:name).collect {|v| [ "#{v[:name]}", v[:id] ] },
+                    { include_blank: true }, 
                     { autofocus: false, class: 'form-control input-sm', disabled: input_disabled } %>
             </div>
 
@@ -36,138 +86,48 @@
               <%= f.trix_editor :note %>
             </div>
 
+            <% if policy(:accessorization).create_update_delete? %>
+              <div class="col-sm-12">
+                <fieldset class="my-fieldset">
+                  <legend class="my-fieldset"><%= t('pages.event.fieldset.accessorizations_title') %></legend>
+
+                  <div class="row">
+                    <div class="form-group col-sm-12">
+
+                      <div class='accessorizations clearfix'>
+
+                        <div class="row">
+                          <div class="form-group required col-sm-8">
+                            <%= f.label Accessorization.human_attribute_name(:user_id), class: 'control-label' %>
+                          </div>
+                          <div class="form-group required col-sm-3">
+                            <%= f.label Accessorization.human_attribute_name(:role_id), class: 'control-label' %>
+                          </div>
+                        </div>  <!-- /row -->
+
+                        <div class='accessorizations-sub-form'>
+                          <%= f.fields_for :accessorizations do |accessorization_form|  %>
+                            <%= render 'accessorization_fields', f: accessorization_form %> 
+                          <% end %>
+                        </div>
+                        <%= link_to_add_fields( t("helpers.links.link_to_add_fields_nested"), f, :accessorizations) %>
+                      </div>
+
+                    </div>
+                  </div> <!--/row -->
+                </fieldset>
+              </div>
+
+
+            <% end %>
+
           </div>
         </div> <!--/col-sm-6 -->
       </div>  <!-- /row -->
 
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="row">
-            <div class="form-group required col-sm-3">
-              <%= f.label :start_date, class: 'control-label' %>
-              <%= f.text_field :start_date, class: 'form-control input-sm datetimepicker', 
-                                disabled: input_disabled %>
-            </div>
-
-            <div class="form-group required col-sm-3">
-              <%= f.label :end_date, class: 'control-label' %>
-              <%= f.text_field :end_date, class: 'form-control input-sm datetimepicker', 
-                                disabled: input_disabled %>
-            </div>
-
-            <div class="form-group col-sm-6">
-              <%= f.label :all_day, class: 'control-label' %><br>
-              <%= f.radio_button(:all_day, false, disabled: input_disabled) %>
-              <%= f.label(:all_day_false, t("false") ) %>
-              <%= f.radio_button(:all_day, true, disabled: input_disabled) %>
-              <%= f.label(:all_day_true, t("true") ) %>
-            </div>
-
-
-          </div> <!-- /row -->
-        </div> <!--/col-sm-12 -->
-
-      </div>  <!-- /row -->
-
-
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="row">
-
-            <div class="form-group required col-sm-6">
-              <%= f.label :event_type_id, class: 'control-label' %>
-              <%= f.select :event_type_id, 
-                    EventType.all.order(:name).collect {|v| [ "#{v[:name]}", v[:id] ] },
-                    { include_blank: false }, 
-                    { autofocus: false, class: 'form-control input-sm', disabled: input_disabled } %>
-            </div>
-
-            <div class="form-group required col-sm-6">
-              <%= f.label :project_id, class: "control-label" %>
-              <%= f.hidden_field :project_id,
-                                class: "form-control input-sm select2project", 
-                                placeholder: t('placeholder.select2project'),
-                                style: "width:100%",
-                                disabled: input_disabled %>
-              <small class="help-block"><%= t('help_block_text.select2project') %></small>
-            </div>
-
-          </div> <!-- /row -->
-        </div> <!--/col-sm-12 -->
-
-      </div>  <!-- /row -->
-
-
-
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="row">
-
-            <div class="form-group required col-sm-6">
-              <%= f.label :errand_id, class: "control-label" %>
-              <%= f.hidden_field :errand_id,
-                                class: "form-control input-sm select2errand", 
-                                placeholder: t('placeholder.select2errand'),
-                                style: "width:100%",
-                                disabled: input_disabled %>
-              <small class="help-block"><%= t('help_block_text.select2errand') %></small>
-            </div>
-
-            <div class="form-group col-sm-6">
-              <%= f.label :event_effect_id, class: 'control-label' %>
-              <%= f.select :event_effect_id, 
-                    EventEffect.all.order(:name).collect {|v| [ "#{v[:name]}", v[:id] ] },
-                    { include_blank: true }, 
-                    { autofocus: false, class: 'form-control input-sm', disabled: input_disabled } %>
-            </div>
-
-          </div> <!-- /row -->
-        </div> <!--/col-sm-12 -->
-
-      </div>  <!-- /row -->
-
-
     <% end %>
 
 
-    <% if policy(:accessorization).create_update_delete? %>
-      <hr>
-      <div class="panel-group" id="myaccordion">
-
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="panel panel-accessorization">
-              <a class="accordion-toggle" data-toggle="collapse" data-parent="#myaccordion" href="#collapse_project_accessorizations" >
-                <div class="panel-heading">
-                  <div class="panel-title">
-                    <span class="glyphicon glyphicon-book">&nbsp;</span>
-                    <span><%= t "pages.accessorization.event_show" %></span>
-                    <i class="indicator glyphicon glyphicon-chevron-right pull-right"></i>
-                  </div>
-                </div>
-              </a>
-              <div id="collapse_project_accessorizations" class="panel-collapse collapse">
-                <div class="panel-body">
-                  <div class="col-sm-12">
-
-                    <div class='accessorizations clearfix'>
-                      <div class='accessorizations-sub-form'>
-                        <%= f.fields_for :accessorizations do |accessorization_form|  %>
-                          <%= render 'accessorization_fields', f: accessorization_form %> 
-                        <% end %>
-                      </div>
-                      <%= link_to_add_fields( t("helpers.links.link_to_add_fields_accessorization"), f, :accessorizations) %>
-                    </div>
-
-                  </div> <!--/class="col-sm-12" -->
-                </div> <!-- /panel-body -->
-              </div> <!-- /id="collapse_project_accessorizations" -->
-            </div> <!-- /panel -->
-          </div> <!-- /col-sm-11 col-sm-offset-1 -->
-        </div> <!-- /row -->
-
-      </div> <!-- /class="panel-group" id="myaccordion" -->
-    <% end %>
 
     <hr class="hr-without-top-margin">
 
@@ -177,17 +137,19 @@
     <% else %>
       <!-- form "New"/"Edit" -->
       <div class="row">
+        <div class="col-sm-12">
 
-        <%= link_to events_path, class: "btn btn-default" do %>
-          <span class="glyphicon glyphicon-th-list"></span>
-          <%= t("helpers.links.index") %>
-        <% end %>
-        <%= link_to :back, class: "btn btn-default" do %>
-          <span class="glyphicon glyphicon-arrow-left"></span>
-          <%= t("helpers.links.back") %>
-        <% end %>
-        <%= f.submit nil, :class => 'btn btn-primary' %>
+          <%= link_to events_path, class: "btn btn-default" do %>
+            <span class="glyphicon glyphicon-th-list"></span>
+            <%= t("helpers.links.index") %>
+          <% end %>
+          <%= link_to :back, class: "btn btn-default" do %>
+            <span class="glyphicon glyphicon-arrow-left"></span>
+            <%= t("helpers.links.back") %>
+          <% end %>
+          <%= f.submit nil, :class => 'btn btn-success' %>
 
+        </div> <!--/class="col-sm-12" -->
       </div> <!-- /row -->
     <% end %>
     

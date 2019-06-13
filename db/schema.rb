@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181126080048) do
+ActiveRecord::Schema.define(version: 20190303201850) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,49 @@ ActiveRecord::Schema.define(version: 20181126080048) do
     t.bigint "user_id"
     t.index ["attachmenable_type", "attachmenable_id"], name: "index_attachments_on_attachmenable_type_and_attachmenable_id"
     t.index ["user_id"], name: "index_attachments_on_user_id"
+  end
+
+  create_table "business_trip_statuses", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "step", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_business_trip_statuses_on_name", unique: true
+    t.index ["step"], name: "index_business_trip_statuses_on_step", unique: true
+  end
+
+  create_table "business_trips", force: :cascade do |t|
+    t.string "number"
+    t.bigint "employee_id"
+    t.date "start_date"
+    t.date "end_date"
+    t.string "destination"
+    t.text "purpose", default: ""
+    t.text "trip_confirmation", default: ""
+    t.decimal "payment_on_account", precision: 8, scale: 2, default: "0.0"
+    t.bigint "payment_on_account_approved_id"
+    t.datetime "payment_on_account_approved_date_time"
+    t.text "note", default: ""
+    t.bigint "business_trip_status_id", default: 1
+    t.bigint "business_trip_status_updated_user_id"
+    t.datetime "business_trip_status_updated_at"
+    t.bigint "user_id"
+    t.integer "hotel"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["business_trip_status_id"], name: "index_business_trips_on_business_trip_status_id"
+    t.index ["business_trip_status_updated_user_id"], name: "index_business_trips_on_business_trip_status_updated_user_id"
+    t.index ["employee_id"], name: "index_business_trips_on_employee_id"
+    t.index ["payment_on_account_approved_id"], name: "index_business_trips_on_payment_on_account_approved_id"
+    t.index ["user_id"], name: "index_business_trips_on_user_id"
+  end
+
+  create_table "chat_rooms", force: :cascade do |t|
+    t.string "title"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_chat_rooms_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -180,6 +223,29 @@ ActiveRecord::Schema.define(version: 20181126080048) do
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
+  create_table "flows", force: :cascade do |t|
+    t.bigint "business_trip_id"
+    t.bigint "business_trip_status_id"
+    t.bigint "business_trip_status_updated_user_id"
+    t.datetime "business_trip_status_updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["business_trip_id"], name: "index_flows_on_business_trip_id"
+    t.index ["business_trip_status_id"], name: "index_flows_on_business_trip_status_id"
+    t.index ["business_trip_status_updated_at"], name: "index_flows_on_business_trip_status_updated_at"
+    t.index ["business_trip_status_updated_user_id"], name: "index_flows_on_business_trip_status_updated_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "body"
+    t.bigint "user_id"
+    t.bigint "chat_room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chat_room_id"], name: "index_messages_on_chat_room_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "old_passwords", force: :cascade do |t|
     t.string "encrypted_password", null: false
     t.string "password_salt"
@@ -268,6 +334,20 @@ ActiveRecord::Schema.define(version: 20181126080048) do
     t.index ["status"], name: "index_proposal_files_on_status"
   end
 
+  create_table "roads", force: :cascade do |t|
+    t.bigint "business_trip_id"
+    t.string "from"
+    t.datetime "start_date_time"
+    t.string "to"
+    t.datetime "end_date_time"
+    t.bigint "transport_type_id"
+    t.decimal "cost", precision: 8, scale: 2, default: "0.0"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["business_trip_id"], name: "index_roads_on_business_trip_id"
+    t.index ["transport_type_id"], name: "index_roads_on_transport_type_id"
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.boolean "special", default: false, null: false
@@ -287,6 +367,21 @@ ActiveRecord::Schema.define(version: 20181126080048) do
     t.index ["role_id"], name: "index_roles_users_on_role_id"
     t.index ["user_id", "role_id"], name: "index_roles_users_on_user_id_and_role_id", unique: true
     t.index ["user_id"], name: "index_roles_users_on_user_id"
+  end
+
+  create_table "transport_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "transports", force: :cascade do |t|
+    t.bigint "business_trip_id"
+    t.bigint "transport_type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["business_trip_id"], name: "index_transports_on_business_trip_id"
+    t.index ["transport_type_id"], name: "index_transports_on_transport_type_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -526,6 +621,11 @@ ActiveRecord::Schema.define(version: 20181126080048) do
   end
 
   add_foreign_key "attachments", "users"
+  add_foreign_key "business_trips", "business_trip_statuses"
+  add_foreign_key "business_trips", "users"
+  add_foreign_key "business_trips", "users", column: "business_trip_status_updated_user_id"
+  add_foreign_key "business_trips", "users", column: "employee_id"
+  add_foreign_key "chat_rooms", "users"
   add_foreign_key "comments", "events"
   add_foreign_key "comments", "users"
   add_foreign_key "customers", "users"
@@ -536,14 +636,23 @@ ActiveRecord::Schema.define(version: 20181126080048) do
   add_foreign_key "events", "event_statuses"
   add_foreign_key "events", "event_types"
   add_foreign_key "events", "users"
+  add_foreign_key "flows", "business_trip_statuses"
+  add_foreign_key "flows", "business_trips"
+  add_foreign_key "flows", "users", column: "business_trip_status_updated_user_id"
+  add_foreign_key "messages", "chat_rooms"
+  add_foreign_key "messages", "users"
   add_foreign_key "point_files", "projects"
   add_foreign_key "projects", "customers"
   add_foreign_key "projects", "enrollments"
   add_foreign_key "projects", "project_statuses"
   add_foreign_key "projects", "users"
   add_foreign_key "proposal_files", "projects"
+  add_foreign_key "roads", "business_trips"
+  add_foreign_key "roads", "transport_types"
   add_foreign_key "roles_users", "roles"
   add_foreign_key "roles_users", "users"
+  add_foreign_key "transports", "business_trips"
+  add_foreign_key "transports", "transport_types"
   add_foreign_key "ww_points", "point_files"
   add_foreign_key "xml_kamien_milowy_tables", "xml_zadanie_tables"
   add_foreign_key "xml_miejsce_realizacji_tables", "xml_partner_tables"

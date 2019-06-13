@@ -298,6 +298,17 @@ class CreateRoleService
     end
   end
 
+  # business_trips
+  def business_trip_admin
+    role = Role.find_or_create_by!(name: "Administrator Poleceń wyjazdu") do |role|
+      role.special = true
+      role.activities += %w(business_trip:index business_trip:show business_trip:create business_trip:update business_trip:delete business_trip:work business_trip:approved business_trip:payment_approved )
+      role.note = "Rola służy do zarządzania Poleceniami wyjazdu. \r\n(Przypisz Koordynatorom POPC)"
+      role.save!
+    end
+  end
+
+
 
 
 

@@ -1,0 +1,67 @@
+<div class="col-sm-11 col-sm-offset-1">
+
+  <% input_disabled ||= false  
+     #if input_disabled is not passed to the partial it doesn't crash. 
+     # We default it to false 
+  %>
+
+  <%= form_errors_for @business_trip %>
+
+
+  <%= render 'data_basic', input_disabled: true %>
+  <%= render 'data_payment', input_disabled: true %>
+  <%= render 'data_costs', input_disabled: true %>
+  <%= render 'data_other_costs', input_disabled: true %>
+
+  <hr class="hr-without-top-margin">
+
+
+  <% if input_disabled %>
+    <!-- for "Show" -->
+    <div class="row">
+
+      <div class="col-sm-4">
+
+        <%= link_to business_trips_path, class: "btn btn-default" do %>
+          <span class="glyphicon glyphicon-th-list"></span>
+          <%= t("helpers.links.index") %>
+        <% end %>
+
+        <% if policy(@business_trip).destroy? %>
+          <%= link_to business_trip_path(@business_trip),
+                              method: :delete,
+                              data: { confirm: t('helpers.links.confirm_destroy', data: @business_trip.number) }, 
+                              class: "btn btn-danger" do %>
+            <span class="glyphicon glyphicon-trash"></span>
+            <%= t("helpers.links.destroy") %>
+          <% end %>
+        <% end %>
+
+        <% if policy(@business_trip).edit? %>
+          <%= link_to edit_business_trip_path(@business_trip), class: "btn btn-primary" do %>
+            <span class="glyphicon glyphicon-edit"></span>
+            <%= t("helpers.links.edit") %>
+          <% end %>
+        <% end %>
+
+        <% if policy(@business_trip).edit? %>
+          <%= link_to costs_edit_business_trip_path(@business_trip), class: "btn btn-primary" do %>
+            <span class="glyphicon glyphicon-edit"></span>
+            <%= t("helpers.links.costs_edit") %>
+          <% end %>
+        <% end %>
+
+      </div> <!--/col-sm-6-->    
+
+      <div class="col-sm-8">
+        <%= render 'data_basic_buttons_status', input_disabled: true %>
+      </div> <!--/col-sm-6-->    
+
+
+    </div> <!-- /row -->
+
+  <% else %>
+    <!-- form "New"/"Edit" -->
+  <% end %>
+
+</div> <!--/col-sm-11 col-sm-offset-1-->    

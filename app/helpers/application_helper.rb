@@ -17,6 +17,10 @@ module ApplicationHelper
     end
   end
 
+  def text_with_break_line(text_data)
+    Loofah.fragment(text_data.gsub("\r\n", "<br>")).scrub!(:strip).to_s.html_safe
+  end
+  
   # for nested_attribute
   def link_to_add_fields(name, f, association, opts={})
     # creaate a new object given the form object, and the association name
@@ -35,9 +39,9 @@ module ApplicationHelper
     # call link_to_function to transform to a HTML link
     # clicking this link will then trigger add_fields javascript function
     link_to_function(name,
-      h("add_fields(this,
+      h("addNestedFields(this,
         \"#{association}\", \"#{escape_javascript(fields)}\");return false;"),
-      class: 'btn btn-success pull-right')
+      class: 'btn btn-sm btn-info pull-right')
   end
 
   def link_to_function(name, js, opts={})

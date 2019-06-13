@@ -22,6 +22,44 @@
           <th><%= Project.human_attribute_name(:flat_assigned_events) %></th>
         </tr>
       </thead>
+      <tfoot style='display: none'>
+        <tr>
+          <th></th> <!-- id -->
+          <th> <!-- number -->
+            <%= text_field_tag :col1filter, params[:col1filter], id: 'col1filter', 'data-column' => "1", 
+                  class: 'column_filter form-control input-sm', style: "width: 85%;" %>
+          </th>
+          <th> <!-- enrollment -->
+            <%= select( nil, "col2filter",
+                  Enrollment.all.order(:name).collect {|v| [ "#{v[:name]}", "#{v[:name]}" ] },
+                  { include_blank: true }, 
+                  { autofocus: false, class: 'column_filter form-control input-sm', 'data-column' => "2", style: "width: 65px;" }) %>
+          </th>
+          <th> <!-- area_id -->
+            <%= text_field_tag :col3filter, params[:col3filter], id: 'col3filter', 'data-column' => "3", 
+                  class: 'column_filter form-control input-sm', style: "width: 85%;" %>                
+          </th>
+          <th> <!-- area_name -->
+            <%= text_field_tag :col4filter, params[:col4filter], id: 'col4filter', 'data-column' => "4", 
+                  class: 'column_filter form-control input-sm', style: "width: 85%;" %>
+          </th>
+          <th>  <!-- status -->
+            <%= select( nil, "col5filter",
+                  ProjectStatus.all.order(:name).collect {|v| [ "#{v[:name]}", "#{v[:name]}" ] },
+                  { include_blank: true }, 
+                  { autofocus: false, class: 'column_filter form-control input-sm', 'data-column' => "5", style: "width: 65px;" }) %>
+            
+          </th>
+          <th> <!-- customer -->
+            <%= text_field_tag :col6filter, params[:col6filter], id: 'col6filter', 'data-column' => "6", 
+                  class: 'column_filter form-control input-sm', style: "width: 85%;" %>
+          </th>
+          <th>  <!-- flat -->
+            <%= text_field_tag :col7filter, params[:col7filter], id: 'col7filter', 'data-column' => "7", 
+                  class: 'column_filter form-control input-sm', style: "width: 85%;" %>                  
+          </th>
+        </tr>
+      </tfoot>
       <tbody>
         <!-- data from ajax -->
       </tbody>

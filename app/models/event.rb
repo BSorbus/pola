@@ -21,20 +21,22 @@ class Event < ApplicationRecord
   validates :title, presence: true,
                     length: { in: 1..100 },
                     uniqueness: { scope: [:project_id], message: " - takie zadanie jest już zdefiniowane w tym projekcie" }
-  validates :start_date, presence: true
-  validates :end_date, presence: true
   validates :project_id, presence: true
   validates :errand_id, presence: true
 
-  validate :dates_is_correct#, unless: :end_date.empty?
+  validate :end_after_start
+  validates :start_date, presence: true
+  validates :end_date, presence: true
 
-  accepts_nested_attributes_for :accessorizations, reject_if: :all_blank, allow_destroy: true
+  validate :must_have_accessorizations
 
   # callbacks
   before_create { self.title = "#{title} - #{self.project.number}" }
   
   after_create_commit { self.log_work('create') }
   after_update_commit { self.log_work('update') }
+
+  accepts_nested_attributes_for :accessorizations, reject_if: :all_blank, allow_destroy: true
 
 
   def is_closed
@@ -43,13 +45,6 @@ class Event < ApplicationRecord
 
   def self.for_user_in_accessorizations(u)
     eager_load(:accessorizations).where(accessorizations: {user_id: [u]})
-  end
-
-  def dates_is_correct
-    if end_date.present? && start_date.present? && (end_date < start_date)
-      errors.add(:end_date, 'nie może być wcześniejszy niż Początek')
-      throw :abort 
-    end
   end
 
   def log_work(action = '', action_user_id = nil)
@@ -108,5 +103,41 @@ class Event < ApplicationRecord
       end
     end
   end
+
+  private
+
+    def end_after_start
+      return if end_date.blank? || start_date.blank?
+     
+      if end_date < start_date
+        errors.add(:end_date, 'nie może być wcześniejsza "Początek"') 
+        throw :abort 
+      end 
+    end
+
+    def must_have_accessorizations
+      errors.add(:accessorizations, '- musi zostać określony przynajmniej jeden') if accessorizations_notvalid?
+    end
+
+    def accessorizations_notvalid?
+      # ret = false
+      # transport_type = []
+      # # puts '-----------------------------------------------'
+      # # puts transports.collect.as_json
+      # # transports.each {|row| puts row.marked_for_destruction? }
+      # # puts '-----------------------------------------------'
+
+      # transports.each do |row|
+      #   puts '-------------------------------------------------' 
+      #   puts row.as_json
+      #   puts row.marked_for_destruction?
+      #   puts '-------------------------------------------------' 
+      #   ret = true unless row.marked_for_destruction? 
+      # end unless transports.empty?
+      # ret
+
+      accessorizations.empty? or accessorizations.all? {|row| row.marked_for_destruction? }
+    end
+
 
 end

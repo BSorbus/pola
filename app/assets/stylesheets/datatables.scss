@@ -6,6 +6,7 @@
 @import 'datatables/extensions/Responsive/responsive.bootstrap';
 @import 'datatables/extensions/Buttons/buttons.bootstrap';
 
+
 //blokuje wyswietlanie icon "drzewko"
 //.DataTable > thead > tr > th[class*="sort"]:after{
 //    color: "red" !important;
@@ -28,21 +29,35 @@ div.dt-buttons {
 }
 
 tfoot {
-  display: table-row-group;
+    display: table-header-group;
 }
 
+//tfoot {
+//  display: table-row-group;
+//}
+
+table.dataTable {
+    border-bottom: 1px solid black !important;
+}
+
+table.dataTable tfoot th {
+  border-top: 0;
+  border-bottom: 1px solid black;
+}
+
+
   input.column_filter {
-    margin-top: -7px;
+    margin-top: -5px;
     margin-left: -5px;
   };
   select.column_filter {
-    margin-top: -7px;
+    margin-top: -5px;
     margin-left: -5px;
   }
 
 
 //tr {
-//  background-color: lighten(#BECC25, 5%)
+//  background-color: lighten(#BECC25, 48.5%);
 //}
 //tr:hover{
 //  background-color: #779BE5
@@ -97,3 +112,13 @@ tfoot {
 
 
 
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding : 0px;
+    margin-left: 0px;
+    display: inline;
+    border: 0px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    border: 0px;
+}

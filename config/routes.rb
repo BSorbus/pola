@@ -94,6 +94,16 @@ Rails.application.routes.draw do
     post 'datatables_index_user', on: :collection # for User
   end
 
+
+  resources :business_trips do
+    get 'datatables_index', on: :collection
+    get 'datatables_index_user', on: :collection # Displays roles for showed user
+    get 'costs_edit', on: :member 
+    patch 'costs_update', on: :member 
+    patch 'status_update', on: :member 
+    patch 'payment_approved', on: :member 
+  end
+
   root 'static_pages#home'
   get 'static_pages/home'
   get 'static_pages/help'

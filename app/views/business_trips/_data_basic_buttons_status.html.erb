@@ -1,0 +1,13 @@
+<% BusinessTripStatus.order(:step).each do |row| %>
+
+  <% if @business_trip.business_trip_status_button_enabled?(row.step) %>
+
+    <%= link_to status_update_business_trip_path(@business_trip, business_trip: {business_trip_status_id: "#{row.id}"} ), 
+          method: :patch, class: "#{@business_trip.business_trip_status_button_class(row.step)}" do %>
+      <%= @business_trip.business_trip_status_button_icon_span(row.id) %>
+      <%= row.name %>
+    <% end %>
+
+  <% end %>
+
+<% end %>

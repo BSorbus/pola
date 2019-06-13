@@ -2,7 +2,22 @@ $(document).ready(function() {
   var oAccessorizationstable = $('#accessorizations-table').DataTable({
     dom: 'lBfrtip',
     buttons: [
-      'copy', 'csv', 'pdf', 'colvis'
+      {
+        extend:    'copy',
+        text:      '<span class="fa fa-clipboard"></span>',
+        titleAttr: 'Kopiuj do schowka'
+      },
+      {
+        extend:    'csv',
+        text:      '<span class="fa fa-file-csv"></span>',
+        titleAttr: 'Kopiuj do CSV'
+      },
+      {
+        extend:    'colvis',
+        text:      '<span class="fa fa-columns"></span>',
+        titleAttr: 'Pokaż/ukryj kolumny',
+        columns:   ':gt(0)' //exclude first col from list
+      }    
     ],
     responsive: true,
     processing: true,
@@ -47,10 +62,10 @@ $(document).ready(function() {
     },
     order: [[ 1, "asc" ]],
     language: {
-      buttons: {
-        copy: 'Kopiuj',
-        colvis: 'Kolumny'
-      },
+      // buttons: {
+      //   copy: 'Kopiuj',
+      //   colvis: 'Kolumny'
+      // },
       url: '<%= asset_path("pl.json.erb") %>'
     }
   });

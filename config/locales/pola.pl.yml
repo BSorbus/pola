@@ -30,7 +30,24 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 pl:
-  hello: "Hello world"
+  logo_file: "logo_uke_pl_do_lewej.png"
+  logo_link: "http://www.uke.gov.pl"
+  layouts:
+    footer:
+      brand: 'Urząd Komunikacji Elektronicznej'
+      brand_address_1: 'ul. Giełdowa 7/9'
+      brand_address_2: '01-211 Warszawa'
+      brand_note: 'Regulator rynku telekomunikacyjnego i pocztowego'
+      contact: 'Kontakt'
+      contact_mail: 'pawel.dabrowski@uke.gov.pl'
+      contact_phone: '+48 17 871 8674 '
+      contact_mail2: 'piotr.jankowski@uke.gov.pl'
+      contact_phone2: '+48 85 657 8319'
+      contact_fax: '+48 22 53 49 175'
+      links: 'Zobacz też'
+  static_pages:
+    home:
+      title: 'POLA'
   restricted_area: "Adres IP - Wywołanie z obszaru ograniczonego!"
   file_upload:
     in_progress: 'Pobrano:'
@@ -63,6 +80,10 @@ pl:
       xml_wskaznik_table: 'Miejsce Realizacji'
       xml_wybrana_technologia_table: 'Wybrana Technologia'
       xml_zadanie_table: 'Zadanie'
+      transport: 'Środki Lokomocji'
+      business_trip_status: 'Status Polecenia Wyjazdu'
+      business_trip: 'Polecenie Wyjazdu'
+      road: 'Rachunek kosztów podróży'
     attributes:
       work:
         created_at: 'Data'
@@ -202,6 +223,7 @@ pl:
         attachments_count: 'Załączniki'
         flat_assigned_users: 'Użytkownicy realizujący'
         updated_at: 'Aktualizacja'
+        accessorizations: 'Użytkownicy realizujący'
       event/accessorizations:
         event_id: 'Zadanie'
         role_id: 'Rola'
@@ -282,9 +304,56 @@ pl:
         planowana_data_zakonczenia: 'Plan. data zakończenia'
         data_punktu_krytycznego: 'Data punktu krytycznego'
         data_punktu_ostatecznego: 'Data punktu ostatecznego'
+      business_trip_status:
+        name: 'Nazwa'
+      business_trip:
+        number: 'Numer'
+        employee: 'Pracownik'
+        employee_id: 'Pracownik'
+        start_date: 'Na czas od'
+        end_date: '...Do'
+        destination: 'Dokąd'
+        purpose: "Cel"
+        trip_confirmation: 'Potwierdzenie'
+        payment_on_account: 'Zaliczka'
+        payment_on_account_approved: 'Akceptacja zaliczki'
+        payment_on_account_approved_id: 'Akceptacja zaliczki'
+        payment_on_account_approved_date_time: 'Data akceptacji zaliczki'
+        note: 'Uwagi'
+        business_trip_status: 'Status'
+        business_trip_status_id: 'Status'
+        transports: 'Środki Lokomocji'
+      transport_type:
+        name: 'Nazwa'
+      transport:
+        business_trip: 'Polecenie Wyjazdu'
+        business_trip_id: 'Polecenie Wyjazdu'
+        business_trip_status: 'Status'
+        business_trip_status_id: 'Status'
+      road:
+        business_trip: 'Polecenie Wyjazdu'
+        business_trip_id: 'Polecenie Wyjazdu'
+        from: 'Wyjazd miejscowość'
+        start_date_time: 'Wyjazd data i godzina'
+        to: 'Przyjazd miejscowość'
+        end_date_time: 'Przyjazd data i godzina'
+        transport_type: 'Środek lokomocji'
+        transport_type_id: 'Środek lokomocji'
+        cost: 'Koszt'
+      business_trip/roads:
+        business_trip: 'Polecenie Wyjazdu'
+        business_trip_id: 'Polecenie Wyjazdu'
+        from: 'Wyjazd miejscowość'
+        start_date_time: 'Wyjazd data i godzina'
+        to: 'Przyjazd miejscowość'
+        end_date_time: 'Przyjazd data i godzina'
+        transport_type: 'Środek lokomocji'
+        transport_type_id: 'Środek lokomocji'
+        cost: 'Koszt'
   pages:
     home: 'Główna'
     help: 'Pomoc'
+    data: 'Dane'
     management: 'Zarządzanie'
     works: 'Dziennik operacji'
     charts: 'Statystyki'
@@ -417,6 +486,8 @@ pl:
         title: 'Nowe Zadanie'
       edit:
         title: 'Edycja -> Zadanie'
+      fieldset:
+        accessorizations_title: 'Użytkownicy realizujący'
     comment:
       index:
         title: 'Komentarze'
@@ -448,6 +519,25 @@ pl:
     xml_zadanie_table:
       index:
         title: 'Zadania - kamienie milowe'
+    business_trip:
+      index:
+        title: 'Polecenie Wyjazdu'
+      show:
+        title: 'Polecenie Wyjazdu'
+      new:
+        title: 'Nowe Polecenie Wyjazdu'
+      edit:
+        title: 'Edycja -> Polecenie Wyjazdu'
+      fieldset:
+        payment_title: 'Zaliczka'
+        transports_title: 'Środki lokomocji'
+        roads_title: 'Rachunek kosztów podróży'
+        other_costs_title: 'Oświadczenie dotyczące kosztów'
+    flow:
+      index:
+        title: 'Polecenie Wyjazdu - Historia przepływu'
+      show:
+        title: 'Polecenie Wyjazdu - Historia przepływu'
   pundit:
     default: ' BRAK UPRAWNIEŃ: Nie można wykonać tej czynności!'
     work_policy:
@@ -540,8 +630,10 @@ pl:
       filter: " Filtruj dane"
       account_off: " Wyłącz konto"
       account_on: " Włącz konto"
-      link_to_add_fields_accessorization: '[ + Dodaj Uprawnienie]'
-      link_to_remove_fields_accessorization: '[ - Usuń Uprawnienie]'
+      link_to_add_fields_nested: '[ + Dodaj ]'
+      link_to_remove_fields_nested: '[ - Usuń ]'
+      link_to_remove_fields_nested_small: '[ - ]'
+      costs_edit: 'Edycja kosztów'
       new_point_file: ' Ładuj Plik Punktów Adresowych'
   tooltip:
     show: 'Pokaż'
