@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   after_action :verify_authorized, except: [:index, :datatables_index_role, :datatables_index]
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :account_off, :account_on]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :account_off, :account_on, :set_activity_at]
 
 
   def datatables_index_role
@@ -127,6 +127,19 @@ class UsersController < ApplicationController
       redirect_to @user
     else 
       flash.now[:error] = t('activerecord.errors.messages.account_on', data: @user.fullname)
+      render :show 
+    end         
+  end
+
+  def set_activity_at
+    authorize @user, :update?
+
+    @user.last_activity_at = Time.zone.now - 1.month
+    if @user.save
+      flash[:success] = t('activerecord.successfull.messages.set_activity_at', data: @user.fullname)
+      redirect_to @user
+    else 
+      flash.now[:error] = t('activerecord.errors.messages.set_activity_at', data: @user.fullname)
       render :show 
     end         
   end

@@ -144,6 +144,16 @@
           <% end %>
         <% end %>
 
+        <% if @user.last_activity_at_expired? %>
+          <%= link_to set_activity_at_user_path(@user),
+                              method: :patch,
+                              data: { confirm: t('helpers.links.confirm_set_activity_at', data: @user.fullname) }, 
+                              class: "btn btn-warning" do %>
+            <span class="glyphicon glyphicon-time"></span>
+            <%= t("helpers.links.set_activity_at") %>
+          <% end %>
+        <% end %>
+
       <% end %>
 
     </div> <!-- /row -->

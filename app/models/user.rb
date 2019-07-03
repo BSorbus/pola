@@ -89,6 +89,9 @@ class User < ApplicationRecord
     "<a href=#{url_helpers.user_path(self)}>#{self.name}</a>".html_safe
   end
 
+  def last_activity_at_expired?
+    self.last_activity_at < Time.zone.now - 90.days
+  end
   # Scope for select2: "user_select"
   # * parameters   :
   #   * +query_str+ -> string for search. 

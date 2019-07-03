@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     get 'datatables_index_role', on: :collection # Displays users for showed role
     patch 'account_off', on: :member
     patch 'account_on', on: :member
+    patch 'set_activity_at', on: :member
     resources :attachments, module: :users, only: [:create]
   end
   
