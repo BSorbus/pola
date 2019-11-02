@@ -59,7 +59,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'bootstrap-sass', '>=3.4.1'
-gem 'devise', '4.6.0'
+gem 'devise', '4.7.1'
 gem 'devise-security'
 gem 'rails_email_validator'
 
