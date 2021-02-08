@@ -71,7 +71,7 @@ gem 'kaminari'
 gem 'jquery-datatables', '= 1.10.16' #1.10.19 jakis problem z wyswietlaniem strzalek sortowania
 gem 'ajax-datatables-rails', '= 0.4.0' #0.4.3 wywala się na custom_filter
 gem 'pundit'
-gem 'carrierwave', '~> 1.0'
+gem 'carrierwave', '~> 1.3'
 gem 'file_validators'
 gem 'activerecord-import'
 gem 'jquery-fileupload-rails'
